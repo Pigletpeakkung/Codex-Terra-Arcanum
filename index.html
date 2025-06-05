@@ -3,3012 +3,344 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Thanatsitt Santisamranwilai - Portfolio</title>
     
-    <!-- Primary Meta Tags -->
-    <title>Thanatsitt Santisamranwilai - Thai-British AI Developer & Cultural Designer | Portfolio 2025</title>
-    <meta name="title" content="Thanatsitt Santisamranwilai - Thai-British AI Developer & Cultural Designer | Portfolio 2025">
-    <meta name="description" content="Thai-British interdisciplinary creator bridging ancient wisdom with modern AI technology. Fashion designer turned developer, co-founder of ThannxAI. London College of Fashion graduate specializing in cultural design and human-centered AI.">
-    <meta name="keywords" content="Thanatsitt Santisamranwilai, Thai developer, AI developer, cultural designer, ThannxAI, London College of Fashion, web developer, UI/UX designer, cross-cultural technology, Buddhist philosophy, archetypal psychology, Carl Jung, fashion design, self-taught programmer">
-    <meta name="author" content="Thanatsitt Santisamranwilai">
-    <meta name="robots" content="index, follow">
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        'gold': '#D4AF37',
+                        'silver': '#C0C0C8',
+                        'dark-blue': '#1a1a2e',
+                        'medium-blue': '#16213e',
+                        'light-blue': '#0f3460'
+                    }
+                }
+            }
+        }
+    </script>
     
-    <!-- Open Graph / Facebook -->
-    <meta property="og:type" content="website">
-    <meta property="og:url" content="https://thanatsitt.dev/">
-    <meta property="og:title" content="Thanatsitt Santisamranwilai - Thai-British AI Developer & Cultural Designer">
-    <meta property="og:description" content="Interdisciplinary creator bridging ancient wisdom with modern AI technology. Fashion designer turned developer, co-founder of ThannxAI.">
-    <meta property="og:image" content="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=1200&h=630&fit=crop">
-    
-    <!-- Twitter -->
-    <meta property="twitter:card" content="summary_large_image">
-    <meta property="twitter:url" content="https://thanatsitt.dev/">
-    <meta property="twitter:title" content="Thanatsitt Santisamranwilai - Thai-British AI Developer & Cultural Designer">
-    <meta property="twitter:description" content="Interdisciplinary creator bridging ancient wisdom with modern AI technology. Fashion designer turned developer, co-founder of ThannxAI.">
-    <meta property="twitter:image" content="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=1200&h=630&fit=crop">
-    
-    <!-- Favicon -->
-    <link rel="icon" type="image/x-icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🌙</text></svg>">
-    
-    <!-- Preload critical resources -->
-    <link rel="preload" href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Playfair+Display:ital,wght@0,400;0,600;1,400&family=Space+Grotesk:wght@300;400;500;600;700&family=Orbitron:wght@400;500;600;700&display=swap" as="style">
-    <link rel="dns-prefetch" href="//images.unsplash.com">
-    <link rel="dns-prefetch" href="//cdnjs.cloudflare.com">
-    
-    <!-- CDN Libraries -->
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.min.js" integrity="sha512-v2CJ7UaYy4JwqLDIrZUI/4hqeoQieOmAZNXBeQyjo21dadnwR+8ZaIJVT8EE2iyI61OV8e6M8PP2/4hpQINQ/g==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js" integrity="sha512-16esztaSRplJROstbIIdwX3N97V1+pZvV33ABoG1H2OyTttBxEGkTsoIVsiP1iaTtM8b3+hu2kB6pQ4Clr5yug==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js" integrity="sha512-Ic9xkERjyZ1xgJ5svx3y0u3xrvfT/uPkV99LBwe68xjy/mGtO+4eURHZBW2xW4SZbFrF1Tf090XqB+EVgXnVjw==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js" integrity="sha512-dLxUelApnYxpLt6K2iomGngnHO83iUvZytA3YjDUCjT0HDOHKXnVYdf3hU4JjM8uEhxf9nD1/ey98U3t2vZ0qQ==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/particles.js/2.0.0/particles.min.js" integrity="sha512-Kef5sc7gfTacR7TZKelcrRs15ipf7+t+n7Zh6mKNJbmW+/RRdCW9nwfLn4YX0s2nO6Kv5Y2ChqgIakaC6PW09A==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
-    <link href="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.css" rel="stylesheet">
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.js" integrity="sha512-A7AYk1fGKX6S2SsHywmPkrnzTZHrgiVT7GcQkLGDe2ev0aWb8zejytzS8wjo7PGEXKqJOrjQ4oORtnimIRZBtw==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/typed.js/2.0.16/typed.umd.js" integrity="sha512-+2pW8xXU/rNr7VS+H62aqapfRpqFwnSQh9ap6THjsm41AxgA0MhFRtfrABS+Lx2KHJn82UOrnBKhjZOXpom2LQ==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
-    <script src="https://cdn.jsdelivr.net/npm/@emailjs/browser@3/dist/email.min.js"></script>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" integrity="sha512-DTOQO9RWCH3ppGqcWaEA1BIZOC6xxalwEsw9c2QQeAIftl+Vegovlnee1c9QX4TctnWMn13TZye+giMm8e2LwA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
     
     <!-- Google Fonts -->
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Playfair+Display:ital,wght@0,400;0,600;1,400&family=Space+Grotesk:wght@300;400;500;600;700&family=Orbitron:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&family=Sarabun:wght@300;400;600&display=swap" rel="stylesheet">
     
-    <!-- Enhanced Structured Data -->
-    <script type="application/ld+json">
-    {
-        "@context": "https://schema.org",
-        "@type": "Person",
-        "name": "Thanatsitt Santisamranwilai",
-        "alternateName": ["Thanatsitt", "Thann"],
-        "description": "Thai-British interdisciplinary creator who weaves ancient wisdom with modern technology",
-        "url": "https://thanatsitt.dev",
-        "image": "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=400&h=400&fit=crop",
-        "sameAs": [
-            "https://github.com/Pigletpeakkung",
-            "https://linkedin.com/in/thanatsitt",
-            "https://twitter.com/thanatsitt"
-        ],
-        "jobTitle": "AI Developer & Cultural Designer",
-        "worksFor": {
-            "@type": "Organization",
-            "name": "ThannxAI",
-            "url": "https://thannxai.com"
-        },
-        "alumniOf": {
-            "@type": "CollegeOrUniversity",
-            "name": "London College of Fashion",
-            "address": {
-                "@type": "PostalAddress",
-                "addressLocality": "London",
-                "addressCountry": "UK"
-            }
-        },
-        "nationality": ["Thai", "British"],
-        "birthPlace": {
-            "@type": "Place",
-            "name": "Bangkok",
-            "addressCountry": "Thailand"
-        },
-        "knowsAbout": [
-            "Artificial Intelligence",
-            "Cultural Design",
-            "Fashion Design",
-            "Web Development",
-            "Buddhist Philosophy",
-            "Jungian Psychology",
-            "Cross-cultural Communication"
-        ]
-    }
-    </script>
-
-    <!-- Website Structured Data -->
-    <script type="application/ld+json">
-    {
-        "@context": "https://schema.org",
-        "@type": "WebSite",
-        "name": "Thanatsitt Santisamranwilai Portfolio",
-        "url": "https://thanatsitt.dev",
-        "description": "Portfolio of Thai-British AI Developer and Cultural Designer",
-        "author": {
-            "@type": "Person",
-            "name": "Thanatsitt Santisamranwilai"
-        },
-        "inLanguage": "en-US",
-        "copyrightYear": "2025"
-    }
-    </script>
-
     <style>
-        :root {
-            --primary-gold: #D4AF37;
-            --deep-purple: #1A1A2E;
-            --soft-lavender: #E6E6FA;
-            --dark-silver: #2C2C34;
-            --light-silver: #8B8B9A;
-            --moon-silver: #C0C0C8;
-            --glass-bg: rgba(255, 255, 255, 0.05);
-            --glass-border: rgba(255, 255, 255, 0.1);
-            --shadow-soft: 0 8px 32px rgba(0, 0, 0, 0.2);
-            --shadow-strong: 0 20px 60px rgba(0, 0, 0, 0.4);
-            --gradient-primary: linear-gradient(135deg, #D4AF37 0%, #B8860B 100%);
-            --gradient-secondary: linear-gradient(135deg, #1a1a2e 0%, #16213e 25%, #0f3460 50%, #533483 75%, #7209b7 100%);
-            --border-radius-sm: 12px;
-            --border-radius-md: 20px;
-            --border-radius-lg: 30px;
-            --transition-fast: 0.2s ease;
-            --transition-normal: 0.3s ease;
-            --transition-slow: 0.5s ease;
-        }
-
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
-
-        html {
-            scroll-behavior: smooth;
-        }
-
-        body {
-            font-family: 'Inter', sans-serif;
-            background: var(--gradient-secondary);
-            background-size: 400% 400%;
-            animation: gradientShift 20s ease infinite;
-            min-height: 100vh;
-            overflow-x: hidden;
-            color: white;
-            line-height: 1.6;
-        }
-
-        /* Enhanced Background Animation */
-        @keyframes gradientShift {
-            0% { background-position: 0% 50%; }
-            25% { background-position: 100% 50%; }
-            50% { background-position: 100% 100%; }
-            75% { background-position: 0% 100%; }
-            100% { background-position: 0% 50%; }
-        }
-
-        /* Scroll Progress Indicator */
-        .scroll-indicator {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 4px;
-            background: rgba(255,255,255,0.1);
-            z-index: 1001;
-        }
-
-        .scroll-progress {
-            height: 100%;
-            background: var(--gradient-primary);
-            width: 0%;
-            transition: width 0.1s ease;
-            box-shadow: 0 0 10px rgba(212, 175, 55, 0.5);
-        }
-
-        /* Enhanced Moving Lights */
-        .moving-lights {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            pointer-events: none;
-            z-index: 1;
-            overflow: hidden;
-        }
-
-        .light-beam {
-            position: absolute;
-            width: 2px;
-            height: 120px;
-            background: linear-gradient(180deg, 
-                transparent 0%,
-                rgba(212, 175, 55, 0.8) 30%,
-                rgba(192, 192, 200, 0.9) 50%,
-                rgba(212, 175, 55, 0.8) 70%,
-                transparent 100%
-            );
-            animation: moveLight 12s linear infinite;
-            opacity: 0.7;
-            filter: blur(0.5px);
-        }
-
-        .light-beam:nth-child(1) { left: 10%; animation-delay: 0s; animation-duration: 15s; }
-        .light-beam:nth-child(2) { left: 25%; animation-delay: -3s; animation-duration: 18s; }
-        .light-beam:nth-child(3) { left: 45%; animation-delay: -6s; animation-duration: 12s; }
-        .light-beam:nth-child(4) { left: 65%; animation-delay: -9s; animation-duration: 20s; }
-        .light-beam:nth-child(5) { left: 80%; animation-delay: -12s; animation-duration: 16s; }
-        .light-beam:nth-child(6) { left: 35%; animation-delay: -15s; animation-duration: 14s; }
-        .light-beam:nth-child(7) { left: 55%; animation-delay: -18s; animation-duration: 22s; }
-
-        @keyframes moveLight {
-            0% {
-                transform: translateY(-120px) rotate(45deg);
-                opacity: 0;
-            }
-            10% { opacity: 0.7; }
-            90% { opacity: 0.7; }
-            100% {
-                transform: translateY(calc(100vh + 120px)) rotate(45deg);
-                opacity: 0;
-            }
-        }
-
-        /* Enhanced Moon with Interactive Glow */
-        .moon {
-            position: fixed;
-            top: 8%;
-            right: 8%;
-            width: 140px;
-            height: 140px;
-            background: radial-gradient(circle at 35% 35%, 
-                #ffffff 0%,
-                #f8f8f8 25%,
-                #e8e8e8 50%,
-                #d0d0d0 75%,
-                #a8a8a8 100%
-            );
-            border-radius: 50%;
-            box-shadow: 
-                0 0 60px rgba(255, 255, 255, 0.4),
-                0 0 120px rgba(212, 175, 55, 0.2),
-                inset -15px -15px 30px rgba(0, 0, 0, 0.2),
-                inset 5px 5px 15px rgba(255, 255, 255, 0.3);
-            z-index: 2;
-            animation: moonGlow 6s ease-in-out infinite alternate;
-            cursor: pointer;
-            transition: transform var(--transition-normal);
-        }
-
-        .moon:hover {
-            transform: scale(1.1);
-            animation-duration: 2s;
-        }
-
-        @keyframes moonGlow {
-            0% {
-                box-shadow: 
-                    0 0 60px rgba(255, 255, 255, 0.4),
-                    0 0 120px rgba(212, 175, 55, 0.2),
-                    inset -15px -15px 30px rgba(0, 0, 0, 0.2);
-            }
-            100% {
-                box-shadow: 
-                    0 0 100px rgba(255, 255, 255, 0.6),
-                    0 0 180px rgba(212, 175, 55, 0.4),
-                    0 0 240px rgba(192, 192, 200, 0.3),
-                    inset -15px -15px 30px rgba(0, 0, 0, 0.2);
-            }
-        }
-
-        /* Enhanced Particles */
-        #particles-js {
-            position: fixed;
-            width: 100%;
-            height: 100%;
-            top: 0;
-            left: 0;
-            z-index: 0;
-        }
-
-        /* Enhanced Custom Cursor */
-        .custom-cursor {
-            position: fixed;
-            width: 24px;
-            height: 24px;
-            background: radial-gradient(circle, var(--moon-silver) 0%, transparent 70%);
-            border-radius: 50%;
-            pointer-events: none;
-            z-index: 9999;
-            transition: all var(--transition-fast);
-            mix-blend-mode: difference;
-        }
-
-        .custom-cursor.hover {
-            transform: scale(2.5);
-            background: radial-gradient(circle, var(--primary-gold) 0%, rgba(212, 175, 55, 0.3) 50%, transparent 70%);
-            box-shadow: 0 0 20px rgba(212, 175, 55, 0.5);
-        }
-
-        .custom-cursor.click {
-            transform: scale(0.8);
-            background: radial-gradient(circle, #fff 0%, transparent 70%);
-        }
-
-        /* Skip Link */
-        .skip-link {
-            position: absolute;
-            top: -40px;
-            left: 6px;
-            background: var(--primary-gold);
-            color: var(--deep-purple);
-            padding: 8px 16px;
-            text-decoration: none;
-            border-radius: var(--border-radius-sm);
-            z-index: 1000;
-            font-weight: 600;
-            transition: all var(--transition-normal);
-        }
-
-        .skip-link:focus {
-            top: 6px;
-            box-shadow: 0 0 20px rgba(212, 175, 55, 0.5);
-        }
-
-        /* Enhanced Navigation */
-        .main-nav {
-            position: fixed;
-            top: 0;
-            left: 0;
-            right: 0;
-            background: rgba(26, 26, 46, 0.95);
-            backdrop-filter: blur(25px);
-            z-index: 100;
-            padding: 1rem 2rem;
-            transition: all var(--transition-normal);
-            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
-        }
-
-        .main-nav.scrolled {
-            background: rgba(26, 26, 46, 0.98);
-            box-shadow: 0 10px 40px rgba(0, 0, 0, 0.3);
-        }
-
-        .nav-container {
-            max-width: 1400px;
-            margin: 0 auto;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-        }
-
-        .logo {
-            font-family: 'Orbitron', sans-serif;
-            font-size: 1.8rem;
-            color: var(--primary-gold);
-            text-decoration: none;
-            font-weight: 600;
-            text-shadow: 0 0 20px rgba(212, 175, 55, 0.5);
-            transition: all var(--transition-normal);
-            position: relative;
-        }
-
-        .logo:hover {
-            transform: scale(1.05);
-            text-shadow: 0 0 30px rgba(212, 175, 55, 0.8);
-        }
-
-        .logo::after {
-            content: '';
-            position: absolute;
-            bottom: -5px;
-            left: 0;
-            width: 0;
-            height: 2px;
-            background: var(--gradient-primary);
-            transition: width var(--transition-normal);
-        }
-
-        .logo:hover::after {
-            width: 100%;
-        }
-
-        .nav-links {
-            display: flex;
-            list-style: none;
-            gap: 1rem;
-        }
-
-        .nav-links a {
-            color: white;
-            text-decoration: none;
-            font-weight: 500;
-            transition: all var(--transition-normal);
-            position: relative;
-            padding: 0.8rem 1.5rem;
-            border-radius: 25px;
-            overflow: hidden;
-        }
-
-        .nav-links a::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: -100%;
-            width: 100%;
-            height: 100%;
-            background: linear-gradient(90deg, transparent, rgba(212, 175, 55, 0.1), transparent);
-            transition: left var(--transition-slow);
-        }
-
-        .nav-links a:hover::before {
-            left: 100%;
-        }
-
-        .nav-links a::after {
-            content: '';
-            position: absolute;
-            bottom: 0;
-            left: 50%;
-            width: 0;
-            height: 2px;
-            background: var(--gradient-primary);
-            transition: all var(--transition-normal);
-            transform: translateX(-50%);
-        }
-
-        .nav-links a:hover,
-        .nav-links a:focus,
-        .nav-links a.active {
-            color: var(--primary-gold);
-            background: rgba(212, 175, 55, 0.1);
-            box-shadow: 0 0 20px rgba(212, 175, 55, 0.3);
-            transform: translateY(-2px);
-        }
-
-        .nav-links a:hover::after,
-        .nav-links a.active::after {
-            width: 80%;
-        }
-
-        /* Mobile Menu Toggle */
-        .mobile-menu-toggle {
-            display: none;
-            flex-direction: column;
-            cursor: pointer;
-            padding: 0.5rem;
-        }
-
-        .mobile-menu-toggle span {
-            width: 25px;
-            height: 3px;
-            background: var(--primary-gold);
-            margin: 3px 0;
-            transition: all var(--transition-normal);
-            border-radius: 2px;
-        }
-
-        .mobile-menu-toggle.active span:nth-child(1) {
-            transform: rotate(-45deg) translate(-5px, 6px);
-        }
-
-        .mobile-menu-toggle.active span:nth-child(2) {
-            opacity: 0;
-        }
-
-        .mobile-menu-toggle.active span:nth-child(3) {
-            transform: rotate(45deg) translate(-5px, -6px);
-        }
-
-        /* Enhanced Hero Section */
-        .hero {
-            padding: 10rem 2rem 6rem;
-            text-align: center;
-            position: relative;
-            overflow: hidden;
-            min-height: 100vh;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-        }
-
-        .hero-content {
-            max-width: 1200px;
-            margin: 0 auto;
-            position: relative;
-            z-index: 10;
-        }
-
-        .hero h1 {
-            font-family: 'Space Grotesk', sans-serif;
-            font-size: clamp(2.5rem, 5vw, 4.5rem);
-            color: var(--primary-gold);
-            margin-bottom: 1.5rem;
-            text-shadow: 0 0 40px rgba(212, 175, 55, 0.5);
-            background: linear-gradient(135deg, var(--primary-gold) 0%, var(--moon-silver) 50%, var(--primary-gold) 100%);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            background-clip: text;
-            background-size: 200% 200%;
-            animation: textShimmer 4s ease-in-out infinite;
-        }
-
-        @keyframes textShimmer {
-            0%, 100% { background-position: 0% 50%; }
-            50% { background-position: 100% 50%; }
-        }
-
-        .hero-subtitle {
-            font-size: clamp(1.1rem, 2.5vw, 1.6rem);
-            color: var(--moon-silver);
-            margin-bottom: 2rem;
-            font-weight: 300;
-            opacity: 0.9;
-        }
-
-        .hero-description {
-            font-size: clamp(1rem, 2vw, 1.3rem);
-            line-height: 1.8;
-            max-width: 900px;
-            margin: 0 auto 3rem;
-            opacity: 0.85;
-            color: rgba(255, 255, 255, 0.8);
-        }
-
-        .hero-stats {
-            display: flex;
-            justify-content: center;
-            gap: 3rem;
-            margin: 3rem 0;
-            flex-wrap: wrap;
-        }
-
-        .stat-item {
-            text-align: center;
-            padding: 1.5rem;
-            background: rgba(255, 255, 255, 0.05);
-            backdrop-filter: blur(15px);
-            border-radius: var(--border-radius-md);
-            border: 1px solid rgba(255, 255, 255, 0.1);
-            transition: all var(--transition-normal);
-            min-width: 120px;
-        }
-
-        .stat-item:hover {
-            transform: translateY(-5px);
-            background: rgba(212, 175, 55, 0.1);
-            border-color: var(--primary-gold);
-            box-shadow: 0 10px 30px rgba(212, 175, 55, 0.2);
-        }
-
-        .stat-number {
-            font-family: 'Orbitron', sans-serif;
-            font-size: 2rem;
-            font-weight: 700;
-            color: var(--primary-gold);
-            display: block;
-        }
-
-        .stat-label {
-            font-size: 0.9rem;
-            color: rgba(255, 255, 255, 0.7);
-            margin-top: 0.5rem;
-        }
-
-        .hero-cta {
-            display: flex;
-            gap: 1.5rem;
-            justify-content: center;
-            flex-wrap: wrap;
-            margin-top: 3rem;
-        }
-
-        /* Enhanced CTA Buttons */
-        .cta-button {
-            background: var(--gradient-primary);
-            color: white;
-            padding: 1.2rem 2.5rem;
-            border: none;
-            border-radius: 50px;
-            font-size: 1.1rem;
-            font-weight: 600;
-            cursor: pointer;
-            transition: all var(--transition-normal);
-            text-decoration: none;
-            display: inline-flex;
-            align-items: center;
-            gap: 0.8rem;
-            box-shadow: 0 10px 30px rgba(212, 175, 55, 0.3);
-            position: relative;
-            overflow: hidden;
-        }
-
-        .cta-button::before {
-            content: '';
-            position: absolute;
-            top: 50%;
-            left: 50%;
-            width: 0;
-            height: 0;
-            background: rgba(255,255,255,0.2);
-            border-radius: 50%;
-            transform: translate(-50%, -50%);
-            transition: all var(--transition-slow);
-        }
-
-        .cta-button:hover::before {
-            width: 300px;
-            height: 300px;
-        }
-
-        .cta-button:hover {
-            transform: translateY(-5px) scale(1.05);
-            box-shadow: 0 20px 50px rgba(212, 175, 55, 0.5);
-            letter-spacing: 1px;
-        }
-
-        .cta-button:active {
-            transform: translateY(-2px) scale(1.02);
-        }
-
-        .cta-button.secondary {
-            background: transparent;
-            border: 2px solid var(--moon-silver);
-            color: var(--moon-silver);
-            box-shadow: 0 10px 30px rgba(192, 192, 200, 0.2);
-        }
-
-        .cta-button.secondary:hover {
-            background: var(--moon-silver);
-            color: var(--deep-purple);
-            box-shadow: 0 20px 50px rgba(192, 192, 200, 0.4);
-        }
-
-        /* Enhanced Section Styling */
-        .section {
-            padding: 8rem 2rem;
-            position: relative;
-            z-index: 10;
-        }
-
-        .section-header {
-            text-align: center;
-            margin-bottom: 5rem;
-            max-width: 800px;
-            margin-left: auto;
-            margin-right: auto;
-        }
-
-        .section-title {
-            font-family: 'Space Grotesk', sans-serif;
-            font-size: clamp(2.5rem, 4vw, 3.5rem);
-            color: var(--primary-gold);
-            margin-bottom: 1.5rem;
-            position: relative;
-            text-shadow: 0 0 30px rgba(212, 175, 55, 0.3);
-        }
-
-        .section-title::after {
-            content: '';
-            position: absolute;
-            bottom: -20px;
-            left: 50%;
-            transform: translateX(-50%);
-            width: 100px;
-            height: 4px;
-            background: var(--gradient-primary);
-            border-radius: 2px;
-            box-shadow: 0 0 20px rgba(212, 175, 55, 0.5);
-        }
-
-        .section-subtitle {
-            font-size: 1.2rem;
-            color: rgba(255, 255, 255, 0.8);
-            line-height: 1.7;
-            margin-top: 2rem;
-        }
-
-        /* Enhanced Gallery Grid */
-        .gallery-container {
-            max-width: 1400px;
-            margin: 0 auto;
-        }
-
-        .gallery-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
-            gap: 3rem;
-            margin-bottom: 4rem;
-        }
-
-        .gallery-item {
-            background: rgba(255, 255, 255, 0.03);
-            backdrop-filter: blur(25px);
-            border: 1px solid rgba(255, 255, 255, 0.1);
-            border-radius: var(--border-radius-lg);
-            overflow: hidden;
-            transition: all 0.6s cubic-bezier(0.4, 0, 0.2, 1);
-            cursor: pointer;
-            position: relative;
-            box-shadow: 0 15px 50px rgba(0, 0, 0, 0.3);
-        }
-
-        .gallery-item::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: -100%;
-            width: 100%;
-            height: 100%;
-            background: linear-gradient(90deg, transparent, rgba(255,255,255,0.1), transparent);
-            transition: left var(--transition-slow);
-            z-index: 1;
-        }
-
-        .gallery-item:hover::before {
-            left: 100%;
-        }
-
-        .gallery-item:hover {
-            transform: translateY(-20px) scale(1.03) rotateX(2deg);
-            box-shadow: 
-                0 30px 80px rgba(0, 0, 0, 0.4),
-                0 0 50px rgba(212, 175, 55, 0.3),
-                inset 0 1px 0 rgba(255,255,255,0.1);
-            border-color: var(--primary-gold);
-        }
-
-        .image-container {
-            position: relative;
-            height: 300px;
-            overflow: hidden;
-        }
-
-        .gallery-image {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-            transition: transform 0.8s ease;
-            filter: brightness(0.8) contrast(1.1);
-        }
-
-        .gallery-item:hover .gallery-image {
-            transform: scale(1.15);
-            filter: brightness(1) contrast(1.2);
-        }
-
-        .image-overlay {
-            position: absolute;
-            top: 0;
-            left: 0;
-            right: 0;
-            bottom: 0;
-            background: linear-gradient(
-                135deg,
-                rgba(26, 26, 46, 0.8) 0%,
-                rgba(212, 175, 55, 0.4) 100%
-            );
-            opacity: 0;
-            transition: opacity var(--transition-slow);
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            flex-direction: column;
-            gap: 1rem;
-        }
-
-        .gallery-item:hover .image-overlay {
-            opacity: 1;
-        }
-
-        .overlay-icon {
-            font-size: 3rem;
-            color: white;
-            animation: pulse 2s infinite;
-            text-shadow: 0 0 20px rgba(255, 255, 255, 0.5);
-        }
-
-        .overlay-text {
-            color: white;
-            font-weight: 600;
-            font-size: 1.1rem;
-            text-shadow: 0 2px 10px rgba(0, 0, 0, 0.5);
-        }
-
-        .item-content {
-            padding: 2.5rem;
-        }
-
-        .item-category {
-            background: var(--gradient-primary);
-            color: white;
-            padding: 0.6rem 1.5rem;
-            border-radius: 25px;
-            font-size: 0.9rem;
-            font-weight: 600;
-            display: inline-block;
-            margin-bottom: 1.5rem;
-            box-shadow: 0 5px 20px rgba(212, 175, 55, 0.3);
-            transition: all var(--transition-normal);
-        }
-
-        .item-category:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 8px 25px rgba(212, 175, 55, 0.4);
-        }
-
-        .item-title {
-            font-family: 'Space Grotesk', sans-serif;
-            font-size: 1.5rem;
-            color: white;
-            margin-bottom: 1.2rem;
-            font-weight: 600;
-            line-height: 1.3;
-        }
-
-        .item-description {
-            color: rgba(255, 255, 255, 0.8);
-            line-height: 1.8;
-            margin-bottom: 2rem;
-            font-size: 1rem;
-        }
-
-        .item-tags {
-            display: flex;
-            flex-wrap: wrap;
-            gap: 0.8rem;
-        }
-
-        .tag {
-            background: rgba(255, 255, 255, 0.08);
-            color: var(--moon-silver);
-            padding: 0.5rem 1.2rem;
-            border-radius: 20px;
-            font-size: 0.85rem;
-            border: 1px solid rgba(255, 255, 255, 0.15);
-            transition: all var(--transition-normal);
-            cursor: pointer;
-        }
-
-        .tag:hover,
-        .tag.tag-hover {
-            background: rgba(212, 175, 55, 0.2);
-            border-color: var(--primary-gold);
-            color: white;
-            transform: translateY(-2px);
-        }
-
-        /* Enhanced Projects Section */
-        .projects-section {
-            background: rgba(0, 0, 0, 0.1);
-            backdrop-filter: blur(10px);
-        }
-
-        .projects-content {
-            max-width: 1400px;
-            margin: 0 auto;
-        }
-
-        .projects-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(450px, 1fr));
-            gap: 3rem;
-        }
-
-        .project-card {
-            background: rgba(255, 255, 255, 0.02);
-            backdrop-filter: blur(30px);
-            border: 1px solid rgba(255, 255, 255, 0.1);
-            border-radius: var(--border-radius-lg);
-            overflow: hidden;
-            transition: all 0.8s cubic-bezier(0.4, 0, 0.2, 1);
-            position: relative;
-            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.4);
-            perspective: 1000px;
-            transform-style: preserve-3d;
-        }
-
-        .project-card::before {
-            content: '';
-            position: absolute;
-            top: -2px;
-            left: -2px;
-            right: -2px;
-            bottom: -2px;
-            background: linear-gradient(45deg, var(--primary-gold), var(--moon-silver), var(--primary-gold));
-            border-radius: 32px;
-            opacity: 0;
-            z-index: -1;
-            transition: opacity var(--transition-slow);
-            animation: borderGlow 3s linear infinite;
-            background-size: 200% 200%;
-        }
-
-        .project-card:hover::before {
-            opacity: 1;
-        }
-
-        @keyframes borderGlow {
-            0%, 100% { background-position: 0% 50%; }
-            50% { background-position: 100% 50%; }
-        }
-
-        .project-card:hover {
-            transform: translateY(-25px) rotateY(3deg) rotateX(3deg);
-            box-shadow: 
-                0 40px 100px rgba(0, 0, 0, 0.5),
-                0 0 60px rgba(212, 175, 55, 0.3),
-                20px 20px 40px rgba(0, 0, 0, 0.3);
-        }
-
-        .project-image {
-            height: 320px;
-            background-size: cover;
-            background-position: center;
-            position: relative;
-            overflow: hidden;
-        }
-
-        .project-overlay {
-            position: absolute;
-            top: 0;
-            left: 0;
-            right: 0;
-            bottom: 0;
-            background: linear-gradient(
-                135deg,
-                rgba(0, 0, 0, 0.8) 0%,
-                rgba(212, 175, 55, 0.5) 100%
-            );
-            opacity: 0;
-            transition: opacity var(--transition-slow);
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            flex-direction: column;
-            gap: 2rem;
-        }
-
-        .project-card:hover .project-overlay {
-            opacity: 1;
-        }
-
-        .project-links {
-            display: flex;
-            gap: 1.5rem;
-            flex-wrap: wrap;
-        }
-
-        .project-link {
-            background: rgba(255, 255, 255, 0.15);
-            color: white;
-            padding: 1rem 2rem;
-            border-radius: 30px;
-            text-decoration: none;
-            font-weight: 600;
-            transition: all var(--transition-normal);
-            backdrop-filter: blur(15px);
-            border: 1px solid rgba(255, 255, 255, 0.2);
-            display: flex;
-            align-items: center;
-            gap: 0.5rem;
-            position: relative;
-            overflow: hidden;
-        }
-
-        .project-link::before {
-            content: '';
-            position: absolute;
-            top: 50%;
-            left: 50%;
-            width: 0;
-            height: 0;
-            background: rgba(255,255,255,0.2);
-            border-radius: 50%;
-            transform: translate(-50%, -50%);
-            transition: all var(--transition-slow);
-        }
-
-        .project-link:hover::before {
-            width: 200px;
-            height: 200px;
-        }
-
-        .project-link:hover {
-            background: var(--primary-gold);
-            color: var(--deep-purple);
-            transform: scale(1.05);
-            box-shadow: 0 10px 30px rgba(212, 175, 55, 0.4);
-        }
-
-        .project-info {
-            padding: 3rem;
-        }
-
-        .project-category {
-            background: var(--gradient-primary);
-            color: white;
-            padding: 0.7rem 1.8rem;
-            border-radius: 25px;
-            font-size: 0.95rem;
-            font-weight: 600;
-            display: inline-block;
-            margin-bottom: 1.5rem;
-            box-shadow: 0 5px 20px rgba(212, 175, 55, 0.3);
-        }
-
-        .project-title {
-            font-family: 'Space Grotesk', sans-serif;
-            font-size: 1.9rem;
-            color: white;
-            margin-bottom: 1.5rem;
-            font-weight: 600;
-            line-height: 1.3;
-        }
-
-        .project-description {
-            color: rgba(255, 255, 255, 0.8);
-            line-height: 1.8;
-            margin-bottom: 2.5rem;
-            font-size: 1.05rem;
-        }
-
-        .project-tech {
-            display: flex;
-            flex-wrap: wrap;
-            gap: 1rem;
-        }
-
-        .tech-tag {
-            background: rgba(255, 255, 255, 0.08);
-            color: var(--moon-silver);
-            padding: 0.6rem 1.4rem;
-            border-radius: 20px;
-            font-size: 0.9rem;
-            border: 1px solid rgba(255, 255, 255, 0.15);
-            transition: all var(--transition-normal);
-            cursor: pointer;
-        }
-
-        .tech-tag:hover {
-            background: rgba(212, 175, 55, 0.2);
-            border-color: var(--primary-gold);
-            color: white;
-            transform: translateY(-3px);
-        }
-
-        /* Blog/Thoughts Section */
-        .thoughts-section {
-            background: rgba(0, 0, 0, 0.05);
-            backdrop-filter: blur(5px);
-        }
-
-        .thoughts-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
-            gap: 2.5rem;
-            max-width: 1200px;
-            margin: 0 auto;
-        }
-
-        .thought-card {
-            background: rgba(255, 255, 255, 0.03);
-            backdrop-filter: blur(20px);
-            border: 1px solid rgba(255, 255, 255, 0.1);
-            border-radius: var(--border-radius-md);
-            padding: 2.5rem;
-            transition: all var(--transition-normal);
-            cursor: pointer;
-        }
-
-        .thought-card:hover {
-            transform: translateY(-10px);
-            background: rgba(255, 255, 255, 0.05);
-            border-color: var(--primary-gold);
-            box-shadow: 0 20px 50px rgba(212, 175, 55, 0.2);
-        }
-
-        .thought-date {
-            color: var(--primary-gold);
-            font-size: 0.9rem;
-            font-weight: 500;
-            margin-bottom: 1rem;
-        }
-
-        .thought-title {
-            font-family: 'Space Grotesk', sans-serif;
-            font-size: 1.4rem;
-            color: white;
-            margin-bottom: 1rem;
-            line-height: 1.3;
-        }
-
-        .thought-excerpt {
-            color: rgba(255, 255, 255, 0.8);
-            line-height: 1.6;
-            margin-bottom: 1.5rem;
-        }
-
-        .read-more {
-            color: var(--primary-gold);
-            text-decoration: none;
-            font-weight: 500;
-            display: inline-flex;
-            align-items: center;
-            gap: 0.5rem;
-            transition: all var(--transition-normal);
-        }
-
-        .read-more:hover {
-            gap: 1rem;
-            text-shadow: 0 0 10px rgba(212, 175, 55, 0.5);
-        }
-
-        /* Enhanced Contact Section */
-        .contact-section {
-            background: rgba(0, 0, 0, 0.2);
-            backdrop-filter: blur(15px);
-        }
-
-        .contact-content {
-            max-width: 1000px;
-            margin: 0 auto;
-        }
-
-        .contact-form {
-            background: rgba(255, 255, 255, 0.03);
-            backdrop-filter: blur(30px);
-            padding: 4rem;
-            border-radius: var(--border-radius-lg);
-            box-shadow: 0 25px 80px rgba(0, 0, 0, 0.3);
-            border: 1px solid rgba(255, 255, 255, 0.1);
-            position: relative;
-            overflow: hidden;
-        }
-
-        .contact-form::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            right: 0;
-            height: 1px;
-            background: linear-gradient(90deg, transparent, var(--primary-gold), transparent);
-            opacity: 0.5;
-        }
-
-        .form-row {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 2rem;
-            margin-bottom: 2rem;
-        }
-
-        .form-group {
-            margin-bottom: 2rem;
-            position: relative;
-        }
-
-        .form-label {
-            display: block;
-            margin-bottom: 0.8rem;
-            color: white;
-            font-weight: 500;
-            font-size: 1rem;
-            transition: all var(--transition-normal);
-        }
-
-        .form-input,
-        .form-textarea {
-            width: 100%;
-            padding: 1.4rem 1.8rem;
-            border: 2px solid rgba(255, 255, 255, 0.2);
-            border-radius: var(--border-radius-md);
-            font-size: 1rem;
-            transition: all var(--transition-normal);
-            background: rgba(255, 255, 255, 0.05);
-            color: white;
-            backdrop-filter: blur(10px);
-            font-family: inherit;
-        }
-
-        .form-input::placeholder,
-        .form-textarea::placeholder {
-            color: rgba(255, 255, 255, 0.5);
-        }
-
-        .form-input:focus,
-        .form-textarea:focus {
-            outline: none;
-            border-color: var(--primary-gold);
-            background: rgba(255, 255, 255, 0.08);
-            box-shadow: 0 0 0 4px rgba(212, 175, 55, 0.2);
-            transform: translateY(-2px);
-        }
-
-        .form-input:focus + .form-label,
-        .form-textarea:focus + .form-label {
-            color: var(--primary-gold);
-        }
-
-        .form-textarea {
-            resize: vertical;
-            min-height: 160px;
-            font-family: inherit;
-        }
-
-        .submit-btn {
-            background: var(--gradient-primary);
-            color: white;
-            padding: 1.5rem 4rem;
-            border: none;
-            border-radius: 30px;
-            font-size: 1.1rem;
-            font-weight: 600;
-            cursor: pointer;
-            transition: all var(--transition-normal);
-            width: 100%;
-            position: relative;
-            overflow: hidden;
-            box-shadow: 0 15px 40px rgba(212, 175, 55, 0.3);
-            font-family: inherit;
-        }
-
-        .submit-btn::before {
-            content: '';
-            position: absolute;
-            top: 50%;
-            left: 50%;
-            width: 0;
-            height: 0;
-            background: rgba(255,255,255,0.2);
-            border-radius: 50%;
-            transform: translate(-50%, -50%);
-            transition: all var(--transition-slow);
-        }
-
-        .submit-btn:hover::before {
-            width: 400px;
-            height: 400px;
-        }
-
-        .submit-btn:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 20px 50px rgba(212, 175, 55, 0.5);
-        }
-
-        .submit-btn:active {
-            transform: translateY(-2px);
-        }
-
-        .submit-btn:disabled {
-            opacity: 0.6;
-            cursor: not-allowed;
-            transform: none;
-        }
-
-        .success-message,
-        .error-message {
-            padding: 1.5rem;
-            border-radius: var(--border-radius-md);
-            margin-top: 1.5rem;
-            display: none;
-            backdrop-filter: blur(10px);
-            animation: slideInUp 0.5s ease;
-        }
-
-        .success-message {
-            background: rgba(76, 175, 80, 0.2);
-            color: #4CAF50;
-            border: 1px solid rgba(76, 175, 80, 0.3);
-        }
-
-        .error-message {
-            background: rgba(244, 67, 54, 0.2);
-            color: #f44336;
-            border: 1px solid rgba(244, 67, 54, 0.3);
-        }
-
-        @keyframes slideInUp {
-            from {
-                opacity: 0;
-                transform: translateY(20px);
-            }
-            to {
-                opacity: 1;
-                transform: translateY(0);
-            }
-        }
-
-        /* Floating Action Button */
-        .fab-contact {
-            position: fixed;
-            bottom: 100px;
-            right: 30px;
-            width: 60px;
-            height: 60px;
-            background: var(--gradient-primary);
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            color: white;
-            text-decoration: none;
-            box-shadow: 0 10px 30px rgba(212, 175, 55, 0.3);
-            transition: all var(--transition-normal);
-            z-index: 99;
-            font-size: 1.2rem;
-        }
-
-        .fab-contact:hover {
-            transform: translateY(-5px) scale(1.1);
-            box-shadow: 0 15px 40px rgba(212, 175, 55, 0.5);
-        }
-
-        /* Scroll to Top Button */
-        .scroll-to-top {
-            position: fixed;
-            bottom: 30px;
-            right: 30px;
-            width: 60px;
-            height: 60px;
-            background: var(--gradient-primary);
-            border: none;
-            border-radius: 50%;
-            color: white;
-            font-size: 1.2rem;
-            cursor: pointer;
-            opacity: 0;
-            transform: translateY(100px);
-            transition: all var(--transition-normal);
-            z-index: 100;
-            box-shadow: 0 10px 30px rgba(212, 175, 55, 0.3);
-        }
-
-        .scroll-to-top.visible {
-            opacity: 1;
-            transform: translateY(0);
-        }
-
-        .scroll-to-top:hover {
-            transform: translateY(-5px) scale(1.1);
-            box-shadow: 0 15px 40px rgba(212, 175, 55, 0.5);
-        }
-
-        /* Enhanced Footer */
-        .main-footer {
-            background: rgba(26, 26, 46, 0.95);
-            backdrop-filter: blur(25px);
-            color: white;
-            padding: 4rem 2rem 2rem;
-            text-align: center;
-            border-top: 1px solid rgba(255, 255, 255, 0.1);
-            position: relative;
-            z-index: 10;
-        }
-
-        .footer-content {
-            max-width: 1400px;
-            margin: 0 auto;
-        }
-
-        .footer-links {
-            display: flex;
-            justify-content: center;
-            gap: 2rem;
-            margin-bottom: 3rem;
-            flex-wrap: wrap;
-        }
-
-        .footer-links a {
-            color: rgba(255, 255, 255, 0.7);
-            text-decoration: none;
-            transition: all var(--transition-normal);
-            padding: 0.8rem 1.5rem;
-            border-radius: 20px;
-            display: flex;
-            align-items: center;
-            gap: 0.5rem;
-        }
-
-        .footer-links a:hover {
-            color: var(--primary-gold);
-            background: rgba(212, 175, 55, 0.1);
-            transform: translateY(-2px);
-        }
-
-        .footer-copyright {
-            color: rgba(255, 255, 255, 0.5);
-            font-size: 0.9rem;
-            border-top: 1px solid rgba(255, 255, 255, 0.1);
-            padding-top: 2rem;
-            line-height: 1.6;
-        }
-
-        /* Modal Enhancements */
-        .modal {
-            display: none;
-            position: fixed;
-            z-index: 2000;
-            left: 0;
-            top: 0;
-            width: 100%;
-            height: 100%;
-            background: rgba(0, 0, 0, 0.95);
-            backdrop-filter: blur(20px);
-            animation: fadeIn 0.3s ease;
-        }
-
-        .modal-content {
-            position: absolute;
-            top: 50%;
-            left: 50%;
-            transform: translate(-50%, -50%);
-            max-width: 90%;
-            max-height: 90%;
-            border-radius: var(--border-radius-md);
-            overflow: hidden;
-            box-shadow: 0 30px 100px rgba(0, 0, 0, 0.8);
-            animation: zoomIn 0.3s ease;
-        }
-
-        .modal img {
-            width: 100%;
-            height: auto;
-            display: block;
-        }
-
-        .close {
-            position: absolute;
-            top: 20px;
-            right: 30px;
-            color: white;
-            font-size: 50px;
-            font-weight: bold;
-            cursor: pointer;
-            z-index: 2001;
-            text-shadow: 0 0 20px rgba(0, 0, 0, 0.8);
-            transition: all var(--transition-normal);
-        }
-
-        .close:hover {
-            color: var(--primary-gold);
-            transform: scale(1.1);
-        }
-
-        @keyframes fadeIn {
-            from { opacity: 0; }
-            to { opacity: 1; }
-        }
-
-        @keyframes zoomIn {
-            from { transform: translate(-50%, -50%) scale(0.8); }
-            to { transform: translate(-50%, -50%) scale(1); }
-        }
-
-        /* Loading Screen */
-        .loading {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: var(--gradient-secondary);
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            z-index: 10000;
-            transition: opacity var(--transition-slow);
-        }
-
-        .loading-content {
-            text-align: center;
-        }
-
-        .loading-spinner {
-            width: 80px;
-            height: 80px;
-            border: 4px solid rgba(212, 175, 55, 0.3);
-            border-top: 4px solid var(--primary-gold);
-            border-radius: 50%;
-            animation: spin 1s linear infinite;
-            margin: 0 auto 2rem;
-        }
-
-        .loading-text {
-            color: var(--primary-gold);
-            font-family: 'Orbitron', sans-serif;
-            font-size: 1.2rem;
-            font-weight: 600;
-        }
-
-        @keyframes spin {
-            0% { transform: rotate(0deg); }
-            100% { transform: rotate(360deg); }
-        }
-
-        /* Utility Animations */
-        @keyframes pulse {
-            0%, 100% { transform: scale(1); opacity: 1; }
-            50% { transform: scale(1.1); opacity: 0.8; }
-        }
-
-        @keyframes float {
-            0%, 100% { transform: translateY(0px); }
-            50% { transform: translateY(-10px); }
-        }
-
-        /* Sparkle Effect */
-        .sparkle {
-            position: fixed;
-            font-size: 20px;
-            pointer-events: none;
-            z-index: 9999;
-            animation: sparkleFloat 1s ease-out forwards;
-        }
-
-        @keyframes sparkleFloat {
-            0% {
-                opacity: 1;
-                transform: scale(1) rotate(0deg);
-            }
-            100% {
-                opacity: 0;
-                transform: scale(0) rotate(360deg);
-            }
-        }
-
-        /* Accessibility & Responsive Design */
-        @media (prefers-reduced-motion: reduce) {
-            *, *::before, *::after {
-                animation-duration: 0.01ms !important;
-                animation-iteration-count: 1 !important;
-                transition-duration: 0.01ms !important;
-            }
-        }
-
-        /* Focus indicators */
-        .gallery-item:focus,
-        .project-card:focus,
-        .cta-button:focus,
-        .project-link:focus,
-        .thought-card:focus {
-            outline: 3px solid var(--primary-gold);
-            outline-offset: 2px;
-        }
-
-        /* Mobile Responsive Design */
-        @media (max-width: 1024px) {
-            .gallery-grid,
-            .projects-grid {
-                grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
-                gap: 2rem;
-            }
-            
-            .form-row {
-                grid-template-columns: 1fr;
-                gap: 1rem;
-            }
-
-            .thoughts-grid {
-                grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-                gap: 2rem;
-            }
-        }
-
-        @media (max-width: 768px) {
-            .nav-links {
-                display: none;
-                position: absolute;
-                top: 100%;
-                left: 0;
-                right: 0;
-                background: rgba(26, 26, 46, 0.98);
-                backdrop-filter: blur(25px);
-                flex-direction: column;
-                padding: 2rem;
-                border-top: 1px solid rgba(255, 255, 255, 0.1);
-            }
-
-            .nav-links.active {
-                display: flex;
-            }
-
-            .mobile-menu-toggle {
-                display: flex;
-            }
-
-            .moon {
-                width: 80px;
-                height: 80px;
-                top: 5%;
-                right: 5%;
-            }
-            
-            .hero {
-                padding: 8rem 1rem 4rem;
-            }
-            
-            .hero-stats {
-                gap: 1.5rem;
-            }
-            
-            .stat-item {
-                min-width: 100px;
-                padding: 1rem;
-            }
-            
-            .gallery-grid,
-            .projects-grid {
-                grid-template-columns: 1fr;
-                gap: 2rem;
-            }
-            
-            .contact-form {
-                padding: 2rem;
-            }
-            
-            .project-links {
-                flex-direction: column;
-            }
-            
-            .hero-cta {
-                flex-direction: column;
-                align-items: center;
-            }
-
-            .cta-button {
-                width: 100%;
-                max-width: 300px;
-                justify-content: center;
-            }
-
-            .section {
-                padding: 4rem 1rem;
-            }
-
-            .moving-lights {
-                display: none; /* Hide on mobile for performance */
-            }
-
-            .fab-contact {
-                bottom: 120px;
-                right: 20px;
-                width: 50px;
-                height: 50px;
-                font-size: 1rem;
-            }
-
-            .scroll-to-top {
-                bottom: 20px;
-                right: 20px;
-                width: 50px;
-                height: 50px;
-                font-size: 1rem;
-            }
-        }
-
-        @media (max-width: 480px) {
-            .hero h1 {
-                font-size: 2rem;
-            }
-            
-            .section-title {
-                font-size: 2rem;
-            }
-            
-            .contact-form {
-                padding: 1.5rem;
-            }
-            
-            .gallery-grid,
-            .projects-grid {
-                grid-template-columns: 1fr;
-                gap: 1.5rem;
-            }
-
-            .item-content,
-            .project-info {
-                padding: 1.5rem;
-            }
-
-            .thought-card {
-                padding: 2rem;
-            }
-        }
-
-        /* High contrast mode support */
-        @media (prefers-contrast: high) {
-            :root {
-                --primary-gold: #FFD700;
-                --moon-silver: #FFFFFF;
-            }
-            
-            .gallery-item,
-            .project-card,
-            .contact-form,
-            .thought-card {
-                border: 2px solid var(--primary-gold);
-            }
-        }
-
-        /* Print styles */
-        @media print {
-            .moving-lights,
-            .moon,
-            #particles-js,
-            .custom-cursor,
-            .scroll-to-top,
-            .scroll-indicator,
-            .fab-contact {
-                display: none !important;
-            }
-            
-            body {
-                background: white !important;
-                color: black !important;
-            }
-        }
+        @keyframes float { 0%, 100% { transform: translateY(0px); } 50% { transform: translateY(-20px); } }
+        @keyframes glow { from { box-shadow: 0 0 20px rgba(212, 175, 55, 0.5); } to { box-shadow: 0 0 30px rgba(212, 175, 55, 0.8); } }
+        .animate-float { animation: float 6s ease-in-out infinite; }
+        .animate-glow { animation: glow 2s ease-in-out infinite alternate; }
+        .gradient-bg { background: linear-gradient(135deg, #1a1a2e 0%, #16213e 50%, #0f3460 100%); }
     </style>
 </head>
-<body>
-    <!-- Loading Screen -->
-    <div class="loading" id="loading">
-        <div class="loading-content">
-            <div class="loading-spinner"></div>
-            <div class="loading-text">Loading Experience...</div>
-        </div>
-    </div>
 
-    <!-- Scroll Progress Indicator -->
-    <div class="scroll-indicator">
-        <div class="scroll-progress"></div>
-    </div>
-
-    <!-- Custom Cursor -->
-    <div class="custom-cursor" id="cursor"></div>
-
-    <!-- Particles Background -->
-    <div id="particles-js"></div>
-
-    <!-- Moving Lights -->
-    <div class="moving-lights">
-        <div class="light-beam"></div>
-        <div class="light-beam"></div>
-        <div class="light-beam"></div>
-        <div class="light-beam"></div>
-        <div class="light-beam"></div>
-        <div class="light-beam"></div>
-        <div class="light-beam"></div>
-    </div>
-
-    <!-- Interactive Moon -->
-    <div class="moon" title="Click me for a surprise!" role="button" tabindex="0"></div>
-
-    <!-- Skip to content link -->
-    <a href="#main-content" class="skip-link">Skip to main content</a>
+<body class="gradient-bg text-white font-thai overflow-x-hidden">
     
-    <!-- Enhanced Navigation -->
-    <nav class="main-nav" role="navigation" aria-label="Main navigation">
-        <div class="nav-container">
-            <a href="#home" class="logo" aria-label="Thanatsitt Santisamranwilai Home">
-                <i class="fas fa-moon"></i> Thanatsitt
-            </a>
-            <ul class="nav-links">
-                <li><a href="#home" class="nav-link"><i class="fas fa-home"></i> Home</a></li>
-                <li><a href="#portfolio" class="nav-link"><i class="fas fa-briefcase"></i> Portfolio</a></li>
-                <li><a href="#projects" class="nav-link"><i class="fas fa-code"></i> Projects</a></li>
-                <li><a href="#thoughts" class="nav-link"><i class="fas fa-lightbulb"></i> Thoughts</a></li>
-                <li><a href="#contact" class="nav-link"><i class="fas fa-envelope"></i> Contact</a></li>
-            </ul>
-            <div class="mobile-menu-toggle" id="mobileMenuToggle" role="button" tabindex="0" aria-label="Toggle mobile menu">
-                <span></span>
-                <span></span>
-                <span></span>
+    <!-- Particles Background -->
+    <div id="particles-js" class="fixed inset-0 z-0"></div>
+    
+    <!-- Custom Cursor -->
+    <div id="cursor" class="fixed w-6 h-6 bg-gold rounded-full pointer-events-none z-50 transition-transform duration-200 ease-out hidden lg:block"></div>
+    
+    <!-- Scroll Progress -->
+    <div class="fixed top-0 left-0 w-full h-1 z-50">
+        <div class="scroll-progress h-full bg-gradient-to-r from-gold to-silver transition-all duration-300 ease-out" style="width: 0%"></div>
+    </div>
+    
+    <!-- Navigation -->
+    <nav class="main-nav fixed top-0 left-0 right-0 z-40 transition-all duration-300 ease-in-out">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex justify-between items-center py-4">
+                
+                <!-- Logo -->
+                <div class="flex items-center space-x-3">
+                    <div class="moon w-12 h-12 bg-gradient-to-br from-gold to-yellow-300 rounded-full animate-float cursor-pointer hover:animate-glow transition-all duration-300"></div>
+                    <span class="text-xl font-bold bg-gradient-to-r from-gold to-silver bg-clip-text text-transparent">Thanatsitt</span>
+                </div>
+                
+                <!-- Desktop Navigation -->
+                <div class="hidden md:flex nav-links space-x-8">
+                    <a href="#home" class="nav-link text-silver hover:text-gold transition-colors duration-300 font-medium">Home</a>
+                    <a href="#about" class="nav-link text-silver hover:text-gold transition-colors duration-300 font-medium">About</a>
+                    <a href="#experience" class="nav-link text-silver hover:text-gold transition-colors duration-300 font-medium">Experience</a>
+                    <a href="#projects" class="nav-link text-silver hover:text-gold transition-colors duration-300 font-medium">Projects</a>
+                    <a href="#gallery" class="nav-link text-silver hover:text-gold transition-colors duration-300 font-medium">Gallery</a>
+                    <a href="#contact" class="nav-link text-silver hover:text-gold transition-colors duration-300 font-medium">Contact</a>
+                </div>
+                
+                <!-- Mobile Menu Button -->
+                <button id="mobileMenuToggle" class="md:hidden text-silver hover:text-gold transition-colors duration-300">
+                    <i class="fas fa-bars text-xl"></i>
+                </button>
+            </div>
+            
+            <!-- Mobile Navigation -->
+            <div class="nav-links md:hidden hidden bg-dark-blue/95 backdrop-blur-sm rounded-lg mt-2 p-4">
+                <a href="#home" class="block py-2 text-silver hover:text-gold transition-colors duration-300">Home</a>
+                <a href="#about" class="block py-2 text-silver hover:text-gold transition-colors duration-300">About</a>
+                <a href="#experience" class="block py-2 text-silver hover:text-gold transition-colors duration-300">Experience</a>
+                <a href="#projects" class="block py-2 text-silver hover:text-gold transition-colors duration-300">Projects</a>
+                <a href="#gallery" class="block py-2 text-silver hover:text-gold transition-colors duration-300">Gallery</a>
+                <a href="#contact" class="block py-2 text-silver hover:text-gold transition-colors duration-300">Contact</a>
             </div>
         </div>
     </nav>
-
-    <!-- Floating Action Button -->
-    <a href="#contact" class="fab-contact" aria-label="Quick contact">
-        <i class="fas fa-paper-plane"></i>
-    </a>
-
-    <!-- Main Content -->
-    <main id="main-content">
-        <!-- Enhanced Hero Section -->
-        <section id="home" class="hero" role="banner">
-            <div class="hero-content" data-aos="fade-up" data-aos-duration="1000">
-                <h1 id="typed-name"></h1>
-                <p class="hero-subtitle" data-aos="fade-up" data-aos-delay="300">
-                    Cultural Navigator • Story Weaver • Design Thinker • Accidental Technologist
+    
+    <!-- Hero Section -->
+    <section id="home" class="relative min-h-screen flex items-center justify-center text-center px-4 z-10">
+        <div class="max-w-4xl mx-auto" data-aos="fade-up">
+            <div class="mb-8">
+                <h1 class="text-4xl md:text-6xl lg:text-7xl font-bold font-elegant mb-4">
+                    <span id="typed-name" class="bg-gradient-to-r from-gold via-yellow-300 to-gold bg-clip-text text-transparent"></span>
+                </h1>
+                <p class="text-xl md:text-2xl text-silver mb-6 font-light">
+                    Bridging Cultures Through Design & Technology
                 </p>
-                <p class="hero-description" data-aos="fade-up" data-aos-delay="600">
-                    A Thai-British interdisciplinary creator who weaves ancient wisdom with modern technology. 
-                    Born in Bangkok, educated in London, now creating digital bridges between cultures, minds, and possibilities.
-                </p>
-                
-                <!-- Hero Stats -->
-                <div class="hero-stats" data-aos="fade-up" data-aos-delay="800">
-                    <div class="stat-item">
-                        <span class="stat-number" data-count="5">0</span>
-                        <span class="stat-label">Years Experience</span>
-                    </div>
-                    <div class="stat-item">
-                        <span class="stat-number" data-count="50">0</span>
-                        <span class="stat-label">Projects Completed</span>
-                    </div>
-                    <div class="stat-item">
-                        <span class="stat-number" data-count="2">0</span>
-                        <span class="stat-label">Countries</span>
-                    </div>
-                    <div class="stat-item">
-                        <span class="stat-number" data-count="1">0</span>
-                        <span class="stat-label">AI Startup</span>
-                    </div>
-                </div>
-                
-                <div class="hero-cta" data-aos="fade-up" data-aos-delay="1000">
-                    <a href="#portfolio" class="cta-button">
-                        <i class="fas fa-eye"></i> Explore Portfolio
-                    </a>
-                    <a href="#contact" class="cta-button secondary">
-                        <i class="fas fa-paper-plane"></i> Get In Touch
-                    </a>
-                </div>
-            </div>
-        </section>
-
-        <!-- Enhanced Portfolio Section -->
-        <section id="portfolio" class="section" role="main">
-            <div class="gallery-container">
-                <div class="section-header">
-                    <h2 class="section-title" data-aos="fade-up">Portfolio Gallery</h2>
-                    <p class="section-subtitle" data-aos="fade-up" data-aos-delay="200">
-                        A curated collection of my journey from fashion design to AI development, 
-                        showcasing the intersection of creativity, culture, and technology.
-                    </p>
-                </div>
-                
-                <div class="gallery-grid">
-                    <!-- Design & Fashion -->
-                    <article class="gallery-item" onclick="openModal('https://images.unsplash.com/photo-1558618666-fcd25c85cd64?w=800')" 
-                             data-aos="fade-up" data-aos-delay="100" tabindex="0" role="button" aria-label="View Fashion Design Projects">
-                        <div class="image-container">
-                            <img src="https://images.unsplash.com/photo-1558618666-fcd25c85cd64?w=400&h=250&fit=crop" 
-                                 alt="Fashion Design Projects from London College of Fashion" 
-                                 class="gallery-image"
-                                 loading="lazy">
-                            <div class="image-overlay">
-                                <span class="overlay-icon"><i class="fas fa-search-plus"></i></span>
-                                <span class="overlay-text">View Full Image</span>
-                            </div>
-                        </div>
-                        <div class="item-content">
-                            <span class="item-category"><i class="fas fa-palette"></i> Fashion Design</span>
-                            <h3 class="item-title">London College of Fashion Projects</h3>
-                            <p class="item-description">Visual storytelling through fashion, exploring cultural identity and human-centered aesthetics with a focus on sustainable design practices.</p>
-                            <div class="item-tags">
-                                <span class="tag">Visual Design</span>
-                                <span class="tag">Cultural Identity</span>
-                                <span class="tag">LCF</span>
-                                <span class="tag">Sustainability</span>
-                            </div>
-                        </div>
-                    </article>
-
-                    <!-- AI Art -->
-                    <article class="gallery-item" onclick="openModal('https://images.unsplash.com/photo-1677442136019-21780ecad995?w=800')"
-                             data-aos="fade-up" data-aos-delay="200" tabindex="0" role="button" aria-label="View AI Art Projects">
-                        <div class="image-container">
-                            <img src="https://images.unsplash.com/photo-1677442136019-21780ecad995?w=400&h=250&fit=crop" 
-                                 alt="AI-generated art exploring Thai mythology" 
-                                 class="gallery-image"
-                                 loading="lazy">
-                            <div class="image-overlay">
-                                <span class="overlay-icon"><i class="fas fa-magic"></i></span>
-                                <span class="overlay-text">Explore AI Art</span>
-                            </div>
-                        </div>
-                        <div class="item-content">
-                            <span class="item-category"><i class="fas fa-robot"></i> AI Art</span>
-                            <h3 class="item-title">Lament of the Twilight Goddess</h3>
-                            <p class="item-description">AI-generated visuals exploring Thai mythology and archetypal psychology through divine feminine imagery, bridging ancient wisdom with modern technology.</p>
-                            <div class="item-tags">
-                                <span class="tag">Midjourney</span>
-                                <span class="tag">Thai Mythology</span>
-                                <span class="tag">Archetypes</span>
-                                <span class="tag">Digital Art</span>
-                            </div>
-                        </div>
-                    </article>
-
-                    <!-- ThannxAI -->
-                    <article class="gallery-item" onclick="openModal('https://images.unsplash.com/photo-1677756119517-756a188d2d94?w=800')"
-                             data-aos="fade-up" data-aos-delay="300" tabindex="0" role="button" aria-label="View ThannxAI Platform">
-                        <div class="image-container">
-                            <img src="https://images.unsplash.com/photo-1677756119517-756a188d2d94?w=400&h=250&fit=crop" 
-                                 alt="ThannxAI platform interface" 
-                                 class="gallery-image"
-                                 loading="lazy">
-                            <div class="image-overlay">
-                                <span class="overlay-icon"><i class="fas fa-brain"></i></span>
-                                <span class="overlay-text">Discover AI Platform</span>
-                            </div>
-                        </div>
-                        <div class="item-content">
-                            <span class="item-category"><i class="fas fa-microchip"></i> AI Platform</span>
-                            <h3 class="item-title">ThannxAI - Human-Centered AI</h3>
-                            <p class="item-description">Co-founded AI platform focusing on human connection and ethical technology integration, making AI accessible and meaningful for everyone.</p>
-                            <div class="item-tags">
-                                <span class="tag">AI Ethics</span>
-                                <span class="tag">Human-Centered</span>
-                                <span class="tag">Co-founder</span>
-                                <span class="tag">Innovation</span>
-                            </div>
-                        </div>
-                    </article>
-
-                    <!-- Psychology Research -->
-                    <article class="gallery-item" onclick="openModal('https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=800')"
-                             data-aos="fade-up" data-aos-delay="400" tabindex="0" role="button" aria-label="View Psychology Research">
-                        <div class="image-container">
-                            <img src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=400&h=250&fit=crop" 
-                                 alt="Research on Jungian psychology" 
-                                 class="gallery-image"
-                                 loading="lazy">
-                            <div class="image-overlay">
-                                <span class="overlay-icon"><i class="fas fa-book-open"></i></span>
-                                <span class="overlay-text">Read Research</span>
-                            </div>
-                        </div>
-                        <div class="item-content">
-                            <span class="item-category"><i class="fas fa-graduation-cap"></i> Research</span>
-                            <h3 class="item-title">Jungian Psychology & Digital Age</h3>
-                            <p class="item-description">Research on archetypal psychology, cross-cultural symbolism, and their applications in modern technology and user experience design.</p>
-                            <div class="item-tags">
-                                <span class="tag">Carl Jung</span>
-                                <span class="tag">Archetypes</span>
-                                <span class="tag">Cultural Analysis</span>
-                                <span class="tag">UX Research</span>
-                            </div>
-                        </div>
-                    </article>
-
-                    <!-- Web Development -->
-                    <article class="gallery-item" onclick="openModal('https://images.unsplash.com/photo-1461749280684-dccba630e2f6?w=800')"
-                             data-aos="fade-up" data-aos-delay="500" tabindex="0" role="button" aria-label="View Web Development Projects">
-                        <div class="image-container">
-                            <img src="https://images.unsplash.com/photo-1461749280684-dccba630e2f6?w=400&h=250&fit=crop" 
-                                 alt="Web development projects" 
-                                 class="gallery-image"
-                                 loading="lazy">
-                            <div class="image-overlay">
-                                <span class="overlay-icon"><i class="fas fa-code"></i></span>
-                                <span class="overlay-text">View Code</span>
-                            </div>
-                        </div>
-                        <div class="item-content">
-                            <span class="item-category"><i class="fas fa-laptop-code"></i> Development</span>
-                            <h3 class="item-title">Self-Taught Coding Journey</h3>
-                            <p class="item-description">From zero to developer - building digital bridges through modern web technologies, focusing on user experience and accessibility.</p>
-                            <div class="item-tags">
-                                <span class="tag">JavaScript</span>
-                                <span class="tag">React</span>
-                                <span class="tag">Self-Taught</span>
-                                <span class="tag">Full-Stack</span>
-                            </div>
-                        </div>
-                    </article>
-
-                    <!-- Cultural Projects -->
-                    <article class="gallery-item" onclick="openModal('https://images.unsplash.com/photo-1528181304800-259b08848526?w=800')"
-                             data-aos="fade-up" data-aos-delay="600" tabindex="0" role="button" aria-label="View Cultural Bridge Projects">
-                        <div class="image-container">
-                            <img src="https://images.unsplash.com/photo-1528181304800-259b08848526?w=400&h=250&fit=crop" 
-                                 alt="East-West cultural bridge projects" 
-                                 class="gallery-image"
-                                 loading="lazy">
-                            <div class="image-overlay">
-                                <span class="overlay-icon"><i class="fas fa-globe-asia"></i></span>
-                                <span class="overlay-text">Explore Culture</span>
-                            </div>
-                        </div>
-                        <div class="item-content">
-                            <span class="item-category"><i class="fas fa-bridge"></i> Cultural Bridge</span>
-                            <h3 class="item-title">East-West Digital Narratives</h3>
-                            <p class="item-description">Projects exploring the intersection of Thai Buddhist philosophy and Western technology paradigms, creating meaningful cultural exchanges.</p>
-                            <div class="item-tags">
-                                <span class="tag">Buddhism</span>
-                                <span class="tag">Technology</span>
-                                <span class="tag">Cross-Cultural</span>
-                                <span class="tag">Philosophy</span>
-                            </div>
-                        </div>
-                    </article>
-                </div>
-            </div>
-        </section>
-
-        <!-- Enhanced Projects Section -->
-        <section id="projects" class="section projects-section">
-            <div class="projects-content">
-                <div class="section-header">
-                    <h2 class="section-title" data-aos="fade-up">Featured Projects</h2>
-                    <p class="section-subtitle" data-aos="fade-up" data-aos-delay="200">
-                        Dive deep into my latest creations where ancient wisdom meets cutting-edge technology. 
-                        Each project represents a bridge between cultures, minds, and possibilities.
-                    </p>
-                </div>
-                
-                <div class="projects-grid">
-                    <!-- Holy Bless Project -->
-                    <article class="project-card" data-aos="fade-up" data-aos-delay="100">
-                        <div class="project-image" style="background-image: url('https://images.unsplash.com/photo-1518709268805-4e9042af2176?w=600&h=400&fit=crop');">
-                            <div class="project-overlay">
-                                <div class="project-links">
-                                    <a href="https://github.com/Pigletpeakkung/Holy-bless" target="_blank" rel="noopener noreferrer" class="project-link">
-                                        <i class="fab fa-github"></i> GitHub
-                                    </a>
-                                    <a href="#" class="project-link demo-link">
-                                        <i class="fas fa-external-link-alt"></i> Live Demo
-                                    </a>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="project-info">
-                            <span class="project-category"><i class="fas fa-pray"></i> Spiritual Tech</span>
-                            <h3 class="project-title">Holy Bless</h3>
-                            <p class="project-description">
-                                A digital sanctuary that combines ancient blessing rituals with modern technology. 
-                                This project explores how sacred traditions can be preserved and shared through 
-                                interactive digital experiences, creating meaningful connections across cultures.
-                            </p>
-                            <div class="project-tech">
-                                <span class="tech-tag">React</span>
-                                <span class="tech-tag">JavaScript</span>
-                                <span class="tech-tag">CSS3</span>
-                                <span class="tech-tag">Cultural Design</span>
-                                <span class="tech-tag">Spiritual UX</span>
-                            </div>
-                        </div>
-                    </article>
-
-                    <!-- Siam Blessing Project -->
-                    <article class="project-card" data-aos="fade-up" data-aos-delay="200">
-                        <div class="project-image" style="background-image: url('https://images.unsplash.com/photo-1563906267088-b029e7101114?w=600&h=400&fit=crop');">
-                            <div class="project-overlay">
-                                <div class="project-links">
-                                    <a href="https://github.com/Pigletpeakkung/Siam-Blessing" target="_blank" rel="noopener noreferrer" class="project-link">
-                                        <i class="fab fa-github"></i> GitHub
-                                    </a>
-                                    <a href="#" class="project-link demo-link">
-                                        <i class="fas fa-external-link-alt"></i> Live Demo
-                                    </a>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="project-info">
-                            <span class="project-category"><i class="fas fa-temple"></i> Cultural Heritage</span>
-                            <h3 class="project-title">Siam Blessing</h3>
-                            <p class="project-description">
-                                An immersive digital experience celebrating Thai cultural heritage and traditional 
-                                blessing ceremonies. This platform bridges ancient Siamese wisdom with contemporary 
-                                web technologies, preserving cultural narratives for future generations.
-                            </p>
-                            <div class="project-tech">
-                                <span class="tech-tag">Vue.js</span>
-                                <span class="tech-tag">Node.js</span>
-                                <span class="tech-tag">MongoDB</span>
-                                <span class="tech-tag">Thai Culture</span>
-                                <span class="tech-tag">Heritage Preservation</span>
-                            </div>
-                        </div>
-                    </article>
-
-                    <!-- ThannxAI Project -->
-                    <article class="project-card" data-aos="fade-up" data-aos-delay="300">
-                        <div class="project-image" style="background-image: url('https://images.unsplash.com/photo-1677756119517-756a188d2d94?w=600&h=400&fit=crop');">
-                            <div class="project-overlay">
-                                <div class="project-links">
-                                    <a href="https://github.com/Pigletpeakkung/Thannxai" target="_blank" rel="noopener noreferrer" class="project-link">
-                                        <i class="fab fa-github"></i> GitHub
-                                    </a>
-                                    <a href="#" class="project-link demo-link">
-                                        <i class="fas fa-external-link-alt"></i> Live Demo
-                                    </a>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="project-info">
-                            <span class="project-category"><i class="fas fa-brain"></i> AI Innovation</span>
-                            <h3 class="project-title">ThannxAI</h3>
-                            <p class="project-description">
-                                A revolutionary human-centered AI platform that prioritizes ethical technology and 
-                                meaningful human connections. ThannxAI represents the culmination of my journey from 
-                                design to technology, creating AI that serves humanity with wisdom and compassion.
-                            </p>
-                            <div class="project-tech">
-                                <span class="tech-tag">Python</span>
-                                <span class="tech-tag">Machine Learning</span>
-                                <span class="tech-tag">React</span>
-                                <span class="tech-tag">AI Ethics</span>
-                                <span class="tech-tag">Human-Centered Design</span>
-                            </div>
-                        </div>
-                    </article>
-                </div>
-            </div>
-        </section>
-
-        <!-- New Thoughts & Insights Section -->
-        <section id="thoughts" class="section thoughts-section">
-            <div class="section-header">
-                <h2 class="section-title" data-aos="fade-up">Thoughts & Reflections</h2>
-                <p class="section-subtitle" data-aos="fade-up" data-aos-delay="200">
-                    Exploring the intersection of culture, technology, and human experience through 
-                    the lens of ancient wisdom and modern innovation.
+                <p class="text-lg text-gray-300 max-w-2xl mx-auto leading-relaxed">
+                    Thai-British creative professional specializing in AI development, 
+                    cultural design, and digital storytelling that connects East and West.
                 </p>
             </div>
             
-            <div class="thoughts-grid">
-                <article class="thought-card" data-aos="fade-up" data-aos-delay="100" tabindex="0">
-                    <div class="thought-date">January 15, 2025</div>
-                    <h3 class="thought-title">The Digital Dharma: Buddhism in the Age of AI</h3>
-                    <p class="thought-excerpt">
-                        How ancient Buddhist principles of mindfulness and compassion can guide 
-                        the development of ethical AI systems that serve humanity's highest good...
-                    </p>
-                    <a href="#" class="read-more">
-                        Read More <i class="fas fa-arrow-right"></i>
-                    </a>
-                </article>
-
-                <article class="thought-card" data-aos="fade-up" data-aos-delay="200" tabindex="0">
-                    <div class="thought-date">January 8, 2025</div>
-                    <h3 class="thought-title">Bridging Cultures Through Code</h3>
-                    <p class="thought-excerpt">
-                        My journey from fashion design to AI development has taught me that 
-                        technology is most powerful when it honors cultural diversity...
-                    </p>
-                    <a href="#" class="read-more">
-                        Read More <i class="fas fa-arrow-right"></i>
-                    </a>
-                </article>
-
-                <article class="thought-card" data-aos="fade-up" data-aos-delay="300" tabindex="0">
-                    <div class="thought-date">December 28, 2024</div>
-                    <h3 class="thought-title">The Archetypal Web: Jung's Psychology in UX Design</h3>
-                    <p class="thought-excerpt">
-                        Exploring how Carl Jung's archetypal psychology can inform more intuitive 
-                        and emotionally resonant user experience design...
-                    </p>
-                    <a href="#" class="read-more">
-                        Read More <i class="fas fa-arrow-right"></i>
-                    </a>
-                </article>
+            <!-- CTA Buttons -->
+            <div class="flex flex-col sm:flex-row gap-4 justify-center items-center">
+                <a href="#projects" class="cta-button bg-gradient-to-r from-gold to-yellow-500 text-dark-blue px-8 py-3 rounded-full font-semibold hover:shadow-lg hover:scale-105 transition-all duration-300">
+                    View My Work
+                </a>
+                <a href="#contact" class="cta-button border-2 border-gold text-gold px-8 py-3 rounded-full font-semibold hover:bg-gold hover:text-dark-blue transition-all duration-300">
+                    Get In Touch
+                </a>
             </div>
-        </section>
-
-        <!-- Enhanced Contact Section -->
-        <section id="contact" class="section contact-section">
-            <div class="contact-content">
-                <div class="section-header">
-                    <h2 class="section-title" data-aos="fade-up">Let's Create Together</h2>
-                    <p class="section-subtitle" data-aos="fade-up" data-aos-delay="200">
-                        Ready to bridge cultures, explore new possibilities, or discuss the intersection of 
-                        ancient wisdom and modern technology? I'd love to hear from you.
-                    </p>
+            
+            <!-- Scroll Indicator -->
+            <div class="absolute bottom-8 left-1/2 transform -translate-x-1/2 animate-bounce">
+                <i class="fas fa-chevron-down text-gold text-2xl"></i>
+            </div>
+        </div>
+    </section>
+    
+    <!-- About Section -->
+    <section id="about" class="py-20 px-4 relative z-10">
+        <div class="max-w-6xl mx-auto">
+            <div class="text-center mb-16" data-aos="fade-up">
+                <h2 class="text-4xl md:text-5xl font-bold font-elegant mb-6 bg-gradient-to-r from-gold to-silver bg-clip-text text-transparent">
+                    About Me
+                </h2>
+                <p class="text-xl text-gray-300 max-w-3xl mx-auto">
+                    A cultural bridge-builder with roots in both Thailand and Britain, 
+                    passionate about creating technology that honors tradition while embracing innovation.
+                </p>
+            </div>
+            
+            <div class="grid md:grid-cols-2 gap-12 items-center">
+                <!-- Profile Image -->
+                <div class="text-center" data-aos="fade-right">
+                    <div class="relative inline-block">
+                        <div class="w-80 h-80 mx-auto rounded-full bg-gradient-to-br from-gold/20 to-silver/20 p-2">
+                            <div class="w-full h-full rounded-full bg-gradient-to-br from-medium-blue to-light-blue flex items-center justify-center">
+                                <i class="fas fa-user text-6xl text-gold"></i>
+                            </div>
+                        </div>
+                        <div class="absolute -top-4 -right-4 w-16 h-16 bg-gold rounded-full flex items-center justify-center animate-float">
+                            <i class="fas fa-code text-dark-blue text-xl"></i>
+                        </div>
+                    </div>
                 </div>
                 
-                <form class="contact-form" id="contactForm" data-aos="fade-up" data-aos-delay="400">
-                    <div class="form-row">
-                        <div class="form-group">
-                            <label for="name" class="form-label"><i class="fas fa-user"></i> Your Name</label>
-                            <input type="text" id="name" name="name" class="form-input" required 
-                                   placeholder="Enter your full name" autocomplete="name">
+                <!-- About Content -->
+                <div data-aos="fade-left">
+                    <h3 class="text-2xl font-bold text-gold mb-6">Cultural Navigator & Tech Innovator</h3>
+                    <div class="space-y-4 text-gray-300 leading-relaxed">
+                        <p>
+                            Born from the intersection of Thai heritage and British innovation, 
+                            I bring a unique perspective to every project I touch.
+                        </p>
+                        <p>
+                            My journey spans AI development, cultural design research, and digital storytelling, 
+                            always with the goal of creating technology that respects and celebrates diversity.
+                        </p>
+                        <p>
+                            When I'm not coding or designing, you'll find me exploring the rich tapestry of 
+                            cultural traditions, seeking inspiration for the next breakthrough in human-centered technology.
+                        </p>
+                    </div>
+                    
+                    <!-- Skills Tags -->
+                    <div class="mt-8">
+                        <h4 class="text-lg font-semibold text-silver mb-4">Core Expertise</h4>
+                        <div class="flex flex-wrap gap-3">
+                            <span class="tag bg-gold/20 text-gold px-4 py-2 rounded-full text-sm font-medium border border-gold/30 hover:bg-gold/30 transition-colors duration-300">AI Development</span>
+                            <span class="tag bg-silver/20 text-silver px-4 py-2 rounded-full text-sm font-medium border border-silver/30 hover:bg-silver/30 transition-colors duration-300">Cultural Design</span>
+                            <span class="tag bg-blue-500/20 text-blue-400 px-4 py-2 rounded-full text-sm font-medium border border-blue-500/30 hover:bg-blue-500/30 transition-colors duration-300">UX Research</span>
+                            <span class="tag bg-green-500/20 text-green-400 px-4 py-2 rounded-full text-sm font-medium border border-green-500/30 hover:bg-green-500/30 transition-colors duration-300">Digital Storytelling</span>
+                            <span class="tag bg-purple-500/20 text-purple-400 px-4 py-2 rounded-full text-sm font-medium border border-purple-500/30 hover:bg-purple-500/30 transition-colors duration-300">Cross-Cultural Communication</span>
                         </div>
-                        
-                        <div class="form-group">
-                            <label for="email" class="form-label"><i class="fas fa-envelope"></i> Email Address</label>
-                            <input type="email" id="email" name="email" class="form-input" required 
-                                   placeholder="your.email@example.com" autocomplete="email">
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <!-- Experience Section -->
+    <section id="experience" class="py-20 px-4 relative z-10">
+        <div class="max-w-6xl mx-auto">
+            <div class="text-center mb-16" data-aos="fade-up">
+                <h2 class="text-4xl md:text-5xl font-bold font-elegant mb-6 bg-gradient-to-r from-gold to-silver bg-clip-text text-transparent">
+                    Experience
+                </h2>
+                <p class="text-xl text-gray-300 max-w-3xl mx-auto">
+                    A journey through innovation, culture, and technology
+                </p>
+            </div>
+            
+            <!-- Timeline -->
+            <div class="relative">
+                <!-- Timeline Line -->
+                <div class="absolute left-1/2 transform -translate-x-1/2 w-1 h-full bg-gradient-to-b from-gold to-silver"></div>
+                
+                <!-- Experience Items -->
+                <div class="space-y-12">
+                    <!-- Experience 1 -->
+                    <div class="flex items-center" data-aos="fade-right">
+                        <div class="w-1/2 pr-8 text-right">
+                            <div class="bg-dark-blue/80 backdrop-blur-sm p-6 rounded-lg border border-gold/20 hover:border-gold/40 transition-all duration-300">
+                                <h3 class="text-xl font-bold text-gold mb-2">AI Developer & Cultural Consultant</h3>
+                                <p class="text-silver mb-2">Tech Innovation Lab</p>
+                                <p class="text-sm text-gray-400 mb-4">2023 - Present</p>
+                                <p class="text-gray-300 text-sm leading-relaxed">
+                                    Leading AI projects that incorporate cultural sensitivity and cross-cultural understanding 
+                                    into machine learning models and user interfaces.
+                                </p>
+                            </div>
+                        </div>
+                        <div class="w-8 h-8 bg-gold rounded-full border-4 border-dark-blue flex items-center justify-center z-10">
+                            <i class="fas fa-robot text-dark-blue text-sm"></i>
+                        </div>
+                        <div class="w-1/2 pl-8"></div>
+                    </div>
+                    
+                    <!-- Experience 2 -->
+                    <div class="flex items-center" data-aos="fade-left">
+                        <div class="w-1/2 pr-8"></div>
+                        <div class="w-8 h-8 bg-silver rounded-full border-4 border-dark-blue flex items-center justify-center z-10">
+                            <i class="fas fa-palette text-dark-blue text-sm"></i>
+                        </div>
+                        <div class="w-1/2 pl-8">
+                            <div class="bg-dark-blue/80 backdrop-blur-sm p-6 rounded-lg border border-silver/20 hover:border-silver/40 transition-all duration-300">
+                                <h3 class="text-xl font-bold text-silver mb-2">Design Research Specialist</h3>
+                                <p class="text-gold mb-2">Cultural Design Institute</p>
+                                <p class="text-sm text-gray-400 mb-4">2022 - 2023</p>
+                                <p class="text-gray-300 text-sm leading-relaxed">
+                                    Conducted extensive research on how cultural backgrounds influence user experience 
+                                    and design preferences across different demographics.
+                                </p>
+                            </div>
                         </div>
                     </div>
                     
-                    <div class="form-group">
-                        <label for="subject" class="form-label"><i class="fas fa-tag"></i> Subject</label>
-                        <input type="text" id="subject" name="subject" class="form-input" required 
-                               placeholder="What would you like to discuss?">
+                    <!-- Experience 3 -->
+                    <div class="flex items-center" data-aos="fade-right">
+                        <div class="w-1/2 pr-8 text-right">
+                            <div class="bg-dark-blue/80 backdrop-blur-sm p-6 rounded-lg border border-blue-500/20 hover:border-blue-500/40 transition-all duration-300">
+                                <h3 class="text-xl font-bold text-blue-400 mb-2">Digital Storyteller</h3>
+                                <p class="text-silver mb-2">Freelance</p>
+                                <p class="text-sm text-gray-400 mb-4">2021 - 2022</p>
+                                <p class="text-gray-300 text-sm leading-relaxed">
+                                    Created compelling digital narratives that bridge cultural gaps and 
+                                    promote understanding between diverse communities.
+                                </p>
+                            </div>
+                        </div>
+                        <div class="w-8 h-8 bg-blue-500 rounded-full border-4 border-dark-blue flex items-center justify-center z-10">
+                            <i class="fas fa-book text-white text-sm"></i>
+                        </div>
+                        <div class="w-1/2 pl-8"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <!-- Contact Section -->
+    <section id="contact" class="py-20 px-4 relative z-10">
+        <div class="max-w-4xl mx-auto">
+            <div class="text-center mb-16" data-aos="fade-up">
+                <h2 class="text-4xl md:text-5xl font-bold font-elegant mb-6 bg-gradient-to-r from-gold to-silver bg-clip-text text-transparent">
+                    Let's Connect
+                </h2>
+                <p class="text-xl text-gray-300 max-w-2xl mx-auto">
+                    Ready to bridge cultures and create something amazing together?
+                </p>
+            </div>
+            
+            <div class="bg-dark-blue/80 backdrop-blur-sm rounded-2xl p-8 border border-gold/20" data-aos="fade-up">
+                <form id="contactForm" class="space-y-6">
+                    <div class="grid md:grid-cols-2 gap-6">
+                        <div>
+                            <label for="name" class="block text-silver mb-2 font-medium">Name</label>
+                            <input type="text" id="name" name="name" required 
+                                   class="w-full px-4 py-3 bg-medium-blue/50 border border-silver/30 rounded-lg text-white placeholder-gray-400 focus:border-gold focus:outline-none transition-colors duration-300">
+                        </div>
+                        <div>
+                            <label for="email" class="block text-silver mb-2 font-medium">Email</label>
+                            <input type="email" id="email" name="email" required 
+                                   class="w-full px-4 py-3 bg-medium-blue/50 border border-silver/30 rounded-lg text-white placeholder-gray-400 focus:border-gold focus:outline-none transition-colors duration-300">
+                        </div>
                     </div>
                     
-                    <div class="form-group">
-                        <label for="message" class="form-label"><i class="fas fa-comment"></i> Your Message</label>
-                        <textarea id="message" name="message" class="form-textarea" rows="6" required 
-                                  placeholder="Tell me about your project, ideas, or how we might collaborate..."></textarea>
+                    <div>
+                        <label for="subject" class="block text-silver mb-2 font-medium">Subject</label>
+                        <input type="text" id="subject" name="subject" required 
+                               class="w-full px-4 py-3 bg-medium-blue/50 border border-silver/30 rounded-lg text-white placeholder-gray-400 focus:border-gold focus:outline-none transition-colors duration-300">
                     </div>
                     
-                    <button type="submit" class="submit-btn" id="submitBtn">
-                        <i class="fas fa-paper-plane"></i> Send Message ✨
-                    </button>
-                    
-                    <div class="success-message" id="successMessage" role="alert">
-                        <i class="fas fa-check-circle"></i> Thank you! Your message has been sent successfully. I'll get back to you soon.
+                    <div>
+                        <label for="message" class="block text-silver mb-2 font-medium">Message</label>
+                        <textarea id="message" name="message" rows="6" required 
+                                  class="w-full px-4 py-3 bg-medium-blue/50 border border-silver/30 rounded-lg text-white placeholder-gray-400 focus:border-gold focus:outline-none transition-colors duration-300 resize-none"></textarea>
                     </div>
                     
-                    <div class="error-message" id="errorMessage" role="alert">
-                        <i class="fas fa-exclamation-circle"></i> Sorry, there was an error sending your message. Please try again.
+                    <div class="text-center">
+                        <button type="submit" id="submitBtn" 
+                                class="bg-gradient-to-r from-gold to-yellow-500 text-dark-blue px-8 py-3 rounded-full font-semibold hover:shadow-lg hover:scale-105 transition-all duration-300">
+                            <i class="fas fa-paper-plane mr-2"></i>
+                            Send Message
+                        </button>
                     </div>
                 </form>
             </div>
-        </section>
-    </main>
-
-    <!-- Enhanced Footer -->
-    <footer class="main-footer" role="contentinfo">
-        <div class="footer-content">
-            <nav class="footer-links" aria-label="Footer navigation">
-                <a href="#home"><i class="fas fa-home"></i> Home</a>
-                <a href="#portfolio"><i class="fas fa-briefcase"></i> Portfolio</a>
-                <a href="#projects"><i class="fas fa-code"></i> Projects</a>
-                <a href="#thoughts"><i class="fas fa-lightbulb"></i> Thoughts</a>
-                <a href="#contact"><i class="fas fa-envelope"></i> Contact</a>
-                <a href="https://github.com/Pigletpeakkung" target="_blank" rel="noopener noreferrer"><i class="fab fa-github"></i> GitHub</a>
-                <a href="mailto:thanattsitt.info@yahoo.co.uk"><i class="fas fa-envelope"></i> Email</a>
-            </nav>
-            <div class="footer-copyright">
-                <p>&copy; 2025 Thanatsitt Santisamranwilai. All rights reserved.</p>
-                <p>Thai-British AI Developer & Cultural Designer | Bridging Ancient Wisdom with Modern Technology</p>
-                <p>Built with ❤️ and ☕ in London & Bangkok</p>
-            </div>
         </div>
-    </footer>
-
+    </section>
+    
     <!-- Scroll to Top Button -->
-    <button class="scroll-to-top" id="scrollToTop" aria-label="Scroll to top">
+    <button class="scroll-to-top fixed bottom-8 right-8 w-12 h-12 bg-gold text-dark-blue rounded-full shadow-lg hover:shadow-xl transition-all duration-300 opacity-0 invisible z-40">
         <i class="fas fa-arrow-up"></i>
     </button>
-
-    <!-- Modal for full-size images -->
-    <div id="imageModal" class="modal" role="dialog" aria-labelledby="modal-title" aria-hidden="true">
-        <span class="close" onclick="closeModal()" aria-label="Close modal">&times;</span>
-        <div class="modal-content">
-            <img id="modalImage" src="" alt="" loading="lazy">
-        </div>
-    </div>
-
     
-
-    <!-- Enhanced JavaScript -->
-    <script>
-        // Initialize EmailJS with your actual user ID
-        // Replace 'YOUR_EMAILJS_USER_ID' with your actual EmailJS user ID
-        // emailjs.init("YOUR_EMAILJS_USER_ID");
-
-        // Global variables
-        let isLoading = false;
-        let animationFrameId = null;
-
-        // jQuery Document Ready
-        $(document).ready(function() {
-            // Initialize AOS with enhanced settings
-            AOS.init({
-                duration: 1000,
-                once: true,
-                offset: 100,
-                easing: 'ease-out-cubic',
-                delay: 100
-            });
-
-            // Initialize Particles.js with enhanced configuration
-            particlesJS('particles-js', {
-                particles: {
-                    number: {
-                        value: 100,
-                        density: {
-                            enable: true,
-                            value_area: 1000
-                        }
-                    },
-                    color: {
-                        value: ["#D4AF37", "#C0C0C8", "#8B8B9A"]
-                    },
-                    shape: {
-                        type: "circle",
-                        stroke: {
-                            width: 0,
-                            color: "#000000"
-                        }
-                    },
-                    opacity: {
-                        value: 0.6,
-                        random: true,
-                        anim: {
-                            enable: true,
-                            speed: 1,
-                            opacity_min: 0.1,
-                            sync: false
-                        }
-                    },
-                    size: {
-                        value: 3,
-                        random: true,
-                        anim: {
-                            enable: true,
-                            speed: 2,
-                            size_min: 0.1,
-                            sync: false
-                        }
-                    },
-                    line_linked: {
-                        enable: true,
-                        distance: 150,
-                        color: "#C0C0C8",
-                        opacity: 0.4,
-                        width: 1
-                    },
-                    move: {
-                        enable: true,
-                        speed: 3,
-                        direction: "none",
-                        random: true,
-                        straight: false,
-                        out_mode: "out",
-                        bounce: false,
-                        attract: {
-                            enable: true,
-                            rotateX: 600,
-                            rotateY: 1200
-                        }
-                    }
-                },
-                interactivity: {
-                    detect_on: "canvas",
-                    events: {
-                        onhover: {
-                            enable: true,
-                            mode: "grab"
-                        },
-                        onclick: {
-                            enable: true,
-                            mode: "push"
-                        },
-                        resize: true
-                    },
-                    modes: {
-                        grab: {
-                            distance: 200,
-                            line_linked: {
-                                opacity: 0.8
-                            }
-                        },
-                        bubble: {
-                            distance: 400,
-                            size: 40,
-                            duration: 2,
-                            opacity: 8,
-                            speed: 3
-                        },
-                        repulse: {
-                            distance: 200,
-                            duration: 0.4
-                        },
-                        push: {
-                            particles_nb: 4
-                        },
-                        remove: {
-                            particles_nb: 2
-                        }
-                    }
-                },
-                retina_detect: true
-            });
-
-            // Initialize Typed.js for hero title
-            new Typed('#typed-name', {
-                strings: [
-                    'Thanatsitt Santisamranwilai', 
-                    'Cultural Navigator', 
-                    'AI Developer', 
-                    'Design Thinker',
-                    'Story Weaver',
-                    'Bridge Builder'
-                ],
-                typeSpeed: 60,
-                backSpeed: 40,
-                backDelay: 2000,
-                startDelay: 500,
-                loop: false,
-                showCursor: true,
-                cursorChar: '|',
-                autoInsertCss: true
-            });
-
-            // Enhanced custom cursor
-            const cursor = $('#cursor');
-            let mouseX = 0, mouseY = 0;
-            let cursorX = 0, cursorY = 0;
-
-            $(document).mousemove(function(e) {
-                mouseX = e.clientX;
-                mouseY = e.clientY;
-            });
-
-            function animateCursor() {
-                cursorX += (mouseX - cursorX) * 0.1;
-                cursorY += (mouseY - cursorY) * 0.1;
-                
-                cursor.css({
-                    left: cursorX + 'px',
-                    top: cursorY + 'px'
-                });
-                
-                animationFrameId = requestAnimationFrame(animateCursor);
-            }
-            animateCursor();
-
-            // Enhanced cursor hover effects
-            $('.gallery-item, .project-card, .cta-button, .project-link, .nav-links a, .tag, .tech-tag, .thought-card').hover(
-                function() {
-                    cursor.addClass('hover');
-                },
-                function() {
-                    cursor.removeClass('hover');
-                }
-            );
-
-            // Cursor click effect
-            $(document).mousedown(function() {
-                cursor.addClass('click');
-            }).mouseup(function() {
-                cursor.removeClass('click');
-            });
-
-            // Hide loading screen with enhanced animation
-            setTimeout(function() {
-                $('#loading').fadeOut(800, function() {
-                    $(this).remove();
-                });
-            }, 2000);
-
-            // Enhanced smooth scrolling with easing
-            $('a[href^="#"]').click(function(e) {
-                e.preventDefault();
-                const target = $(this.getAttribute('href'));
-                if (target.length) {
-                    $('html, body').animate({
-                        scrollTop: target.offset().top - 80
-                    }, 1000, 'easeInOutCubic');
-                }
-            });
-
-            // Enhanced navigation scroll effects
-            let ticking = false;
-            
-            function updateScrollEffects() {
-                const scrollPos = $(window).scrollTop();
-                const docHeight = $(document).height() - $(window).height();
-                const scrollPercent = Math.min((scrollPos / docHeight) * 100, 100);
-                
-                // Update scroll progress
-                $('.scroll-progress').css('width', scrollPercent + '%');
-                
-                // Navigation background on scroll
-                if (scrollPos > 100) {
-                    $('.main-nav').addClass('scrolled');
-                } else {
-                    $('.main-nav').removeClass('scrolled');
-                }
-                
-                // Show/hide scroll to top button
-                if (scrollPos > 500) {
-                    $('.scroll-to-top').addClass('visible');
-                } else {
-                    $('.scroll-to-top').removeClass('visible');
-                }
-                
-                // Active navigation highlighting
-                $('.nav-links a').removeClass('active');
-                $('.nav-links a').each(function() {
-                    const currLink = $(this);
-                    const refElement = $(currLink.attr('href'));
-                    if (refElement.length && 
-                        refElement.offset().top <= scrollPos + 150 && 
-                        refElement.offset().top + refElement
-                        // Close modal on outside click
-$(window).click(function(event) {
-    if (event.target.id === 'imageModal') {
-        closeModal();
-    }
-});
-
-// Enhanced error handling
-window.addEventListener('error', function(e) {
-    console.error('JavaScript error:', e.error);
-    // Optional: Send error to analytics
-});
-
-// Performance monitoring
-if ('PerformanceObserver' in window) {
-    const perfObserver = new PerformanceObserver((list) => {
-        for (const entry of list.getEntries()) {
-            if (entry.entryType === 'navigation') {
-                console.log('Page load time:', entry.loadEventEnd - entry.loadEventStart);
-            }
-        }
-    });
-    perfObserver.observe({entryTypes: ['navigation']});
-}
-
-// Service Worker registration for PWA capabilities
-if ('serviceWorker' in navigator) {
-    window.addEventListener('load', function() {
-        navigator.serviceWorker.register('/sw.js')
-            .then(function(registration) {
-                console.log('ServiceWorker registration successful');
-            })
-            .catch(function(err) {
-                console.log('ServiceWorker registration failed');
-            });
-    });
-}
-
-// Enhanced keyboard navigation
-$(document).keydown(function(e) {
-    // ESC key functionality
-    if (e.key === 'Escape') {
-        closeModal();
-        $('#mobileMenuToggle').removeClass('active');
-        $('.nav-links').removeClass('active');
-    }
+    <!-- Scripts -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/particles.js/2.0.0/particles.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/typed.js@2.0.12"></script>
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
     
-    // Tab navigation enhancement
-    if (e.key === 'Tab') {
-        $('.custom-cursor').hide();
-    }
-});
-
-// Show cursor again on mouse move
-$(document).mousemove(function() {
-    $('.custom-cursor').show();
-});
-
-// Lazy loading for images
-const imageObserver = new IntersectionObserver((entries, observer) => {
-    entries.forEach(entry => {
-        if (entry.isIntersecting) {
-            const img = entry.target;
-            img.src = img.dataset.src;
-            img.classList.remove('lazy');
-            imageObserver.unobserve(img);
-        }
-    });
-});
-
-document.querySelectorAll('img[data-src]').forEach(img => {
-    imageObserver.observe(img);
-});
-
-// Enhanced form validation with real-time feedback
-function validateForm() {
-    const name = $('#name').val().trim();
-    const email = $('#email').val().trim();
-    const subject = $('#subject').val().trim();
-    const message = $('#message').val().trim();
-    
-    let isValid = true;
-    
-    // Name validation
-    if (name.length < 2) {
-        showFieldError('#name', 'Name must be at least 2 characters');
-        isValid = false;
-    } else {
-        showFieldSuccess('#name');
-    }
-    
-    // Email validation
-    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-    if (!emailRegex.test(email)) {
-        showFieldError('#email', 'Please enter a valid email address');
-        isValid = false;
-    } else {
-        showFieldSuccess('#email');
-    }
-    
-    // Subject validation
-    if (subject.length < 5) {
-        showFieldError('#subject', 'Subject must be at least 5 characters');
-        isValid = false;
-    } else {
-        showFieldSuccess('#subject');
-    }
-    
-    // Message validation
-    if (message.length < 10) {
-        showFieldError('#message', 'Message must be at least 10 characters');
-        isValid = false;
-    } else {
-        showFieldSuccess('#message');
-    }
-    
-    return isValid;
-}
-
-function showFieldError(fieldSelector, message) {
-    const field = $(fieldSelector);
-    field.css('border-color', '#ff6b6b');
-    
-    // Remove existing error message
-    field.siblings('.error-message').remove();
-    
-    // Add error message
-    field.after(`<div class="error-message" style="color: #ff6b6b; font-size: 0.8rem; margin-top: 0.5rem;">${message}</div>`);
-}
-
-function showFieldSuccess(fieldSelector) {
-    const field = $(fieldSelector);
-    field.css('border-color', '#51cf66');
-    field.siblings('.error-message').remove();
-}
-
-// Real-time form validation
-$('.form-input, .form-textarea').on('input blur', function() {
-    validateForm();
-});
-
-// Enhanced contact form with EmailJS
-$('#contactForm').submit(async function(e) {
-    e.preventDefault();
-    
-    if (!validateForm()) {
-        return;
-    }
-    
-    const submitBtn = $('#submitBtn');
-    const originalText = submitBtn.html();
-    
-    // Show loading state
-    submitBtn.prop('disabled', true)
-             .html('<i class="fas fa-spinner fa-spin"></i> Sending Message...');
-    
-    const formData = {
-        from_name: $('#name').val(),
-        from_email: $('#email').val(),
-        subject: $('#subject').val(),
-        message: $('#message').val(),
-        to_name: 'Thanatsitt'
-    };
-    
-    try {
-        // Replace with your actual EmailJS service ID and template ID
-        await emailjs.send('YOUR_SERVICE_ID', 'YOUR_TEMPLATE_ID', formData);
-        
-        // Show success message with animation
-        $('#successMessage').slideDown(400);
-        this.reset();
-        
-        // Reset button with success state
-        submitBtn.html('<i class="fas fa-check-circle"></i> Message Sent Successfully!');
-        
-        // Reset form validation styles
-        $('.form-input, .form-textarea').css('border-color', 'rgba(255, 255, 255, 0.2)');
-        $('.error-message').remove();
-        
-        // Reset button text after delay
-        setTimeout(() => {
-            submitBtn.prop('disabled', false).html(originalText);
-            $('#successMessage').slideUp(400);
-        }, 5000);
-        
-        // Analytics tracking (if you have Google Analytics)
-        if (typeof gtag !== 'undefined') {
-            gtag('event', 'form_submit', {
-                event_category: 'Contact',
-                event_label: 'Contact Form'
-            });
-        }
-        
-    } catch (error) {
-        console.error('EmailJS error:', error);
-        
-        // Show error message
-        const errorMsg = $('<div class="error-message" style="background: rgba(255, 107, 107, 0.2); color: #ff6b6b; padding: 1rem; border-radius: 10px; margin-top: 1rem; border: 1px solid rgba(255, 107, 107, 0.3);">Sorry, there was an error sending your message. Please try again or contact me directly at thanattsitt.info@yahoo.co.uk</div>');
-        $('#contactForm').append(errorMsg);
-        
-        setTimeout(() => {
-            errorMsg.fadeOut(400, function() {
-                $(this).remove();
-            });
-        }, 8000);
-        
-        submitBtn.prop('disabled', false).html(originalText);
-    }
-});
-
-// Enhanced scroll animations with GSAP
-gsap.registerPlugin(ScrollTrigger);
-
-// Parallax effect for hero section
-gsap.to('.hero-content', {
-    yPercent: -50,
-    ease: "none",
-    scrollTrigger: {
-        trigger: '.hero',
-        start: "top bottom",
-        end: "bottom top",
-        scrub: true
-    }
-});
-
-// Stagger animation for gallery items
-gsap.set('.gallery-item', { y: 100, opacity: 0 });
-ScrollTrigger.batch('.gallery-item', {
-    onEnter: (elements) => {
-        gsap.to(elements, {
-            y: 0,
-            opacity: 1,
-            duration: 0.8,
-            stagger: 0.15,
-            ease: "power2.out"
-        });
-    },
-    start: "top 85%"
-});
-
-// Project cards animation
-gsap.set('.project-card', { y: 80, opacity: 0 });
-ScrollTrigger.batch('.project-card', {
-    onEnter: (elements) => {
-        gsap.to(elements, {
-            y: 0,
-            opacity: 1,
-            duration: 1,
-            stagger: 0.2,
-            ease: "power3.out"
-        });
-    },
-    start: "top 80%"
-});
-
-// Text reveal animation
-gsap.utils.toArray('.section-title').forEach(title => {
-    gsap.fromTo(title, 
-        {
-            y: 50,
-            opacity: 0
-        },
-        {
-            y: 0,
-            opacity: 1,
-            duration: 1,
-            ease: "power2.out",
-            scrollTrigger: {
-                trigger: title,
-                start: "top 85%"
-            }
-        }
-    );
-});
-
-// Enhanced moon interaction
-$('.moon').hover(
-    function() {
-        gsap.to(this, {
-            scale: 1.1,
-            duration: 0.3,
-            ease: "power2.out"
-        });
-    },
-    function() {
-        gsap.to(this, {
-            scale: 1,
-            duration: 0.3,
-            ease: "power2.out"
-        });
-    }
-);
-
-// Magnetic effect for interactive elements
-function addMagneticEffect(selector) {
-    $(selector).each(function() {
-        const element = this;
-        
-        $(element).mousemove(function(e) {
-            const rect = element.getBoundingClientRect();
-            const x = e.clientX - rect.left - rect.width / 2;
-            const y = e.clientY - rect.top - rect.height / 2;
-            
-            gsap.to(element, {
-                x: x * 0.15,
-                y: y * 0.15,
-                duration: 0.3,
-                ease: "power2.out"
-            });
-        });
-        
-        $(element).mouseleave(function() {
-            gsap.to(element, {
-                x: 0,
-                y: 0,
-                duration: 0.5,
-                ease: "elastic.out(1, 0.3)"
-            });
-        });
-    });
-}
-
-// Apply magnetic effect to buttons
-addMagneticEffect('.cta-button, .project-link, .submit-btn');
-
-// Enhanced tag hover effects
-$('.tag, .tech-tag').hover(
-    function() {
-        gsap.to(this, {
-            scale: 1.05,
-            y: -3,
-            duration: 0.2,
-            ease: "power2.out"
-        });
-    },
-    function() {
-        gsap.to(this, {
-            scale: 1,
-            y: 0,
-            duration: 0.2,
-            ease: "power2.out"
-        });
-    }
-);
-
-// Intersection Observer for counting animations
-const countObserver = new IntersectionObserver((entries) => {
-    entries.forEach(entry => {
-        if (entry.isIntersecting && !entry.target.classList.contains('counted')) {
-            entry.target.classList.add('counted');
-            const target = parseInt(entry.target.dataset.count);
-            animateCounter($(entry.target), target);
-        }
-    });
-}, { threshold: 0.5 });
-
-$('.stat-number').each(function() {
-    countObserver.observe(this);
-});
-
-// Enhanced loading screen
-function hideLoadingScreen() {
-    const loading = $('#loading');
-    
-    gsap.to(loading, {
-        opacity: 0,
-        duration: 0.8,
-        ease: "power2.inOut",
-        onComplete: function() {
-            loading.remove();
-            
-            // Trigger entrance animations
-            gsap.fromTo('.hero-content', 
-                { y: 50, opacity: 0 },
-                { y: 0, opacity: 1, duration: 1, ease: "power2.out" }
-            );
-        }
-    });
-}
-
-// Hide loading screen after minimum time
-setTimeout(hideLoadingScreen, 2500);
-
-// Preload critical images
-function preloadImages() {
-    const imageUrls = [
-        'https://images.unsplash.com/photo-1558618666-fcd25c85cd64?w=400&h=250&fit=crop',
-        'https://images.unsplash.com/photo-1677442136019-21780ecad995?w=400&h=250&fit=crop',
-        'https://images.unsplash.com/photo-1677756119517-756a188d2d94?w=400&h=250&fit=crop'
-    ];
-    
-    imageUrls.forEach(url => {
-        const img = new Image();
-        img.src = url;
-    });
-}
-
-preloadImages();
-
-// Enhanced accessibility features
-function enhanceAccessibility() {
-    // Add skip links
-    $('body').prepend('<a href="#main-content" class="skip-link">Skip to main content</a>');
-    
-    // Enhance focus indicators
-    $('a, button, input, textarea, [tabindex]').focus(function() {
-        $(this).addClass('focus-visible');
-    }).blur(function() {
-        $(this).removeClass('focus-visible');
-    });
-    
-    // Add ARIA live region for dynamic content
-    $('body').append('<div id="live-region" aria-live="polite" aria-atomic="true" style="position: absolute; left: -10000px; width: 1px; height: 1px; overflow: hidden;"></div>');
-}
-
-enhanceAccessibility();
-
-// Update live region for screen readers
-function updateLiveRegion(message) {
-    $('#live-region').text(message);
-}
-
-// Enhanced error handling
-window.addEventListener('unhandledrejection', function(event) {
-    console.error('Unhandled promise rejection:', event.reason);
-    event.preventDefault();
-});
-
-// Performance optimization
-function optimizePerformance() {
-    // Debounce scroll events
-    let scrollTimeout;
-    $(window).scroll(function() {
-        if (scrollTimeout) {
-            clearTimeout(scrollTimeout);
-        }
-        scrollTimeout = setTimeout(function() {
-            // Scroll handling code here
-        }, 16); // ~60fps
-    });
-    
-    // Optimize animations for reduced motion
-    if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
-        gsap.globalTimeline.timeScale(0.1);
-        $('.moving-lights').hide();
-    }
-}
-
-optimizePerformance();
-
-// Analytics and tracking
-function initAnalytics() {
-    // Track page views
-    if (typeof gtag !== 'undefined') {
-        gtag('config', 'GA_MEASUREMENT_ID', {
-            page_title: document.title,
-            page_location: window.location.href
-        });
-    }
-    
-    // Track scroll depth
-    let maxScroll = 0;
-    $(window).scroll(function() {
-        const scrollPercent = Math.round(($(window).scrollTop() / ($(document).height() - $(window).height())) * 100);
-        if (scrollPercent > maxScroll) {
-            maxScroll = scrollPercent;
-            
-            // Track milestone scrolls
-            if ([25, 50, 75, 90].includes(scrollPercent) && typeof gtag !== 'undefined') {
-                gtag('event', 'scroll', {
-                    event_category: 'Engagement',
-                    event_label: `${scrollPercent}%`,
-                    value: scrollPercent
-                });
-            }
-        }
-    });
-}
-
-// Initialize analytics if available
-if (typeof gtag !== 'undefined') {
-    initAnalytics();
-}
-
-// Final initialization
-console.log('🌙 Thanatsitt Portfolio Loaded Successfully');
-console.log('✨ Cultural bridge between ancient wisdom and modern technology');
-
-// End of JavaScript
-    <!-- Add this line before closing body tag -->
+    <!-- Your Portfolio JavaScript -->
     <script src="portfolio.js"></script>
-    <!-- Quick Loading Fix - Add this before </body> -->
-<script>
-// Force hide loading screen
-setTimeout(function() {
-    const loading = document.getElementById('loading');
-    if (loading) {
-        loading.style.opacity = '0';
-        setTimeout(() => loading.style.display = 'none', 500);
-    }
-}, 1500);
-
-// Backup method
-window.onload = function() {
-    setTimeout(function() {
-        const loading = document.getElementById('loading');
-        if (loading) {
-            loading.style.opacity = '0';
-            setTimeout(() => loading.style.display = 'none', 300);
-        }
-    }, 500);
-};
-</script>
+    
+    <!-- Quick Loading Fix -->
+    <script>
+        // Hide loading screen
+        setTimeout(function() {
+            const loading = document.getElementById('loading');
+            if (loading) {
+                loading.style.opacity = '0';
+                setTimeout(() => loading.style.display = 'none', 500);
+            }
+        }, 1500);
+    </script>
+    
 </body>
 </html>
