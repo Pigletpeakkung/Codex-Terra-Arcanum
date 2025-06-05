@@ -3,920 +3,317 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Chapter 1: Mobile Interface Design - Art Meets Functionality | Digital Arts Evolution</title>
-    <meta name="description" content="Explore the intersection of digital art and mobile interface design, featuring contemporary examples of UI/UX artistry and interactive design principles.">
-    <meta name="keywords" content="digital arts, mobile interface design, UI/UX design, digital artistry, interactive design, mobile app design">
-    <meta name="author" content="Thanattsitt Santisamranwilai">
-    <meta name="publisher" content="Pege Arts">
-    <link rel="canonical" href="https://thanattsitt.info">
-    
+    <title>Thanatsitt - Where AI, Art, and Archetypes Meet</title>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
     <style>
-        :root {
-            --primary-color: #2c3e50;
-            --secondary-color: #3498db;
-            --accent-color: #e74c3c;
-            --text-color: #333;
-            --light-bg: #f8f9fa;
-            --border-color: #dee2e6;
-            --shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-            --transition: all 0.3s ease;
-        }
-
         * {
             margin: 0;
             padding: 0;
             box-sizing: border-box;
         }
-
+        
         body {
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-            line-height: 1.7;
-            color: var(--text-color);
-            background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
-            min-height: 100vh;
-        }
-
-        .chapter-container {
-            max-width: 1200px;
-            margin: 0 auto;
-            padding: 20px;
-            background: white;
-            box-shadow: var(--shadow);
-            border-radius: 15px;
-            margin-top: 20px;
-            margin-bottom: 20px;
-        }
-
-        .chapter-header {
-            text-align: center;
-            margin-bottom: 40px;
-            padding: 30px 0;
-            background: linear-gradient(135deg, var(--primary-color) 0%, var(--secondary-color) 100%);
+            font-family: 'Inter', sans-serif;
+            background: linear-gradient(135deg, #1A1A2E 0%, #0F0F1A 100%);
             color: white;
-            border-radius: 15px;
-            position: relative;
-            overflow: hidden;
+            overflow-x: hidden;
         }
-
-        .chapter-header::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            right: 0;
-            bottom: 0;
-            background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><defs><pattern id="grain" width="100" height="100" patternUnits="userSpaceOnUse"><circle cx="25" cy="25" r="1" fill="white" opacity="0.1"/><circle cx="75" cy="75" r="1" fill="white" opacity="0.1"/><circle cx="50" cy="10" r="0.5" fill="white" opacity="0.1"/></pattern></defs><rect width="100" height="100" fill="url(%23grain)"/></svg>');
-            opacity: 0.3;
-        }
-
-        .chapter-number {
-            font-size: 1.2rem;
-            font-weight: 300;
-            letter-spacing: 2px;
-            margin-bottom: 10px;
-            position: relative;
-            z-index: 1;
-        }
-
-        .chapter-title {
-            font-size: 2.5rem;
-            font-weight: 700;
-            margin-bottom: 15px;
-            position: relative;
-            z-index: 1;
-        }
-
-        .chapter-subtitle {
-            font-size: 1.1rem;
-            font-weight: 300;
-            opacity: 0.9;
-            position: relative;
-            z-index: 1;
-        }
-
-        .author-info {
-            background: rgba(255, 255, 255, 0.1);
-            padding: 15px;
-            border-radius: 10px;
-            margin-top: 20px;
-            position: relative;
-            z-index: 1;
-        }
-
-        .author-name {
-            font-size: 1rem;
-            font-weight: 600;
-            margin-bottom: 5px;
-        }
-
-        .publisher-info {
-            font-size: 0.9rem;
-            opacity: 0.9;
-        }
-
-        .content-section {
-            margin-bottom: 40px;
-        }
-
-        .section-title {
-            font-size: 1.8rem;
-            color: var(--primary-color);
-            margin-bottom: 20px;
-            padding-bottom: 10px;
-            border-bottom: 3px solid var(--secondary-color);
-            position: relative;
-        }
-
-        .section-title::after {
-            content: '';
-            position: absolute;
-            bottom: -3px;
-            left: 0;
-            width: 50px;
-            height: 3px;
-            background: var(--accent-color);
-        }
-
-        .enhanced-separator {
-            clear: both;
-            margin: 30px 0;
-            position: relative;
-        }
-
-        .image-container {
-            position: relative;
-            overflow: hidden;
-            border-radius: 15px;
-            box-shadow: var(--shadow);
-            transition: var(--transition);
-            background: var(--light-bg);
-        }
-
-        .image-container:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.15);
-        }
-
-        .image-link {
-            display: block;
-            padding: 0;
-            text-decoration: none;
-            position: relative;
-            overflow: hidden;
-        }
-
-        .image-link::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            right: 0;
-            bottom: 0;
-            background: linear-gradient(45deg, transparent 0%, rgba(52, 152, 219, 0.1) 50%, transparent 100%);
-            transform: translateX(-100%);
-            transition: transform 0.6s ease;
-            z-index: 2;
-        }
-
-        .image-link:hover::before {
-            transform: translateX(100%);
-        }
-
-        .responsive-image {
-            width: 100%;
-            height: auto;
-            display: block;
-            transition: var(--transition);
-            border-radius: 15px;
-        }
-
-        .image-overlay {
-            position: absolute;
-            bottom: 0;
-            left: 0;
-            right: 0;
-            background: linear-gradient(transparent, rgba(0, 0, 0, 0.8));
-            color: white;
-            padding: 20px;
-            transform: translateY(100%);
-            transition: var(--transition);
-            z-index: 3;
-        }
-
-        .image-container:hover .image-overlay {
-            transform: translateY(0);
-        }
-
-        .image-title {
-            font-size: 1.1rem;
-            font-weight: 600;
-            margin-bottom: 5px;
-        }
-
-        .image-description {
-            font-size: 0.9rem;
-            opacity: 0.9;
-        }
-
-        .content-grid {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 30px;
-            margin: 30px 0;
-        }
-
-        .content-card {
-            background: var(--light-bg);
-            padding: 25px;
-            border-radius: 10px;
-            border-left: 4px solid var(--secondary-color);
-            transition: var(--transition);
-        }
-
-        .content-card:hover {
-            transform: translateX(5px);
-            box-shadow: var(--shadow);
-        }
-
-        .card-title {
-            font-size: 1.3rem;
-            color: var(--primary-color);
-            margin-bottom: 15px;
-            font-weight: 600;
-        }
-
-        .highlight-box {
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-            color: white;
-            padding: 25px;
-            border-radius: 15px;
-            margin: 30px 0;
-            position: relative;
-            overflow: hidden;
-        }
-
-        .highlight-box::before {
-            content: '';
-            position: absolute;
-            top: -50%;
-            right: -50%;
-            width: 100%;
-            height: 100%;
-            background: radial-gradient(circle, rgba(255, 255, 255, 0.1) 0%, transparent 70%);
-            animation: float 6s ease-in-out infinite;
-        }
-
-        @keyframes float {
-            0%, 100% { transform: translateY(0px) rotate(0deg); }
-            50% { transform: translateY(-20px) rotate(180deg); }
-        }
-
-        .quote-section {
-            background: var(--light-bg);
-            border-left: 5px solid var(--accent-color);
-            padding: 20px 25px;
-            margin: 25px 0;
-            font-style: italic;
-            position: relative;
-        }
-
-        .quote-section::before {
-            content: '"';
-            font-size: 4rem;
-            color: var(--accent-color);
-            position: absolute;
-            top: -10px;
-            left: 10px;
-            opacity: 0.3;
-        }
-
-        .technical-specs {
-            background: #f8f9fa;
-            border: 1px solid var(--border-color);
-            border-radius: 10px;
-            padding: 20px;
-            margin: 25px 0;
-        }
-
-        .specs-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-            gap: 15px;
-            margin-top: 15px;
-        }
-
-        .spec-item {
-            background: white;
-            padding: 15px;
-            border-radius: 8px;
-            border-left: 3px solid var(--secondary-color);
-        }
-
-        .spec-label {
-            font-weight: 600;
-            color: var(--primary-color);
-            font-size: 0.9rem;
-        }
-
-        .spec-value {
-            color: var(--text-color);
-            margin-top: 5px;
-        }
-
-        .progress-indicator {
+        
+        /* Navigation */
+        .nav {
             position: fixed;
             top: 0;
-            left: 0;
             width: 100%;
-            height: 4px;
-            background: rgba(52, 152, 219, 0.2);
+            padding: 1rem 2rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
             z-index: 1000;
+            background: rgba(26, 26, 46, 0.1);
+            backdrop-filter: blur(10px);
         }
-
-        .progress-bar {
+        
+        .logo {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.5rem;
+            color: #FFD700;
+            font-weight: 400;
+        }
+        
+        .nav-links {
+            display: flex;
+            gap: 2rem;
+            list-style: none;
+        }
+        
+        .nav-links a {
+            color: white;
+            text-decoration: none;
+            transition: color 0.3s ease;
+        }
+        
+        .nav-links a:hover {
+            color: #FFD700;
+        }
+        
+        /* Hero Section */
+        .hero {
+            height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .hero-content {
+            text-align: center;
+            max-width: 800px;
+            z-index: 10;
+        }
+        
+        .moon {
+            width: 200px;
+            height: 200px;
+            margin: 0 auto 2rem;
+            position: relative;
+        }
+        
+        .moon-phase {
+            width: 100%;
             height: 100%;
-            background: linear-gradient(90deg, var(--secondary-color), var(--accent-color));
-            width: 0%;
-            transition: width 0.3s ease;
-        }
-
-        @media (max-width: 768px) {
-            .chapter-container {
-                margin: 10px;
-                padding: 15px;
-            }
-
-            .chapter-title {
-                font-size: 2rem;
-            }
-
-            .content-grid {
-                grid-template-columns: 1fr;
-                gap: 20px;
-            }
-
-            .specs-grid {
-                grid-template-columns: 1fr;
-            }
-        }
-
-        .fade-in {
+            border-radius: 50%;
+            background: #E6E6FA;
+            position: absolute;
             opacity: 0;
-            transform: translateY(30px);
-            transition: all 0.6s ease;
+            box-shadow: 0 0 30px rgba(255, 215, 0, 0.3);
         }
-
-        .fade-in.visible {
-            opacity: 1;
-            transform: translateY(0);
+        
+        .moon-phase.new-moon {
+            background: linear-gradient(90deg, #1A1A2E 50%, #E6E6FA 50%);
+        }
+        
+        .moon-phase.waxing {
+            background: linear-gradient(90deg, #1A1A2E 30%, #E6E6FA 30%);
+        }
+        
+        .moon-phase.full-moon {
+            background: #E6E6FA;
+            box-shadow: 0 0 50px rgba(255, 215, 0, 0.6);
+        }
+        
+        .intro-text {
+            font-family: 'Playfair Display', serif;
+            font-size: 2rem;
+            margin-bottom: 1rem;
+            opacity: 0;
+            transform: translateY(20px);
+        }
+        
+        .identity-text {
+            font-size: 1.2rem;
+            color: #D4AF37;
+            margin-bottom: 1.5rem;
+            opacity: 0;
+            transform: translateY(20px);
+        }
+        
+        .tagline {
+            font-family: 'Playfair Display', serif;
+            font-style: italic;
+            font-size: 1.3rem;
+            color: #FFD700;
+            opacity: 0;
+            transform: translateY(20px);
+        }
+        
+        /* Featured Work */
+        .featured {
+            padding: 5rem 2rem;
+            background: rgba(44, 44, 84, 0.3);
+        }
+        
+        .featured-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            text-align: center;
+        }
+        
+        .featured h2 {
+            font-family: 'Playfair Display', serif;
+            font-size: 2.5rem;
+            color: #FFD700;
+            margin-bottom: 3rem;
+        }
+        
+        .work-card {
+            background: rgba(26, 26, 46, 0.8);
+            border: 1px solid #D4AF37;
+            border-radius: 15px;
+            padding: 2rem;
+            max-width: 500px;
+            margin: 0 auto;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+        
+        .work-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 30px rgba(255, 215, 0, 0.2);
+        }
+        
+        .work-card h3 {
+            font-family: 'Playfair Display', serif;
+            color: #FFD700;
+            margin-bottom: 1rem;
+        }
+        
+        .work-category {
+            background: #FFD700;
+            color: #1A1A2E;
+            padding: 0.3rem 1rem;
+            border-radius: 20px;
+            font-size: 0.8rem;
+            display: inline-block;
+            margin-bottom: 1rem;
+        }
+        
+        /* CTAs */
+        .ctas {
+            padding: 4rem 2rem;
+            text-align: center;
+        }
+        
+        .cta-buttons {
+            display: flex;
+            gap: 2rem;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+        
+        .cta-btn {
+            background: linear-gradient(45deg, #FFD700, #D4AF37);
+            color: #1A1A2E;
+            padding: 1rem 2rem;
+            border: none;
+            border-radius: 30px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            text-decoration: none;
+            display: inline-block;
+        }
+        
+        .cta-btn:hover {
+            transform: scale(1.05);
+            box-shadow: 0 5px 20px rgba(255, 215, 0, 0.4);
+        }
+        
+        /* Responsive */
+        @media (max-width: 768px) {
+            .nav-links {
+                display: none;
+            }
+            
+            .moon {
+                width: 150px;
+                height: 150px;
+            }
+            
+            .intro-text {
+                font-size: 1.5rem;
+            }
+            
+            .cta-buttons {
+                flex-direction: column;
+                align-items: center;
+            }
+            
+            .cta-btn {
+                width: 200px;
+            }
         }
     </style>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600&family=Playfair+Display:ital,wght@0,400;1,400&display=swap" rel="stylesheet">
 </head>
 <body>
-    <!-- Progress Indicator -->
-    <div class="progress-indicator">
-        <div class="progress-bar" id="progressBar"></div>
-    </div>
+    <!-- Navigation -->
+    <nav class="nav">
+        <div class="logo">Thanatsitt</div>
+        <ul class="nav-links">
+            <li><a href="#home">Home</a></li>
+            <li><a href="#about">About</a></li>
+            <li><a href="#portfolio">Portfolio</a></li>
+            <li><a href="#stories">Stories</a></li>
+            <li><a href="#contact">Contact</a></li>
+        </ul>
+    </nav>
 
-    <article class="chapter-container">
-        <!-- Chapter Header -->
-        <header class="chapter-header fade-in">
-            <div class="chapter-number">CHAPTER 1</div>
-            <h1 class="chapter-title">Mobile Interface Design</h1>
-            <p class="chapter-subtitle">Art Meets Functionality in the Digital Age</p>
-            <div class="author-info">
-                <div class="author-name">By Thanattsitt Santisamranwilai</div>
-                <div class="publisher-info">Published by Pege Arts | thanattsitt.info@yahoo.co.uk</div>
+    <!-- Hero Section -->
+    <section class="hero" id="home">
+        <div class="hero-content">
+            <!-- Moon Animation -->
+            <div class="moon">
+                <div class="moon-phase new-moon" id="newMoon"></div>
+                <div class="moon-phase waxing" id="waxingMoon"></div>
+                <div class="moon-phase full-moon" id="fullMoon"></div>
             </div>
-        </header>
-
-        <!-- Introduction Section -->
-        <section class="content-section fade-in">
-            <p style="font-size: 1.1rem; margin-bottom: 25px; text-align: justify;">
-                In the rapidly evolving landscape of digital arts, mobile interface design stands as one of the most dynamic and influential mediums of contemporary creative expression. This chapter explores how digital artists and UX/UX designers collaborate to create visually stunning yet highly functional experiences that define our daily interactions with technology.
-            </p>
-
-            <div class="highlight-box">
-                <h3 style="margin-bottom: 15px;">🎨 The Digital Canvas Revolution</h3>
-                <p>Mobile interfaces represent a unique art form where every pixel serves both aesthetic and functional purposes. Unlike traditional art forms, mobile interface design must balance visual appeal with usability, accessibility, and performance across diverse devices and user contexts.</p>
-            </div>
-        </section>
-
-        <!-- Main Interface Design Example -->
-        <section class="content-section fade-in">
-            <h2 class="section-title">The Art of First Impressions: Main Menu Design</h2>
             
-            <div class="enhanced-separator">
-                <div class="image-container">
-                    <a href="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEgcBp76wbFrMOXu_SX3pG_rP9UtRgTKrXC9mJJvJaFlAKZHLZRDndk-BXyhRBD5b8Ehnhrw6j8Vf9FszRYdGAMq1ICAoLcRXGQqGQV7yjbaBk8Vw6fLxnMbzJJf58mk2v-MqACJRAGUN42rNzf7jwbGd0ltYEnH-Ca21MM0R4UMfM35wTbTjiV-T042EWU/s734/1000027709.webp" 
-                       class="image-link"
-                       rel="noopener noreferrer" 
-                       target="_blank"
-                       aria-label="View full-size mobile interface design example">
-                        <picture>
-                            <source srcset="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEgcBp76wbFrMOXu_SX3pG_rP9UtRgTKrXC9mJJvJaFlAKZHLZRDndk-BXyhRBD5b8Ehnhrw6j8Vf9FszRYdGAMq1ICAoLcRXGQqGQV7yjbaBk8Vw6fLxnMbzJJf58mk2v-MqACJRAGUN42rNzf7jwbGd0ltYEnH-Ca21MM0R4UMfM35wTbTjiV-T042EWU/s800/1000027709.webp 800w,
-                                            https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEgcBp76wbFrMOXu_SX3pG_rP9UtRgTKrXC9mJJvJaFlAKZHLZRDndk-BXyhRBD5b8Ehnhrw6j8Vf9FszRYdGAMq1ICAoLcRXGQqGQV7yjbaBk8Vw6fLxnMbzJJf58mk2v-MqACJRAGUN42rNzf7jwbGd0ltYEnH-Ca21MM0R4UMfM35wTbTjiV-T042EWU/s400/1000027709.webp 400w" 
-                                    type="image/webp">
-                            <source srcset="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEgcBp76wbFrMOXu_SX3pG_rP9UtRgTKrXC9mJJvJaFlAKZHLZRDndk-BXyhRBD5b8Ehnhrw6j8Vf9FszRYdGAMq1ICAoLcRXGQqGQV7yjbaBk8Vw6fLxnMbzJJf58mk2v-MqACJRAGUN42rNzf7jwbGd0ltYEnH-Ca21MM0R4UMfM35wTbTjiV-T042EWU/s800/1000027709.jpg 800w,
-                                            https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEgcBp76wbFrMOXu_SX3pG_rP9UtRgTKrXC9mJJvJaFlAKZHLZRDndk-BXyhRBD5b8Ehnhrw6j8Vf9FszRYdGAMq1ICAoLcRXGQqGQV7yjbaBk8Vw6fLxnMbzJJf58mk2v-MqACJRAGUN42rNzf7jwbGd0ltYEnH-Ca21MM0R4UMfM35wTbTjiV-T042EWU/s400/1000027709.jpg 400w" 
-                                    type="image/jpeg">
-                            <img alt="Digital art masterpiece: Mobile game main menu interface showcasing vibrant gradient backgrounds, intuitive navigation design, modern typography, and sophisticated UI/UX principles in contemporary digital artistry" 
-                                 class="responsive-image"
-                                 width="734" 
-                                 height="260"
-                                 data-original-height="260" 
-                                 data-original-width="734" 
-                                 src="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEgcBp76wbFrMOXu_SX3pG_rP9UtRgTKrXC9mJJvJaFlAKZHLZRDndk-BXyhRBD5b8Ehnhrw6j8Vf9FszRYdGAMq1ICAoLcRXGQqGQV7yjbaBk8Vw6fLxnMbzJJf58mk2v-MqACJRAGUN42rNzf7jwbGd0ltYEnH-Ca21MM0R4UMfM35wTbTjiV-T042EWU/s400/1000027709.jpg"
-                                 loading="lazy"
-                                 decoding="async"
-                                 itemscope 
-                                 itemtype="https://schema.org/ImageObject"/>
-                        </picture>
-                        <div class="image-overlay">
-                            <div class="image-title">Main Menu Interface Design</div>
-                            <div class="image-description">Landscape-oriented interface showcasing modern gradient design and intuitive navigation patterns</div>
-                        </div>
-                    </a>
-                </div>
-            </div>
-
-            <p style="margin-top: 25px; text-align: justify;">
-                This exemplary main menu interface demonstrates the sophisticated level of artistry achieved in contemporary mobile design. The horizontal layout optimizes the landscape orientation, creating an immersive experience that draws users into the digital environment. Notice how the vibrant color palette creates visual hierarchy while maintaining accessibility standards.
-            </p>
-
-            <div class="content-grid">
-                <div class="content-card">
-                    <h3 class="card-title">🎨 Visual Hierarchy & Composition</h3>
-                    <ul style="list-style: none; padding: 0;">
-                        <li style="margin-bottom: 10px;">✓ Strategic use of color gradients to guide user attention</li>
-                        <li style="margin-bottom: 10px;">✓ Balanced layout following golden ratio principles</li>
-                        <li style="margin-bottom: 10px;">✓ Typography as an artistic element, not merely functional text</li>
-                        <li style="margin-bottom: 10px;">✓ Consistent spacing and alignment creating visual rhythm</li>
-                    </ul>
-                </div>
-                <div class="content-card">
-                    <h3 class="card-title">🌈 Digital Color Theory in Practice</h3>
-                    <ul style="list-style: none; padding: 0;">
-                        <li style="margin-bottom: 10px;">✓ Complementary color schemes creating visual harmony</li>
-                        <li style="margin-bottom: 10px;">✓ High contrast ratios ensuring accessibility compliance</li>
-                        <li style="margin-bottom: 10px;">✓ Color psychology evoking specific emotional responses</li>
-                        <li style="margin-bottom: 10px;">✓ Gradient transitions adding depth and dimension</li>
-                    </ul>
-                </div>
-            </div>
-        </section>
-
-        <!-- Character Selection Interface -->
-        <section class="content-section fade-in">
-            <h2 class="section-title">Character Portfolio: Digital Illustration Mastery</h2>
-            
-            <div class="enhanced-separator">
-                <div class="image-container">
-                    <a href="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEi91s0UU7o8RI0z7YnpmR-BNTqo6DbYx5AknkHmzgTbZdkQDKj_fG-dgRyX7N1HxlPgatSjBWolOVLPLRlmjdDJTgdie4I4mRZv4JpLNpmfTwAK_viN7mrIVwWB096BBgrn1KLkz2nkztR0EreuKMjwpCI73rHJeSk3o7f2oC_slS4qHGAIyWgELibB9HQ/s736/1000027708.webp" 
-                       class="image-link"
-                       rel="noopener noreferrer" 
-                       target="_blank"
-                       aria-label="View character selection interface design">
-                        <picture>
-                            <source srcset="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEi91s0UU7o8RI0z7YnpmR-BNTqo6DbYx5AknkHmzgTbZdkQDKj_fG-dgRyX7N1HxlPgatSjBWolOVLPLRlmjdDJTgdie4I4mRZv4JpLNpmfTwAK_viN7mrIVwWB096BBgrn1KLkz2nkztR0EreuKMjwpCI73rHJeSk3o7f2oC_slS4qHGAIyWgELibB9HQ/s800/1000027708.webp 800w,
-                                            https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEi91s0UU7o8RI0z7YnpmR-BNTqo6DbYx5AknkHmzgTbZdkQDKj_fG-dgRyX7N1HxlPgatSjBWolOVLPLRlmjdDJTgdie4I4mRZv4JpLNpmfTwAK_viN7mrIVwWB096BBgrn1KLkz2nkztR0EreuKMjwpCI73rHJeSk3o7f2oC_slS4qHGAIyWgELibB9HQ/s400/1000027708.webp 400w" 
-                                    type="image/webp">
-                            <source srcset="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEi91s0UU7o8RI0z7YnpmR-BNTqo6DbYx5AknkHmzgTbZdkQDKj_fG-dgRyX7N1HxlPgatSjBWolOVLPLRlmjdDJTgdie4I4mRZv4JpLNpmfTwAK_viN7mrIVwWB096BBgrn1KLkz2nkztR0EreuKMjwpCI73rHJeSk3o7f2oC_slS4qHGAIyWgELibB9HQ/s800/1000027708.jpg 800w,
-                                            https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEi91s0UU7o8RI0z7YnpmR-BNTqo6DbYx5AknkHmzgTbZdkQDKj_fG-dgRyX7N1HxlPgatSjBWolOVLPLRlmjdDJTgdie4I4mRZv4JpLNpmfTwAK_viN7mrIVwWB096BBgrn1KLkz2nkztR0EreuKMjwpCI73rHJeSk3o7f2oC_slS4qHGAIyWgELibB9HQ/s400/1000027708.jpg 400w" 
-                                    type="image/jpeg">
-                            <img alt="Digital arts showcase: Character selection interface displaying multiple avatar illustrations with diverse artistic styles, professional digital painting techniques, and sophisticated character development in modern digital artistry" 
-                                 class="responsive-image"
-                                 width="736" 
-                                 height="493"
-                                 data-original-height="493" 
-                                 data-original-width="736" 
-                                 src="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEi91s0UU7o8RI0z7YnpmR-BNTqo6DbYx5AknkHmzgTbZdkQDKj_fG-dgRyX7N1HxlPgatSjBWolOVLPLRlmjdDJTgdie4I4mRZv4JpLNpmfTwAK_viN7mrIVwWB096BBgrn1KLkz2nkztR0EreuKMjwpCI73rHJeSk3o7f2oC_slS4qHGAIyWgELibB9HQ/s400/1000027708.jpg"
-                                 loading="lazy"
-                                 decoding="async"
-                                 itemscope 
-                                 itemtype="https://schema.org/ImageObject"/>
-                        </picture>
-                        <div class="image-overlay">
-                            <div class="image-title">Character Selection Portfolio</div>
-                            <div class="image-description">Grid-based layout showcasing diverse character designs and artistic styles</div>
-                        </div>
-                    </a>
-                </div>
-            </div>
-
-            <div class="quote-section">
-                <p><strong>Digital character design represents the convergence of traditional artistic skills with cutting-edge technology, where each avatar tells a story through carefully crafted visual elements, from facial expressions to costume details.</strong></p>
-            </div>
-
-            <p style="text-align: justify; margin-bottom: 20px;">
-                This character selection interface exemplifies the sophisticated level of digital illustration in contemporary interactive media. Each character represents hours of artistic development, from initial concept sketches to final digital rendering, showcasing the evolution of digital artistry in mobile applications.
-            </p>
-
-            <div class="technical-specs">
-                <h3 style="color: var(--primary-color); margin-bottom: 15px;">🔧 Technical Artistry Specifications</h3>
-                <div class="specs-grid">
-                    <div class="spec-item">
-                        <div class="spec-label">Digital Painting Techniques</div>
-                        <div class="spec-value">Layer-based artwork with complex lighting and shadow effects</div>
-                    </div>
-                    <div class="spec-item">
-                        <div class="spec-label">Resolution Independence</div>
-                        <div class="spec-value">Vector-based elements ensuring crisp display across all devices</div>
-                    </div>
-                    <div class="spec-item">
-                        <div class="spec-label">Color Harmony</div>
-                        <div class="spec-value">Consistent palettes while expressing individual character personality</div>
-                    </div>
-                    <div class="spec-item">
-                        <div class="spec-label">Cultural Representation</div>
-                        <div class="spec-value">Thoughtful inclusion of diverse backgrounds and aesthetic styles</div>
-                    </div>
-                </div>
-            </div>
-        </section>
-
-        <!-- Environmental Design Section -->
-        <section class="content-section fade-in">
-            <h2 class="section-title">Environmental Storytelling Through Interface Design</h2>
-            
-            <div class="enhanced-separator">
-                <div class="image-container">
-                    <a href="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEh5qqeH4Phk-XhaVCz80kKFbArgzOa4C7GlWryF79cliKncTDgN0t0fVaxrnRq_weZZYkhso8IA5yCpwmimz9vdyiwux9cCFPIrEmk9sj8fSpsDMVZyjmgL1TdYYHOhsg54R4ALF_HLuiN_SJUHiR0SBBEjLZW_3dy_Bs_gSnxsrNHcBrryhzbFNb05gF4/s924/1000027707.webp" 
-                       class="image-link"
-                       rel="noopener noreferrer" 
-                       target="_blank"
-                       aria-label="View environmental interface design">
-                        <picture>
-                            <source srcset="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEh5qqeH4Phk-XhaVCz80kKFbArgzOa4C7GlWryF79cliKncTDgN0t0fVaxrnRq_weZZYkhso8IA5yCpwmimz9vdyiwux9cCFPIrEmk9sj8fSpsDMVZyjmgL1TdYYHOhsg54R4ALF_HLuiN_SJUHiR0SBBEjLZW_3dy_Bs_gSnxsrNHcBrryhzbFNb05gF4/s800/1000027707.webp 800w,
-                                            https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEh5qqeH4Phk-XhaVCz80kKFbArgzOa4C7GlWryF79cliKncTDgN0t0fVaxrnRq_weZZYkhso8IA5yCpwmimz9vdyiwux9cCFPIrEmk9sj8fSpsDMVZyjmgL1TdYYHOhsg54R4ALF_HLuiN_SJUHiR0SBBEjLZW_3dy_Bs_gSnxsrNHcBrryhzbFNb05gF4/s400/1000027707.webp 400w" 
-                                    type="image/webp">
-                            <source srcset="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEh5qqeH4Phk-XhaVCz80kKFbArgzOa4C7GlWryF79cliKncTDgN0t0fVaxrnRq_weZZYkhso8IA5yCpwmimz9vdyiwux9cCFPIrEmk9sj8fSpsDMVZyjmgL1TdYYHOhsg54R4ALF_HLuiN_SJUHiR0SBBEjLZW_3dy_Bs_gSnxsrNHcBrryhzbFNb05gF4/s800/1000027707.jpg 800w,
-                                            https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEh5qqeH4Phk-XhaVCz80kKFbArgzOa4C7GlWryF79cliKncTDgN0t0fVaxrnRq_weZZYkhso8IA5yCpwmimz9vdyiwux9cCFPIrEmk9sj8fSpsDMVZyjmgL1TdYYHOhsg54R4ALF_HLuiN_SJUHiR0SBBEjLZW_3dy_Bs_gSnxsrNHcBrryhzbFNb05gF4/s400/1000027707.jpg 400w" 
-                                    type="image/jpeg">
-                            <img alt="Digital arts masterpiece: Environmental interface design featuring immersive virtual world backgrounds, atmospheric lighting effects, detailed environmental artistry, and advanced digital composition techniques" 
-                                 class="responsive-image"
-                                 height="400" 
-                                 width="318"
-                                 data-original-height="924" 
-                                 data-original-width="735" 
-                                 src="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEh5qqeH4Phk-XhaVCz80kKFbArgzOa4C7GlWryF79cliKncTDgN0t0fVaxrnRq_weZZYkhso8IA5yCpwmimz9vdyiwux9cCFPIrEmk9sj8fSpsDMVZyjmgL1TdYYHOhsg54R4ALF_HLuiN_SJUHiR0SBBEjLZW_3dy_Bs_gSnxsrNHcBrryhzbFNb05gF4/s400/1000027707.jpg"
-                                 loading="lazy"
-                                 decoding="async"
-                                 itemscope 
-                                 itemtype="https://schema.org/ImageObject"/>
-                        </picture>
-                        <div class="image-overlay">
-                            <div class="image-title">Environmental Interface Design</div>
-                            <div class="image-description">Vertical composition showcasing immersive background artistry and atmospheric effects</div>
-                        </div>
-                    </a>
-                </div>
-            </div>
-
-            <p style="text-align: justify; margin-bottom: 20px;">
-                Environmental design in mobile interfaces requires a unique blend of traditional landscape artistry and modern technological understanding. This vertical composition showcases the complexity and sophistication of contemporary digital environment creation, where every element contributes to the overall narrative and user experience.
-            </p>
-
-            <div class="content-grid">
-                <div class="content-card">
-                    <h3 class="card-title">🌅 Atmospheric Perspective</h3>
-                    <p>Digital artists employ sophisticated techniques to create convincing depth and atmosphere:</p>
-                    <ul style="margin-top: 10px;">
-                        <li>Depth through color temperature variation</li>
-                        <li>Simulated atmospheric effects and particle systems</li>
-                        <li>Layered composition with multiple focal planes</li>
-                        <li>Dynamic lighting that responds to user interaction</li>
-                    </ul>
-                </div>
-                <div class="content-card">
-                    <h3 class="card-title">💡 Lighting as Artistic Expression</h3>
-                    <p>Modern digital artists have unprecedented control over lighting:</p>
-                    <ul style="margin-top: 10px;">
-                        <li>Multiple dynamic light sources creating complex illumination</li>
-                        <li>Color temperature variation for emotional atmosphere</li>
-                        <li>Realistic shadow casting and ambient occlusion</li>
-                        <li>Real-time lighting adjustments based on user preferences</li>
-                    </ul>
-                </div>
-            </div>
-        </section>
-
-        <!-- Interactive Elements Section -->
-        <section class="content-section fade-in">
-            <h2 class="section-title">Interactive Elements: Where Art Meets Functionality</h2>
-            
-            <div class="enhanced-separator">
-                <div class="image-container">
-                    <a href="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEhcQfXMNJsFev-vgtRO7qRJt789Oe8g1ZsgZEpd0EFLL8ZJJyOTny-ST6HixQNloRhGr4ExGrBHOxzhadJ4lJbIkDFLmmSh_Jt_fbMvWIg65S1ANxu7u3vz022rr0m8mzh7ddrYmd9C5fhexjK8_wYilCJn1inKBtxhKNi7WKQDDbHLMcSG7KlRNWDb1QI/s680/1000027706.webp" 
-                       class="image-link"
-                       rel="noopener noreferrer" 
-                       target="_blank"
-                       aria-label="View interactive interface elements design">
-                        <picture>
-                            <source srcset="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEhcQfXMNJsFev-vgtRO7qRJt789Oe8g1ZsgZEpd0EFLL8ZJJyOTny-ST6HixQNloRhGr4ExGrBHOxzhadJ4lJbIkDFLmmSh_Jt_fbMvWIg65S1ANxu7u3vz022rr0m8mzh7ddrYmd9C5fhexjK8_wYilCJn1inKBtxhKNi7WKQDDbHLMcSG7KlRNWDb1QI/s800/1000027706.webp 800w,
-                                            https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEhcQfXMNJsFev-vgtRO7qRJt789Oe8g1ZsgZEpd0EFLL8ZJJyOTny-ST6HixQNloRhGr4ExGrBHOxzhadJ4lJbIkDFLmmSh_Jt_fbMvWIg65S1ANxu7u3vz022rr0m8mzh7ddrYmd9C5fhexjK8_wYilCJn1inKBtxhKNi7WKQDDbHLMcSG7KlRNWDb1QI/s400/1000027706.webp 400w" 
-                                    type="image/webp">
-                            <source srcset="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEhcQfXMNJsFev-vgtRO7qRJt789Oe8g1ZsgZEpd0EFLL8ZJJyOTny-ST6HixQNloRhGr4ExGrBHOxzhadJ4lJbIkDFLmmSh_Jt_fbMvWIg65S1ANxu7u3vz022rr0m8mzh7ddrYmd9C5fhexjK8_wYilCJn1inKBtxhKNi7WKQDDbHLMcSG7KlRNWDb1QI/s800/1000027706.jpg 800w,
-                                            https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEhcQfXMNJsFev-vgtRO7qRJt789Oe8g1ZsgZEpd0EFLL8ZJJyOTny-ST6HixQNloRhGr4ExGrBHOxzhadJ4lJbIkDFLmmSh_Jt_fbMvWIg65S1ANxu7u3vz022rr0m8mzh7ddrYmd9C5fhexjK8_wYilCJn1inKBtxhKNi7WKQDDbHLMcSG7KlRNWDb1QI/s400/1000027706.jpg 400w" 
-                                    type="image/jpeg">
-                            <img alt="Digital arts innovation: Interactive interface design showcasing sophisticated UI artistry, user experience design principles, modern interaction patterns, and seamless integration of aesthetic and functional elements" 
-                                 class="responsive-image"
-                                 width="680" 
-                                 height="544"
-                                 data-original-height="544" 
-                                 data-original-width="680" 
-                                 src="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEhcQfXMNJsFev-vgtRO7qRJt789Oe8g1ZsgZEpd0EFLL8ZJJyOTny-ST6HixQNloRhGr4ExGrBHOxzhadJ4lJbIkDFLmmSh_Jt_fbMvWIg65S1ANxu7u3vz022rr0m8mzh7ddrYmd9C5fhexjK8_wYilCJn1inKBtxhKNi7WKQDDbHLMcSG7KlRNWDb1QI/s400/1000027706.jpg"
-                                 loading="lazy"
-                                 decoding="async"
-                                 itemscope 
-                                 itemtype="https://schema.org/ImageObject"/>
-                        </picture>
-                        <div class="image-overlay">
-                            <div class="image-title">Interactive Interface Elements</div>
-                            <div class="image-description">Sophisticated UI design demonstrating seamless integration of form and function</div>
-                        </div>
-                    </a>
-                </div>
-            </div>
-
-            <div class="highlight-box">
-                <h3 style="margin-bottom: 15px;">🎯 The Art of Microinteractions</h3>
-                <p>This sophisticated interface design represents the pinnacle of interactive digital artistry, where every pixel serves both aesthetic and functional purposes. Digital artists must consider user psychology, accessibility, and visual appeal simultaneously, creating experiences that feel both beautiful and intuitive.</p>
-            </div>
-
-            <div class="technical-specs">
-                <h3 style="color: var(--primary-color); margin-bottom: 15px;">⚡ Advanced Design Principles</h3>
-                <div class="specs-grid">
-                    <div class="spec-item">
-                        <div class="spec-label">Animation Principles</div>
-                        <div class="spec-value">Traditional animation concepts applied to digital interfaces</div>
-                    </div>
-                    <div class="spec-item">
-                        <div class="spec-label">Feedback Systems</div>
-                        <div class="spec-value">Visual responses that feel organic and intuitive</div>
-                    </div>
-                    <div class="spec-item">
-                        <div class="spec-label">Information Architecture</div>
-                        <div class="spec-value">Complex data presented through beautiful, accessible design</div>
-                    </div>
-                    <div class="spec-item">
-                        <div class="spec-label">Responsive Artistry</div>
-                        <div class="spec-value">Designs that adapt gracefully across all device sizes</div>
-                    </div>
-                </div>
-            </div>
-        </section>
-
-        <!-- Conclusion Section -->
-        <section class="content-section fade-in">
-            <h2 class="section-title">The Future of Mobile Interface Artistry</h2>
-            
-            <p style="text-align: justify; margin-bottom: 20px;">
-                As we've explored throughout this chapter, mobile interface design represents a unique convergence of artistic vision and technological innovation. The examples showcased demonstrate how contemporary digital artists push the boundaries of what's possible in interactive design, creating experiences that are simultaneously beautiful, functional, and accessible.
-            </p>
-
-            <div class="quote-section">
-                <p><strong>The future of digital arts lies not in replacing traditional artistic principles, but in expanding them through technology, creating new forms of expression that were previously impossible.</strong></p>
-            </div>
-
-            <p style="text-align: justify;">
-                The evolution of mobile interface design continues to accelerate, driven by advances in display technology, processing power, and our understanding of human-computer interaction. As we move forward, the line between art and interface will continue to blur, creating new opportunities for creative expression in the digital realm.
-            </p>
-        </section>
-
-        <!-- Rich Media Policy Notice -->
-        <div style="font-size: 12px; color: #666; margin: 30px 0; padding: 20px; background: linear-gradient(135deg, #f8f9fa 0%, #e9ecef 100%); border-radius: 10px; border-left: 4px solid var(--secondary-color);">
-            <strong>📱 Rich Media Content Compliance:</strong>
-            <p style="margin: 10px 0 0 0;">All images in this chapter are optimized using WebP format with JPEG fallback for maximum compatibility. Content includes comprehensive alt text descriptions, ARIA labels, and follows WCAG 2.1 AA accessibility guidelines. Performance optimization includes lazy loading, responsive images, and structured data markup for enhanced SEO.</p>
+            <!-- Text Content -->
+            <h1 class="intro-text" id="introText">Hello, I'm Thanatsitt</h1>
+            <p class="identity-text" id="identityText">Designer • Writer • Researcher • AI Innovator</p>
+            <p class="tagline" id="tagline">Where AI, Art, and Archetypes Meet</p>
         </div>
-    </article>
+    </section>
 
-    <!-- JavaScript for Enhanced Functionality -->
+    <!-- Featured Work -->
+    <section class="featured">
+        <div class="featured-content">
+            <h2>Latest Creation</h2>
+            <div class="work-card">
+                <div class="work-category">AI Art</div>
+                <h3>Lament of the Twilight Goddess</h3>
+                <p>A divine figure weeps golden tears at the edge of dreams, exploring the archetype of the grieving goddess through AI-generated visuals and Thai mythology.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Call to Actions -->
+    <section class="ctas">
+        <div class="cta-buttons">
+            <a href="#portfolio" class="cta-btn">🌓 Explore Portfolio</a>
+            <a href="#stories" class="cta-btn">🌕 Read Stories</a>
+            <a href="#research" class="cta-btn">🌗 View Research</a>
+        </div>
+    </section>
+
     <script>
-        // Progress bar functionality
-        function updateProgressBar() {
-            const scrollTop = window.pageYOffset;
-            const docHeight = document.body.scrollHeight - window.innerHeight;
-            const scrollPercent = (scrollTop / docHeight) * 100;
-            document.getElementById('progressBar').style.width = scrollPercent + '%';
-        }
+        // GSAP Animation Timeline
+        const tl = gsap.timeline({ delay: 0.5 });
 
-        // Fade-in animation on scroll
-        function handleScrollAnimations() {
-            const elements = document.querySelectorAll('.fade-in');
-            elements.forEach(element => {
-                const elementTop = element.getBoundingClientRect().top;
-                const elementVisible = 150;
-                
-                if (elementTop < window.innerHeight - elementVisible) {
-                    element.classList.add('visible');
-                }
-            });
-        }
+        // Lunar Phases Animation
+        tl.to("#newMoon", { opacity: 1, duration: 1 })
+          .to("#introText", { opacity: 1, y: 0, duration: 1 }, "-=0.5")
+          
+          .to("#newMoon", { opacity: 0, duration: 0.5 }, "+=0.5")
+          .to("#waxingMoon", { opacity: 1, duration: 1 })
+          .to("#identityText", { opacity: 1, y: 0, duration: 1 }, "-=0.5")
+          
+          .to("#waxingMoon", { opacity: 0, duration: 0.5 }, "+=0.5")
+          .to("#fullMoon", { opacity: 1, duration: 1 })
+          .to("#tagline", { opacity: 1, y: 0, duration: 1 }, "-=0.5");
 
-        // Image loading optimization
-        function optimizeImageLoading() {
-            const images = document.querySelectorAll('img[loading="lazy"]');
-            
-            if ('IntersectionObserver' in window) {
-                const imageObserver = new IntersectionObserver((entries, observer) => {
-                    entries.forEach(entry => {
-                        if (entry.isIntersecting) {
-                            const img = entry.target;
-                            img.style.opacity = '0';
-                            img.style.transition = 'opacity 0.3s ease';
-                            
-                            img.onload = () => {
-                                img.style.opacity = '1';
-                            };
-                            
-                            observer.unobserve(img);
-                        }
-                    });
-                });
-                
-                images.forEach(img => imageObserver.observe(img));
-            }
-        }
-
-        // Analytics tracking for image interactions
-        function trackImageInteractions() {
-            document.querySelectorAll('.image-link').forEach(link => {
-                link.addEventListener('click', function(e) {
-                    const imgAlt = this.querySelector('img').alt;
-                    console.log('Image interaction:', imgAlt);
-                    
-                    // Add your analytics tracking here
-                    if (typeof gtag !== 'undefined') {
-                        gtag('event', 'image_click', {
-                            'event_category': 'digital_arts_chapter',
-                            'event_label': imgAlt,
-                            'value': 1
-                        });
-                    }
-                });
-            });
-        }
-
-        // Keyboard navigation enhancement
-        function enhanceKeyboardNavigation() {
-            document.addEventListener('keydown', function(e) {
-                if (e.key === 'Enter' || e.key === ' ') {
-                    const focusedElement = document.activeElement;
-                    if (focusedElement.classList.contains('image-link')) {
-                        e.preventDefault();
-                        focusedElement.click();
-                    }
-                }
-            });
-        }
-
-        // Performance monitoring
-        function monitorPerformance() {
-            if ('PerformanceObserver' in window) {
-                const observer = new PerformanceObserver((list) => {
-                    for (const entry of list.getEntries()) {
-                        if (entry.entryType === 'largest-contentful-paint') {
-                            console.log('LCP:', entry.startTime);
-                        }
-                        if (entry.entryType === 'first-input') {
-                            console.log('FID:', entry.processingStart - entry.startTime);
-                        }
-                    }
-                });
-                
-                observer.observe({entryTypes: ['largest-contentful-paint', 'first-input']});
-            }
-        }
-
-        // Initialize all functionality
-        document.addEventListener('DOMContentLoaded', function() {
-            optimizeImageLoading();
-            trackImageInteractions();
-            enhanceKeyboardNavigation();
-            monitorPerformance();
-            handleScrollAnimations();
+        // Scroll-triggered animations
+        gsap.registerPlugin(ScrollTrigger);
+        
+        gsap.from(".work-card", {
+            scrollTrigger: ".featured",
+            y: 50,
+            opacity: 0,
+            duration: 1
         });
-
-        // Scroll event listeners
-        window.addEventListener('scroll', function() {
-            updateProgressBar();
-            handleScrollAnimations();
-        });
-
-        // Resize handler for responsive adjustments
-        window.addEventListener('resize', function() {
-            // Recalculate any responsive elements if needed
-            handleScrollAnimations();
-        });
-
-        // Error handling for images
-        document.addEventListener('error', function(e) {
-            if (e.target.tagName === 'IMG') {
-                console.warn('Image failed to load:', e.target.src);
-                e.target.style.backgroundColor = '#f0f0f0';
-                e.target.style.border = '2px dashed #ccc';
-                e.target.alt = 'Image temporarily unavailable';
-            }
-        }, true);
     </script>
-
-    <!-- JSON-LD Structured Data with Updated Information -->
-    <script type="application/ld+json">
-    {
-        "@context": "https://schema.org",
-        "@type": "Article",
-        "headline": "Chapter 1: Mobile Interface Design - Art Meets Functionality",
-        "description": "Comprehensive exploration of digital arts in mobile interface design, featuring contemporary examples and analysis of UI/UX artistry by Thanattsitt Santisamranwilai.",
-        "author": {
-            "@type": "Person",
-            "name": "Thanattsitt Santisamranwilai",
-            "email": "thanattsitt.info@yahoo.co.uk",
-            "url": "https://thanattsitt.info",
-            "jobTitle": "Digital Arts Researcher",
-            "affiliation": {
-                "@type": "Organization",
-                "name": "Pege Arts"
-            }
-        },
-        "publisher": {
-            "@type": "Organization",
-            "name": "Pege Arts",
-            "url": "https://thanattsitt.info",
-            "contactPoint": {
-                "@type": "ContactPoint",
-                "email": "thanattsitt.info@yahoo.co.uk",
-                "contactType": "Editorial"
-            }
-        },
-        "datePublished": "2024-01-01T00:00:00Z",
-        "dateModified": "2024-01-01T00:00:00Z",
-        "keywords": ["digital arts", "mobile interface design", "UI/UX design", "digital artistry", "interactive design", "mobile app design"],
-        "articleSection": "Digital Arts",
-        "wordCount": 2500,
-        "image": [
-            {
-                "@type": "ImageObject",
-                "url": "https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEgcBp76wbFrMOXu_SX3pG_rP9UtRgTKrXC9mJJvJaFlAKZHLZRDndk-BXyhRBD5b8Ehnhrw6j8Vf9FszRYdGAMq1ICAoLcRXGQqGQV7yjbaBk8Vw6fLxnMbzJJf58mk2v-MqACJRAGUN42rNzf7jwbGd0ltYEnH-Ca21MM0R4UMfM35wTbTjiV-T042EWU/s734/1000027709.webp",
-                "width": 734,
-                "height": 260,
-                "caption": "Mobile game main menu interface showcasing modern gradient design",
-                "encodingFormat": "image/webp"
-            },
-            {
-                "@type": "ImageObject",
-                "url": "https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEi91s0UU7o8RI0z7YnpmR-BNTqo6DbYx5AknkHmzgTbZdkQDKj_fG-dgRyX7N1HxlPgatSjBWolOVLPLRlmjdDJTgdie4I4mRZv4JpLNpmfTwAK_viN7mrIVwWB096BBgrn1KLkz2nkztR0EreuKMjwpCI73rHJeSk3o7f2oC_slS4qHGAIyWgELibB9HQ/s736/1000027708.webp",
-                "width": 736,
-                "height": 493,
-                "caption": "Character selection interface displaying diverse artistic styles",
-                "encodingFormat": "image/webp"
-            },
-            {
-                "@type": "ImageObject",
-                "url": "https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEh5qqeH4Phk-XhaVCz80kKFbArgzOa4C7GlWryF79cliKncTDgN0t0fVaxrnRq_weZZYkhso8IA5yCpwmimz9vdyiwux9cCFPIrEmk9sj8fSpsDMVZyjmgL1TdYYHOhsg54R4ALF_HLuiN_SJUHiR0SBBEjLZW_3dy_Bs_gSnxsrNHcBrryhzbFNb05gF4/s924/1000027707.webp",
-                "width": 735,
-                "height": 924,
-                "caption": "Environmental interface design with atmospheric effects",
-                "encodingFormat": "image/webp"
-            },
-            {
-                "@type": "ImageObject",
-                "url": "https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEhcQfXMNJsFev-vgtRO7qRJt789Oe8g1ZsgZEpd0EFLL8ZJJyOTny-ST6HixQNloRhGr4ExGrBHOxzhadJ4lJbIkDFLmmSh_Jt_fbMvWIg65S1ANxu7u3vz022rr0m8mzh7ddrYmd9C5fhexjK8_wYilCJn1inKBtxhKNi7WKQDDbHLMcSG7KlRNWDb1QI/s680/1000027706.webp",
-                "width": 680,
-                "height": 544,
-                "caption": "Interactive interface elements demonstrating UI artistry",
-                "encodingFormat": "image/webp"
-            }
-        ],
-        "mainEntityOfPage": {
-            "@type": "WebPage",
-            "@id": "https://thanattsitt.info/chapter-1-mobile-interface-design"
-        },
-        "about": {
-            "@type": "Thing",
-            "name": "Digital Arts",
-            "description": "Contemporary digital artistry in mobile interface design and user experience"
-        },
-        "isPartOf": {
-            "@type": "Book",
-            "name": "The Evolution of Digital Arts: From Pixels to Possibilities",
-            "author": {
-                "@type": "Person",
-                "name": "Thanattsitt Santisamranwilai"
-            }
-        },
-        "license": "https://creativecommons.org/licenses/by-nc-sa/4.0/",
-        "copyrightHolder": {
-            "@type": "Organization",
-            "name": "Pege Arts"
-        },
-        "copyrightYear": 2024,
-        "inLanguage": "en-US",
-        "audience": {
-            "@type": "Audience",
-            "audienceType": "Digital Artists, UI/UX Designers, Technology Enthusiasts"
-        }
-    }
-    </script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
 </body>
 </html>
