@@ -2988,6 +2988,31 @@ console.log('✨ Cultural bridge between ancient wisdom and modern technology');
 // End of JavaScript
     <!-- Add this line before closing body tag -->
     <script src="portfolio.js"></script>
+    <!-- Quick Loading Fix - Add this before </body> -->
+<script>
+// Force hide loading screen
+setTimeout(function() {
+    const loading = document.getElementById('loading');
+    if (loading) {
+        loading.style.opacity = '0';
+        setTimeout(() => loading.style.display = 'none', 500);
+    }
+}, 1500);
+
+// Backup method
+window.onload = function() {
+    setTimeout(function() {
+        const loading = document.getElementById('loading');
+        if (loading) {
+            loading.style.opacity = '0';
+            setTimeout(() => loading.style.display = 'none', 300);
+        }
+    }, 500);
+};
+</script>
+</body>
+</html>
+
 </body>
 </html>
 
