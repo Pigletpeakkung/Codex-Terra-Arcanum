@@ -2266,5 +2266,66 @@
                             projectType: '',
                             message: ''
                         };
+
+                        this.submitSuccess = true;
                         
-                        this.submitSuccess = true
+                        // Hide success message after 5 seconds
+                        setTimeout(() => {
+                            this.submitSuccess = false;
+                        }, 5000);
+                        
+                    } catch (error) {
+                        console.error('Form submission error:', error);
+                        // Handle error state here
+                    } finally {
+                        this.isSubmitting = false;
+                    }
+                },
+                
+                // Additional utility methods
+                formatDate(dateString) {
+                    return new Date(dateString).toLocaleDateString('en-US', {
+                        year: 'numeric',
+                        month: 'long',
+                        day: 'numeric'
+                    });
+                },
+                
+                // Intersection Observer for animations
+                observeElements() {
+                    const observer = new IntersectionObserver((entries) => {
+                        entries.forEach(entry => {
+                            if (entry.isIntersecting) {
+                                entry.target.classList.add('animate-in');
+                            }
+                        });
+                    }, { threshold: 0.1 });
+                    
+                    document.querySelectorAll('.observe').forEach(el => {
+                        observer.observe(el);
+                    });
+                },
+                
+                // Keyboard navigation
+                handleKeydown(event) {
+                    if (event.key === 'Escape' && this.selectedProject) {
+                        this.closeModal();
+                    }
+                },
+                
+                // Theme switching (bonus feature)
+                toggleTheme() {
+                    document.documentElement.classList.toggle('light-theme');
+                }
+            }
+        }
+        
+        // Initialize intersection observer when DOM is loaded
+        document.addEventListener('DOMContentLoaded', () => {
+            // Add observe class to elements that should animate in
+            const animateElements = document.querySelectorAll('.card-hover, .glass-morphism');
+            animateElements.forEach(el => el.classList.add('observe'));
+        });
+    </script>
+</body>
+</html>
