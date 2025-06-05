@@ -29,16 +29,36 @@
     <!-- Google Fonts -->
     <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&family=Sarabun:wght@300;400;600&display=swap" rel="stylesheet">
     
+    <!-- AOS Animation -->
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+    
     <style>
         @keyframes float { 0%, 100% { transform: translateY(0px); } 50% { transform: translateY(-20px); } }
         @keyframes glow { from { box-shadow: 0 0 20px rgba(212, 175, 55, 0.5); } to { box-shadow: 0 0 30px rgba(212, 175, 55, 0.8); } }
+        @keyframes sparkle { 0% { opacity: 1; transform: scale(1) rotate(0deg) translateY(0); } 100% { opacity: 0; transform: scale(0.3) rotate(360deg) translateY(-100px); } }
+        
         .animate-float { animation: float 6s ease-in-out infinite; }
         .animate-glow { animation: glow 2s ease-in-out infinite alternate; }
         .gradient-bg { background: linear-gradient(135deg, #1a1a2e 0%, #16213e 50%, #0f3460 100%); }
+        
+        .nav-links.active { display: block !important; }
+        .scroll-to-top.visible { opacity: 1 !important; visibility: visible !important; }
+        
+        #cursor.hover { transform: scale(2); }
+        
+        .main-nav.scrolled { background: rgba(26, 26, 46, 0.95); backdrop-filter: blur(10px); }
     </style>
 </head>
 
-<body class="gradient-bg text-white font-thai overflow-x-hidden">
+<body class="gradient-bg text-white font-sans overflow-x-hidden">
+    
+    <!-- Loading Screen -->
+    <div id="loading" class="fixed inset-0 bg-dark-blue flex items-center justify-center z-50">
+        <div class="text-center">
+            <div class="w-16 h-16 border-4 border-gold border-t-transparent rounded-full animate-spin mx-auto mb-4"></div>
+            <p class="text-gold text-lg">Loading Experience...</p>
+        </div>
+    </div>
     
     <!-- Particles Background -->
     <div id="particles-js" class="fixed inset-0 z-0"></div>
@@ -94,8 +114,8 @@
     <section id="home" class="relative min-h-screen flex items-center justify-center text-center px-4 z-10">
         <div class="max-w-4xl mx-auto" data-aos="fade-up">
             <div class="mb-8">
-                <h1 class="text-4xl md:text-6xl lg:text-7xl font-bold font-elegant mb-4">
-                    <span id="typed-name" class="bg-gradient-to-r from-gold via-yellow-300 to-gold bg-clip-text text-transparent"></span>
+                <h1 class="text-4xl md:text-6xl lg:text-7xl font-bold mb-4" style="font-family: 'Playfair Display', serif;">
+                    <span id="typed-name" class="bg-gradient-to-r from-gold via-yellow-300 to-gold bg-clip-text text-transparent">Thanatsitt Santisamranwilai</span>
                 </h1>
                 <p class="text-xl md:text-2xl text-silver mb-6 font-light">
                     Bridging Cultures Through Design & Technology
@@ -127,7 +147,7 @@
     <section id="about" class="py-20 px-4 relative z-10">
         <div class="max-w-6xl mx-auto">
             <div class="text-center mb-16" data-aos="fade-up">
-                <h2 class="text-4xl md:text-5xl font-bold font-elegant mb-6 bg-gradient-to-r from-gold to-silver bg-clip-text text-transparent">
+                <h2 class="text-4xl md:text-5xl font-bold mb-6 bg-gradient-to-r from-gold to-silver bg-clip-text text-transparent" style="font-family: 'Playfair Display', serif;">
                     About Me
                 </h2>
                 <p class="text-xl text-gray-300 max-w-3xl mx-auto">
@@ -173,11 +193,11 @@
                     <div class="mt-8">
                         <h4 class="text-lg font-semibold text-silver mb-4">Core Expertise</h4>
                         <div class="flex flex-wrap gap-3">
-                            <span class="tag bg-gold/20 text-gold px-4 py-2 rounded-full text-sm font-medium border border-gold/30 hover:bg-gold/30 transition-colors duration-300">AI Development</span>
-                            <span class="tag bg-silver/20 text-silver px-4 py-2 rounded-full text-sm font-medium border border-silver/30 hover:bg-silver/30 transition-colors duration-300">Cultural Design</span>
-                            <span class="tag bg-blue-500/20 text-blue-400 px-4 py-2 rounded-full text-sm font-medium border border-blue-500/30 hover:bg-blue-500/30 transition-colors duration-300">UX Research</span>
-                            <span class="tag bg-green-500/20 text-green-400 px-4 py-2 rounded-full text-sm font-medium border border-green-500/30 hover:bg-green-500/30 transition-colors duration-300">Digital Storytelling</span>
-                            <span class="tag bg-purple-500/20 text-purple-400 px-4 py-2 rounded-full text-sm font-medium border border-purple-500/30 hover:bg-purple-500/30 transition-colors duration-300">Cross-Cultural Communication</span>
+                            <span class="tag bg-gold/20 text-gold px-4 py-2 rounded-full text-sm font-medium border border-gold/30 hover:bg-gold/30 transition-colors duration-300 cursor-pointer">AI Development</span>
+                            <span class="tag bg-silver/20 text-silver px-4 py-2 rounded-full text-sm font-medium border border-silver/30 hover:bg-silver/30 transition-colors duration-300 cursor-pointer">Cultural Design</span>
+                            <span class="tag bg-blue-500/20 text-blue-400 px-4 py-2 rounded-full text-sm font-medium border border-blue-500/30 hover:bg-blue-500/30 transition-colors duration-300 cursor-pointer">UX Research</span>
+                            <span class="tag bg-green-500/20 text-green-400 px-4 py-2 rounded-full text-sm font-medium border border-green-500/30 hover:bg-green-500/30 transition-colors duration-300 cursor-pointer">Digital Storytelling</span>
+                            <span class="tag bg-purple-500/20 text-purple-400 px-4 py-2 rounded-full text-sm font-medium border border-purple-500/30 hover:bg-purple-500/30 transition-colors duration-300 cursor-pointer">Cross-Cultural Communication</span>
                         </div>
                     </div>
                 </div>
@@ -189,7 +209,7 @@
     <section id="experience" class="py-20 px-4 relative z-10">
         <div class="max-w-6xl mx-auto">
             <div class="text-center mb-16" data-aos="fade-up">
-                <h2 class="text-4xl md:text-5xl font-bold font-elegant mb-6 bg-gradient-to-r from-gold to-silver bg-clip-text text-transparent">
+                <h2 class="text-4xl md:text-5xl font-bold mb-6 bg-gradient-to-r from-gold to-silver bg-clip-text text-transparent" style="font-family: 'Playfair Display', serif;">
                     Experience
                 </h2>
                 <p class="text-xl text-gray-300 max-w-3xl mx-auto">
@@ -197,68 +217,228 @@
                 </p>
             </div>
             
-            <!-- Timeline -->
-            <div class="relative">
-                <!-- Timeline Line -->
-                <div class="absolute left-1/2 transform -translate-x-1/2 w-1 h-full bg-gradient-to-b from-gold to-silver"></div>
+            <!-- Experience Cards -->
+            <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+                <!-- Experience 1 -->
+                <div class="bg-dark-blue/80 backdrop-blur-sm p-6 rounded-lg border border-gold/20 hover:border-gold/40 transition-all duration-300 hover:transform hover:scale-105" data-aos="fade-up" data-aos-delay="100">
+                    <div class="w-12 h-12 bg-gold rounded-full flex items-center justify-center mb-4">
+                        <i class="fas fa-robot text-dark-blue text-xl"></i>
+                    </div>
+                    <h3 class="text-xl font-bold text-gold mb-2">AI Developer & Cultural Consultant</h3>
+                    <p class="text-silver mb-2">Tech Innovation Lab</p>
+                    <p class="text-sm text-gray-400 mb-4">2023 - Present</p>
+                    <p class="text-gray-300 text-sm leading-relaxed">
+                        Leading AI projects that incorporate cultural sensitivity and cross-cultural understanding 
+                        into machine learning models and user interfaces.
+                    </p>
+                </div>
                 
-                <!-- Experience Items -->
-                <div class="space-y-12">
-                    <!-- Experience 1 -->
-                    <div class="flex items-center" data-aos="fade-right">
-                        <div class="w-1/2 pr-8 text-right">
-                            <div class="bg-dark-blue/80 backdrop-blur-sm p-6 rounded-lg border border-gold/20 hover:border-gold/40 transition-all duration-300">
-                                <h3 class="text-xl font-bold text-gold mb-2">AI Developer & Cultural Consultant</h3>
-                                <p class="text-silver mb-2">Tech Innovation Lab</p>
-                                <p class="text-sm text-gray-400 mb-4">2023 - Present</p>
-                                <p class="text-gray-300 text-sm leading-relaxed">
-                                    Leading AI projects that incorporate cultural sensitivity and cross-cultural understanding 
-                                    into machine learning models and user interfaces.
-                                </p>
-                            </div>
-                        </div>
-                        <div class="w-8 h-8 bg-gold rounded-full border-4 border-dark-blue flex items-center justify-center z-10">
-                            <i class="fas fa-robot text-dark-blue text-sm"></i>
-                        </div>
-                        <div class="w-1/2 pl-8"></div>
+                <!-- Experience 2 -->
+                <div class="bg-dark-blue/80 backdrop-blur-sm p-6 rounded-lg border border-silver/20 hover:border-silver/40 transition-all duration-300 hover:transform hover:scale-105" data-aos="fade-up" data-aos-delay="200">
+                    <div class="w-12 h-12 bg-silver rounded-full flex items-center justify-center mb-4">
+                        <i class="fas fa-palette text-dark-blue text-xl"></i>
                     </div>
-                    
-                    <!-- Experience 2 -->
-                    <div class="flex items-center" data-aos="fade-left">
-                        <div class="w-1/2 pr-8"></div>
-                        <div class="w-8 h-8 bg-silver rounded-full border-4 border-dark-blue flex items-center justify-center z-10">
-                            <i class="fas fa-palette text-dark-blue text-sm"></i>
-                        </div>
-                        <div class="w-1/2 pl-8">
-                            <div class="bg-dark-blue/80 backdrop-blur-sm p-6 rounded-lg border border-silver/20 hover:border-silver/40 transition-all duration-300">
-                                <h3 class="text-xl font-bold text-silver mb-2">Design Research Specialist</h3>
-                                <p class="text-gold mb-2">Cultural Design Institute</p>
-                                <p class="text-sm text-gray-400 mb-4">2022 - 2023</p>
-                                <p class="text-gray-300 text-sm leading-relaxed">
-                                    Conducted extensive research on how cultural backgrounds influence user experience 
-                                    and design preferences across different demographics.
-                                </p>
-                            </div>
-                        </div>
+                    <h3 class="text-xl font-bold text-silver mb-2">Design Research Specialist</h3>
+                    <p class="text-gold mb-2">Cultural Design Institute</p>
+                    <p class="text-sm text-gray-400 mb-4">2022 - 2023</p>
+                    <p class="text-gray-300 text-sm leading-relaxed">
+                        Conducted extensive research on how cultural backgrounds influence user experience 
+                        and design preferences across different demographics.
+                    </p>
+                </div>
+                
+                <!-- Experience 3 -->
+                <div class="bg-dark-blue/80 backdrop-blur-sm p-6 rounded-lg border border-blue-500/20 hover:border-blue-500/40 transition-all duration-300 hover:transform hover:scale-105" data-aos="fade-up" data-aos-delay="300">
+                    <div class="w-12 h-12 bg-blue-500 rounded-full flex items-center justify-center mb-4">
+                        <i class="fas fa-book text-white text-xl"></i>
                     </div>
-                    
-                    <!-- Experience 3 -->
-                    <div class="flex items-center" data-aos="fade-right">
-                        <div class="w-1/2 pr-8 text-right">
-                            <div class="bg-dark-blue/80 backdrop-blur-sm p-6 rounded-lg border border-blue-500/20 hover:border-blue-500/40 transition-all duration-300">
-                                <h3 class="text-xl font-bold text-blue-400 mb-2">Digital Storyteller</h3>
-                                <p class="text-silver mb-2">Freelance</p>
-                                <p class="text-sm text-gray-400 mb-4">2021 - 2022</p>
-                                <p class="text-gray-300 text-sm leading-relaxed">
-                                    Created compelling digital narratives that bridge cultural gaps and 
-                                    promote understanding between diverse communities.
-                                </p>
-                            </div>
+                    <h3 class="text-xl font-bold text-blue-400 mb-2">Digital Storyteller</h3>
+                    <p class="text-silver mb-2">Freelance</p>
+                    <p class="text-sm text-gray-400 mb-4">2021 - 2022</p>
+                    <p class="text-gray-300 text-sm leading-relaxed">
+                        Created compelling digital narratives that bridge cultural gaps and 
+                        promote understanding between diverse communities.
+                    </p>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <!-- Projects Section -->
+    <section id="projects" class="py-20 px-4 relative z-10">
+        <div class="max-w-6xl mx-auto">
+            <div class="text-center mb-16" data-aos="fade-up">
+                <h2 class="text-4xl md:text-5xl font-bold mb-6 bg-gradient-to-r from-gold to-silver bg-clip-text text-transparent" style="font-family: 'Playfair Display', serif;">
+                    Featured Projects
+                </h2>
+                <p class="text-xl text-gray-300 max-w-3xl mx-auto">
+                    Bridging cultures through innovative technology and thoughtful design
+                </p>
+            </div>
+            
+            <!-- Projects Grid -->
+            <div class="grid md:grid-cols-2 gap-8">
+                <!-- Project 1 -->
+                <div class="project-card bg-dark-blue/80 backdrop-blur-sm rounded-lg overflow-hidden border border-gold/20 hover:border-gold/40 transition-all duration-300 hover:transform hover:scale-105" data-aos="fade-up">
+                    <div class="h-48 bg-gradient-to-br from-gold/20 to-yellow-500/20 flex items-center justify-center">
+                        <i class="fas fa-brain text-6xl text-gold"></i>
+                    </div>
+                    <div class="p-6">
+                        <h3 class="text-xl font-bold text-gold mb-3">Cultural AI Assistant</h3>
+                        <p class="text-gray-300 mb-4 leading-relaxed">
+                            An AI-powered assistant that understands cultural context and provides 
+                            culturally-sensitive responses for cross-cultural communication.
+                        </p>
+                        <div class="flex flex-wrap gap-2 mb-4">
+                            <span class="tech-tag bg-blue-500/20 text-blue-400 px-3 py-1 rounded-full text-xs">Python</span>
+                            <span class="tech-tag bg-green-500/20 text-green-400 px-3 py-1 rounded-full text-xs">TensorFlow</span>
+                            <span class="tech-tag bg-purple-500/20 text-purple-400 px-3 py-1 rounded-full text-xs">NLP</span>
                         </div>
-                        <div class="w-8 h-8 bg-blue-500 rounded-full border-4 border-dark-blue flex items-center justify-center z-10">
-                            <i class="fas fa-book text-white text-sm"></i>
+                        <a href="#" class="project-link text-gold hover:text-yellow-300 transition-colors duration-300 font-medium">
+                            View Project <i class="fas fa-arrow-right ml-1"></i>
+                        </a>
+                    </div>
+                </div>
+                
+                <!-- Project 2 -->
+                <div class="project-card bg-dark-blue/80 backdrop-blur-sm rounded-lg overflow-hidden border border-silver/20 hover:border-silver/40 transition-all duration-300 hover:transform hover:scale-105" data-aos="fade-up" data-aos-delay="100">
+                    <div class="h-48 bg-gradient-to-br from-silver/20 to-blue-500/20 flex items-center justify-center">
+                        <i class="fas fa-globe-asia text-6xl text-silver"></i>
+                    </div>
+                    <div class="p-6">
+                        <h3 class="text-xl font-bold text-silver mb-3">Cultural Heritage Platform</h3>
+                        <p class="text-gray-300 mb-4 leading-relaxed">
+                            A digital platform preserving and sharing Thai cultural heritage through 
+                            interactive storytelling and immersive experiences.
+                        </p>
+                        <div class="flex flex-wrap gap-2 mb-4">
+                            <span class="tech-tag bg-orange-500/20 text-orange-400 px-3 py-1 rounded-full text-xs">React</span>
+                            <span class="tech-tag bg-blue-500/20 text-blue-400 px-3 py-1 rounded-full text-xs">Three.js</span>
+                            <span class="tech-tag bg-green-500/20 text-green-400 px-3 py-1 rounded-full text-xs">Node.js</span>
                         </div>
-                        <div class="w-1/2 pl-8"></div>
+                        <a href="#" class="project-link text-silver hover:text-gray-300 transition-colors duration-300 font-medium">
+                            View Project <i class="fas fa-arrow-right ml-1"></i>
+                        </a>
+                    </div>
+                </div>
+                
+                <!-- Project 3 -->
+                <div class="project-card bg-dark-blue/80 backdrop-blur-sm rounded-lg overflow-hidden border border-green-500/20 hover:border-green-500/40 transition-all duration-300 hover:transform hover:scale-105" data-aos="fade-up" data-aos-delay="200">
+                    <div class="h-48 bg-gradient-to-br from-green-500/20 to-blue-500/20 flex items-center justify-center">
+                        <i class="fas fa-users text-6xl text-green-400"></i>
+                    </div>
+                    <div class="p-6">
+                        <h3 class="text-xl font-bold text-green-400 mb-3">Cross-Cultural UX Research</h3>
+                        <p class="text-gray-300 mb-4 leading-relaxed">
+                            Comprehensive research study on how cultural backgrounds influence 
+                            user interface preferences and interaction patterns.
+                        </p>
+                        <div class="flex flex-wrap gap-2 mb-4">
+                            <span class="tech-tag bg-pink-500/20 text-pink-400 px-3 py-1 rounded-full text-xs">Figma</span>
+                            <span class="tech-tag bg-purple-500/20 text-purple-400 px-3 py-1 rounded-full text-xs">Analytics</span>
+                            <span class="tech-tag bg-yellow-500/20 text-yellow-400 px-3 py-1 rounded-full text-xs">Research</span>
+                        </div>
+                        <a href="#" class="project-link text-green-400 hover:text-green-300 transition-colors duration-300 font-medium">
+                            View Project <i class="fas fa-arrow-right ml-1"></i>
+                        </a>
+                    </div>
+                </div>
+                
+                <!-- Project 4 -->
+                <div class="project-card bg-dark-blue/80 backdrop-blur-sm rounded-lg overflow-hidden border border-purple-500/20 hover:border-purple-500/40 transition-all duration-300 hover:transform hover:scale-105" data-aos="fade-up" data-aos-delay="300">
+                    <div class="h-48 bg-gradient-to-br from-purple-500/20 to-pink-500/20 flex items-center justify-center">
+                        <i class="fas fa-mobile-alt text-6xl text-purple-400"></i>
+                    </div>
+                    <div class="p-6">
+                        <h3 class="text-xl font-bold text-purple-400 mb-3">Cultural Learning App</h3>
+                        <p class="text-gray-300 mb-4 leading-relaxed">
+                            Mobile application that teaches cultural etiquette and communication 
+                            styles for international business and travel.
+                        </p>
+                        <div class="flex flex-wrap gap-2 mb-4">
+                            <span class="tech-tag bg-blue-500/20 text-blue-400 px-3 py-1 rounded-full text-xs">React Native</span>
+                            <span class="tech-tag bg-green-500/20 text-green-400 px-3 py-1 rounded-full text-xs">Firebase</span>
+                            <span class="tech-tag bg-orange-500/20 text-orange-400 px-3 py-1 rounded-full text-xs">UI/UX</span>
+                        </div>
+                        <a href="#" class="project-link text-purple-400 hover:text-purple-300 transition-colors duration-300 font-medium">
+                            View Project <i class="fas fa-arrow-right ml-1"></i>
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <!-- Gallery Section -->
+    <section id="gallery" class="py-20 px-4 relative z-10">
+        <div class="max-w-6xl mx-auto">
+            <div class="text-center mb-16" data-aos="fade-up">
+                <h2 class="text-4xl md:text-5xl font-bold mb-6 bg-gradient-to-r from-gold to-silver bg-clip-text text-transparent" style="font-family: 'Playfair Display', serif;">
+                    Visual Journey
+                </h2>
+                <p class="text-xl text-gray-300 max-w-3xl mx-auto">
+                    A collection of moments, inspirations, and cultural discoveries
+                </p>
+            </div>
+            
+            <!-- Gallery Grid -->
+            <div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
+                <!-- Gallery Item 1 -->
+                <div class="gallery-item relative group cursor-pointer overflow-hidden rounded-lg" data-aos="fade-up" onclick="openModal('https://via.placeholder.com/400x400/D4AF37/1a1a2e?text=Cultural+Art')">
+                    <div class="aspect-square bg-gradient-to-br from-gold/30 to-yellow-500/30 flex items-center justify-center">
+                        <i class="fas fa-image text-4xl text-gold"></i>
+                    </div>
+                    <div class="absolute inset-0 bg-black/50 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center">
+                        <i class="fas fa-search-plus text-white text-2xl"></i>
+                    </div>
+                </div>
+                
+                <!-- Gallery Item 2 -->
+                <div class="gallery-item relative group cursor-pointer overflow-hidden rounded-lg" data-aos="fade-up" data-aos-delay="100" onclick="openModal('https://via.placeholder.com/400x400/C0C0C8/1a1a2e?text=Design+Work')">
+                    <div class="aspect-square bg-gradient-to-br from-silver/30 to-blue-500/30 flex items-center justify-center">
+                        <i class="fas fa-palette text-4xl text-silver"></i>
+                    </div>
+                    <div class="absolute inset-0 bg-black/50 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center">
+                        <i class="fas fa-search-plus text-white text-2xl"></i>
+                    </div>
+                </div>
+                
+                <!-- Gallery Item 3 -->
+                <div class="gallery-item relative group cursor-pointer overflow-hidden rounded-lg" data-aos="fade-up" data-aos-delay="200" onclick="openModal('https://via.placeholder.com/400x400/0f3460/C0C0C8?text=Tech+Innovation')">
+                    <div class="aspect-square bg-gradient-to-br from-blue-500/30 to-purple-500/30 flex items-center justify-center">
+                        <i class="fas fa-code text-4xl text-blue-400"></i>
+                    </div>
+                    <div class="absolute inset-0 bg-black/50 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center">
+                        <i class="fas fa-search-plus text-white text-2xl"></i>
+                    </div>
+                </div>
+                
+                <!-- Gallery Item 4 -->
+                <div class="gallery-item relative group cursor-pointer overflow-hidden rounded-lg" data-aos="fade-up" data-aos-delay="300" onclick="openModal('https://via.placeholder.com/400x400/16213e/D4AF37?text=Cultural+Bridge')">
+                    <div class="aspect-square bg-gradient-to-br from-green-500/30 to-teal-500/30 flex items-center justify-center">
+                        <i class="fas fa-globe-asia text-4xl text-green-400"></i>
+                    </div>
+                    <div class="absolute inset-0 bg-black/50 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center">
+                        <i class="fas fa-search-plus text-white text-2xl"></i>
+                    </div>
+                </div>
+                
+                <!-- More gallery items... -->
+                <div class="gallery-item relative group cursor-pointer overflow-hidden rounded-lg" data-aos="fade-up" data-aos-delay="400" onclick="openModal('https://via.placeholder.com/400x400/1a1a2e/D4AF37?text=Inspiration')">
+                    <div class="aspect-square bg-gradient-to-br from-purple-500/30 to-pink-500/30 flex items-center justify-center">
+                        <i class="fas fa-lightbulb text-4xl text-purple-400"></i>
+                    </div>
+                    <div class="absolute inset-0 bg-black/50 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center">
+                        <i class="fas fa-search-plus text-white text-2xl"></i>
+                    </div>
+                </div>
+                
+                <div class="gallery-item relative group cursor-pointer overflow-hidden rounded-lg" data-aos="fade-up" data-aos-delay="500" onclick="openModal('https://via.placeholder.com/400x400/D4AF37/1a1a2e?text=Journey')">
+                    <div class="aspect-square bg-gradient-to-br from-orange-500/30 to-red-500/30 flex items-center justify-center">
+                        <i class="fas fa-map text-4xl text-orange-400"></i>
+                    </div>
+                    <div class="absolute inset-0 bg-black/50 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center">
+                        <i class="fas fa-search-plus text-white text-2xl"></i>
                     </div>
                 </div>
             </div>
@@ -269,7 +449,7 @@
     <section id="contact" class="py-20 px-4 relative z-10">
         <div class="max-w-4xl mx-auto">
             <div class="text-center mb-16" data-aos="fade-up">
-                <h2 class="text-4xl md:text-5xl font-bold font-elegant mb-6 bg-gradient-to-r from-gold to-silver bg-clip-text text-transparent">
+                <h2 class="text-4xl md:text-5xl font-bold mb-6 bg-gradient-to-r from-gold to-silver bg-clip-text text-transparent" style="font-family: 'Playfair Display', serif;">
                     Let's Connect
                 </h2>
                 <p class="text-xl text-gray-300 max-w-2xl mx-auto">
@@ -283,25 +463,29 @@
                         <div>
                             <label for="name" class="block text-silver mb-2 font-medium">Name</label>
                             <input type="text" id="name" name="name" required 
-                                   class="w-full px-4 py-3 bg-medium-blue/50 border border-silver/30 rounded-lg text-white placeholder-gray-400 focus:border-gold focus:outline-none transition-colors duration-300">
+                                   class="w-full px-4 py-3 bg-medium-blue/50 border border-silver/30 rounded-lg text-white placeholder-gray-400 focus:border-gold focus:outline-none transition-colors duration-300"
+                                   placeholder="Your full name">
                         </div>
                         <div>
                             <label for="email" class="block text-silver mb-2 font-medium">Email</label>
                             <input type="email" id="email" name="email" required 
-                                   class="w-full px-4 py-3 bg-medium-blue/50 border border-silver/30 rounded-lg text-white placeholder-gray-400 focus:border-gold focus:outline-none transition-colors duration-300">
+                                   class="w-full px-4 py-3 bg-medium-blue/50 border border-silver/30 rounded-lg text-white placeholder-gray-400 focus:border-gold focus:outline-none transition-colors duration-300"
+                                   placeholder="your.email@example.com">
                         </div>
                     </div>
                     
                     <div>
                         <label for="subject" class="block text-silver mb-2 font-medium">Subject</label>
                         <input type="text" id="subject" name="subject" required 
-                               class="w-full px-4 py-3 bg-medium-blue/50 border border-silver/30 rounded-lg text-white placeholder-gray-400 focus:border-gold focus:outline-none transition-colors duration-300">
+                               class="w-full px-4 py-3 bg-medium-blue/50 border border-silver/30 rounded-lg text-white placeholder-gray-400 focus:border-gold focus:outline-none transition-colors duration-300"
+                               placeholder="What's this about?">
                     </div>
                     
                     <div>
                         <label for="message" class="block text-silver mb-2 font-medium">Message</label>
                         <textarea id="message" name="message" rows="6" required 
-                                  class="w-full px-4 py-3 bg-medium-blue/50 border border-silver/30 rounded-lg text-white placeholder-gray-400 focus:border-gold focus:outline-none transition-colors duration-300 resize-none"></textarea>
+                                  class="w-full px-4 py-3 bg-medium-blue/50 border border-silver/30 rounded-lg text-white placeholder-gray-400 focus:border-gold focus:outline-none transition-colors duration-300 resize-none"
+                                  placeholder="Tell me about your project or idea..."></textarea>
                     </div>
                     
                     <div class="text-center">
@@ -313,8 +497,46 @@
                     </div>
                 </form>
             </div>
+            
+            <!-- Social Links -->
+            <div class="text-center mt-12" data-aos="fade-up" data-aos-delay="200">
+                <p class="text-silver mb-6">Or connect with me on social media</p>
+                <div class="flex justify-center space-x-6">
+                    <a href="#" class="w-12 h-12 bg-blue-600 rounded-full flex items-center justify-center hover:bg-blue-700 transition-colors duration-300">
+                        <i class="fab fa-linkedin text-white text-xl"></i>
+                    </a>
+                    <a href="#" class="w-12 h-12 bg-gray-800 rounded-full flex items-center justify-center hover:bg-gray-900 transition-colors duration-300">
+                        <i class="fab fa-github text-white text-xl"></i>
+                    </a>
+                    <a href="#" class="w-12 h-12 bg-blue-500 rounded-full flex items-center justify-center hover:bg-blue-600 transition-colors duration-300">
+                        <i class="fab fa-twitter text-white text-xl"></i>
+                    </a>
+                    <a href="#" class="w-12 h-12 bg-pink-600 rounded-full flex items-center justify-center hover:bg-pink-700 transition-colors duration-300">
+                        <i class="fab fa-instagram text-white text-xl"></i>
+                    </a>
+                </div>
+            </div>
         </div>
     </section>
+    
+    <!-- Footer -->
+    <footer class="py-8 px-4 border-t border-silver/20 relative z-10">
+        <div class="max-w-6xl mx-auto text-center">
+            <p class="text-gray-400">
+                © 2024 Thanatsitt Santisamranwilai. Bridging cultures through technology.
+            </p>
+        </div>
+    </footer>
+    
+    <!-- Image Modal -->
+    <div id="imageModal" class="fixed inset-0 bg-black/80 backdrop-blur-sm hidden items-center justify-center z-50 p-4">
+        <div class="relative max-w-4xl max-h-full">
+            <img id="modalImage" src="" alt="Gallery Image" class="max-w-full max-h-full object-contain rounded-lg">
+            <button class="close absolute top-4 right-4 w-10 h-10 bg-white/20 rounded-full flex items-center justify-center text-white hover:bg-white/30 transition-colors duration-300">
+                <i class="fas fa-times"></i>
+            </button>
+        </div>
+    </div>
     
     <!-- Scroll to Top Button -->
     <button class="scroll-to-top fixed bottom-8 right-8 w-12 h-12 bg-gold text-dark-blue rounded-full shadow-lg hover:shadow-xl transition-all duration-300 opacity-0 invisible z-40">
@@ -325,7 +547,6 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/particles.js/2.0.0/particles.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/typed.js@2.0.12"></script>
     <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
-    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
     
     <!-- Your Portfolio JavaScript -->
     <script src="portfolio.js"></script>
