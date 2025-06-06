@@ -4,26 +4,32 @@
 
 [build.environment]
   NODE_ENV = "production"
+  NPM_FLAGS = "--production=false"
 
-# Production site
+# Development/Preview Server Configuration
+[dev]
+  command = "npm run dev:preview"
+  targetPort = 3000
+  port = 8888
+  publish = "dist"
+  autoLaunch = true
+  framework = "#static"
+
+# Alternative dev configuration for different scenarios
+[context.dev]
+  command = "npm run dev:preview"
+
+# Build contexts
 [context.production]
   command = "npm run build:prod"
   
-[context.production.environment]
-  NODE_ENV = "production"
-
-# Staging site
-[context.staging]
+[context.deploy-preview]
   command = "npm run build:staging"
   
-[context.staging.environment]
-  NODE_ENV = "staging"
-
-# Branch deploys
 [context.branch-deploy]
   command = "npm run build:staging"
 
-# Headers for security and performance
+# Headers for all contexts
 [[headers]]
   for = "/*"
   [headers.values]
@@ -31,30 +37,13 @@
     X-XSS-Protection = "1; mode=block"
     X-Content-Type-Options = "nosniff"
     Referrer-Policy = "strict-origin-when-cross-origin"
-    Content-Security-Policy = "default-src 'self'; script-src 'self' 'unsafe-inline' https://www.googletagmanager.com https://cdnjs.cloudflare.com; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src 'self' https://fonts.gstatic.com; img-src 'self' data: https:; connect-src 'self' https://www.google-analytics.com"
 
 [[headers]]
   for = "/assets/*"
   [headers.values]
     Cache-Control = "public, max-age=31536000, immutable"
 
-[[headers]]
-  for = "/*.css"
-  [headers.values]
-    Cache-Control = "public, max-age=31536000, immutable"
-
-[[headers]]
-  for = "/*.js"
-  [headers.values]
-    Cache-Control = "public, max-age=31536000, immutable"
-
 # Redirects
-[[redirects]]
-  from = "/old-portfolio"
-  to = "/"
-  status = 301
-
-# SPA fallback
 [[redirects]]
   from = "/*"
   to = "/index.html"
