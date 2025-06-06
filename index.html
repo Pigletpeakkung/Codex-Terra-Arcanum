@@ -855,29 +855,356 @@
                                 </div>
                             </div>
                             <div class="flex items-center space-x-4">
-                                <div class="w-12 h-12 bg-gold/20 rounded-full flex items-center justify-center">
-                                    <i class="fas fa-robot text-gold"></i>
-                                </div>
-                                <div>
-                                    <h4 class="font-semibold text-white">AI & Technology</h4>
-                                    <p class="text-gray-400">Self-taught Developer & Co-founder</p>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    
-                    <div class="glass-morphism rounded-2xl p-8 card-hover">
-                        <h3 class="text-2xl font-bold mb-4 text-gold">
-                            <i class="fas fa-heart mr-3"></i>Philosophy
-                        </h3>
-                        <p class="text-gray-300 leading-relaxed text-lg">
-                            I believe technology should enhance human connection, not replace it. Every project I undertake is guided by principles of cultural sensitivity, ethical innovation, and the timeless wisdom that beauty and function are inseparable.
-                        </p>
+<!-- Enhanced Hero Section with Background Image -->
+<section id="home" class="min-h-screen flex items-center justify-center relative overflow-hidden px-4">
+    <!-- Background Image with Overlay -->
+    <div class="absolute inset-0 z-0">
+        <img src="https://raw.githubusercontent.com/Pigletpeakkung/Codex-Terra-Arcanum/refs/heads/main/public/og-image.jpg?token=GHSAT0AAAAAADED3IZBK7FOQ7IMJYX6NR6K2CCUZLA" 
+             alt="Thanatsitt - Cultural Navigator" 
+             class="w-full h-full object-cover object-center"
+             loading="eager">
+        <!-- Gradient overlays for text readability -->
+        <div class="absolute inset-0 bg-gradient-to-b from-black/70 via-black/50 to-black/70"></div>
+        <div class="absolute inset-0 bg-gradient-to-r from-deep-purple/60 via-transparent to-cosmic-blue/60"></div>
+        <!-- Cosmic overlay for mystical effect -->
+        <div class="absolute inset-0 bg-gradient-to-t from-stellar-purple/40 via-transparent to-transparent"></div>
+    </div>
+    
+    <!-- Dynamic Stars and Particles -->
+    <div id="stars-container" class="absolute inset-0 z-10 opacity-60"></div>
+    
+    <!-- Floating Cultural Elements -->
+    <div class="absolute top-20 right-10 w-32 h-32 opacity-30 floating-element hidden lg:block z-20">
+        <i class="fas fa-lotus text-gold text-6xl drop-shadow-2xl"></i>
+    </div>
+    <div class="absolute bottom-32 left-10 w-24 h-24 opacity-30 floating-element hidden lg:block z-20" style="animation-delay: -3s;">
+        <i class="fas fa-om text-moon-silver text-4xl drop-shadow-2xl"></i>
+    </div>
+    <div class="absolute top-1/3 right-1/4 w-16 h-16 opacity-40 floating-element hidden xl:block z-20" style="animation-delay: -1s;">
+        <i class="fas fa-yin-yang text-gold text-3xl drop-shadow-2xl"></i>
+    </div>
+    
+    <!-- Additional Japanese Cultural Element -->
+    <div class="absolute top-1/2 left-10 w-20 h-20 opacity-25 floating-element hidden xl:block z-20" style="animation-delay: -4s;">
+        <i class="fas fa-fan text-moon-silver text-3xl drop-shadow-2xl"></i>
+    </div>
+    
+    <!-- Animated Moon -->
+    <div class="absolute top-20 left-20 w-20 h-20 moon-element hidden lg:block z-20">
+        <div class="w-full h-full rounded-full bg-gradient-to-br from-moon-silver via-gold to-yellow-200 moon-phases shadow-2xl"></div>
+        <div class="absolute inset-0 rounded-full moon-glow"></div>
+    </div>
+    
+    <!-- Main Content -->
+    <div class="max-w-7xl mx-auto text-center relative z-30">
+        <!-- Cultural Greeting - Updated with Japanese -->
+        <div class="mb-8 opacity-90">
+            <p class="text-gold text-lg font-medium tracking-wider drop-shadow-lg">
+                สวัสดี • Hello • こんにちは
+            </p>
+            <div class="h-px w-32 bg-gradient-to-r from-transparent via-gold to-transparent mx-auto mt-2"></div>
+            <!-- Pronunciation guide -->
+            <p class="text-xs text-gray-400 mt-2 opacity-75">
+                Sawasdee • Hello • Konnichiwa
+            </p>
+        </div>
+        
+        <!-- Main Title with Typewriter Effect -->
+        <div class="mb-8">
+            <h1 class="text-6xl md:text-8xl lg:text-9xl font-black mb-4 drop-shadow-2xl">
+                <span class="bg-gradient-to-r from-gold via-yellow-400 via-gold to-yellow-300 bg-clip-text text-transparent bg-300% animate-gradient">
+                    <span x-text="typedText"></span>
+                    <span class="animate-pulse" x-show="typedText.length < 'Thanatsitt'.length">|</span>
+                </span>
+            </h1>
+            
+            <!-- Subtitle with Cultural Elements -->
+            <div class="space-y-4">
+                <h2 class="text-2xl md:text-4xl lg:text-5xl font-bold text-white leading-tight drop-shadow-xl">
+                    <span class="text-gold">Cultural Navigator</span> • 
+                    <span class="text-moon-silver">Innovation Bridge</span>
+                </h2>
+                
+                <!-- Enhanced Descriptive Text with Japanese Reference -->
+                <div class="max-w-4xl mx-auto">
+                    <p class="text-lg md:text-xl lg:text-2xl text-gray-100 leading-relaxed font-light drop-shadow-lg">
+                        From the <span class="text-gold font-semibold">golden temples of Thailand</span> 
+                        through the <span class="text-moon-silver font-semibold">zen gardens of Japan</span>
+                        to the <span class="text-moon-silver font-semibold">innovation labs of London</span>, 
+                        I weave together <span class="text-gold font-semibold">ancient wisdom</span> 
+                        and <span class="text-moon-silver font-semibold">cutting-edge technology</span>
+                    </p>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Expertise Pills with Enhanced Visibility -->
+        <div class="flex flex-wrap justify-center gap-4 mb-12 max-w-4xl mx-auto">
+            <div class="glass-morphism-enhanced px-6 py-3 rounded-full border border-gold/40 hover:border-gold/80 transition-all duration-300 hover:scale-105 group backdrop-blur-md">
+                <span class="text-gold font-semibold flex items-center drop-shadow-lg">
+                    <i class="fas fa-cut mr-2 group-hover:rotate-12 transition-transform"></i>
+                    Fashion Design
+                </span>
+            </div>
+            <div class="glass-morphism-enhanced px-6 py-3 rounded-full border border-blue-400/40 hover:border-blue-400/80 transition-all duration-300 hover:scale-105 group backdrop-blur-md">
+                <span class="text-blue-300 font-semibold flex items-center drop-shadow-lg">
+                    <i class="fas fa-robot mr-2 group-hover:bounce transition-transform"></i>
+                    AI Development
+                </span>
+            </div>
+            <div class="glass-morphism-enhanced px-6 py-3 rounded-full border border-green-400/40 hover:border-green-400/80 transition-all duration-300 hover:scale-105 group backdrop-blur-md">
+                <span class="text-green-300 font-semibold flex items-center drop-shadow-lg">
+                    <i class="fas fa-globe-asia mr-2 group-hover:spin transition-transform"></i>
+                    Cultural Consulting
+                </span>
+            </div>
+            <div class="glass-morphism-enhanced px-6 py-3 rounded-full border border-purple-400/40 hover:border-purple-400/80 transition-all duration-300 hover:scale-105 group backdrop-blur-md">
+                <span class="text-purple-300 font-semibold flex items-center drop-shadow-lg">
+                    <i class="fas fa-microphone mr-2 group-hover:pulse transition-transform"></i>
+                    Voice Acting
+                </span>
+            </div>
+        </div>
+        
+        <!-- Philosophy Quote with Enhanced Background -->
+        <div class="mb-12 max-w-3xl mx-auto">
+            <div class="glass-morphism-enhanced rounded-2xl p-8 border border-gold/30 relative overflow-hidden backdrop-blur-lg">
+                <!-- Enhanced background for readability -->
+                <div class="absolute inset-0 bg-black/40 rounded-2xl"></div>
+                
+                <!-- Decorative quote marks -->
+                <div class="absolute top-4 left-6 text-6xl text-gold/30 font-serif">"</div>
+                <div class="absolute bottom-4 right-6 text-6xl text-gold/30 font-serif rotate-180">"</div>
+                
+                <blockquote class="text-lg md:text-xl text-gray-100 italic leading-relaxed relative z-10 drop-shadow-lg">
+                    Technology should enhance human connection, not replace it. 
+                    Every innovation must honor the wisdom of our ancestors 
+                    while fearlessly embracing the possibilities of tomorrow.
+                </blockquote>
+                
+                <!-- Cultural symbol divider -->
+                <div class="flex justify-center mt-6">
+                    <div class="flex items-center space-x-4 text-gold/80">
+                        <div class="w-8 h-px bg-gradient-to-r from-transparent to-gold"></div>
+                        <i class="fas fa-lotus text-xl drop-shadow-lg"></i>
+                        <div class="w-8 h-px bg-gradient-to-l from-transparent to-gold"></div>
                     </div>
                 </div>
             </div>
         </div>
-    </section>
+        
+        <!-- Call to Action Buttons with Enhanced Visibility -->
+        <div class="flex flex-col sm:flex-row gap-6 justify-center items-center mb-12">
+            <button @click="scrollToSection('projects')" 
+                    class="group bg-gradient-to-r from-gold to-yellow-500 text-black px-8 py-4 rounded-full font-bold text-lg hover:scale-110 transform transition-all duration-300 hover:shadow-2xl hover:shadow-gold/50 relative overflow-hidden drop-shadow-xl">
+                <span class="relative z-10 flex items-center">
+                    <i class="fas fa-rocket mr-3 group-hover:translate-x-1 transition-transform"></i>
+                    Explore My Universe
+                </span>
+                <!-- Animated background -->
+                <div class="absolute inset-0 bg-gradient-to-r from-yellow-400 to-gold opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
+            </button>
+            
+            <button @click="scrollToSection('contact')" 
+                    class="group border-2 border-gold text-gold px-8 py-4 rounded-full font-bold text-lg hover:bg-gold hover:text-black transition-all duration-300 hover:scale-110 relative overflow-hidden backdrop-blur-sm bg-black/20 drop-shadow-xl">
+                <span class="relative z-10 flex items-center">
+                    <i class="fas fa-paper-plane mr-3 group-hover:translate-x-1 transition-transform"></i>
+                    Start a Journey
+                </span>
+            </button>
+        </div>
+        
+        <!-- Cultural Bridge Visual - Updated with Japanese Symbol -->
+        <div class="flex justify-center items-center space-x-8 text-4xl opacity-80">
+            <!-- Thai Symbol -->
+            <div class="text-gold hover:scale-125 transition-transform cursor-pointer drop-shadow-lg" title="Thai Heritage">
+                <i class="fas fa-temple-buddhist"></i>
+            </div>
+            
+            <!-- Bridge Symbol -->
+            <div class="flex items-center space-x-2">
+                <div class="w-12 h-px bg-gradient-to-r from-gold via-moon-silver to-gold drop-shadow-lg"></div>
+                <i class="fas fa-infinity text-moon-silver text-2xl animate-pulse drop-shadow-lg"></i>
+                <div class="w-12 h-px bg-gradient-to-r from-gold via-moon-silver to-gold drop-shadow-lg"></div>
+            </div>
+            
+            <!-- Japanese Symbol -->
+            <div class="text-moon-silver hover:scale-125 transition-transform cursor-pointer drop-shadow-lg" title="Japanese Innovation & Aesthetics">
+                <i class="fas fa-torii-gate"></i>
+            </div>
+        </div>
+        
+        <!-- Scroll Indicator -->
+        <div class="absolute bottom-8 left-1/2 transform -translate-x-1/2 animate-bounce z-30">
+            <div class="flex flex-col items-center text-gold/90 hover:text-gold transition-colors cursor-pointer drop-shadow-lg" 
+                 @click="scrollToSection('about')">
+                <span class="text-sm font-medium mb-2 tracking-wider">Discover More</span>
+                <div class="w-6 h-10 border-2 border-gold/70 rounded-full flex justify-center backdrop-blur-sm bg-black/20">
+                    <div class="w-1 h-3 bg-gold rounded-full mt-2 animate-pulse"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <!-- Particle Effects Container -->
+    <div class="absolute inset-0 pointer-events-none z-20">
+        <!-- Floating particles will be added via JavaScript -->
+    </div>
+</section>
+
+<!-- Trusted Platforms Section -->
+<section class="relative py-24 sm:py-32 overflow-hidden">
+    <!-- Background with subtle cosmic elements -->
+    <div class="absolute inset-0 bg-gradient-to-b from-black/90 via-deep-purple/95 to-cosmic-blue/90"></div>
+    <div class="absolute inset-0 opacity-20">
+        <div class="absolute top-10 left-10 w-32 h-32 bg-gold/10 rounded-full blur-3xl"></div>
+        <div class="absolute bottom-10 right-10 w-40 h-40 bg-moon-silver/10 rounded-full blur-3xl"></div>
+        <div class="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-64 h-64 bg-stellar-purple/10 rounded-full blur-3xl"></div>
+    </div>
+    
+    <!-- Floating particles -->
+    <div class="absolute inset-0 overflow-hidden pointer-events-none">
+        <div class="absolute top-20 left-1/4 w-2 h-2 bg-gold rounded-full animate-pulse opacity-60"></div>
+        <div class="absolute top-40 right-1/3 w-1 h-1 bg-moon-silver rounded-full animate-pulse opacity-40" style="animation-delay: 1s;"></div>
+        <div class="absolute bottom-32 left-1/3 w-1.5 h-1.5 bg-gold rounded-full animate-pulse opacity-50" style="animation-delay: 2s;"></div>
+        <div class="absolute bottom-20 right-1/4 w-1 h-1 bg-moon-silver rounded-full animate-pulse opacity-60" style="animation-delay: 0.5s;"></div>
+    </div>
+    
+    <div class="relative z-10 mx-auto max-w-7xl px-6 lg:px-8">
+        <!-- Section Header -->
+        <div class="text-center mb-16" x-data="{ visible: false }" x-intersect="visible = true">
+            <div class="inline-flex items-center justify-center mb-6" :class="visible ? 'animate-fade-in-up' : 'opacity-0'">
+                <div class="h-px w-12 bg-gradient-to-r from-transparent to-gold mr-4"></div>
+                <i class="fas fa-infinity text-gold text-2xl"></i>
+                <div class="h-px w-12 bg-gradient-to-l from-transparent to-gold ml-4"></div>
+            </div>
+            
+            <h2 class="text-center text-lg font-semibold text-gray-200 mb-4" 
+                :class="visible ? 'animate-fade-in-up' : 'opacity-0'" 
+                style="animation-delay: 0.2s;">
+                Trusted by Platforms, Thinkers & Tools that Shape My Work
+            </h2>
+            
+            <p class="text-center text-sm text-gray-400 max-w-2xl mx-auto" 
+               :class="visible ? 'animate-fade-in-up' : 'opacity-0'" 
+               style="animation-delay: 0.4s;">
+                Collaborating with leading platforms and drawing inspiration from visionary thinkers to create meaningful innovations
+            </p>
+        </div>
+        
+        <!-- Logos Grid -->
+        <div class="mx-auto mt-10 grid max-w-lg grid-cols-4 items-center gap-x-8 gap-y-10 sm:max-w-xl sm:grid-cols-6 sm:gap-x-10 lg:mx-0 lg:max-w-none lg:grid-cols-6">
+
+            <!-- OpenAI -->
+            <div class="col-span-2 lg:col-span-1 group" x-data="{ visible: false }" x-intersect="visible = true">
+                <div class="glass-morphism rounded-xl p-4 hover:scale-105 transition-all duration-300 hover:border-gold/30 border border-white/10" 
+                     :class="visible ? 'animate-fade-in-up' : 'opacity-0'" 
+                     style="animation-delay: 0.1s;">
+                    <img class="max-h-12 w-full object-contain filter brightness-0 invert opacity-70 group-hover:opacity-100 transition-opacity duration-300" 
+                         src="https://upload.wikimedia.org/wikipedia/commons/0/04/OpenAI_Logo.svg" 
+                         alt="OpenAI - AI Development Platform" 
+                         width="158" height="48"
+                         loading="lazy">
+                </div>
+            </div>
+
+            <!-- GitHub -->
+            <div class="col-span-2 lg:col-span-1 group" x-data="{ visible: false }" x-intersect="visible = true">
+                <div class="glass-morphism rounded-xl p-4 hover:scale-105 transition-all duration-300 hover:border-gold/30 border border-white/10" 
+                     :class="visible ? 'animate-fade-in-up' : 'opacity-0'" 
+                     style="animation-delay: 0.2s;">
+                    <img class="max-h-12 w-full object-contain filter brightness-0 invert opacity-70 group-hover:opacity-100 transition-opacity duration-300" 
+                         src="https://github.githubassets.com/images/modules/logos_page/GitHub-Mark.png" 
+                         alt="GitHub - Code Collaboration Platform" 
+                         width="158" height="48"
+                         loading="lazy">
+                </div>
+            </div>
+
+            <!-- Telegram -->
+            <div class="col-span-2 lg:col-span-1 group" x-data="{ visible: false }" x-intersect="visible = true">
+                <div class="glass-morphism rounded-xl p-4 hover:scale-105 transition-all duration-300 hover:border-gold/30 border border-white/10" 
+                     :class="visible ? 'animate-fade-in-up' : 'opacity-0'" 
+                     style="animation-delay: 0.3s;">
+                    <img class="max-h-12 w-full object-contain opacity-70 group-hover:opacity-100 transition-opacity duration-300" 
+                         src="https://upload.wikimedia.org/wikipedia/commons/8/82/Telegram_logo.svg" 
+                         alt="Telegram - Communication Platform" 
+                         width="158" height="48"
+                         loading="lazy">
+                </div>
+            </div>
+
+            <!-- Carl Jung Institute -->
+            <div class="col-span-2 sm:col-start-2 lg:col-span-1 lg:col-start-auto group" x-data="{ visible: false }" x-intersect="visible = true">
+                <div class="glass-morphism rounded-xl p-4 hover:scale-105 transition-all duration-300 hover:border-gold/30 border border-white/10" 
+                     :class="visible ? 'animate-fade-in-up' : 'opacity-0'" 
+                     style="animation-delay: 0.4s;">
+                    <img class="max-h-12 w-full object-contain filter brightness-0 invert opacity-70 group-hover:opacity-100 transition-opacity duration-300" 
+                         src="https://www.cgjung-gesellschaft.ch/images/logo/logo-cgjung.svg" 
+                         alt="Carl Jung Institute - Psychological Research" 
+                         width="158" height="48"
+                         loading="lazy"
+                         onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
+                    <!-- Fallback for Jung Institute -->
+                    <div class="hidden items-center justify-center h-12 text-gold font-bold text-sm">
+                        <i class="fas fa-brain mr-2"></i>
+                        Jung Institute
+                    </div>
+                </div>
+            </div>
+
+            <!-- Medium -->
+            <div class="col-span-2 lg:col-span-1 group" x-data="{ visible: false }" x-intersect="visible = true">
+                <div class="glass-morphism rounded-xl p-4 hover:scale-105 transition-all duration-300 hover:border-gold/30 border border-white/10" 
+                     :class="visible ? 'animate-fade-in-up' : 'opacity-0'" 
+                     style="animation-delay: 0.5s;">
+                    <img class="max-h-12 w-full object-contain filter brightness-0 invert opacity-70 group-hover:opacity-100 transition-opacity duration-300" 
+                         src="https://upload.wikimedia.org/wikipedia/commons/e/ec/Medium_logo_M.svg" 
+                         alt="Medium - Publishing Platform" 
+                         width="158" height="48"
+                         loading="lazy">
+                </div>
+            </div>
+
+            <!-- Twitter/X -->
+            <div class="col-span-2 sm:col-start-auto lg:col-span-1 group" x-data="{ visible: false }" x-intersect="visible = true">
+                <div class="glass-morphism rounded-xl p-4 hover:scale-105 transition-all duration-300 hover:border-gold/30 border border-white/10" 
+                     :class="visible ? 'animate-fade-in-up' : 'opacity-0'" 
+                     style="animation-delay: 0.6s;">
+                    <img class="max-h-12 w-full object-contain filter brightness-0 invert opacity-70 group-hover:opacity-100 transition-opacity duration-300" 
+                         src="https://upload.wikimedia.org/wikipedia/commons/3/3f/X_logo_2023.svg" 
+                         alt="X (Twitter) - Social Platform" 
+                         width="158" height="48"
+                         loading="lazy">
+                </div>
+            </div>
+
+        </div>
+        
+        <!-- Additional Context -->
+        <div class="text-center mt-16" x-data="{ visible: false }" x-intersect="visible = true">
+            <div class="max-w-3xl mx-auto" :class="visible ? 'animate-fade-in-up' : 'opacity-0'" style="animation-delay: 0.8s;">
+                <p class="text-gray-400 text-sm leading-relaxed">
+                    From AI development with <span class="text-gold font-semibold">OpenAI</span> to psychological insights from 
+                    <span class="text-gold font-semibold">Jung's teachings</span>, my work draws from diverse sources of wisdom and innovation. 
+                    Each platform and philosophy contributes to a holistic approach that bridges 
+                    <span class="text-moon-silver font-semibold">ancient wisdom</span> with 
+                    <span class="text-moon-silver font-semibold">modern technology</span>.
+                </p>
+            </div>
+            
+            <!-- Decorative element -->
+            <div class="flex justify-center mt-8" :class="visible ? 'animate-fade-in-up' : 'opacity-0'" style="animation-delay: 1s;">
+                <div class="flex items-center space-x-4 text-gold/60">
+                    <div class="w-16 h-px bg-gradient-to-r from-transparent to-gold"></div>
+                    <i class="fas fa-lotus text-lg"></i>
+                    <div class="w-16 h-px bg-gradient-to-l from-transparent to-gold"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
 
     <!-- Enhanced Skills Section with 3D Flip Cards -->
     <section id="skills" class="py-20 px-4 relative" aria-label="Skills and expertise section">
