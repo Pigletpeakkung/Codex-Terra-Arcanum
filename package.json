@@ -4,21 +4,20 @@
   "description": "Thanatsitt Santisamranwilai - Cultural Navigator Portfolio",
   "scripts": {
     "build": "node scripts/build.js",
-    "dev": "live-server . --port=3000 --open=/",
-    "test": "echo \"✅ No tests specified\" && exit 0",
-    "lint": "echo \"✅ No linting configured\" && exit 0",
-    "start": "npm run dev",
-    "clean": "rm -rf dist",
-    "prebuild": "npm run clean"
+    "build:dev": "NODE_ENV=development node scripts/build.js",
+    "build:prod": "NODE_ENV=production node scripts/build.js",
+    "dev": "netlify dev",
+    "dev:local": "live-server . --port=3000",
+    "test": "echo \"No tests specified\" && exit 0"
   },
-  "keywords": ["portfolio", "cultural-navigator", "ai", "technology"],
-  "author": "Thanatsitt Santisamranwilai",
-  "license": "MIT",
+  "dependencies": {
+    "dotenv": "^16.3.1"
+  },
   "devDependencies": {
-    "live-server": "^1.2.2"
+    "live-server": "^1.2.2",
+    "netlify-cli": "^17.10.1"
   },
   "engines": {
-    "node": ">=18.0.0",
-    "npm": ">=9.0.0"
+    "node": ">=18.0.0"
   }
 }
