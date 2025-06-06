@@ -30,6 +30,13 @@
                         'bounce-slow': 'bounce 3s infinite',
                         'spin-slow': 'spin 8s linear infinite',
                         'wiggle': 'wiggle 1s ease-in-out infinite',
+                        'slide-left': 'slideLeft 20s linear infinite',
+                        'slide-right': 'slideRight 25s linear infinite',
+                        'zoom-in': 'zoomIn 0.5s ease-out',
+                        'moon-phases': 'moonPhases 8s ease-in-out infinite',
+                        'moon-orbit': 'moonOrbit 20s linear infinite',
+                        'moon-glow': 'moonGlow 4s ease-in-out infinite alternate',
+                        'stars-twinkle': 'starsTwinkle 3s ease-in-out infinite alternate',
                     },
                     backgroundImage: {
                         'cosmic-gradient': 'linear-gradient(135deg, #667eea 0%, #764ba2 100%)',
@@ -62,6 +69,69 @@
             30% { transform: rotateZ(6deg); }
             35% { transform: rotateZ(-4deg); }
             40%, 100% { transform: rotateZ(0); }
+        }
+        @keyframes slideLeft {
+            0% { transform: translateX(100%); }
+            100% { transform: translateX(-100%); }
+        }
+        @keyframes slideRight {
+            0% { transform: translateX(-100%); }
+            100% { transform: translateX(100%); }
+        }
+        @keyframes zoomIn {
+            0% { transform: scale(0.8); opacity: 0; }
+            100% { transform: scale(1); opacity: 1; }
+        }
+        
+        /* Enhanced Moon Animations */
+        @keyframes moonPhases {
+            0% { 
+                background: radial-gradient(circle at 30% 30%, #D4AF37 0%, #F4D03F 30%, #FFF 100%);
+                transform: scale(1);
+            }
+            25% { 
+                background: radial-gradient(circle at 40% 40%, #D4AF37 0%, #F4D03F 40%, #FFF 100%);
+                transform: scale(1.1);
+            }
+            50% { 
+                background: radial-gradient(circle at 50% 50%, #D4AF37 0%, #F4D03F 50%, #FFF 100%);
+                transform: scale(1.2);
+            }
+            75% { 
+                background: radial-gradient(circle at 60% 60%, #D4AF37 0%, #F4D03F 40%, #FFF 100%);
+                transform: scale(1.1);
+            }
+            100% { 
+                background: radial-gradient(circle at 30% 30%, #D4AF37 0%, #F4D03F 30%, #FFF 100%);
+                transform: scale(1);
+            }
+        }
+        
+        @keyframes moonOrbit {
+            0% { transform: rotate(0deg) translateX(150px) rotate(0deg); }
+            100% { transform: rotate(360deg) translateX(150px) rotate(-360deg); }
+        }
+        
+        @keyframes moonGlow {
+            0% { 
+                box-shadow: 
+                    0 0 20px rgba(212, 175, 55, 0.6),
+                    0 0 40px rgba(212, 175, 55, 0.4),
+                    0 0 60px rgba(212, 175, 55, 0.3),
+                    0 0 80px rgba(212, 175, 55, 0.2);
+            }
+            100% { 
+                box-shadow: 
+                    0 0 30px rgba(212, 175, 55, 0.8),
+                    0 0 60px rgba(212, 175, 55, 0.6),
+                    0 0 90px rgba(212, 175, 55, 0.4),
+                    0 0 120px rgba(212, 175, 55, 0.3);
+            }
+        }
+        
+        @keyframes starsTwinkle {
+            0% { opacity: 0.3; transform: scale(1); }
+            100% { opacity: 1; transform: scale(1.2); }
         }
         
         .glass-morphism {
@@ -126,6 +196,97 @@
             border-radius: 2px;
             transition: width 2s ease-in-out;
         }
+        
+        .gallery-scroll {
+            animation-play-state: running;
+        }
+        
+        .gallery-scroll:hover {
+            animation-play-state: paused;
+        }
+        
+        .testimonial-card {
+            min-height: 300px;
+        }
+        
+        /* Enhanced Moon Elements */
+        .moon-container {
+            position: relative;
+            width: 200px;
+            height: 200px;
+            margin: 0 auto;
+        }
+        
+        .animated-moon {
+            width: 80px;
+            height: 80px;
+            border-radius: 50%;
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            animation: moonPhases 8s ease-in-out infinite, moonGlow 4s ease-in-out infinite alternate;
+            background: radial-gradient(circle at 30% 30%, #D4AF37 0%, #F4D03F 30%, #FFF 100%);
+        }
+        
+        .moon-crater {
+            position: absolute;
+            background: rgba(180, 180, 180, 0.3);
+            border-radius: 50%;
+        }
+        
+        .crater-1 {
+            width: 12px;
+            height: 12px;
+            top: 20px;
+            left: 25px;
+        }
+        
+        .crater-2 {
+            width: 8px;
+            height: 8px;
+            top: 35px;
+            right: 20px;
+        }
+        
+        .crater-3 {
+            width: 6px;
+            height: 6px;
+            bottom: 25px;
+            left: 30px;
+        }
+        
+        .moon-stars {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+        }
+        
+        .star {
+            position: absolute;
+            width: 3px;
+            height: 3px;
+            background: #FFF;
+            border-radius: 50%;
+            animation: starsTwinkle 3s ease-in-out infinite alternate;
+        }
+        
+        .orbiting-moon {
+            position: absolute;
+            width: 40px;
+            height: 40px;
+            top: 50%;
+            left: 50%;
+            animation: moonOrbit 20s linear infinite;
+        }
+        
+        .orbiting-moon-element {
+            width: 40px;
+            height: 40px;
+            background: radial-gradient(circle at 40% 40%, #D4AF37 0%, #F4D03F 50%, #FFF 100%);
+            border-radius: 50%;
+            box-shadow: 0 0 15px rgba(212, 175, 55, 0.6);
+        }
     </style>
 </head>
 <body class="hero-bg text-white min-h-screen custom-scrollbar overflow-x-hidden" x-data="portfolioApp()">
@@ -138,15 +299,50 @@
         </template>
     </div>
 
-    <!-- Navigation -->
+    <!-- Enhanced Moon Animation in Top Right Corner -->
+    <div class="fixed top-20 right-20 z-10 hidden lg:block">
+        <div class="moon-container">
+            <!-- Main Animated Moon -->
+            <div class="animated-moon">
+                <div class="moon-crater crater-1"></div>
+                <div class="moon-crater crater-2"></div>
+                <div class="moon-crater crater-3"></div>
+            </div>
+            
+            <!-- Twinkling Stars Around Moon -->
+            <div class="moon-stars">
+                <div class="star" style="top: 10%; left: 20%; animation-delay: 0s;"></div>
+                <div class="star" style="top: 15%; right: 15%; animation-delay: 1s;"></div>
+                <div class="star" style="top: 30%; left: 10%; animation-delay: 2s;"></div>
+                <div class="star" style="bottom: 20%; right: 25%; animation-delay: 0.5s;"></div>
+                <div class="star" style="bottom: 15%; left: 25%; animation-delay: 1.5s;"></div>
+                <div class="star" style="top: 50%; right: 5%; animation-delay: 2.5s;"></div>
+            </div>
+            
+            <!-- Small Orbiting Moon -->
+            <div class="orbiting-moon">
+                <div class="orbiting-moon-element"></div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Navigation with Enhanced Moon -->
     <nav class="fixed w-full z-50 transition-all duration-500" 
          :class="scrolled ? 'glass-morphism shadow-2xl' : 'bg-transparent'"
          x-init="window.addEventListener('scroll', () => scrolled = window.scrollY > 50)">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div class="flex justify-between items-center py-4">
-                <a href="#" class="text-2xl font-bold text-gold hover:animate-glow transition-all duration-300 flex items-center">
-                    <i class="fas fa-moon mr-3 animate-spin-slow"></i>
-                    <span class="text-shadow">Thanatsitt</span>
+                <a href="#" class="text-2xl font-bold text-gold hover:animate-glow transition-all duration-300 flex items-center group">
+                    <div class="relative mr-3">
+                        <div class="w-8 h-8 bg-gradient-to-br from-gold to-yellow-400 rounded-full animate-moon-glow group-hover:animate-pulse">
+                            <div class="absolute inset-0 bg-gradient-to-br from-gold/20 to-transparent rounded-full"></div>
+                            <div class="absolute top-1 left-1 w-2 h-2 bg-white/30 rounded-full"></div>
+                            <div class="absolute bottom-1 right-1 w-1 h-1 bg-white/20 rounded-full"></div>
+                        </div>
+                        <!-- Orbiting sparkles -->
+                        <div class="absolute -top-1 -right-1 w-2 h-2 bg-yellow-300 rounded-full animate-ping"></div>
+                    </div>
+                    <span class="text-shadow group-hover:text-yellow-300 transition-colors">Thanatsitt</span>
                 </a>
                 
                 <!-- Desktop Menu -->
@@ -165,6 +361,14 @@
                     </a>
                     <a href="#skills" class="nav-link relative group" @click="scrollToSection('skills')">
                         <span class="relative z-10">Skills</span>
+                        <div class="absolute inset-0 bg-gold/20 rounded-lg scale-0 group-hover:scale-100 transition-transform duration-300"></div>
+                    </a>
+                    <a href="#gallery" class="nav-link relative group" @click="scrollToSection('gallery')">
+                        <span class="relative z-10">Gallery</span>
+                        <div class="absolute inset-0 bg-gold/20 rounded-lg scale-0 group-hover:scale-100 transition-transform duration-300"></div>
+                    </a>
+                    <a href="#testimonials" class="nav-link relative group" @click="scrollToSection('testimonials')">
+                        <span class="relative z-10">Reviews</span>
                         <div class="absolute inset-0 bg-gold/20 rounded-lg scale-0 group-hover:scale-100 transition-transform duration-300"></div>
                     </a>
                     <a href="#contact" class="nav-link relative group" @click="scrollToSection('contact')">
@@ -199,6 +403,12 @@
                 </a>
                 <a href="#skills" class="block py-3 px-4 hover:bg-gold/20 rounded-lg transition-colors" @click="scrollToSection('skills'); mobileMenuOpen = false">
                     <i class="fas fa-cogs mr-3"></i>Skills
+                </a>
+                <a href="#gallery" class="block py-3 px-4 hover:bg-gold/20 rounded-lg transition-colors" @click="scrollToSection('gallery'); mobileMenuOpen = false">
+                    <i class="fas fa-images mr-3"></i>Gallery
+                </a>
+                <a href="#testimonials" class="block py-3 px-4 hover:bg-gold/20 rounded-lg transition-colors" @click="scrollToSection('testimonials'); mobileMenuOpen = false">
+                    <i class="fas fa-star mr-3"></i>Reviews
                 </a>
                 <a href="#contact" class="block py-3 px-4 hover:bg-gold/20 rounded-lg transition-colors" @click="scrollToSection('contact'); mobileMenuOpen = false">
                     <i class="fas fa-envelope mr-3"></i>Contact
@@ -359,7 +569,7 @@
                 <div class="h-1 w-24 bg-gradient-to-r from-gold to-yellow-400 mx-auto rounded-full"></div>
             </div>
             
-            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
                 <!-- Design Skills -->
                 <div class="glass-morphism rounded-2xl p-8 card-hover">
                     <div class="text-center mb-6">
@@ -434,39 +644,38 @@
                         
                         <div class="skill-item">
                             <div class="flex justify-between mb-2">
-                                <span class="text-white">Machine Learning</span>
-                                <span class="text-gold">75%</span>
+                                <span class="text-white">Video Editing</span>
+                                <span class="text-gold">78%</span>
                             </div>
                             <div class="w-full bg-gray-700 rounded-full h-2">
-                                <div class="skill-bar rounded-full h-2" :style="visible ? 'width: 75%' : 'width: 0%'"></div>
+                                <div class="skill-bar rounded-full h-2" :style="visible ? 'width: 78%' : 'width: 0%'"></div>
                             </div>
                         </div>
                     </div>
                 </div>
                 
-                <!-- Cultural Skills -->
+                <!-- Communication Skills -->
                 <div class="glass-morphism rounded-2xl p-8 card-hover">
                     <div class="text-center mb-6">
                         <div class="w-16 h-16 bg-gradient-to-br from-green-500 to-teal-600 rounded-full flex items-center justify-center mx-auto mb-4">
-                            <i class="fas fa-globe text-2xl text-white"></i>
+                            <i class="fas fa-comments text-2xl text-white"></i>
                         </div>
-                        <h3 class="text-xl font-bold text-gold">Cultural</h3>
+                        <h3 class="text-xl font-bold text-gold">Communication</h3>
                     </div>
                     
                     <div class="space-y-4" x-data="{ visible: false }" x-intersect="visible = true">
                         <div class="skill-item">
                             <div class="flex justify-between mb-2">
-                                <span class="text-white">Cross-Cultural Communication</span>
-                                <span class="text-gold">98%</span>
+                                <span class="text-white">Voice Acting</span>
+                                <span class="text-gold">82%</span>
                             </div>
                             <div class="w-full bg-gray-700 rounded-full h-2">
-                                <div class="skill-bar rounded-full h-2" :style="visible ? 'width: 98%' : 'width: 0%'"></div>
-                            </div>
-                        </div>
+                                <div class="skill-bar rounded-full h-2" :style="visible ? 'width: 82%' : 'width: 0%'"></div>
+                                                    </div>
                         
                         <div class="skill-item">
                             <div class="flex justify-between mb-2">
-                                <span class="text-white">Cultural Research</span>
+                                <span class="text-white">Writing</span>
                                 <span class="text-gold">90%</span>
                             </div>
                             <div class="w-full bg-gray-700 rounded-full h-2">
@@ -476,7 +685,7 @@
                         
                         <div class="skill-item">
                             <div class="flex justify-between mb-2">
-                                <span class="text-white">Storytelling</span>
+                                <span class="text-white">Languages</span>
                                 <span class="text-gold">95%</span>
                             </div>
                             <div class="w-full bg-gray-700 rounded-full h-2">
@@ -485,93 +694,179 @@
                         </div>
                     </div>
                 </div>
+                
+                <!-- Consulting Skills -->
+                <div class="glass-morphism rounded-2xl p-8 card-hover">
+                    <div class="text-center mb-6">
+                        <div class="w-16 h-16 bg-gradient-to-br from-pink-500 to-rose-600 rounded-full flex items-center justify-center mx-auto mb-4">
+                            <i class="fas fa-lightbulb text-2xl text-white"></i>
+                        </div>
+                        <h3 class="text-xl font-bold text-gold">Consulting</h3>
+                    </div>
+                    
+                    <div class="space-y-4" x-data="{ visible: false }" x-intersect="visible = true">
+                        <div class="skill-item">
+                            <div class="flex justify-between mb-2">
+                                <span class="text-white">Cultural Consulting</span>
+                                <span class="text-gold">98%</span>
+                            </div>
+                            <div class="w-full bg-gray-700 rounded-full h-2">
+                                <div class="skill-bar rounded-full h-2" :style="visible ? 'width: 98%' : 'width: 0%'"></div>
+                            </div>
+                        </div>
+                        
+                        <div class="skill-item">
+                            <div class="flex justify-between mb-2">
+                                <span class="text-white">Strategy Planning</span>
+                                <span class="text-gold">85%</span>
+                            </div>
+                            <div class="w-full bg-gray-700 rounded-full h-2">
+                                <div class="skill-bar rounded-full h-2" :style="visible ? 'width: 85%' : 'width: 0%'"></div>
+                            </div>
+                        </div>
+                        
+                        <div class="skill-item">
+                            <div class="flex justify-between mb-2">
+                                <span class="text-white">Project Management</span>
+                                <span class="text-gold">88%</span>
+                            </div>
+                            <div class="w-full bg-gray-700 rounded-full h-2">
+                                <div class="skill-bar rounded-full h-2" :style="visible ? 'width: 88%' : 'width: 0%'"></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
             </div>
         </div>
     </section>
 
-    <!-- Portfolio Grid -->
-    <section id="portfolio" class="py-20 px-4">
+    <!-- Gallery Section -->
+    <section id="gallery" class="py-20 px-4 relative overflow-hidden">
         <div class="max-w-7xl mx-auto">
             <div class="text-center mb-16">
-                <h2 class="text-4xl md:text-6xl font-bold mb-6 text-gold text-shadow">Portfolio Gallery</h2>
-                <div class="h-1 w-24 bg-gradient-to-r from-gold to-yellow-400 mx-auto rounded-full mb-8"></div>
-                <p class="text-xl text-gray-300 max-w-3xl mx-auto">
-                    A curated collection of projects that showcase the intersection of culture, technology, and human-centered design.
+                <h2 class="text-4xl md:text-6xl font-bold mb-6 text-gold text-shadow">Creative Gallery</h2>
+                <div class="h-1 w-24 bg-gradient-to-r from-gold to-yellow-400 mx-auto rounded-full"></div>
+                <p class="text-gray-300 text-lg mt-6 max-w-2xl mx-auto">
+                    A visual journey through my creative process, inspirations, and cultural explorations
                 </p>
             </div>
             
-            <!-- Filter Buttons -->
-            <div class="flex flex-wrap justify-center gap-4 mb-12">
-                <button class="filter-btn px-6 py-3 rounded-full font-semibold transition-all duration-300"
-                        :class="activeFilter === 'all' ? 'bg-gold text-black' : 'bg-white/10 text-white hover:bg-gold/20'"
-                        @click="activeFilter = 'all'">
-                    All Projects
-                </button>
-                <button class="filter-btn px-6 py-3 rounded-full font-semibold transition-all duration-300"
-                        :class="activeFilter === 'fashion' ? 'bg-gold text-black' : 'bg-white/10 text-white hover:bg-gold/20'"
-                        @click="activeFilter = 'fashion'">
-                    Fashion Design
-                </button>
-                <button class="filter-btn px-6 py-3 rounded-full font-semibold transition-all duration-300"
-                        :class="activeFilter === 'ai' ? 'bg-gold text-black' : 'bg-white/10 text-white hover:bg-gold/20'"
-                        @click="activeFilter = 'ai'">
-                    AI Projects
-                </button>
-                <button class="filter-btn px-6 py-3 rounded-full font-semibold transition-all duration-300"
-                        :class="activeFilter === 'web' ? 'bg-gold text-black' : 'bg-white/10 text-white hover:bg-gold/20'"
-                        @click="activeFilter = 'web'">
-                    Web Development
-                </button>
+            <!-- Animated Gallery Rows -->
+            <div class="space-y-8">
+                <!-- Row 1 - Left to Right -->
+                <div class="relative overflow-hidden">
+                    <div class="flex space-x-6 animate-slide-left gallery-scroll">
+                        <template x-for="i in 2">
+                            <div class="flex space-x-6 shrink-0">
+                                <template x-for="(image, index) in galleryImages.slice(0, 8)" :key="index">
+                                    <div class="w-80 h-60 glass-morphism rounded-2xl overflow-hidden shrink-0 cursor-pointer transform hover:scale-105 transition-all duration-300 relative group" 
+                                         @click="openGalleryModal(index)">
+                                        <div class="w-full h-full bg-gradient-to-br from-gold/20 to-purple-600/20 flex items-center justify-center relative">
+                                            <div class="absolute inset-0 bg-gradient-to-br from-gold/10 to-transparent"></div>
+                                            <i :class="image.icon" class="text-4xl text-gold/70"></i>
+                                            <!-- Replace with actual images -->
+                                            <!-- <img :src="image.src" :alt="image.alt" class="w-full h-full object-cover"> -->
+                                            <div class="absolute inset-0 bg-black/50 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center">
+                                                <div class="text-center">
+                                                    <i class="fas fa-expand text-gold text-2xl mb-2"></i>
+                                                    <p class="text-white font-semibold" x-text="image.title"></p>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </template>
+                            </div>
+                        </template>
+                    </div>
+                </div>
+                
+                <!-- Row 2 - Right to Left -->
+                <div class="relative overflow-hidden">
+                    <div class="flex space-x-6 animate-slide-right gallery-scroll">
+                        <template x-for="i in 2">
+                            <div class="flex space-x-6 shrink-0">
+                                <template x-for="(image, index) in galleryImages.slice(8, 16)" :key="index + 8">
+                                    <div class="w-80 h-60 glass-morphism rounded-2xl overflow-hidden shrink-0 cursor-pointer transform hover:scale-105 transition-all duration-300 relative group" 
+                                         @click="openGalleryModal(index + 8)">
+                                        <div class="w-full h-full bg-gradient-to-br from-blue-500/20 to-green-600/20 flex items-center justify-center relative">
+                                            <div class="absolute inset-0 bg-gradient-to-br from-blue-500/10 to-transparent"></div>
+                                            <i :class="image.icon" class="text-4xl text-blue-400/70"></i>
+                                            <!-- Replace with actual images -->
+                                            <div class="absolute inset-0 bg-black/50 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center">
+                                                <div class="text-center">
+                                                    <i class="fas fa-expand text-blue-400 text-2xl mb-2"></i>
+                                                    <p class="text-white font-semibold" x-text="image.title"></p>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </template>
+                            </div>
+                        </template>
+                    </div>
+                </div>
+                
+                <!-- Row 3 - Left to Right (Delayed) -->
+                <div class="relative overflow-hidden">
+                    <div class="flex space-x-6 animate-slide-left gallery-scroll" style="animation-delay: -10s;">
+                        <template x-for="i in 2">
+                            <div class="flex space-x-6 shrink-0">
+                                <template x-for="(image, index) in galleryImages.slice(16, 24)" :key="index + 16">
+                                    <div class="w-80 h-60 glass-morphism rounded-2xl overflow-hidden shrink-0 cursor-pointer transform hover:scale-105 transition-all duration-300 relative group" 
+                                         @click="openGalleryModal(index + 16)">
+                                        <div class="w-full h-full bg-gradient-to-br from-pink-500/20 to-yellow-600/20 flex items-center justify-center relative">
+                                            <div class="absolute inset-0 bg-gradient-to-br from-pink-500/10 to-transparent"></div>
+                                            <i :class="image.icon" class="text-4xl text-pink-400/70"></i>
+                                            <!-- Replace with actual images -->
+                                            <div class="absolute inset-0 bg-black/50 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center">
+                                                <div class="text-center">
+                                                    <i class="fas fa-expand text-pink-400 text-2xl mb-2"></i>
+                                                    <p class="text-white font-semibold" x-text="image.title"></p>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </template>
+                            </div>
+                        </template>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Portfolio Section -->
+    <section id="portfolio" class="py-20 px-4 relative">
+        <div class="max-w-7xl mx-auto">
+            <div class="text-center mb-16">
+                <h2 class="text-4xl md:text-6xl font-bold mb-6 text-gold text-shadow">Portfolio</h2>
+                <div class="h-1 w-24 bg-gradient-to-r from-gold to-yellow-400 mx-auto rounded-full"></div>
             </div>
             
             <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-                <template x-for="(project, index) in filteredProjects" :key="index">
-                    <div class="group glass-morphism rounded-2xl overflow-hidden border border-white/10 hover:border-gold/50 transition-all duration-500 card-hover cursor-pointer"
-                         @click="openModal(project)"
-                         x-show="true"
-                         x-transition:enter="transition ease-out duration-300"
-                         x-transition:enter-start="opacity-0 transform scale-95"
-                         x-transition:enter-end="opacity-100 transform scale-100">
-                        
-                        <div class="aspect-video relative overflow-hidden">
-                            <img :src="project.image" 
-                                 :alt="project.title"
-                                 class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700">
-                            <div class="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
-                            <div class="absolute inset-0 bg-black/50 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center">
-                                <div class="text-center">
-                                    <i class="fas fa-search-plus text-4xl text-white mb-2"></i>
-                                    <p class="text-white font-semibold">View Details</p>
-                                </div>
-                            </div>
-                            
-                            <!-- Category Badge -->
-                            <div class="absolute top-4 left-4">
-                                <span class="bg-gold text-black px-3 py-1 rounded-full text-sm font-semibold flex items-center">
-                                    <i :class="project.icon" class="mr-2"></i>
-                                    <span x-text="project.category"></span>
-                                </span>
-                            </div>
+                <template x-for="(project, index) in projects" :key="index">
+                    <div class="glass-morphism rounded-2xl overflow-hidden card-hover cursor-pointer" @click="openModal(index)">
+                        <div class="h-64 bg-gradient-to-br from-gold/20 to-purple-600/20 flex items-center justify-center relative">
+                            <div class="absolute inset-0 bg-gradient-to-br from-gold/10 to-transparent"></div>
+                            <i :class="project.icon" class="text-6xl text-gold/70"></i>
+                            <!-- Replace with actual project images -->
                         </div>
                         
                         <div class="p-6">
-                            <h3 class="text-xl font-bold mb-3 text-white group-hover:text-gold transition-colors" x-text="project.title"></h3>
-                            <p class="text-gray-300 mb-4 leading-relaxed" x-text="project.description"></p>
+                            <h3 class="text-2xl font-bold mb-3 text-gold" x-text="project.title"></h3>
+                            <p class="text-gray-300 mb-4 text-sm" x-text="project.description"></p>
                             
                             <div class="flex flex-wrap gap-2 mb-4">
                                 <template x-for="tag in project.tags">
-                                    <span class="bg-white/10 px-3 py-1 rounded-full text-sm text-gray-300 hover:bg-gold/20 hover:text-white transition-colors cursor-pointer" x-text="tag"></span>
+                                    <span class="px-3 py-1 bg-gold/20 text-gold text-xs rounded-full" x-text="tag"></span>
                                 </template>
                             </div>
                             
                             <div class="flex items-center justify-between">
-                                <div class="flex items-center text-sm text-gray-400">
-                                    <i class="fas fa-calendar mr-2"></i>
-                                    <span x-text="project.year"></span>
-                                </div>
-                                <div class="flex items-center text-gold">
-                                    <span class="text-sm font-semibold mr-2">View Project</span>
-                                    <i class="fas fa-arrow-right group-hover:translate-x-1 transition-transform"></i>
+                                <span class="text-moon-silver text-sm" x-text="project.year"></span>
+                                <div class="flex space-x-2">
+                                    <i class="fas fa-eye text-gold hover:animate-bounce cursor-pointer"></i>
+                                    <i class="fas fa-external-link-alt text-gold hover:animate-bounce cursor-pointer"></i>
                                 </div>
                             </div>
                         </div>
@@ -581,1299 +876,205 @@
         </div>
     </section>
 
-    <!-- Contact Section -->
-    <section id="contact" class="py-20 px-4">
-        <div class="max-w-4xl mx-auto">
+    <!-- Testimonials Section -->
+    <section id="testimonials" class="py-20 px-4 relative">
+        <div class="max-w-7xl mx-auto">
             <div class="text-center mb-16">
-                <h2 class="text-4xl md:text-6xl font-bold mb-6 text-gold text-shadow">Let's Create Together</h2>
-                <div class="h-1 w-24 bg-gradient-to-r from-gold to-yellow-400 mx-auto rounded-full mb-8"></div>
-                <p class="text-xl text-gray-300 max-w-2xl mx-auto">
-                    Ready to bridge cultures and create something extraordinary? Let's start a conversation.
+                <h2 class="text-4xl md:text-6xl font-bold mb-6 text-gold text-shadow">Client Reviews</h2>
+                <div class="h-1 w-24 bg-gradient-to-r from-gold to-yellow-400 mx-auto rounded-full"></div>
+                <p class="text-gray-300 text-lg mt-6 max-w-2xl mx-auto">
+                    What clients say about working with me across different industries and cultures
                 </p>
             </div>
             
-            <div class="grid grid-cols-1 lg:grid-cols-2 gap-12">
-                <!-- Contact Info -->
-                <div class="space-y-8">
-                    <div class="glass-morphism rounded-2xl p-8 card-hover">
-                        <h3 class="text-2xl font-bold mb-6 text-gold">Get In Touch</h3>
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                <template x-for="(testimonial, index) in testimonials" :key="index">
+                    <div class="glass-morphism rounded-2xl p-8 card-hover testimonial-card" 
+                         x-data="{ visible: false }" 
+                         x-intersect="setTimeout(() => visible = true, index * 200)"
+                         :class="visible ? 'animate-zoom-in' : 'opacity-0'">
+                        <!-- Rating Stars -->
+                        <div class="flex mb-4">
+                            <template x-for="i in 5">
+                                <i class="fas fa-star text-gold text-lg"></i>
+                            </template>
+                        </div>
                         
-                        <div class="space-y-6">
+                        <!-- Testimonial Text -->
+                        <blockquote class="text-gray-300 mb-6 text-lg italic leading-relaxed" x-text="testimonial.text"></blockquote>
+                        
+                        <!-- Client Info -->
+                        <div class="border-t border-gray-600 pt-6">
                             <div class="flex items-center space-x-4">
-                                <div class="w-12 h-12 bg-gold/20 rounded-full flex items-center justify-center">
-                                    <i class="fas fa-envelope text-gold"></i>
+                                <div class="w-12 h-12 bg-gradient-to-br from-gold to-yellow-400 rounded-full flex items-center justify-center">
+                                    <span class="font-bold text-black text-lg" x-text="testimonial.client.charAt(0)"></span>
                                 </div>
-                                <div>
-                                    <h4 class="font-semibold text-white">Email</h4>
-                                    <p class="text-gray-400">hello@thanatsitt.com</p>
+                                <div class="flex-1">
+                                    <h4 class="font-semibold text-white" x-text="testimonial.client"></h4>
+                                    <p class="text-gold text-sm" x-text="testimonial.position"></p>
+                                    <p class="text-gray-400 text-xs" x-text="testimonial.company"></p>
                                 </div>
                             </div>
                             
-                            <div class="flex items-center space-x-4">
-                                <div class="w-12 h-12 bg-gold/20 rounded-full flex items-center justify-center">
-                                    <i class="fas fa-phone text-gold"></i>
-                                </div>
-                                <div>
-                                    <h4 class="font-semibold text-white">Phone</h4>
-                                    <p class="text-gray-400">+44 (0) 123 456 7890</p>
-                                </div>
-                            </div>
-                            
-                            <div class="flex items-center space-x-4">
-                                <div class="w-12 h-12 bg-gold/20 rounded-full flex items-center justify-center">
-                                    <i class="fas fa-map-marker-alt text-gold"></i>
-                                </div>
-                                <div>
-                                    <h4 class="font-semibold text-white">Location</h4>
-                                    <p class="text-gray-400">London, UK / Bangkok, TH</p>
-                                </div>
-                            </div>
-                        </div>
-                        
-                        <!-- Social Links -->
-                        <div class="mt-8 pt-8 border-t border-white/10">
-                            <h4 class="font-semibold text-white mb-4">Follow Me</h4>
-                            <div class="flex space-x-4">
-                                <a href="#" class="w-10 h-10 bg-white/10 rounded-full flex items-center justify-center hover:bg-gold hover:text-black transition-all duration-300">
-                                    <i class="fab fa-linkedin"></i>
-                                </a>
-                                <a href="#" class="w-10 h-10 bg-white/10 rounded-full flex items-center justify-center hover:bg-gold hover:text-black transition-all duration-300">
-                                    <i class="fab fa-github"></i>
-                                </a>
-                                <a href="#" class="w-10 h-10 bg-white/10 rounded-full flex items-center justify-center hover:bg-gold hover:text-black transition-all duration-300">
-                                    <i class="fab fa-instagram"></i>
-                                </a>
-                                <a href="#" class="w-10 h-10 bg-white/10 rounded-full flex items-center justify-center hover:bg-gold hover:text-black transition-all duration-300">
-                                    <i class="fab fa-twitter"></i>
-                                </a>
+                            <!-- Project Type Badge -->
+                            <div class="mt-4">
+                                <span class="px-3 py-1 bg-gold/20 text-gold text-xs rounded-full" x-text="testimonial.projectType"></span>
                             </div>
                         </div>
                     </div>
-                </div>
-                
-                <!-- Contact Form -->
-                <form class="glass-morphism rounded-3xl p-8 card-hover" @submit.prevent="submitForm">
-                    <div class="grid grid-cols-1 md:grid-cols-2 gap-6 mb-6">
-                        <div>
-                            <label class="block text-sm font-medium mb-2 text-white">
-                                <i class="fas fa-user mr-2 text-gold"></i>Your Name
-                            </label>
-                            <input type="text" x-model="form.name" 
-                                   class="w-full bg-white/10 border border-white/20 rounded-xl px-4 py-3 text-white placeholder-gray-400 focus:border-gold focus:outline-none focus:ring-2 focus:ring-gold/20 transition-all duration-300"
-                                   placeholder="Enter your name"
-                                   required>
-                        </div>
-                        <div>
-                            <label class="block text-sm font-medium mb-2 text-white">
-                                <i class="fas fa-envelope mr-2 text-gold"></i>Email Address
-                            </label>
-                            <input type="email" x-model="form.email"
-                                   class="w-full bg-white/10 border border-white/20 rounded-xl px-4 py-3 text-white placeholder-gray-400 focus:border-gold focus:outline-none focus:ring-2 focus:ring-gold/20 transition-all duration-300"
-                                   placeholder="your.email@example.com"
-                                   required>
-                        </div>
-                    </div>
-                    
-                    <div class="mb-6">
-                        <label class="block text-sm font-medium mb-2 text-white">
-                            <i class="fas fa-briefcase mr-2 text-gold"></i>Project Type
-                        </label>
-                        <select x-model="form.projectType"
-                                class="w-full bg-white/10 border border-white/20 rounded-xl px-4 py-3 text-white focus:border-gold focus:outline-none focus:ring-2 focus:ring-gold/20 transition-all duration-300">
-                            <option value="">Select project type</option>
-                            <option value="fashion">Fashion Design</option>
-                            <option value="ai">AI Development</option>
-                            <option value="web">Web Development</option>
-                            <option value="consulting">Cultural Consulting</option>
-                            <option value="other">Other</option>
-                        </select>
-                    </div>
-                    
-                    <div class="mb-6">
-                        <label class="block text-sm font-medium mb-2 text-white">
-                            <i class="fas fa-comment mr-2 text-gold"></i>Your Message
-                        </label>
-                        <textarea x-model="form.message" rows="6"
-                                  class="w-full bg-white/10 border border-white/20 rounded-xl px-4 py-3 text-white placeholder-gray-400 focus:border-gold focus:outline-none focus:ring-2 focus:ring-gold/20 transition-all duration-300 resize-none"
-                                  placeholder="Tell me about your project, vision, and how we can create something amazing together..."
-                                  required></textarea>
-                    </div>
-                    
-                    <button type="submit" 
-                            class="w-full bg-gradient-to-r from-gold to-yellow-500 text-black py-4 rounded-xl font-bold text-lg hover:scale-105 transform transition-all duration-300 hover:shadow-2xl hover:shadow-gold/50 disabled:opacity-50 disabled:cursor-not-allowed relative overflow-hidden group"
-                            :disabled="isSubmitting">
-                        <span x-show="!isSubmitting" class="flex items-center justify-center">
-                            <i class="fas fa-paper-plane mr-3 group-hover:animate-wiggle"></i>
-                            Send Message ✨
-                        </span>
-                        <span x-show="isSubmitting" class="flex items-center justify-center">
-                            <i class="fas fa-spinner fa-spin mr-3"></i>
-                            Sending Magic...
-                        </span>
-                        
-                        <!-- Hover effect -->
-                        <div class="absolute inset-0 bg-gradient-to-r from-yellow-400 to-gold opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
+                </template>
+            </div>
+            
+            <!-- Call to Action -->
+            <div class="text-center mt-16">
+                <div class="glass-morphism rounded-2xl p-8 max-w-2xl mx-auto">
+                    <h3 class="text-2xl font-bold text-gold mb-4">Ready to Work Together?</h3>
+                    <p class="text-gray-300 mb-6">Join these satisfied clients and let's create something extraordinary together.</p>
+                    <button class="bg-gradient-to-r from-gold to-yellow-500 text-black px-8 py-3 rounded-full font-bold hover:scale-105 transform transition-all duration-300 hover:shadow-2xl hover:shadow-gold/50"
+                            @click="scrollToSection('contact')">
+                        <i class="fas fa-rocket mr-2"></i>
+                        Start Your Project
                     </button>
-                    
-                    <div x-show="submitSuccess" 
-                         x-transition:enter="transition ease-out duration-300"
-                         x-transition:enter-start="opacity-0 transform translate-y-2"
-                         x-transition:enter-end="opacity-100 transform translate-y-0"
-                         class="mt-6 p-4 bg-green-500/20 border border-green-500/50 rounded-xl text-green-300">
-                        <div class="flex items-center">
-                            <i class="fas fa-check-circle mr-3 text-xl"></i>
-                            <div>
-                                <h4 class="font-semibold">Message Sent Successfully!</h4>
-                                <p class="text-sm">Thank you for reaching out. I'll get back to you within 24 hours.</p>
-                            </div>
-                        </div>
-                    </div>
-                </form>
+                </div>
             </div>
         </div>
     </section>
 
-    <!-- Footer -->
-    <footer class="py-12 px-4 border-t border-white/10">
-        <div class="max-w-7xl mx-auto">
-            <div class="text-center">
-                <div class="flex justify-center items-center mb-6">
-                    <i class="fas fa-moon text-3xl text-gold mr-4 animate-spin-slow"></i>
-                    <h3 class="text-2xl font-bold text-gold">Thanatsitt Santisamranwilai</h3>
-                </div>
-                
-                <p class="text-gray-400 mb-6 max-w-2xl mx-auto">
-                    Bridging cultures, creating futures. Where ancient wisdom meets modern innovation.
-                </p>
-                
-                <div class="flex justify-center space-x-6 mb-8">
-                    <a href="#" class="text-gray-400 hover:text-gold transition-colors">
-                        <i class="fab fa-linkedin text-xl"></i>
-                    </a>
-                    <a href="#" class="text-gray-400 hover:text-gold transition-colors">
-                        <i class="fab fa-github text-xl"></i>
-                    </a>
-                    <a href="#" class="text-gray-400 hover:text-gold transition-colors">
-                        <i class="fab fa-instagram text-xl"></i>
-                    </a>
-                    <a href="#" class="text-gray-400 hover:text-gold transition-colors">
-                        <i class="fab fa-twitter text-xl"></i>
-                    </a>
-                </div>
-                
-                <div class="h-px bg-gradient-to-r from-transparent via-gold to-transparent mb-6"></div>
-                
-                <p class="text-gray-500 text-sm">
-                    © 2024 Thanatsitt Santisamranwilai. Crafted with ❤️ and ✨ in London & Bangkok.
-                </p>
-            </div>
-        </div>
-    </footer>
-
-    <!-- Modal -->
-    <div x-show="selectedProject" 
-         x-transition:enter="transition ease-out duration-300"
-         x-transition:enter-start="opacity-0"
-         x-transition:enter-end="opacity-100"
-         x-transition:leave="transition ease-in duration-200"
-         x-transition:leave-start="opacity-100"
-         x-transition:leave-end="opacity-0"
-         class="fixed inset-0 bg-black/90 backdrop-blur-lg z-50 flex items-center justify-center p-4 custom-scrollbar overflow-y-auto"
-         @click="closeModal"
-         @keydown.escape="closeModal">
-        
-        <div class="glass-morphism rounded-3xl max-w-6xl w-full max-h-[90vh] overflow-auto custom-scrollbar"
-             x-show="selectedProject"
-             x-transition:enter="transition ease-out duration-300"
-             x-transition:enter-start="opacity-0 transform scale-95"
-             x-transition:enter-end="opacity-100 transform scale-100"
-             x-transition:leave="transition ease-in duration-200"
-             x-transition:leave-start="opacity-100 transform scale-100"
-             x-transition:leave-end="opacity-0 transform scale-95"
-             @click.stop>
-            
-            <template x-if="selectedProject">
-                <div class="p-8">
-                    <!-- Modal Header -->
-                    <div class="flex justify-between items-start mb-8">
-                        <div>
-                            <h3 class="text-3xl md:text-4xl font-bold text-gold mb-2" x-text="selectedProject.title"></h3>
-                            <div class="flex items-center space-x-4">
-                                <span class="bg-gold text-black px-4 py-2 rounded-full text-sm font-semibold flex items-center">
-                                    <i :class="selectedProject.icon" class="mr-2"></i>
-                                    <span x-text="selectedProject.category"></span>
-                                </span>
-                                <span class="text-gray-400 flex items-center">
-                                    <i class="fas fa-calendar mr-2"></i>
-                                    <span x-text="selectedProject.year"></span>
-                                </span>
-                            </div>
-                        </div>
-                        <button @click="closeModal"
-                                class="text-gray-400 hover:text-white text-3xl transition-colors hover:rotate-90 transform duration-300">
-                            <i class="fas fa-times"></i>
-                        </button>
-                    </div>
-                    
-                    <!-- Modal Content -->
-                    <div class="grid grid-cols-1 lg:grid-cols-2 gap-8">
-                        <!-- Project Image -->
-                        <div class="space-y-6">
-                            <div class="aspect-video rounded-2xl overflow-hidden">
-                                <img :src="selectedProject.image" 
-                                     :alt="selectedProject.title"
-                                     class="w-full h-full object-cover">
-                            </div>
-                            
-                            <!-- Additional Images -->
-                            <div class="grid grid-cols-3 gap-4" x-show="selectedProject.gallery">
-                                <template x-for="(image, index) in selectedProject.gallery || []">
-                                    <div class="aspect-square rounded-lg overflow-hidden cursor-pointer hover:scale-105 transition-transform">
-                                        <img :src="image" :alt="`Gallery ${index + 1}`" class="w-full h-full object-cover">
-                                    </div>
-                                </template>
-                            </div>
-                        </div>
-                        
-                        <!-- Project Details -->
-                        <div class="space-y-6">
-                            <div>
-                                <h4 class="text-xl font-bold text-gold mb-3">Project Overview</h4>
-                                <p class="text-gray-300 leading-relaxed text-lg" x-text="selectedProject.fullDescription"></p>
-                            </div>
-                            
-                            <div>
-                                <h4 class="text-xl font-bold text-gold mb-3">Technologies Used</h4>
-                                <div class="flex flex-wrap gap-2">
-                                    <template x-for="tag in selectedProject.tags">
-                                        <span class="bg-white/10 px-4 py-2 rounded-full text-sm text-gray-300 border border-white/20" x-text="tag"></span>
-                                    </template>
-                                </div>
-                            </div>
-                            
-                            <div x-show="selectedProject.features">
-                                <h4 class="text-xl font-bold text-gold mb-3">Key Features</h4>
-                                <ul class="space-y-2">
-                                    <template x-for="feature in selectedProject.features || []">
-                                        <li class="flex items-center text-gray-300">
-                                            <i class="fas fa-check-circle text-gold mr-3"></i>
-                                            <span x-text="feature"></span>
-                                        </li>
-                                    </template>
-                                </ul>
-                            </div>
-                            
-                            <div class="flex space-x-4 pt-6">
-                                <a :href="selectedProject.liveUrl || '#'" 
-                                   class="flex-1 bg-gradient-to-r from-gold to-yellow-500 text-black py-3 px-6 rounded-xl font-semibold text-center hover:scale-105 transform transition-all duration-300 flex items-center justify-center"
-                                   x-show="selectedProject.liveUrl">
-                                    <i class="fas fa-external-link-alt mr-2"></i>
-                                    View Live
-                                </a>
-                                <a :href="selectedProject.githubUrl || '#'" 
-                                   class="flex-1 border-2 border-gold text-gold py-3 px-6 rounded-xl font-semibold text-center hover:bg-gold hover:text-black transition-all duration-300 flex items-center justify-center"
-                                   x-show="selectedProject.githubUrl">
-                                    <i class="fab fa-github mr-2"></i>
-                                    View Code
-                                </a>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </template>
-        </div>
-    </div>
-
-    <!-- Scroll to Top Button -->
-    <button class="fixed bottom-8 right-8 w-14 h-14 bg-gradient-to-r from-gold to-yellow-500 text-black rounded-full shadow-2xl hover:scale-110 transform transition-all duration-300 z-40 flex items-center justify-center group"
-            x-show="scrolled"
-            x-transition:enter="transition ease-out duration-300"
-            x-transition:enter-start="opacity-0 transform scale-0"
-            x-transition:enter-end="opacity-100 transform scale-100"
-            x-transition:leave="transition ease-in duration-200"
-            x-transition:leave-start="opacity-100 transform scale-100"
-            x-transition:leave-end="opacity-0 transform scale-0"
-            @click="window.scrollTo({ top: 0, behavior: 'smooth' })">
-        <i class="fas fa-arrow-up text-xl group-hover:animate-bounce"></i>
-    </button>
-
-    <!-- Alpine.js App Logic -->
-    <script>
-        function portfolioApp() {
-            return {
-                // State
-                scrolled: false,
-                mobileMenuOpen: false,
-                typedText: '',
-                selectedProject: null,
-                activeFilter: 'all',
-                isSubmitting: false,
-                submitSuccess: false,
-                
-                // Form data
-                form: {
-                    name: '',
-                    email: '',
-                    projectType: '',
-                    message: ''
-                },
-                
-                // Projects data
-                projects: [
-                    {
-                        id: 1,
-                        title: 'London College of Fashion Projects',
-                        category: 'Fashion Design',
-                        type: 'fashion',
-                        icon: 'fas fa-palette',
-                        description: 'Visual storytelling through fashion, exploring cultural identity and human-centered aesthetics.',
-                        fullDescription: 'A comprehensive collection of fashion design projects from my time at London College of Fashion. These works explore the intersection of Thai cultural heritage with contemporary Western fashion paradigms, focusing on sustainable practices, cultural sensitivity, and innovative design methodologies. Each piece tells a story of cultural bridge-building through the universal language of design.',
-                        image: 'https://images.unsplash.com/photo-1558618666-fcd25c85cd64?w=800&h=600&fit=crop',
-                        tags: ['Fashion Design', 'Cultural Identity', 'Sustainability', 'LCF', 'Visual Storytelling'],
-                        year: '2023',
-                        features: [
-                            'Sustainable material research and application',
-                            'Cultural motif integration with modern silhouettes',
-                            'Human-centered design methodology',
-                            'Cross-cultural aesthetic exploration'
-                        ],
-                        gallery: [
-                            'https://images.unsplash.com/photo-1558618666-fcd25c85cd64?w=300&h=300&fit=crop',
-                            'https://images.unsplash.com/photo-1515886657613-9f3515b0c78f?w=300&h=300&fit=crop',
-                            'https://images.unsplash.com/photo-1509631179647-0177331693ae?w=300&h=300&fit=crop'
-                        ]
-                    },
-                    {
-                        id: 2,
-                        title: 'Twilight Goddess AI Art',
-                        category: 'AI Art',
-                        type: 'ai',
-                        icon: 'fas fa-magic',
-                        description: 'AI-generated visuals exploring Thai mythology through divine feminine imagery.',
-                        fullDescription: 'An innovative exploration of Thai mythology through AI-generated art, focusing on divine feminine archetypes and their relevance in contemporary digital culture. Using advanced AI tools like Midjourney and custom-trained models, this project bridges ancient spiritual concepts with cutting-edge technology, creating a new visual language for cultural storytelling.',
-                        image: 'https://images.unsplash.com/photo-1677442136019-21780ecad995?w=800&h=600&fit=crop',
-                        tags: ['Midjourney', 'Thai Mythology', 'Digital Art', 'AI Ethics', 'Cultural Preservation'],
-                        year: '2024',
-                        features: [
-                            'Custom AI model training on Thai cultural imagery',
-                            'Ethical AI practices in cultural representation',
-                            'Interactive digital gallery experience',
-                            'Educational content about Thai mythology'
-                        ],
-                        liveUrl: 'https://example.com/twilight-goddess',
-                        gallery: [
-                            'https://images.unsplash.com/photo-1677442136019-21780ecad995?w=300&h=300&fit=crop',
-                            'https://images.unsplash.com/photo-1676299081847-824916de030a?w=300&h=300&fit=crop',
-                            'https://images.unsplash.com/photo-1677756119517-756a188d2d94?w=300&h=300&fit=crop'
-                        ]
-                    },
-                    {
-                        id: 3,
-                        title: 'ThannxAI Platform',
-                        category: 'AI Platform',
-                        type: 'ai',
-                        icon: 'fas fa-brain',
-                        description: 'Human-centered AI platform focusing on ethical technology integration.',
-                        fullDescription: 'Co-founded AI platform that prioritizes human connection and ethical technology integration. ThannxAI makes artificial intelligence accessible and meaningful for everyone, with a focus on cultural sensitivity, privacy protection, and human-centered design principles. The platform serves as a bridge between complex AI capabilities and everyday human needs.',
-                        image: 'https://images.unsplash.com/photo-1677756119517-756a188d2d94?w=800&h=600&fit=crop',
-                        tags: ['AI Ethics', 'Human-Centered Design', 'Co-founder', 'Innovation', 'Cultural Sensitivity'],
-                        year: '2024',
-                        features: [
-                            'Ethical AI framework implementation',
-                            'Multi-cultural user interface design',
-                            'Privacy-first architecture',
-                            'Community-driven development approach'
-                        ],
-                        liveUrl: 'https://thannxai.com',
-                        githubUrl: 'https://github.com/thannxai'
-                    },
-                    {
-                        id: 4,
-                        title: 'Cultural Bridge Web App',
-                        category: 'Web Development',
-                        type: 'web',
-                        icon: 'fas fa-globe',
-                        description: 'Interactive platform connecting Thai and British cultural communities.',
-                        fullDescription: 'A comprehensive web application designed to facilitate cultural exchange between Thai and British communities. The platform features interactive cultural maps, language exchange tools, event coordination systems, and educational resources. Built with modern web technologies and responsive design principles.',
-                        image: 'https://images.unsplash.com/photo-1460925895917-afdab827c52f?w=800&h=600&fit=crop',
-                        tags: ['React', 'Node.js', 'Cultural Exchange', 'Community Building', 'Responsive Design'],
-                        year: '2023',
-                        features: [
-                            'Real-time cultural event coordination',
-                            'Multi-language support (Thai/English)',
-                            'Interactive cultural learning modules',
-                            'Community forum and networking tools'
-                        ],
-                        liveUrl: 'https://culturalbridge.app',
-                        githubUrl: 'https://github.com/cultural-bridge'
-                    },
-                    {
-                        id: 5,
-                        title: 'Sustainable Fashion Analytics',
-                        category: 'Fashion Tech',
-                        type: 'fashion',
-                        icon: 'fas fa-leaf',
-                        description: 'Data-driven insights for sustainable fashion industry transformation.',
-                        fullDescription: 'An innovative analytics platform that combines fashion industry expertise with data science to drive sustainability in the fashion sector. The project analyzes supply chain data, consumer behavior patterns, and environmental impact metrics to provide actionable insights for fashion brands committed to sustainable practices.',
-                        image: 'https://images.unsplash.com/photo-1441986300917-64674bd600d8?w=800&h=600&fit=crop',
-                        tags: ['Data Analytics', 'Sustainability', 'Fashion Industry', 'Environmental Impact', 'Supply Chain'],
-                        year: '2023',
-                        features: [
-                            'Supply chain transparency tracking',
-                            'Environmental impact visualization',
-                            'Consumer behavior analysis',
-                            'Sustainability scoring system'
-                        ],
-                        liveUrl: 'https://sustainablefashion.analytics'
-                    },
-                    {
-                        id: 6,
-                        title: 'AI-Powered Design Assistant',
-                        category: 'AI Tools',
-                        type: 'ai',
-                        icon: 'fas fa-robot',
-                        description: 'Intelligent design companion for creative professionals.',
-                        fullDescription: 'An AI-powered design assistant that helps creative professionals streamline their workflow while maintaining cultural sensitivity and ethical design practices. The tool provides intelligent suggestions, automates repetitive tasks, and offers cultural context for design decisions across different markets.',
-                        image: 'https://images.unsplash.com/photo-1485827404703-89b55fcc595e?w=800&h=600&fit=crop',
-                        tags: ['AI Assistant', 'Design Tools', 'Creative Workflow', 'Cultural Context', 'Automation'],
-                        year: '2024',
-                        features: [
-                            'Intelligent design suggestions',
-                            'Cultural sensitivity checking',
-                            'Automated workflow optimization',
-                            'Multi-platform integration'
-                        ],
-                        githubUrl: 'https://github.com/ai-design-assistant'
-                    }
-                ],
-                
-                // Computed properties
-                get filteredProjects() {
-                    if (this.activeFilter === 'all') {
-                        return this.projects;
-                    }
-                    return this.projects.filter(project => project.type === this.activeFilter);
-                },
-                
-                // Methods
-                init() {
-                    this.startTypingAnimation();
-                    this.initScrollListener();
-                },
-                
-                startTypingAnimation() {
-                    const strings = [
-                        'Thanatsitt Santisamranwilai',
-                        'Cultural Navigator',
-                        'AI Developer',
-                        'Design Thinker',
-                        'Bridge Builder'
-                    ];
-                    let stringIndex = 0;
-                    let charIndex = 0;
-                    
-                    const typeWriter = () => {
-                        if (charIndex < strings[stringIndex].length) {
-                            this.typedText += strings[stringIndex].charAt(charIndex);
-                            charIndex++;
-                            setTimeout(typeWriter, 100);
-                        } else {
-                            setTimeout(() => {
-                                charIndex = 0;
-                                this.typedText = '';
-                                stringIndex = (stringIndex + 1) % strings.length;
-                                typeWriter();
-                            }, 2000);
-                        }
-                    };
-                    
-                    typeWriter();
-                },
-                
-                initScrollListener() {
-                    window.addEventListener('scroll', () => {
-                        this.scrolled = window.scrollY > 50;
-                    });
-                },
-                
-                scrollToSection(sectionId) {
-                    const element = document.getElementById(sectionId);
-                    if (element) {
-                        element.scrollIntoView({ 
-                            behavior: 'smooth',
-                            block: 'start'
-                        });
-                    }
-                    this.mobileMenuOpen = false;
-                },
-                
-                openModal(project) {
-                    this.selectedProject = project;
-                    document.body.style.overflow = 'hidden';
-                },
-                
-                closeModal() {
-                    this.selectedProject = null;
-                    document.body.style.overflow = 'auto';
-                },
-                
-                async submitForm() {
-                    this.isSubmitting = true;
-                    
-                    // Simulate form submission
-                    try {
-                        await new Promise(resolve => setTimeout(resolve, 2000));
-                        
-                        // Reset form
-                        this.form = {
-                            name: '',
-                            email: '',
-                            projectType: '',
-                            message: ''
-                        };
-                        
-                        this.submitSuccess = true
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Thanatsitt Santisamranwilai - Portfolio</title>
-    <script src="https://cdn.tailwindcss.com"></script>
-    <script defer src="https://unpkg.com/alpinejs@3.x.x/dist/cdn.min.js"></script>
-    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" rel="stylesheet">
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
-    <script>
-        tailwind.config = {
-            theme: {
-                extend: {
-                    fontFamily: {
-                        'sans': ['Inter', 'system-ui', 'sans-serif'],
-                    },
-                    colors: {
-                        'gold': '#D4AF37',
-                        'deep-purple': '#1A1A2E',
-                        'moon-silver': '#C0C0C8',
-                        'cosmic-blue': '#16213E',
-                        'stellar-purple': '#0F3460',
-                    },
-                    animation: {
-                        'gradient': 'gradient 15s ease infinite',
-                        'float': 'float 6s ease-in-out infinite',
-                        'glow': 'glow 2s ease-in-out infinite alternate',
-                        'pulse-slow': 'pulse 3s cubic-bezier(0.4, 0, 0.6, 1) infinite',
-                        'bounce-slow': 'bounce 3s infinite',
-                        'spin-slow': 'spin 8s linear infinite',
-                        'wiggle': 'wiggle 1s ease-in-out infinite',
-                    },
-                    backgroundImage: {
-                        'cosmic-gradient': 'linear-gradient(135deg, #667eea 0%, #764ba2 100%)',
-                        'stellar-gradient': 'linear-gradient(135deg, #f093fb 0%, #f5576c 100%)',
-                        'aurora-gradient': 'linear-gradient(135deg, #4facfe 0%, #00f2fe 100%)',
-                    }
-                }
-            }
-        }
-    </script>
-    <style>
-        @keyframes gradient {
-            0%, 100% { background-position: 0% 50%; }
-            50% { background-position: 100% 50%; }
-        }
-        @keyframes float {
-            0%, 100% { transform: translateY(0px) rotate(0deg); }
-            33% { transform: translateY(-20px) rotate(1deg); }
-            66% { transform: translateY(-10px) rotate(-1deg); }
-        }
-        @keyframes glow {
-            from { box-shadow: 0 0 20px #D4AF37, 0 0 30px #D4AF37; }
-            to { box-shadow: 0 0 30px #D4AF37, 0 0 40px #D4AF37, 0 0 50px #D4AF37; }
-        }
-        @keyframes wiggle {
-            0%, 7% { transform: rotateZ(0); }
-            15% { transform: rotateZ(-15deg); }
-            20% { transform: rotateZ(10deg); }
-            25% { transform: rotateZ(-10deg); }
-            30% { transform: rotateZ(6deg); }
-            35% { transform: rotateZ(-4deg); }
-            40%, 100% { transform: rotateZ(0); }
-        }
-        
-        .glass-morphism {
-            background: rgba(255, 255, 255, 0.05);
-            backdrop-filter: blur(20px);
-            border: 1px solid rgba(255, 255, 255, 0.1);
-        }
-        
-        .text-shadow {
-            text-shadow: 0 2px 4px rgba(0,0,0,0.3);
-        }
-        
-        .custom-scrollbar::-webkit-scrollbar {
-            width: 8px;
-        }
-        
-        .custom-scrollbar::-webkit-scrollbar-track {
-            background: rgba(255, 255, 255, 0.1);
-            border-radius: 10px;
-        }
-        
-        .custom-scrollbar::-webkit-scrollbar-thumb {
-            background: linear-gradient(45deg, #D4AF37, #F4D03F);
-            border-radius: 10px;
-        }
-        
-        .particle {
-            position: absolute;
-            background: radial-gradient(circle, #D4AF37 0%, transparent 70%);
-            border-radius: 50%;
-            pointer-events: none;
-            animation: float 8s infinite ease-in-out;
-        }
-        
-        .typing-cursor::after {
-            content: '|';
-            animation: blink 1s infinite;
-        }
-        
-        @keyframes blink {
-            0%, 50% { opacity: 1; }
-            51%, 100% { opacity: 0; }
-        }
-        
-        .hero-bg {
-            background: linear-gradient(135deg, #1A1A2E 0%, #16213E 25%, #0F3460 50%, #533483 75%, #7B2CBF 100%);
-            background-size: 400% 400%;
-            animation: gradient 15s ease infinite;
-        }
-        
-        .card-hover {
-            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-        }
-        
-        .card-hover:hover {
-            transform: translateY(-10px) scale(1.02);
-        }
-        
-        .skill-bar {
-            background: linear-gradient(90deg, #D4AF37 0%, #F4D03F 100%);
-            height: 4px;
-            border-radius: 2px;
-            transition: width 2s ease-in-out;
-        }
-    </style>
-</head>
-<body class="hero-bg text-white min-h-screen custom-scrollbar overflow-x-hidden" x-data="portfolioApp()">
-    <!-- Particle Background -->
-    <div class="fixed inset-0 overflow-hidden pointer-events-none z-0">
-        <template x-for="i in 50">
-            <div class="particle" 
-                 :style="`left: ${Math.random() * 100}%; top: ${Math.random() * 100}%; width: ${Math.random() * 4 + 1}px; height: ${Math.random() * 4 + 1}px; animation-delay: ${Math.random() * 8}s; animation-duration: ${Math.random() * 10 + 5}s;`">
-            </div>
-        </template>
-    </div>
-
-    <!-- Navigation -->
-    <nav class="fixed w-full z-50 transition-all duration-500" 
-         :class="scrolled ? 'glass-morphism shadow-2xl' : 'bg-transparent'"
-         x-init="window.addEventListener('scroll', () => scrolled = window.scrollY > 50)">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div class="flex justify-between items-center py-4">
-                <a href="#" class="text-2xl font-bold text-gold hover:animate-glow transition-all duration-300 flex items-center">
-                    <i class="fas fa-moon mr-3 animate-spin-slow"></i>
-                    <span class="text-shadow">Thanatsitt</span>
-                </a>
-                
-                <!-- Desktop Menu -->
-                <div class="hidden md:flex space-x-8">
-                    <a href="#home" class="nav-link relative group" @click="scrollToSection('home')">
-                        <span class="relative z-10">Home</span>
-                        <div class="absolute inset-0 bg-gold/20 rounded-lg scale-0 group-hover:scale-100 transition-transform duration-300"></div>
-                    </a>
-                    <a href="#about" class="nav-link relative group" @click="scrollToSection('about')">
-                        <span class="relative z-10">About</span>
-                        <div class="absolute inset-0 bg-gold/20 rounded-lg scale-0 group-hover:scale-100 transition-transform duration-300"></div>
-                    </a>
-                    <a href="#portfolio" class="nav-link relative group" @click="scrollToSection('portfolio')">
-                        <span class="relative z-10">Portfolio</span>
-                        <div class="absolute inset-0 bg-gold/20 rounded-lg scale-0 group-hover:scale-100 transition-transform duration-300"></div>
-                    </a>
-                    <a href="#skills" class="nav-link relative group" @click="scrollToSection('skills')">
-                        <span class="relative z-10">Skills</span>
-                        <div class="absolute inset-0 bg-gold/20 rounded-lg scale-0 group-hover:scale-100 transition-transform duration-300"></div>
-                    </a>
-                    <a href="#contact" class="nav-link relative group" @click="scrollToSection('contact')">
-                        <span class="relative z-10">Contact</span>
-                        <div class="absolute inset-0 bg-gold/20 rounded-lg scale-0 group-hover:scale-100 transition-transform duration-300"></div>
-                    </a>
-                </div>
-                
-                <!-- Mobile Menu Button -->
-                <button @click="mobileMenuOpen = !mobileMenuOpen" class="md:hidden text-gold hover:animate-wiggle">
-                    <i class="fas fa-bars text-xl"></i>
-                </button>
-            </div>
-            
-            <!-- Mobile Menu -->
-            <div x-show="mobileMenuOpen" 
-                 x-transition:enter="transition ease-out duration-300"
-                 x-transition:enter-start="opacity-0 transform -translate-y-2"
-                 x-transition:enter-end="opacity-100 transform translate-y-0"
-                 x-transition:leave="transition ease-in duration-200"
-                 x-transition:leave-start="opacity-100 transform translate-y-0"
-                 x-transition:leave-end="opacity-0 transform -translate-y-2"
-                 class="md:hidden pb-4 glass-morphism rounded-b-2xl">
-                <a href="#home" class="block py-3 px-4 hover:bg-gold/20 rounded-lg transition-colors" @click="scrollToSection('home'); mobileMenuOpen = false">
-                    <i class="fas fa-home mr-3"></i>Home
-                </a>
-                <a href="#about" class="block py-3 px-4 hover:bg-gold/20 rounded-lg transition-colors" @click="scrollToSection('about'); mobileMenuOpen = false">
-                    <i class="fas fa-user mr-3"></i>About
-                </a>
-                <a href="#portfolio" class="block py-3 px-4 hover:bg-gold/20 rounded-lg transition-colors" @click="scrollToSection('portfolio'); mobileMenuOpen = false">
-                    <i class="fas fa-briefcase mr-3"></i>Portfolio
-                </a>
-                <a href="#skills" class="block py-3 px-4 hover:bg-gold/20 rounded-lg transition-colors" @click="scrollToSection('skills'); mobileMenuOpen = false">
-                    <i class="fas fa-cogs mr-3"></i>Skills
-                </a>
-                <a href="#contact" class="block py-3 px-4 hover:bg-gold/20 rounded-lg transition-colors" @click="scrollToSection('contact'); mobileMenuOpen = false">
-                    <i class="fas fa-envelope mr-3"></i>Contact
-                </a>
-            </div>
-        </nav>
-
-    <!-- Hero Section -->
-    <section id="home" class="min-h-screen flex items-center justify-center relative overflow-hidden">
-        <!-- Floating Elements -->
-        <div class="absolute top-20 right-20 w-32 h-32 bg-gold/20 rounded-full animate-float hidden lg:block"></div>
-        <div class="absolute bottom-20 left-20 w-24 h-24 bg-moon-silver/20 rounded-full animate-float hidden lg:block" style="animation-delay: -2s;"></div>
-        <div class="absolute top-1/2 left-10 w-16 h-16 bg-stellar-purple/30 rounded-full animate-bounce-slow hidden lg:block" style="animation-delay: -1s;"></div>
-        <div class="absolute bottom-1/3 right-1/4 w-20 h-20 bg-cosmic-blue/40 rounded-full animate-pulse-slow hidden lg:block"></div>
-        
-        <div class="relative z-10 text-center max-w-6xl mx-auto px-4">
-            <div class="mb-8">
-                <h1 class="text-5xl md:text-7xl lg:text-8xl font-black mb-6 text-shadow">
-                    <span class="bg-gradient-to-r from-gold via-yellow-400 to-gold bg-clip-text text-transparent typing-cursor" x-text="typedText"></span>
-                </h1>
-                <div class="h-2 w-32 bg-gradient-to-r from-gold to-yellow-400 mx-auto rounded-full animate-pulse"></div>
-            </div>
-            
-            <p class="text-xl md:text-2xl lg:text-3xl mb-12 text-gray-300 leading-relaxed max-w-4xl mx-auto text-shadow">
-                Thai-British interdisciplinary creator bridging 
-                <span class="text-gold font-semibold">ancient wisdom</span> with 
-                <span class="text-gold font-semibold">modern technology</span>
-            </p>
-            
-            <div class="flex flex-col sm:flex-row gap-6 justify-center items-center mb-16">
-                <button class="group bg-gradient-to-r from-gold to-yellow-500 text-black px-10 py-5 rounded-full font-bold text-lg hover:scale-105 transform transition-all duration-300 hover:shadow-2xl hover:shadow-gold/50 relative overflow-hidden"
-                        @click="scrollToSection('portfolio')">
-                    <span class="relative z-10 flex items-center">
-                        <i class="fas fa-eye mr-3 group-hover:animate-wiggle"></i>
-                        Explore Portfolio
-                    </span>
-                    <div class="absolute inset-0 bg-gradient-to-r from-yellow-400 to-gold opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
-                </button>
-                
-                <button class="group border-2 border-moon-silver text-moon-silver px-10 py-5 rounded-full font-bold text-lg hover:bg-moon-silver hover:text-black transition-all duration-300 relative overflow-hidden"
-                        @click="scrollToSection('contact')">
-                    <span class="relative z-10 flex items-center">
-                        <i class="fas fa-paper-plane mr-3 group-hover:animate-wiggle"></i>
-                        Get In Touch
-                    </span>
-                </button>
-            </div>
-            
-            <!-- Social Links -->
-            <div class="flex justify-center space-x-8">
-                <a href="#" class="text-3xl text-gray-400 hover:text-gold transition-colors duration-300 hover:animate-bounce">
-                    <i class="fab fa-linkedin"></i>
-                </a>
-                <a href="#" class="text-3xl text-gray-400 hover:text-gold transition-colors duration-300 hover:animate-bounce">
-                    <i class="fab fa-github"></i>
-                </a>
-                <a href="#" class="text-3xl text-gray-400 hover:text-gold transition-colors duration-300 hover:animate-bounce">
-                    <i class="fab fa-instagram"></i>
-                </a>
-                <a href="#" class="text-3xl text-gray-400 hover:text-gold transition-colors duration-300 hover:animate-bounce">
-                    <i class="fab fa-twitter"></i>
-                </a>
-            </div>
-        </div>
-        
-        <!-- Scroll Indicator -->
-        <div class="absolute bottom-8 left-1/2 transform -translate-x-1/2 animate-bounce">
-            <div class="w-6 h-10 border-2 border-gold rounded-full flex justify-center">
-                <div class="w-1 h-3 bg-gold rounded-full mt-2 animate-pulse"></div>
-            </div>
-        </div>
-    </section>
-
-    <!-- About Section -->
-    <section id="about" class="py-20 px-4 relative">
+    <!-- Contact Section -->
+    <section id="contact" class="py-20 px-4 relative">
         <div class="max-w-7xl mx-auto">
             <div class="text-center mb-16">
-                <h2 class="text-4xl md:text-6xl font-bold mb-6 text-gold text-shadow">About Me</h2>
+                <h2 class="text-4xl md:text-6xl font-bold mb-6 text-gold text-shadow">Let's Connect</h2>
                 <div class="h-1 w-24 bg-gradient-to-r from-gold to-yellow-400 mx-auto rounded-full"></div>
             </div>
             
-            <div class="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
-                <!-- Profile Image -->
-                <div class="relative">
-                    <div class="glass-morphism rounded-3xl p-8 card-hover">
-                        <div class="aspect-square bg-gradient-to-br from-gold/20 to-purple-600/20 rounded-2xl flex items-center justify-center relative overflow-hidden">
-                            <div class="absolute inset-0 bg-gradient-to-br from-gold/10 to-transparent"></div>
-                            <i class="fas fa-user text-8xl text-gold/50"></i>
-                            <!-- Replace with actual image -->
-                            <!-- <img src="profile.jpg" alt="Thanatsitt" class="w-full h-full object-cover rounded-2xl"> -->
-                        </div>
-                    </div>
-                    
-                    <!-- Floating badges -->
-                    <div class="absolute -top-4 -right-4 glass-morphism rounded-full p-4 animate-float">
-                        <i class="fas fa-palette text-2xl text-gold"></i>
-                    </div>
-                    <div class="absolute -bottom-4 -left-4 glass-morphism rounded-full p-4 animate-float" style="animation-delay: -1s;">
-                        <i class="fas fa-brain text-2xl text-gold"></i>
-                    </div>
-                </div>
-                
-                <!-- About Content -->
+            <div class="grid grid-cols-1 lg:grid-cols-2 gap-16">
+                <!-- Contact Info -->
                 <div class="space-y-8">
                     <div class="glass-morphism rounded-2xl p-8 card-hover">
-                        <h3 class="text-2xl font-bold mb-4 text-gold">
-                            <i class="fas fa-star mr-3"></i>Cultural Navigator
-                        </h3>
-                        <p class="text-gray-300 leading-relaxed text-lg">
-                            Born from the intersection of Thai heritage and British innovation, I navigate the delicate balance between preserving ancient wisdom and embracing cutting-edge technology. My journey spans continents and disciplines, always seeking to bridge cultural divides through design and technology.
-                        </p>
-                    </div>
-                    
-                    <div class="glass-morphism rounded-2xl p-8 card-hover">
-                        <h3 class="text-2xl font-bold mb-4 text-gold">
-                            <i class="fas fa-graduation-cap mr-3"></i>Educational Journey
+                        <h3 class="text-2xl font-bold mb-6 text-gold">
+                            <i class="fas fa-globe-asia mr-3"></i>Global Reach
                         </h3>
                         <div class="space-y-4">
                             <div class="flex items-center space-x-4">
                                 <div class="w-12 h-12 bg-gold/20 rounded-full flex items-center justify-center">
-                                    <i class="fas fa-university text-gold"></i>
+                                    <i class="fas fa-map-marker-alt text-gold"></i>
                                 </div>
                                 <div>
-                                    <h4 class="font-semibold text-white">London College of Fashion</h4>
-                                    <p class="text-gray-400">Fashion Design & Cultural Studies</p>
+                                    <h4 class="font-semibold text-white">London, UK</h4>
+                                    <p class="text-gray-400">Primary Location</p>
                                 </div>
                             </div>
-                            <div class="flex items-center space-x-4">
-                                <div class="w-12 h-12 bg-gold/20 rounded-full flex items-center justify-center">
-                                    <i class="fas fa-robot text-gold"></i>
-                                </div>
-                                <div>
-                                    <h4 class="font-semibold text-white">AI & Technology</h4>
-                                    <p class="text-gray-400">Self-taught Developer & Co-founder</p>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    
-                    <div class="glass-morphism rounded-2xl p-8 card-hover">
-                        <h3 class="text-2xl font-bold mb-4 text-gold">
-                            <i class="fas fa-heart mr-3"></i>Philosophy
-                        </h3>
-                        <p class="text-gray-300 leading-relaxed text-lg">
-                            I believe technology should enhance human connection, not replace it. Every project I undertake is guided by principles of cultural sensitivity, ethical innovation, and the timeless wisdom that beauty and function are inseparable.
-                        </p>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Skills Section -->
-    <section id="skills" class="py-20 px-4 relative">
-        <div class="max-w-7xl mx-auto">
-            <div class="text-center mb-16">
-                <h2 class="text-4xl md:text-6xl font-bold mb-6 text-gold text-shadow">Skills & Expertise</h2>
-                <div class="h-1 w-24 bg-gradient-to-r from-gold to-yellow-400 mx-auto rounded-full"></div>
-            </div>
-            
-            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-                <!-- Design Skills -->
-                <div class="glass-morphism rounded-2xl p-8 card-hover">
-                    <div class="text-center mb-6">
-                        <div class="w-16 h-16 bg-gradient-to-br from-gold to-yellow-400 rounded-full flex items-center justify-center mx-auto mb-4">
-                            <i class="fas fa-palette text-2xl text-black"></i>
-                        </div>
-                        <h3 class="text-xl font-bold text-gold">Design</h3>
-                    </div>
-                    
-                    <div class="space-y-4" x-data="{ visible: false }" x-intersect="visible = true">
-                        <div class="skill-item">
-                            <div class="flex justify-between mb-2">
-                                <span class="text-white">Fashion Design</span>
-                                <span class="text-gold">95%</span>
-                            </div>
-                            <div class="w-full bg-gray-700 rounded-full h-2">
-                                <div class="skill-bar rounded-full h-2" :style="visible ? 'width: 95%' : 'width: 0%'"></div>
-                            </div>
-                        </div>
-                        
-                        <div class="skill-item">
-                            <div class="flex justify-between mb-2">
-                                <span class="text-white">UI/UX Design</span>
-                                <span class="text-gold">88%</span>
-                            </div>
-                            <div class="w-full bg-gray-700 rounded-full h-2">
-                                <div class="skill-bar rounded-full h-2" :style="visible ? 'width: 88%' : 'width: 0%'"></div>
-                            </div>
-                        </div>
-                        
-                        <div class="skill-item">
-                            <div class="flex justify-between mb-2">
-                                <span class="text-white">Visual Identity</span>
-                                <span class="text-gold">92%</span>
-                            </div>
-                            <div class="w-full bg-gray-700 rounded-full h-2">
-                                <div class="skill-bar rounded-full h-2" :style="visible ? 'width: 92%' : 'width: 0%'"></div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                
-                <!-- Technology Skills -->
-                <div class="glass-morphism rounded-2xl p-8 card-hover">
-                    <div class="text-center mb-6">
-                        <div class="w-16 h-16 bg-gradient-to-br from-blue-500 to-purple-600 rounded-full flex items-center justify-center mx-auto mb-4">
-                            <i class="fas fa-code text-2xl text-white"></i>
-                        </div>
-                        <h3 class="text-xl font-bold text-gold">Technology</h3>
-                    </div>
-                    
-                    <div class="space-y-4" x-data="{ visible: false }" x-intersect="visible = true">
-                        <div class="skill-item">
-                            <div class="flex justify-between mb-2">
-                                <span class="text-white">AI Development</span>
-                                <span class="text-gold">85%</span>
-                            </div>
-                            <div class="w-full bg-gray-700 rounded-full h-2">
-                                <div class="skill-bar rounded-full h-2" :style="visible ? 'width: 85%' : 'width: 0%'"></div>
-                            </div>
-                        </div>
-                        
-                        <div class="skill-item">
-                            <div class="flex justify-between mb-2">
-                                <span class="text-white">Web Development</span>
-                                <span class="text-gold">80%</span>
-                            </div>
-                            <div class="w-full bg-gray-700 rounded-full h-2">
-                                <div class="skill-bar rounded-full h-2" :style="visible ? 'width: 80%' : 'width: 0%'"></div>
-                            </div>
-                        </div>
-                        
-                        <div class="skill-item">
-                            <div class="flex justify-between mb-2">
-                                <span class="text-white">Machine Learning</span>
-                                <span class="text-gold">75%</span>
-                            </div>
-                            <div class="w-full bg-gray-700 rounded-full h-2">
-                                <div class="skill-bar rounded-full h-2" :style="visible ? 'width: 75%' : 'width: 0%'"></div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                
-                <!-- Cultural Skills -->
-                <div class="glass-morphism rounded-2xl p-8 card-hover">
-                    <div class="text-center mb-6">
-                        <div class="w-16 h-16 bg-gradient-to-br from-green-500 to-teal-600 rounded-full flex items-center justify-center mx-auto mb-4">
-                            <i class="fas fa-globe text-2xl text-white"></i>
-                        </div>
-                        <h3 class="text-xl font-bold text-gold">Cultural</h3>
-                    </div>
-                    
-                    <div class="space-y-4" x-data="{ visible: false }" x-intersect="visible = true">
-                        <div class="skill-item">
-                            <div class="flex justify-between mb-2">
-                                <span class="text-white">Cross-Cultural Communication</span>
-                                <span class="text-gold">98%</span>
-                            </div>
-                            <div class="w-full bg-gray-700 rounded-full h-2">
-                                <div class="skill-bar rounded-full h-2" :style="visible ? 'width: 98%' : 'width: 0%'"></div>
-                            </div>
-                        </div>
-                        
-                        <div class="skill-item">
-                            <div class="flex justify-between mb-2">
-                                <span class="text-white">Cultural Research</span>
-                                <span class="text-gold">90%</span>
-                            </div>
-                            <div class="w-full bg-gray-700 rounded-full h-2">
-                                <div class="skill-bar rounded-full h-2" :style="visible ? 'width: 90%' : 'width: 0%'"></div>
-                            </div>
-                        </div>
-                        
-                        <div class="skill-item">
-                            <div class="flex justify-between mb-2">
-                                <span class="text-white">Storytelling</span>
-                                <span class="text-gold">95%</span>
-                            </div>
-                            <div class="w-full bg-gray-700 rounded-full h-2">
-                                <div class="skill-bar rounded-full h-2" :style="visible ? 'width: 95%' : 'width: 0%'"></div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Portfolio Grid -->
-    <section id="portfolio" class="py-20 px-4">
-        <div class="max-w-7xl mx-auto">
-            <div class="text-center mb-16">
-                <h2 class="text-4xl md:text-6xl font-bold mb-6 text-gold text-shadow">Portfolio Gallery</h2>
-                <div class="h-1 w-24 bg-gradient-to-r from-gold to-yellow-400 mx-auto rounded-full mb-8"></div>
-                <p class="text-xl text-gray-300 max-w-3xl mx-auto">
-                    A curated collection of projects that showcase the intersection of culture, technology, and human-centered design.
-                </p>
-            </div>
-            
-            <!-- Filter Buttons -->
-            <div class="flex flex-wrap justify-center gap-4 mb-12">
-                <button class="filter-btn px-6 py-3 rounded-full font-semibold transition-all duration-300"
-                        :class="activeFilter === 'all' ? 'bg-gold text-black' : 'bg-white/10 text-white hover:bg-gold/20'"
-                        @click="activeFilter = 'all'">
-                    All Projects
-                </button>
-                <button class="filter-btn px-6 py-3 rounded-full font-semibold transition-all duration-300"
-                        :class="activeFilter === 'fashion' ? 'bg-gold text-black' : 'bg-white/10 text-white hover:bg-gold/20'"
-                        @click="activeFilter = 'fashion'">
-                    Fashion Design
-                </button>
-                <button class="filter-btn px-6 py-3 rounded-full font-semibold transition-all duration-300"
-                        :class="activeFilter === 'ai' ? 'bg-gold text-black' : 'bg-white/10 text-white hover:bg-gold/20'"
-                        @click="activeFilter = 'ai'">
-                    AI Projects
-                </button>
-                <button class="filter-btn px-6 py-3 rounded-full font-semibold transition-all duration-300"
-                        :class="activeFilter === 'web' ? 'bg-gold text-black' : 'bg-white/10 text-white hover:bg-gold/20'"
-                        @click="activeFilter = 'web'">
-                    Web Development
-                </button>
-            </div>
-            
-            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-                <template x-for="(project, index) in filteredProjects" :key="index">
-                    <div class="group glass-morphism rounded-2xl overflow-hidden border border-white/10 hover:border-gold/50 transition-all duration-500 card-hover cursor-pointer"
-                         @click="openModal(project)"
-                         x-show="true"
-                         x-transition:enter="transition ease-out duration-300"
-                         x-transition:enter-start="opacity-0 transform scale-95"
-                         x-transition:enter-end="opacity-100 transform scale-100">
-                        
-                        <div class="aspect-video relative overflow-hidden">
-                            <img :src="project.image" 
-                                 :alt="project.title"
-                                 class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700">
-                            <div class="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
-                            <div class="absolute inset-0 bg-black/50 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center">
-                                <div class="text-center">
-                                    <i class="fas fa-search-plus text-4xl text-white mb-2"></i>
-                                    <p class="text-white font-semibold">View Details</p>
-                                </div>
-                            </div>
-                            
-                            <!-- Category Badge -->
-                            <div class="absolute top-4 left-4">
-                                <span class="bg-gold text-black px-3 py-1 rounded-full text-sm font-semibold flex items-center">
-                                    <i :class="project.icon" class="mr-2"></i>
-                                    <span x-text="project.category"></span>
-                                </span>
-                            </div>
-                        </div>
-                        
-                        <div class="p-6">
-                            <h3 class="text-xl font-bold mb-3 text-white group-hover:text-gold transition-colors" x-text="project.title"></h3>
-                            <p class="text-gray-300 mb-4 leading-relaxed" x-text="project.description"></p>
-                            
-                            <div class="flex flex-wrap gap-2 mb-4">
-                                <template x-for="tag in project.tags">
-                                    <span class="bg-white/10 px-3 py-1 rounded-full text-sm text-gray-300 hover:bg-gold/20 hover:text-white transition-colors cursor-pointer" x-text="tag"></span>
-                                </template>
-                            </div>
-                            
-                            <div class="flex items-center justify-between">
-                                <div class="flex items-center text-sm text-gray-400">
-                                    <i class="fas fa-calendar mr-2"></i>
-                                    <span x-text="project.year"></span>
-                                </div>
-                                <div class="flex items-center text-gold">
-                                    <span class="text-sm font-semibold mr-2">View Project</span>
-                                    <i class="fas fa-arrow-right group-hover:translate-x-1 transition-transform"></i>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </template>
-            </div>
-        </div>
-    </section>
-
-    <!-- Contact Section -->
-    <section id="contact" class="py-20 px-4">
-        <div class="max-w-4xl mx-auto">
-            <div class="text-center mb-16">
-                <h2 class="text-4xl md:text-6xl font-bold mb-6 text-gold text-shadow">Let's Create Together</h2>
-                <div class="h-1 w-24 bg-gradient-to-r from-gold to-yellow-400 mx-auto rounded-full mb-8"></div>
-                <p class="text-xl text-gray-300 max-w-2xl mx-auto">
-                    Ready to bridge cultures and create something extraordinary? Let's start a conversation.
-                </p>
-            </div>
-            
-            <div class="grid grid-cols-1 lg:grid-cols-2 gap-12">
-                <!-- Contact Info -->
-                <div class="space-y-8">
-                    <div class="glass-morphism rounded-2xl p-8 card-hover">
-                        <h3 class="text-2xl font-bold mb-6 text-gold">Get In Touch</h3>
-                        
-                        <div class="space-y-6">
-                            <div class="flex items-center space-x-4">
-                                <div class="w-12 h-12 bg-gold/20 rounded-full flex items-center justify-center">
-                                    <i class="fas fa-envelope text-gold"></i>
-                                </div>
-                                <div>
-                                    <h4 class="font-semibold text-white">Email</h4>
-                                    <p class="text-gray-400">hello@thanatsitt.com</p>
-                                </div>
-                            </div>
-                            
-                            <div class="flex items-center space-x-4">
-                                <div class="w-12 h-12 bg-gold/20 rounded-full flex items-center justify-center">
-                                    <i class="fas fa-phone text-gold"></i>
-                                </div>
-                                <div>
-                                    <h4 class="font-semibold text-white">Phone</h4>
-                                    <p class="text-gray-400">+44 (0) 123 456 7890</p>
-                                </div>
-                            </div>
-                            
                             <div class="flex items-center space-x-4">
                                 <div class="w-12 h-12 bg-gold/20 rounded-full flex items-center justify-center">
                                     <i class="fas fa-map-marker-alt text-gold"></i>
                                 </div>
                                 <div>
-                                    <h4 class="font-semibold text-white">Location</h4>
-                                    <p class="text-gray-400">London, UK / Bangkok, TH</p>
+                                    <h4 class="font-semibold text-white">Bangkok, Thailand</h4>
+                                    <p class="text-gray-400">Cultural Hub</p>
                                 </div>
                             </div>
                         </div>
-                        
-                        <!-- Social Links -->
-                        <div class="mt-8 pt-8 border-t border-white/10">
-                            <h4 class="font-semibold text-white mb-4">Follow Me</h4>
-                            <div class="flex space-x-4">
-                                <a href="#" class="w-10 h-10 bg-white/10 rounded-full flex items-center justify-center hover:bg-gold hover:text-black transition-all duration-300">
-                                    <i class="fab fa-linkedin"></i>
-                                </a>
-                                <a href="#" class="w-10 h-10 bg-white/10 rounded-full flex items-center justify-center hover:bg-gold hover:text-black transition-all duration-300">
-                                    <i class="fab fa-github"></i>
-                                </a>
-                                <a href="#" class="w-10 h-10 bg-white/10 rounded-full flex items-center justify-center hover:bg-gold hover:text-black transition-all duration-300">
-                                    <i class="fab fa-instagram"></i>
-                                </a>
-                                <a href="#" class="w-10 h-10 bg-white/10 rounded-full flex items-center justify-center hover:bg-gold hover:text-black transition-all duration-300">
-                                    <i class="fab fa-twitter"></i>
-                                </a>
-                            </div>
-                        </div>
+                    </div>
+                    
+                    <div class="glass-morphism rounded-2xl p-8 card-hover">
+                        <h3 class="text-2xl font-bold mb-6 text-gold">
+                            <i class="fas fa-clock mr-3"></i>Availability
+                        </h3>
+                        <p class="text-gray-300 leading-relaxed">
+                            Available for projects worldwide. I work across time zones to accommodate international clients and collaborate with diverse teams.
+                        </p>
+                    </div>
+                    
+                    <div class="glass-morphism rounded-2xl p-8 card-hover">
+                        <h3 class="text-2xl font-bold mb-6 text-gold">
+                            <i class="fas fa-handshake mr-3"></i>Let's Collaborate
+                        </h3>
+                        <p class="text-gray-300 leading-relaxed">
+                            Whether you need fashion design, AI development, cultural consulting, or voice acting services, I'm here to bring your vision to life with cultural sensitivity and technical excellence.
+                        </p>
                     </div>
                 </div>
                 
                 <!-- Contact Form -->
-                <form class="glass-morphism rounded-3xl p-8 card-hover" @submit.prevent="submitForm">
-                    <div class="grid grid-cols-1 md:grid-cols-2 gap-6 mb-6">
-                        <div>
-                            <label class="block text-sm font-medium mb-2 text-white">
-                                <i class="fas fa-user mr-2 text-gold"></i>Your Name
-                            </label>
-                            <input type="text" x-model="form.name" 
-                                   class="w-full bg-white/10 border border-white/20 rounded-xl px-4 py-3 text-white placeholder-gray-400 focus:border-gold focus:outline-none focus:ring-2 focus:ring-gold/20 transition-all duration-300"
-                                   placeholder="Enter your name"
-                                   required>
-                        </div>
-                        <div>
-                            <label class="block text-sm font-medium mb-2 text-white">
-                                <i class="fas fa-envelope mr-2 text-gold"></i>Email Address
-                            </label>
-                            <input type="email" x-model="form.email"
-                                   class="w-full bg-white/10 border border-white/20 rounded-xl px-4 py-3 text-white placeholder-gray-400 focus:border-gold focus:outline-none focus:ring-2 focus:ring-gold/20 transition-all duration-300"
-                                   placeholder="your.email@example.com"
-                                   required>
-                        </div>
-                    </div>
+                <div class="glass-morphism rounded-2xl p-8 card-hover">
+                    <h3 class="text-2xl font-bold mb-6 text-gold">
+                        <i class="fas fa-envelope mr-3"></i>Send Message
+                    </h3>
                     
-                    <div class="mb-6">
-                        <label class="block text-sm font-medium mb-2 text-white">
-                            <i class="fas fa-briefcase mr-2 text-gold"></i>Project Type
-                        </label>
-                        <select x-model="form.projectType"
-                                class="w-full bg-white/10 border border-white/20 rounded-xl px-4 py-3 text-white focus:border-gold focus:outline-none focus:ring-2 focus:ring-gold/20 transition-all duration-300">
-                            <option value="">Select project type</option>
-                            <option value="fashion">Fashion Design</option>
-                            <option value="ai">AI Development</option>
-                            <option value="web">Web Development</option>
-                            <option value="consulting">Cultural Consulting</option>
-                            <option value="other">Other</option>
-                        </select>
-                    </div>
-                    
-                    <div class="mb-6">
-                        <label class="block text-sm font-medium mb-2 text-white">
-                            <i class="fas fa-comment mr-2 text-gold"></i>Your Message
-                        </label>
-                        <textarea x-model="form.message" rows="6"
-                                  class="w-full bg-white/10 border border-white/20 rounded-xl px-4 py-3 text-white placeholder-gray-400 focus:border-gold focus:outline-none focus:ring-2 focus:ring-gold/20 transition-all duration-300 resize-none"
-                                  placeholder="Tell me about your project, vision, and how we can create something amazing together..."
-                                  required></textarea>
-                    </div>
-                    
-                    <button type="submit" 
-                            class="w-full bg-gradient-to-r from-gold to-yellow-500 text-black py-4 rounded-xl font-bold text-lg hover:scale-105 transform transition-all duration-300 hover:shadow-2xl hover:shadow-gold/50 disabled:opacity-50 disabled:cursor-not-allowed relative overflow-hidden group"
-                            :disabled="isSubmitting">
-                        <span x-show="!isSubmitting" class="flex items-center justify-center">
-                            <i class="fas fa-paper-plane mr-3 group-hover:animate-wiggle"></i>
-                            Send Message ✨
-                        </span>
-                        <span x-show="isSubmitting" class="flex items-center justify-center">
-                            <i class="fas fa-spinner fa-spin mr-3"></i>
-                            Sending Magic...
-                        </span>
-                        
-                        <!-- Hover effect -->
-                        <div class="absolute inset-0 bg-gradient-to-r from-yellow-400 to-gold opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
-                    </button>
-                    
-                    <div x-show="submitSuccess" 
-                         x-transition:enter="transition ease-out duration-300"
-                         x-transition:enter-start="opacity-0 transform translate-y-2"
-                         x-transition:enter-end="opacity-100 transform translate-y-0"
-                         class="mt-6 p-4 bg-green-500/20 border border-green-500/50 rounded-xl text-green-300">
-                        <div class="flex items-center">
-                            <i class="fas fa-check-circle mr-3 text-xl"></i>
+                    <form class="space-y-6" @submit.prevent="sendMessage()">
+                        <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
                             <div>
-                                <h4 class="font-semibold">Message Sent Successfully!</h4>
-                                <p class="text-sm">Thank you for reaching out. I'll get back to you within 24 hours.</p>
+                                <label class="block text-white font-medium mb-2">Name</label>
+                                <input type="text" x-model="contactForm.name" 
+                                       class="w-full px-4 py-3 bg-white/10 border border-white/20 rounded-lg text-white placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-gold focus:border-transparent transition-all duration-300"
+                                       placeholder="Your Name">
+                            </div>
+                            <div>
+                                <label class="block text-white font-medium mb-2">Email</label>
+                                <input type="email" x-model="contactForm.email" 
+                                       class="w-full px-4 py-3 bg-white/10 border border-white/20 rounded-lg text-white placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-gold focus:border-transparent transition-all duration-300"
+                                       placeholder="your.email@example.com">
                             </div>
                         </div>
-                    </div>
-                </form>
+                        
+                        <div>
+                            <label class="block text-white font-medium mb-2">Service Needed</label>
+                            <select x-model="contactForm.service" 
+                                    class="w-full px-4 py-3 bg-white/10 border border-white/20 rounded-lg text-white focus:outline-none focus:ring-2 focus:ring-gold focus:border-transparent transition-all duration-300">
+                                <option value="">Select a service</option>
+                                <option value="fashion-design">Fashion Design</option>
+                                <option value="ai-development">AI Development</option>
+                                <option value="web-development">Web Development</option>
+                                <option value="cultural-consulting">Cultural Consulting</option>
+                                <option value="voice-acting">Voice Acting</option>
+                                <option value="writing">Writing Services</option>
+                                <option value="other">Other</option>
+                            </select>
+                        </div>
+                        
+                        <div>
+                            <label class="block text-white font-medium mb-2">Message</label>
+                            <textarea x-model="contactForm.message" rows="5"
+                                      class="w-full px-4 py-3 bg-white/10 border border-white/20 rounded-lg text-white placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-gold focus:border-transparent transition-all duration-300 resize-none"
+                                      placeholder="Tell me about your project..."></textarea>
+                        </div>
+                        
+                        <button type="submit" 
+                                class="w-full bg-gradient-to-r from-gold to-yellow-500 text-black py-4 rounded-lg font-bold text-lg hover:scale-105 transform transition-all duration-300 hover:shadow-2xl hover:shadow-gold/50 flex items-center justify-center space-x-2"
+                                :disabled="isSubmitting">
+                            <span x-show="!isSubmitting">
+                                <i class="fas fa-paper-plane mr-2"></i>
+                                Send Message
+                            </span>
+                            <span x-show="isSubmitting" class="flex items-center">
+                                <i class="fas fa-spinner animate-spin mr-2"></i>
+                                Sending...
+                            </span>
+                        </button>
+                    </form>
+                </div>
             </div>
         </div>
     </section>
 
-    <!-- Footer -->
+    <!-- Enhanced Footer with Moon -->
     <footer class="py-12 px-4 border-t border-white/10">
         <div class="max-w-7xl mx-auto">
             <div class="text-center">
                 <div class="flex justify-center items-center mb-6">
-                    <i class="fas fa-moon text-3xl text-gold mr-4 animate-spin-slow"></i>
+                    <div class="relative mr-4">
+                        <div class="w-12 h-12 bg-gradient-to-br from-gold to-yellow-400 rounded-full animate-moon-glow">
+                            <div class="absolute inset-0 bg-gradient-to-br from-gold/20 to-transparent rounded-full"></div>
+                            <div class="absolute top-2 left-2 w-3 h-3 bg-white/30 rounded-full"></div>
+                            <div class="absolute bottom-2 right-2 w-2 h-2 bg-white/20 rounded-full"></div>
+                            <div class="absolute top-1/2 right-1 w-1 h-1 bg-white/40 rounded-full"></div>
+                        </div>
+                        <!-- Twinkling stars around footer moon -->
+                        <div class="absolute -top-2 -right-2 w-1 h-1 bg-white rounded-full animate-stars-twinkle" style="animation-delay: 0s;"></div>
+                        <div class="absolute -bottom-2 -left-2 w-1 h-1 bg-white rounded-full animate-stars-twinkle" style="animation-delay: 1s;"></div>
+                        <div class="absolute top-0 -left-3 w-1 h-1 bg-white rounded-full animate-stars-twinkle" style="animation-delay: 2s;"></div>
+                    </div>
                     <h3 class="text-2xl font-bold text-gold">Thanatsitt Santisamranwilai</h3>
                 </div>
                 
@@ -1899,336 +1100,321 @@
                 <div class="h-px bg-gradient-to-r from-transparent via-gold to-transparent mb-6"></div>
                 
                 <p class="text-gray-500 text-sm">
-                    © 2024 Thanatsitt Santisamranwilai. Crafted with ❤️ and ✨ in London & Bangkok.
+                    © 2024 Thanatsitt Santisamranwilai. Crafted with ❤️ and 🌙 in London & Bangkok.
                 </p>
             </div>
         </div>
     </footer>
 
-    <!-- Modal -->
-    <div x-show="selectedProject" 
-         x-transition:enter="transition ease-out duration-300"
-         x-transition:enter-start="opacity-0"
+    <!-- Modal for Portfolio -->
+    <div x-show="showModal" 
+         x-transition:enter="transition ease-out duration-300" 
+         x-transition:enter-start="opacity-0" 
          x-transition:enter-end="opacity-100"
-         x-transition:leave="transition ease-in duration-200"
-         x-transition:leave-start="opacity-100"
+         x-transition:leave="transition ease-in duration-200" 
+         x-transition:leave-start="opacity-100" 
          x-transition:leave-end="opacity-0"
-         class="fixed inset-0 bg-black/90 backdrop-blur-lg z-50 flex items-center justify-center p-4 custom-scrollbar overflow-y-auto"
-         @click="closeModal"
-         @keydown.escape="closeModal">
+         class="fixed inset-0 bg-black/80 flex items-center justify-center z-50 p-4"
+         @click="showModal = false">
         
-        <div class="glass-morphism rounded-3xl max-w-6xl w-full max-h-[90vh] overflow-auto custom-scrollbar"
-             x-show="selectedProject"
-             x-transition:enter="transition ease-out duration-300"
-             x-transition:enter-start="opacity-0 transform scale-95"
-             x-transition:enter-end="opacity-100 transform scale-100"
-             x-transition:leave="transition ease-in duration-200"
-             x-transition:leave-start="opacity-100 transform scale-100"
-             x-transition:leave-end="opacity-0 transform scale-95"
-             @click.stop>
-            
-            <template x-if="selectedProject">
-                <div class="p-8">
-                    <!-- Modal Header -->
-                    <div class="flex justify-between items-start mb-8">
-                        <div>
-                            <h3 class="text-3xl md:text-4xl font-bold text-gold mb-2" x-text="selectedProject.title"></h3>
-                            <div class="flex items-center space-x-4">
-                                <span class="bg-gold text-black px-4 py-2 rounded-full text-sm font-semibold flex items-center">
-                                    <i :class="selectedProject.icon" class="mr-2"></i>
-                                    <span x-text="selectedProject.category"></span>
-                                </span>
-                                <span class="text-gray-400 flex items-center">
-                                    <i class="fas fa-calendar mr-2"></i>
-                                    <span x-text="selectedProject.year"></span>
-                                </span>
-                            </div>
-                        </div>
-                        <button @click="closeModal"
-                                class="text-gray-400 hover:text-white text-3xl transition-colors hover:rotate-90 transform duration-300">
-                            <i class="fas fa-times"></i>
-                        </button>
-                    </div>
-                    
-                    <!-- Modal Content -->
-                    <div class="grid grid-cols-1 lg:grid-cols-2 gap-8">
-                        <!-- Project Image -->
-                        <div class="space-y-6">
-                            <div class="aspect-video rounded-2xl overflow-hidden">
-                                <img :src="selectedProject.image" 
-                                     :alt="selectedProject.title"
-                                     class="w-full h-full object-cover">
-                            </div>
-                            
-                            <!-- Additional Images -->
-                            <div class="grid grid-cols-3 gap-4" x-show="selectedProject.gallery">
-                                <template x-for="(image, index) in selectedProject.gallery || []">
-                                    <div class="aspect-square rounded-lg overflow-hidden cursor-pointer hover:scale-105 transition-transform">
-                                        <img :src="image" :alt="`Gallery ${index + 1}`" class="w-full h-full object-cover">
-                                    </div>
-                                </template>
-                            </div>
+        <div class="glass-morphism rounded-2xl max-w-4xl w-full max-h-[90vh] overflow-y-auto custom-scrollbar" @click.stop>
+            <div class="p-8">
+                <div class="flex justify-between items-start mb-6">
+                    <h2 class="text-3xl font-bold text-gold" x-text="selectedProject.title"></h2>
+                    <button @click="showModal = false" class="text-gray-400 hover:text-white text-2xl">
+                        <i class="fas fa-times"></i>
+                    </button>
+                </div>
+                
+                <div class="grid grid-cols-1 lg:grid-cols-2 gap-8">
+                    <div>
+                        <div class="aspect-video bg-gradient-to-br from-gold/20 to-purple-600/20 rounded-xl flex items-center justify-center mb-6">
+                            <i :class="selectedProject.icon" class="text-6xl text-gold/70"></i>
                         </div>
                         
-                        <!-- Project Details -->
-                        <div class="space-y-6">
-                            <div>
-                                <h4 class="text-xl font-bold text-gold mb-3">Project Overview</h4>
-                                <p class="text-gray-300 leading-relaxed text-lg" x-text="selectedProject.fullDescription"></p>
-                            </div>
-                            
-                            <div>
-                                <h4 class="text-xl font-bold text-gold mb-3">Technologies Used</h4>
-                                <div class="flex flex-wrap gap-2">
-                                    <template x-for="tag in selectedProject.tags">
-                                        <span class="bg-white/10 px-4 py-2 rounded-full text-sm text-gray-300 border border-white/20" x-text="tag"></span>
-                                    </template>
-                                </div>
-                            </div>
-                            
-                            <div x-show="selectedProject.features">
-                                <h4 class="text-xl font-bold text-gold mb-3">Key Features</h4>
-                                <ul class="space-y-2">
-                                    <template x-for="feature in selectedProject.features || []">
-                                        <li class="flex items-center text-gray-300">
-                                            <i class="fas fa-check-circle text-gold mr-3"></i>
-                                            <span x-text="feature"></span>
-                                        </li>
-                                    </template>
-                                </ul>
-                            </div>
-                            
-                            <div class="flex space-x-4 pt-6">
-                                <a :href="selectedProject.liveUrl || '#'" 
-                                   class="flex-1 bg-gradient-to-r from-gold to-yellow-500 text-black py-3 px-6 rounded-xl font-semibold text-center hover:scale-105 transform transition-all duration-300 flex items-center justify-center"
-                                   x-show="selectedProject.liveUrl">
-                                    <i class="fas fa-external-link-alt mr-2"></i>
-                                    View Live
-                                </a>
-                                <a :href="selectedProject.githubUrl || '#'" 
-                                   class="flex-1 border-2 border-gold text-gold py-3 px-6 rounded-xl font-semibold text-center hover:bg-gold hover:text-black transition-all duration-300 flex items-center justify-center"
-                                   x-show="selectedProject.githubUrl">
-                                    <i class="fab fa-github mr-2"></i>
-                                    View Code
-                                </a>
-                            </div>
+                        <div class="flex flex-wrap gap-2 mb-6">
+                            <template x-for="tag in selectedProject.tags">
+                                <span class="px-3 py-1 bg-gold/20 text-gold text-sm rounded-full" x-text="tag"></span>
+                            </template>
+                        </div>
+                    </div>
+                    
+                    <div>
+                        <h3 class="text-xl font-bold text-white mb-4">Project Overview</h3>
+                        <p class="text-gray-300 leading-relaxed mb-6" x-text="selectedProject.fullDescription"></p>
+                        
+                        <h3 class="text-xl font-bold text-white mb-4">Key Features</h3>
+                        <ul class="space-y-2 mb-6">
+                            <template x-for="feature in selectedProject.features">
+                                <li class="flex items-start space-x-3">
+                                    <i class="fas fa-check text-gold mt-1"></i>
+                                    <span class="text-gray-300" x-text="feature"></span>
+                                </li>
+                            </template>
+                        </ul>
+                        
+                        <div class="flex space-x-4">
+                            <button class="bg-gradient-to-r from-gold to-yellow-500 text-black px-6 py-3 rounded-lg font-bold hover:scale-105 transform transition-all duration-300">
+                                <i class="fas fa-eye mr-2"></i>
+                                Live Demo
+                            </button>
+                            <button class="border-2 border-gold text-gold px-6 py-3 rounded-lg font-bold hover:bg-gold hover:text-black transition-all duration-300">
+                                <i class="fab fa-github mr-2"></i>
+                                Source Code
+                            </button>
                         </div>
                     </div>
                 </div>
-            </template>
+            </div>
         </div>
     </div>
 
-    <!-- Scroll to Top Button -->
-    <button class="fixed bottom-8 right-8 w-14 h-14 bg-gradient-to-r from-gold to-yellow-500 text-black rounded-full shadow-2xl hover:scale-110 transform transition-all duration-300 z-40 flex items-center justify-center group"
-            x-show="scrolled"
-            x-transition:enter="transition ease-out duration-300"
-            x-transition:enter-start="opacity-0 transform scale-0"
-            x-transition:enter-end="opacity-100 transform scale-100"
-            x-transition:leave="transition ease-in duration-200"
-            x-transition:leave-start="opacity-100 transform scale-100"
-            x-transition:leave-end="opacity-0 transform scale-0"
-            @click="window.scrollTo({ top: 0, behavior: 'smooth' })">
-        <i class="fas fa-arrow-up text-xl group-hover:animate-bounce"></i>
-    </button>
+    <!-- Gallery Modal -->
+    <div x-show="showGalleryModal" 
+         x-transition:enter="transition ease-out duration-300" 
+         x-transition:enter-start="opacity-0" 
+         x-transition:enter-end="opacity-100"
+         x-transition:leave="transition ease-in duration-200" 
+         x-transition:leave-start="opacity-100" 
+         x-transition:leave-end="opacity-0"
+         class="fixed inset-0 bg-black/90 flex items-center justify-center z-50 p-4"
+         @click="showGalleryModal = false">
+        
+        <div class="max-w-4xl w-full" @click.stop>
+            <div class="relative">
+                <!-- Main Image -->
+                <div class="aspect-video bg-gradient-to-br from-gold/20 to-purple-600/20 rounded-xl flex items-center justify-center mb-6">
+                    <i :class="selectedGalleryImage.icon" class="text-8xl text-gold/70"></i>
+                </div>
+                
+                <!-- Navigation Arrows -->
+                <button @click="previousGalleryImage()" class="absolute left-4 top-1/2 transform -translate-y-1/2 bg-black/50 text-white p-3 rounded-full hover:bg-black/70 transition-colors">
+                    <i class="fas fa-chevron-left"></i>
+                </button>
+                <button @click="nextGalleryImage()" class="absolute right-4 top-1/2 transform -translate-y-1/2 bg-black/50 text-white p-3 rounded-full hover:bg-black/70 transition-colors">
+                    <i class="fas fa-chevron-right"></i>
+                </button>
+                
+                <!-- Close Button -->
+                <button @click="showGalleryModal = false" class="absolute top-4 right-4 bg-black/50 text-white p-3 rounded-full hover:bg-black/70 transition-colors">
+                    <i class="fas fa-times"></i>
+                </button>
+                
+                <!-- Image Info -->
+                <div class="text-center">
+                    <h3 class="text-2xl font-bold text-gold mb-2" x-text="selectedGalleryImage.title"></h3>
+                    <p class="text-gray-300" x-text="selectedGalleryImage.description"></p>
+                </div>
+            </div>
+        </div>
+    </div>
 
-    <!-- Alpine.js App Logic -->
     <script>
         function portfolioApp() {
             return {
-                // State
                 scrolled: false,
                 mobileMenuOpen: false,
+                showModal: false,
+                showGalleryModal: false,
+                selectedProject: {},
+                selectedGalleryImage: {},
+                selectedGalleryIndex: 0,
                 typedText: '',
-                selectedProject: null,
-                activeFilter: 'all',
                 isSubmitting: false,
-                submitSuccess: false,
                 
-                // Form data
-                form: {
+                // Contact form
+                contactForm: {
                     name: '',
                     email: '',
-                    projectType: '',
+                    service: '',
                     message: ''
                 },
                 
                 // Projects data
                 projects: [
                     {
-                        id: 1,
-                        title: 'London College of Fashion Projects',
-                        category: 'Fashion Design',
-                        type: 'fashion',
-                        icon: 'fas fa-palette',
-                        description: 'Visual storytelling through fashion, exploring cultural identity and human-centered aesthetics.',
-                        fullDescription: 'A comprehensive collection of fashion design projects from my time at London College of Fashion. These works explore the intersection of Thai cultural heritage with contemporary Western fashion paradigms, focusing on sustainable practices, cultural sensitivity, and innovative design methodologies. Each piece tells a story of cultural bridge-building through the universal language of design.',
-                        image: 'https://images.unsplash.com/photo-1558618666-fcd25c85cd64?w=800&h=600&fit=crop',
-                        tags: ['Fashion Design', 'Cultural Identity', 'Sustainability', 'LCF', 'Visual Storytelling'],
-                        year: '2023',
-                        features: [
-                            'Sustainable material research and application',
-                            'Cultural motif integration with modern silhouettes',
-                            'Human-centered design methodology',
-                            'Cross-cultural aesthetic exploration'
-                        ],
-                        gallery: [
-                            'https://images.unsplash.com/photo-1558618666-fcd25c85cd64?w=300&h=300&fit=crop',
-                            'https://images.unsplash.com/photo-1515886657613-9f3515b0c78f?w=300&h=300&fit=crop',
-                            'https://images.unsplash.com/photo-1509631179647-0177331693ae?w=300&h=300&fit=crop'
-                        ]
-                    },
-                    {
-                        id: 2,
-                        title: 'Twilight Goddess AI Art',
-                        category: 'AI Art',
-                        type: 'ai',
-                        icon: 'fas fa-magic',
-                        description: 'AI-generated visuals exploring Thai mythology through divine feminine imagery.',
-                        fullDescription: 'An innovative exploration of Thai mythology through AI-generated art, focusing on divine feminine archetypes and their relevance in contemporary digital culture. Using advanced AI tools like Midjourney and custom-trained models, this project bridges ancient spiritual concepts with cutting-edge technology, creating a new visual language for cultural storytelling.',
-                        image: 'https://images.unsplash.com/photo-1677442136019-21780ecad995?w=800&h=600&fit=crop',
-                        tags: ['Midjourney', 'Thai Mythology', 'Digital Art', 'AI Ethics', 'Cultural Preservation'],
-                        year: '2024',
-                        features: [
-                            'Custom AI model training on Thai cultural imagery',
-                            'Ethical AI practices in cultural representation',
-                            'Interactive digital gallery experience',
-                            'Educational content about Thai mythology'
-                        ],
-                        liveUrl: 'https://example.com/twilight-goddess',
-                        gallery: [
-                            'https://images.unsplash.com/photo-1677442136019-21780ecad995?w=300&h=300&fit=crop',
-                            'https://images.unsplash.com/photo-1676299081847-824916de030a?w=300&h=300&fit=crop',
-                            'https://images.unsplash.com/photo-1677756119517-756a188d2d94?w=300&h=300&fit=crop'
-                        ]
-                    },
-                    {
-                        id: 3,
-                        title: 'ThannxAI Platform',
-                        category: 'AI Platform',
-                        type: 'ai',
-                        icon: 'fas fa-brain',
-                        description: 'Human-centered AI platform focusing on ethical technology integration.',
-                        fullDescription: 'Co-founded AI platform that prioritizes human connection and ethical technology integration. ThannxAI makes artificial intelligence accessible and meaningful for everyone, with a focus on cultural sensitivity, privacy protection, and human-centered design principles. The platform serves as a bridge between complex AI capabilities and everyday human needs.',
-                        image: 'https://images.unsplash.com/photo-1677756119517-756a188d2d94?w=800&h=600&fit=crop',
-                        tags: ['AI Ethics', 'Human-Centered Design', 'Co-founder', 'Innovation', 'Cultural Sensitivity'],
-                        year: '2024',
-                        features: [
-                            'Ethical AI framework implementation',
-                            'Multi-cultural user interface design',
-                            'Privacy-first architecture',
-                            'Community-driven development approach'
-                        ],
-                        liveUrl: 'https://thannxai.com',
-                        githubUrl: 'https://github.com/thannxai'
-                    },
-                    {
-                        id: 4,
-                        title: 'Cultural Bridge Web App',
-                        category: 'Web Development',
-                        type: 'web',
-                        icon: 'fas fa-globe',
-                        description: 'Interactive platform connecting Thai and British cultural communities.',
-                        fullDescription: 'A comprehensive web application designed to facilitate cultural exchange between Thai and British communities. The platform features interactive cultural maps, language exchange tools, event coordination systems, and educational resources. Built with modern web technologies and responsive design principles.',
-                        image: 'https://images.unsplash.com/photo-1460925895917-afdab827c52f?w=800&h=600&fit=crop',
-                        tags: ['React', 'Node.js', 'Cultural Exchange', 'Community Building', 'Responsive Design'],
-                        year: '2023',
-                        features: [
-                            'Real-time cultural event coordination',
-                            'Multi-language support (Thai/English)',
-                            'Interactive cultural learning modules',
-                            'Community forum and networking tools'
-                        ],
-                        liveUrl: 'https://culturalbridge.app',
-                        githubUrl: 'https://github.com/cultural-bridge'
-                    },
-                    {
-                        id: 5,
-                        title: 'Sustainable Fashion Analytics',
-                        category: 'Fashion Tech',
-                        type: 'fashion',
-                        icon: 'fas fa-leaf',
-                        description: 'Data-driven insights for sustainable fashion industry transformation.',
-                        fullDescription: 'An innovative analytics platform that combines fashion industry expertise with data science to drive sustainability in the fashion sector. The project analyzes supply chain data, consumer behavior patterns, and environmental impact metrics to provide actionable insights for fashion brands committed to sustainable practices.',
-                        image: 'https://images.unsplash.com/photo-1441986300917-64674bd600d8?w=800&h=600&fit=crop',
-                        tags: ['Data Analytics', 'Sustainability', 'Fashion Industry', 'Environmental Impact', 'Supply Chain'],
-                        year: '2023',
-                        features: [
-                            'Supply chain transparency tracking',
-                            'Environmental impact visualization',
-                            'Consumer behavior analysis',
-                            'Sustainability scoring system'
-                        ],
-                        liveUrl: 'https://sustainablefashion.analytics'
-                    },
-                    {
-                        id: 6,
-                        title: 'AI-Powered Design Assistant',
-                        category: 'AI Tools',
-                        type: 'ai',
+                        title: 'Cultural AI Assistant',
+                        description: 'AI-powered cultural consulting platform bridging Eastern and Western business practices.',
                         icon: 'fas fa-robot',
-                        description: 'Intelligent design companion for creative professionals.',
-                        fullDescription: 'An AI-powered design assistant that helps creative professionals streamline their workflow while maintaining cultural sensitivity and ethical design practices. The tool provides intelligent suggestions, automates repetitive tasks, and offers cultural context for design decisions across different markets.',
-                        image: 'https://images.unsplash.com/photo-1485827404703-89b55fcc595e?w=800&h=600&fit=crop',
-                        tags: ['AI Assistant', 'Design Tools', 'Creative Workflow', 'Cultural Context', 'Automation'],
                         year: '2024',
+                        tags: ['AI', 'Cultural Consulting', 'Python', 'NLP'],
+                        fullDescription: 'An innovative AI assistant designed to help international businesses navigate cultural differences between Eastern and Western markets. The platform uses advanced natural language processing to provide culturally-sensitive advice and recommendations.',
                         features: [
-                            'Intelligent design suggestions',
-                            'Cultural sensitivity checking',
-                            'Automated workflow optimization',
-                            'Multi-platform integration'
-                        ],
-                        githubUrl: 'https://github.com/ai-design-assistant'
+                            'Multi-language support (English, Thai, Mandarin)',
+                            'Cultural etiquette guidance',
+                            'Business practice recommendations',
+                            'Real-time cultural translation',
+                            'Interactive cultural assessment tools'
+                        ]
+                    },
+                    {
+                        title: 'Sustainable Fashion Collection',
+                        description: 'Eco-conscious fashion line blending traditional Thai craftsmanship with modern sustainable practices.',
+                        icon: 'fas fa-leaf',
+                        year: '2023',
+                        tags: ['Fashion Design', 'Sustainability', 'Traditional Crafts'],
+                        fullDescription: 'A groundbreaking fashion collection that honors traditional Thai weaving techniques while embracing modern sustainable materials and production methods.',
+                        features: [
+                            'Organic cotton and bamboo fiber materials',
+                            'Traditional hand-weaving techniques',
+                            'Zero-waste pattern design',
+                            'Local artisan collaboration',
+                            'Biodegradable packaging'
+                        ]
+                    },
+                    {
+                        title: 'Voice Acting Portfolio Platform',
+                        description: 'Interactive web platform showcasing multi-lingual voice acting capabilities across different media.',
+                        icon: 'fas fa-microphone',
+                        year: '2024',
+                        tags: ['Voice Acting', 'Web Design', 'Audio Production'],
+                        fullDescription: 'A comprehensive platform showcasing voice acting work across multiple languages and media formats, featuring interactive audio samples and booking capabilities.',
+                        features: [
+                            'Multi-language audio samples',
+                            'Character voice demonstrations',
+                            'Commercial and narrative portfolio',
+                            'Interactive booking system',
+                            'Real-time audio streaming'
+                        ]
+                    },
+                    {
+                        title: 'Digital Storytelling App',
+                        description: 'Mobile application for preserving and sharing traditional stories across cultures.',
+                        icon: 'fas fa-book-open',
+                        year: '2023',
+                        tags: ['Mobile App', 'Storytelling', 'Cultural Preservation'],
+                        fullDescription: 'A mobile application dedicated to preserving traditional stories from different cultures while making them accessible to modern audiences through interactive storytelling.',
+                        features: [
+                            'Interactive story maps',
+                            'Audio narration in multiple languages',
+                            'Cultural context explanations',
+                            'Community story submission',
+                            'Offline reading capabilities'
+                        ]
+                    },
+                    {
+                        title: 'London Fashion Week Exhibition',
+                        description: 'Curated exhibition exploring the intersection of technology and traditional craftsmanship.',
+                        icon: 'fas fa-palette',
+                        year: '2024',
+                        tags: ['Exhibition Design', 'Fashion', 'Technology Integration'],
+                        fullDescription: 'An immersive exhibition that explores how technology can enhance rather than replace traditional craftsmanship, featuring interactive installations and live demonstrations.',
+                        features: [
+                            'Interactive textile displays',
+                            'AR-enhanced garment visualization',
+                            'Live craftsmanship demonstrations',
+                            'Digital pattern projection',
+                            'Visitor engagement analytics'
+                        ]
+                    },
+                    {
+                        title: 'Cultural Bridge Consulting',
+                        description: 'Comprehensive consulting framework for international businesses entering Asian markets.',
+                        icon: 'fas fa-handshake',
+                        year: '2024',
+                        tags: ['Consulting', 'Strategy', 'International Business'],
+                        fullDescription: 'A strategic consulting framework that helps international businesses successfully enter and operate in Asian markets by understanding cultural nuances and local business practices.',
+                        features: [
+                            'Market entry strategy development',
+                            'Cultural sensitivity training',
+                            'Local partnership facilitation',
+                            'Communication protocol guides',
+                            'Ongoing cultural advisory support'
+                        ]
                     }
                 ],
                 
-                // Computed properties
-                get filteredProjects() {
-                    if (this.activeFilter === 'all') {
-                        return this.projects;
+                // Gallery images data
+                galleryImages: [
+                    { title: 'Design Sketches', icon: 'fas fa-pencil-ruler', description: 'Early conceptual sketches for fashion collections' },
+                    { title: 'Traditional Weaving', icon: 'fas fa-loom', description: 'Learning traditional Thai weaving techniques' },
+                    { title: 'AI Development', icon: 'fas fa-brain', description: 'Working on machine learning algorithms' },
+                    { title: 'Cultural Research', icon: 'fas fa-globe-asia', description: 'Researching cultural patterns and traditions' },
+                    { title: 'Voice Recording', icon: 'fas fa-microphone-alt', description: 'Professional voice acting sessions' },
+                    { title: 'Fashion Photography', icon: 'fas fa-camera', description: 'Behind the scenes of fashion shoots' },
+                    { title: 'Code Development', icon: 'fas fa-code', description: 'Building innovative web applications' },
+                    { title: 'Textile Experiments', icon: 'fas fa-cut', description: 'Experimenting with sustainable materials' },
+                    { title: 'Cultural Workshops', icon: 'fas fa-users', description: 'Leading cultural awareness workshops' },
+                    { title: 'Design Process', icon: 'fas fa-drafting-compass', description: 'Technical fashion design process' },
+                    { title: 'AI Training', icon: 'fas fa-robot', description: 'Training AI models for cultural understanding' },
+                    { title: 'Collaboration', icon: 'fas fa-handshake', description: 'Working with international teams' },
+                    { title: 'Pattern Making', icon: 'fas fa-shapes', description: 'Creating sustainable fashion patterns' },
+                    { title: 'Voice Coaching', icon: 'fas fa-volume-up', description: 'Voice acting coaching sessions' },
+                    { title: 'Tech Innovation', icon: 'fas fa-lightbulb', description: 'Innovative technology solutions' },
+                    { title: 'Cultural Events', icon: 'fas fa-calendar-alt', description: 'Participating in cultural events' },
+                    { title: 'Writing Process', icon: 'fas fa-pen-fancy', description: 'Creative writing and content creation' },
+                    { title: 'Fashion Shows', icon: 'fas fa-tshirt', description: 'Runway shows and fashion presentations' },
+                    { title: 'Digital Art', icon: 'fas fa-paint-brush', description: 'Digital art and design creation' },
+                    { title: 'Consulting Sessions', icon: 'fas fa-comments', description: 'Client consulting and strategy sessions' },
+                    { title: 'Research Travel', icon: 'fas fa-plane', description: 'Cultural research travels' },
+                    { title: 'Studio Work', icon: 'fas fa-home', description: 'Creative work in the studio' },
+                    { title: 'Presentations', icon: 'fas fa-presentation', description: 'Project presentations and pitches' },
+                    { title: 'Inspiration', icon: 'fas fa-star', description: 'Sources of creative inspiration' }
+                ],
+                
+                // Testimonials data
+                testimonials: [
+                    {
+                        text: "Thanatsitt's unique perspective bridging Thai and British cultures brought invaluable insights to our international expansion. Their fashion designs perfectly captured our brand's essence while respecting local cultural nuances.",
+                        client: "Sarah Chen",
+                        position: "Creative Director",
+                        company: "London Fashion House",
+                        projectType: "Fashion Design"
+                    },
+                    {
+                        text: "The AI cultural consulting platform Thanatsitt developed for us has revolutionized how we approach international markets. Their technical expertise combined with deep cultural understanding is truly exceptional.",
+                        client: "Marcus Thompson",
+                        position: "CTO",
+                        company: "TechStart London",
+                        projectType: "AI Development"
+                    },
+                    {
+                        text: "Working with Thanatsitt on our cultural preservation project was enlightening. Their ability to translate complex cultural concepts into accessible digital experiences is remarkable.",
+                        client: "Dr. Priya Patel",
+                        position: "Research Director",
+                        company: "Cultural Institute",
+                        projectType: "Cultural Consulting"
+                    },
+                    {
+                        text: "Thanatsitt's voice acting brought our international campaign to life. Their multilingual capabilities and cultural sensitivity made our global launch a tremendous success.",
+                        client: "James Wilson",
+                        position: "Founder",
+                        company: "Digital Agency",
+                        projectType: "Voice Acting"
+                    },
+                    {
+                        text: "The web development work Thanatsitt delivered exceeded our expectations. Their attention to cultural details and user experience design created a platform that truly resonates with our diverse audience.",
+                        client: "Emma Rodriguez",
+                        position: "Producer",
+                        company: "Media Productions",
+                        projectType: "Web Development"
+                    },
+                    {
+                        text: "Thanatsitt's writing captures the perfect balance between professional expertise and cultural authenticity. Their content strategy helped us connect with Asian markets in ways we never thought possible.",
+                        client: "David Kim",
+                        position: "Brand Manager",
+                        company: "Global Corp",
+                        projectType: "Content Writing"
                     }
-                    return this.projects.filter(project => project.type === this.activeFilter);
-                },
+                ],
                 
-                // Methods
                 init() {
-                    this.startTypingAnimation();
-                    this.initScrollListener();
+                    this.typeWriter();
+                    this.selectedProject = this.projects[0];
+                    this.selectedGalleryImage = this.galleryImages[0];
                 },
                 
-                startTypingAnimation() {
-                    const strings = [
-                        'Thanatsitt Santisamranwilai',
-                        'Cultural Navigator',
-                        'AI Developer',
-                        'Design Thinker',
-                        'Bridge Builder'
-                    ];
-                    let stringIndex = 0;
-                    let charIndex = 0;
-                    
-                    const typeWriter = () => {
-                        if (charIndex < strings[stringIndex].length) {
-                            this.typedText += strings[stringIndex].charAt(charIndex);
-                            charIndex++;
-                            setTimeout(typeWriter, 100);
+                typeWriter() {
+                    const text = 'Thanatsitt';
+                    let i = 0;
+                    const timer = setInterval(() => {
+                        if (i < text.length) {
+                            this.typedText += text.charAt(i);
+                            i++;
                         } else {
-                            setTimeout(() => {
-                                charIndex = 0;
-                                this.typedText = '';
-                                stringIndex = (stringIndex + 1) % strings.length;
-                                typeWriter();
-                            }, 2000);
+                            clearInterval(timer);
                         }
-                    };
-                    
-                    typeWriter();
-                },
-                
-                initScrollListener() {
-                    window.addEventListener('scroll', () => {
-                        this.scrolled = window.scrollY > 50;
-                    });
+                    }, 150);
                 },
                 
                 scrollToSection(sectionId) {
@@ -2239,20 +1425,41 @@
                             block: 'start'
                         });
                     }
-                    this.mobileMenuOpen = false;
                 },
                 
-                openModal(project) {
-                    this.selectedProject = project;
+                openModal(index) {
+                    this.selectedProject = this.projects[index];
+                    this.showModal = true;
                     document.body.style.overflow = 'hidden';
                 },
                 
-                closeModal() {
-                    this.selectedProject = null;
-                    document.body.style.overflow = 'auto';
+                openGalleryModal(index) {
+                    this.selectedGalleryIndex = index;
+                    this.selectedGalleryImage = this.galleryImages[index];
+                    this.showGalleryModal = true;
+                    document.body.style.overflow = 'hidden';
                 },
                 
-                async submitForm() {
+                previousGalleryImage() {
+                    this.selectedGalleryIndex = this.selectedGalleryIndex > 0 
+                        ? this.selectedGalleryIndex - 1 
+                        : this.galleryImages.length - 1;
+                    this.selectedGalleryImage = this.galleryImages[this.selectedGalleryIndex];
+                },
+                
+                nextGalleryImage() {
+                    this.selectedGalleryIndex = this.selectedGalleryIndex < this.galleryImages.length - 1 
+                        ? this.selectedGalleryIndex + 1 
+                        : 0;
+                    this.selectedGalleryImage = this.galleryImages[this.selectedGalleryIndex];
+                },
+                
+                async sendMessage() {
+                    if (!this.contactForm.name || !this.contactForm.email || !this.contactForm.message) {
+                        alert('Please fill in all required fields.');
+                        return;
+                    }
+                    
                     this.isSubmitting = true;
                     
                     // Simulate form submission
@@ -2260,71 +1467,292 @@
                         await new Promise(resolve => setTimeout(resolve, 2000));
                         
                         // Reset form
-                        this.form = {
+                        this.contactForm = {
                             name: '',
                             email: '',
-                            projectType: '',
+                            service: '',
                             message: ''
                         };
-
-                        this.submitSuccess = true;
                         
-                        // Hide success message after 5 seconds
-                        setTimeout(() => {
-                            this.submitSuccess = false;
-                        }, 5000);
-                        
+                        alert('Thank you for your message! I\'ll get back to you soon.');
                     } catch (error) {
-                        console.error('Form submission error:', error);
-                        // Handle error state here
+                        alert('Sorry, there was an error sending your message. Please try again.');
                     } finally {
                         this.isSubmitting = false;
                     }
-                },
-                
-                // Additional utility methods
-                formatDate(dateString) {
-                    return new Date(dateString).toLocaleDateString('en-US', {
-                        year: 'numeric',
-                        month: 'long',
-                        day: 'numeric'
-                    });
-                },
-                
-                // Intersection Observer for animations
-                observeElements() {
-                    const observer = new IntersectionObserver((entries) => {
-                        entries.forEach(entry => {
-                            if (entry.isIntersecting) {
-                                entry.target.classList.add('animate-in');
-                            }
-                        });
-                    }, { threshold: 0.1 });
-                    
-                    document.querySelectorAll('.observe').forEach(el => {
-                        observer.observe(el);
-                    });
-                },
-                
-                // Keyboard navigation
-                handleKeydown(event) {
-                    if (event.key === 'Escape' && this.selectedProject) {
-                        this.closeModal();
-                    }
-                },
-                
-                // Theme switching (bonus feature)
-                toggleTheme() {
-                    document.documentElement.classList.toggle('light-theme');
                 }
             }
         }
         
-        // Initialize intersection observer when DOM is loaded
+        // Close modals when clicking outside or pressing escape
+        document.addEventListener('keydown', function(e) {
+            if (e.key === 'Escape') {
+                const app = Alpine.store || window.Alpine?.store;
+                if (app) {
+                    app.showModal = false;
+                    store.showGalleryModal = false;
+                    document.body.style.overflow = 'auto';
+                }
+            }
+        });
+        
+        // Restore body scroll when modals close
+        document.addEventListener('alpine:init', () => {
+            Alpine.effect(() => {
+                const showModal = Alpine.store?.showModal || false;
+                const showGalleryModal = Alpine.store?.showGalleryModal || false;
+                
+                if (!showModal && !showGalleryModal) {
+                    document.body.style.overflow = 'auto';
+                }
+            });
+        });
+        
+        // Smooth scrolling for anchor links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                }
+            });
+        });
+        
+        // Add intersection observer for animations
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -50px 0px'
+        };
+        
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('animate-zoom-in');
+                }
+            });
+        }, observerOptions);
+        
+        // Observe elements for animation
         document.addEventListener('DOMContentLoaded', () => {
-            // Add observe class to elements that should animate in
-            const animateElements = document.querySelectorAll('.card-hover, .glass-morphism');
-            animateElements.forEach(el => el.classList.add('observe'));
+            const animatedElements = document.querySelectorAll('.card-hover, .glass-morphism');
+            animatedElements.forEach(el => observer.observe(el));
+        });
+        
+        // Add parallax effect to floating elements
+        window.addEventListener('scroll', () => {
+            const scrolled = window.pageYOffset;
+            const parallaxElements = document.querySelectorAll('.animate-float');
+            
+            parallaxElements.forEach((element, index) => {
+                const speed = 0.5 + (index * 0.1);
+                const yPos = -(scrolled * speed);
+                element.style.transform = `translateY(${yPos}px)`;
+            });
+        });
+        
+        // Add mouse movement effect for particles
+        document.addEventListener('mousemove', (e) => {
+            const particles = document.querySelectorAll('.particle');
+            const mouseX = e.clientX;
+            const mouseY = e.clientY;
+            
+            particles.forEach((particle, index) => {
+                const speed = (index % 3 + 1) * 0.01;
+                const x = (mouseX * speed);
+                const y = (mouseY * speed);
+                
+                particle.style.transform = `translate(${x}px, ${y}px)`;
+            });
+        });
+        
+        // Add loading animation
+        window.addEventListener('load', () => {
+            document.body.classList.add('loaded');
+            
+            // Trigger initial animations
+            setTimeout(() => {
+                const heroElements = document.querySelectorAll('#home h1, #home p, #home button');
+                heroElements.forEach((el, index) => {
+                    setTimeout(() => {
+                        el.classList.add('animate-zoom-in');
+                    }, index * 200);
+                });
+            }, 500);
+        });
+        
+        // Add scroll progress indicator
+        window.addEventListener('scroll', () => {
+            const scrollTop = document.documentElement.scrollTop;
+            const scrollHeight = document.documentElement.scrollHeight - document.documentElement.clientHeight;
+            const scrollProgress = (scrollTop / scrollHeight) * 100;
+            
+            // Create or update progress bar
+            let progressBar = document.getElementById('scroll-progress');
+            if (!progressBar) {
+                progressBar = document.createElement('div');
+                progressBar.id = 'scroll-progress';
+                progressBar.style.cssText = `
+                    position: fixed;
+                    top: 0;
+                    left: 0;
+                    width: ${scrollProgress}%;
+                    height: 3px;
+                    background: linear-gradient(90deg, #D4AF37, #F4D03F);
+                    z-index: 9999;
+                    transition: width 0.1s ease;
+                `;
+                document.body.appendChild(progressBar);
+            } else {
+                progressBar.style.width = `${scrollProgress}%`;
+            }
+        });
+        
+        // Add keyboard navigation for gallery
+        document.addEventListener('keydown', (e) => {
+            const app = document.querySelector('[x-data]')?._x_dataStack?.[0];
+            if (app && app.showGalleryModal) {
+                if (e.key === 'ArrowLeft') {
+                    app.previousGalleryImage();
+                } else if (e.key === 'ArrowRight') {
+                    app.nextGalleryImage();
+                }
+            }
+        });
+        
+        // Add touch/swipe support for mobile gallery
+        let touchStartX = 0;
+        let touchEndX = 0;
+        
+        document.addEventListener('touchstart', (e) => {
+            touchStartX = e.changedTouches[0].screenX;
+        });
+        
+        document.addEventListener('touchend', (e) => {
+            touchEndX = e.changedTouches[0].screenX;
+            handleSwipe();
+        });
+        
+        function handleSwipe() {
+            const app = document.querySelector('[x-data]')?._x_dataStack?.[0];
+            if (app && app.showGalleryModal) {
+                const swipeThreshold = 50;
+                const diff = touchStartX - touchEndX;
+                
+                if (Math.abs(diff) > swipeThreshold) {
+                    if (diff > 0) {
+                        // Swipe left - next image
+                        app.nextGalleryImage();
+                    } else {
+                        // Swipe right - previous image
+                        app.previousGalleryImage();
+                    }
+                }
+            }
+        }
+        
+        // Add performance optimization for animations
+        const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)');
+        
+        if (prefersReducedMotion.matches) {
+            // Disable animations for users who prefer reduced motion
+            document.documentElement.style.setProperty('--animation-duration', '0s');
+        }
+        
+        // Add error handling for images
+        document.addEventListener('error', (e) => {
+            if (e.target.tagName === 'IMG') {
+                e.target.style.display = 'none';
+                // Show fallback icon or placeholder
+                const fallback = document.createElement('div');
+                fallback.className = 'w-full h-full bg-gradient-to-br from-gold/20 to-purple-600/20 flex items-center justify-center';
+                fallback.innerHTML = '<i class="fas fa-image text-4xl text-gold/50"></i>';
+                e.target.parentNode.appendChild(fallback);
+            }
+        }, true);
+        
+        // Add service worker for offline functionality (optional)
+        if ('serviceWorker' in navigator) {
+            window.addEventListener('load', () => {
+                navigator.serviceWorker.register('/sw.js')
+                    .then((registration) => {
+                        console.log('SW registered: ', registration);
+                    })
+                    .catch((registrationError) => {
+                        console.log('SW registration failed: ', registrationError);
+                    });
+            });
+        }
+        
+        // Add analytics tracking (placeholder)
+        function trackEvent(eventName, eventData) {
+            // Replace with your analytics implementation
+            console.log('Event tracked:', eventName, eventData);
+        }
+        
+        // Track portfolio interactions
+        document.addEventListener('click', (e) => {
+            if (e.target.closest('.card-hover')) {
+                trackEvent('portfolio_item_clicked', {
+                    item: e.target.closest('.card-hover').querySelector('h3')?.textContent
+                });
+            }
+        });
+        
+        // Add accessibility improvements
+        document.addEventListener('DOMContentLoaded', () => {
+            // Add skip link
+            const skipLink = document.createElement('a');
+            skipLink.href = '#main-content';
+            skipLink.textContent = 'Skip to main content';
+            skipLink.className = 'sr-only focus:not-sr-only focus:absolute focus:top-4 focus:left-4 bg-gold text-black px-4 py-2 rounded z-50';
+            document.body.insertBefore(skipLink, document.body.firstChild);
+            
+            // Add main content landmark
+            const mainContent = document.querySelector('#home');
+            if (mainContent) {
+                mainContent.id = 'main-content';
+                mainContent.setAttribute('role', 'main');
+            }
+            
+            // Improve focus management for modals
+            const modals = document.querySelectorAll('[x-show="showModal"], [x-show="showGalleryModal"]');
+            modals.forEach(modal => {
+                modal.addEventListener('keydown', (e) => {
+                    if (e.key === 'Tab') {
+                        // Trap focus within modal
+                        const focusableElements = modal.querySelectorAll(
+                            'button, [href], input, select, textarea, [tabindex]:not([tabindex="-1"])'
+                        );
+                        const firstElement = focusableElements[0];
+                        const lastElement = focusableElements[focusableElements.length - 1];
+                        
+                        if (e.shiftKey && document.activeElement === firstElement) {
+                            lastElement.focus();
+                            e.preventDefault();
+                        } else if (!e.shiftKey && document.activeElement === lastElement) {
+                            firstElement.focus();
+                            e.preventDefault();
+                        }
+                    }
+                });
+            });
+        });
+        
+        // Add print styles optimization
+        window.addEventListener('beforeprint', () => {
+            // Hide unnecessary elements for printing
+            const hideElements = document.querySelectorAll('.particle, .animate-float, nav, footer');
+            hideElements.forEach(el => el.style.display = 'none');
+        });
+        
+        window.addEventListener('afterprint', () => {
+            // Restore elements after printing
+            const hideElements = document.querySelectorAll('.particle, .animate-float, nav, footer');
+            hideElements.forEach(el => el.style.display = '');
         });
     </script>
 </body>
