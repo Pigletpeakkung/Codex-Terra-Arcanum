@@ -1912,627 +1912,710 @@
         </div>
     </div>
 
-    <!-- Gallery Modal -->
-    <div x-show="showGalleryModal" 
-         x-transition:enter="transition ease-out duration-300" 
-         x-transition:enter-start="opacity-0" 
-         x-transition:enter-end="opacity-100"
-         x-transition:leave="transition ease-in duration-200" 
-         x-transition:leave-start="opacity-100" 
-         x-transition:leave-end="opacity-0"
-         class="fixed inset-0 bg-black/90 flex items-center justify-center z-50 p-4"
-         @click="closeGalleryModal()"
-         role="dialog"
-         aria-modal="true"
-         aria-labelledby="gallery-modal-title">
+        <!-- Enhanced Portfolio Modal -->
+<div x-show="state.showModal" 
+     x-transition:enter="transition ease-out duration-300" 
+     x-transition:enter-start="opacity-0 scale-95" 
+     x-transition:enter-end="opacity-100 scale-100"
+     x-transition:leave="transition ease-in duration-200" 
+     x-transition:leave-start="opacity-100 scale-100" 
+     x-transition:leave-end="opacity-0 scale-95"
+     class="fixed inset-0 bg-black/80 backdrop-blur-sm flex items-center justify-center z-50 p-4"
+     @click="closeModal('project')"
+     @keydown.escape="closeModal('project')"
+     role="dialog"
+     aria-modal="true"
+     aria-labelledby="modal-title">
         
-        <div class="max-w-4xl w-full" @click.stop>
-            <div class="relative">
-                <!-- Main Image -->
-                <div class="aspect-video bg-gradient-to-br from-gold/20 to-purple-600/20 rounded-xl flex items-center justify-center mb-6">
-                    <i :class="selectedGalleryImage.icon" class="text-8xl text-gold/70"></i>
+    <div class="glass-morphism rounded-2xl max-w-5xl w-full max-h-[90vh] overflow-y-auto custom-scrollbar" 
+         @click.stop
+         x-trap.inert.noscroll="state.showModal">
+        
+        <div class="p-8">
+            <!-- Modal Header -->
+            <div class="flex justify-between items-start mb-6">
+                <div>
+                    <h2 id="modal-title" 
+                        class="text-3xl font-bold text-gold mb-2" 
+                        x-text="ui.selectedProject.title"></h2>
+                    <div class="flex items-center space-x-4 text-sm text-gray-400">
+                        <span x-text="ui.selectedProject.year"></span>
+                        <span class="w-1 h-1 bg-gray-400 rounded-full"></span>
+                        <span x-text="ui.selectedProject.category"></span>
+                        <span class="w-1 h-1 bg-gray-400 rounded-full"></span>
+                        <span x-text="ui.selectedProject.status"></span>
+                    </div>
                 </div>
-                
-                <!-- Navigation Arrows -->
-                <button @click="previousGalleryImage()" 
-                        class="absolute left-4 top-1/2 transform -translate-y-1/2 bg-black/50 text-white p-3 rounded-full hover:bg-black/70 transition-colors"
-                        aria-label="Previous image">
-                    <i class="fas fa-chevron-left"></i>
-                </button>
-                <button @click="nextGalleryImage()" 
-                        class="absolute right-4 top-1/2 transform -translate-y-1/2 bg-black/50 text-white p-3 rounded-full hover:bg-black/70 transition-colors"
-                        aria-label="Next image">
-                    <i class="fas fa-chevron-right"></i>
-                </button>
-                
-                <!-- Close Button -->
-                <button @click="closeGalleryModal()" 
-                        class="absolute top-4 right-4 bg-black/50 text-white p-3 rounded-full hover:bg-black/70 transition-colors"
-                        aria-label="Close gallery">
+                <button @click="closeModal('project')" 
+                        class="text-gray-400 hover:text-white text-2xl p-2 rounded-lg hover:bg-white/10 transition-all duration-200"
+                        aria-label="Close modal">
                     <i class="fas fa-times"></i>
                 </button>
+            </div>
+            
+            <!-- Modal Content Grid -->
+            <div class="grid grid-cols-1 lg:grid-cols-2 gap-8">
+                <!-- Left Column -->
+                <div class="space-y-6">
+                    <!-- Project Visual -->
+                    <div class="relative group">
+                        <div class="aspect-video bg-gradient-to-br from-gold/20 to-purple-600/20 rounded-xl flex items-center justify-center overflow-hidden">
+                            <template x-if="ui.selectedProject.images && ui.selectedProject.images.length > 0">
+                                <img :src="ui.selectedProject.images[0]" 
+                                     :alt="ui.selectedProject.title"
+                                     class="w-full h-full object-cover rounded-xl">
+                            </template>
+                            <template x-if="!ui.selectedProject.images || ui.selectedProject.images.length === 0">
+                                <i :class="ui.selectedProject.icon" class="text-6xl text-gold/70"></i>
+                            </template>
+                        </div>
+                        
+                        <!-- Image Gallery Indicators -->
+                        <template x-if="ui.selectedProject.images && ui.selectedProject.images.length > 1">
+                            <div class="absolute bottom-4 left-1/2 transform -translate-x-1/2 flex space-x-2">
+                                <template x-for="(image, index) in ui.selectedProject.images" :key="index">
+                                    <button class="w-2 h-2 rounded-full bg-white/50 hover:bg-white/80 transition-colors"
+                                            :class="{ 'bg-white': index === 0 }"></button>
+                                </template>
+                            </div>
+                        </template>
+                    </div>
+                    
+                    <!-- Tags -->
+                    <div class="flex flex-wrap gap-2">
+                        <template x-for="tag in ui.selectedProject.tags || []">
+                            <span class="px-3 py-1 bg-gold/20 text-gold text-sm rounded-full border border-gold/30 hover:bg-gold/30 transition-colors" 
+                                  x-text="tag"></span>
+                        </template>
+                    </div>
+                    
+                    <!-- Technologies -->
+                    <template x-if="ui.selectedProject.technologies">
+                        <div>
+                            <h4 class="text-lg font-semibold text-white mb-3">Technologies Used</h4>
+                            <div class="flex flex-wrap gap-2">
+                                <template x-for="tech in ui.selectedProject.technologies">
+                                    <span class="px-3 py-1 bg-purple-600/20 text-purple-300 text-sm rounded-full border border-purple-600/30" 
+                                          x-text="tech"></span>
+                                </template>
+                            </div>
+                        </div>
+                    </template>
+                    
+                    <!-- Project Metrics -->
+                    <template x-if="ui.selectedProject.metrics">
+                        <div class="grid grid-cols-2 gap-4">
+                            <template x-for="(value, key) in ui.selectedProject.metrics" :key="key">
+                                <div class="text-center p-3 bg-white/5 rounded-lg border border-white/10">
+                                    <div class="text-2xl font-bold text-gold" x-text="value"></div>
+                                    <div class="text-sm text-gray-400 capitalize" x-text="key.replace('_', ' ')"></div>
+                                </div>
+                            </template>
+                        </div>
+                    </template>
+                </div>
                 
-                <!-- Image Info -->
-                <div class="text-center">
-                    <h3 id="gallery-modal-title" class="text-2xl font-bold text-gold mb-2" x-text="selectedGalleryImage.title"></h3>
-                    <p class="text-gray-300" x-text="selectedGalleryImage.description"></p>
+                <!-- Right Column -->
+                <div class="space-y-6">
+                    <!-- Project Overview -->
+                    <div>
+                        <h3 class="text-xl font-bold text-white mb-4 flex items-center">
+                            <i class="fas fa-info-circle text-gold mr-2"></i>
+                            Project Overview
+                        </h3>
+                        <p class="text-gray-300 leading-relaxed" x-text="ui.selectedProject.fullDescription"></p>
+                    </div>
+                    
+                    <!-- Key Features -->
+                    <div>
+                        <h3 class="text-xl font-bold text-white mb-4 flex items-center">
+                            <i class="fas fa-star text-gold mr-2"></i>
+                            Key Features
+                        </h3>
+                        <ul class="space-y-3">
+                            <template x-for="feature in ui.selectedProject.features || []">
+                                <li class="flex items-start space-x-3 group">
+                                    <i class="fas fa-check text-gold mt-1 group-hover:scale-110 transition-transform"></i>
+                                    <span class="text-gray-300 group-hover:text-white transition-colors" x-text="feature"></span>
+                                </li>
+                            </template>
+                        </ul>
+                    </div>
+                    
+                    <!-- Action Buttons -->
+                    <div class="flex flex-col sm:flex-row gap-4 pt-4">
+                        <template x-if="ui.selectedProject.links?.demo">
+                            <button @click="window.open(ui.selectedProject.links.demo, '_blank')"
+                                    class="flex-1 bg-gradient-to-r from-gold to-yellow-500 text-black px-6 py-3 rounded-lg font-bold hover:scale-105 transform transition-all duration-300 flex items-center justify-center"
+                                    aria-label="View live demo">
+                                <i class="fas fa-eye mr-2"></i>
+                                Live Demo
+                            </button>
+                        </template>
+                        
+                        <template x-if="ui.selectedProject.links?.github">
+                            <button @click="window.open(ui.selectedProject.links.github, '_blank')"
+                                    class="flex-1 border-2 border-gold text-gold px-6 py-3 rounded-lg font-bold hover:bg-gold hover:text-black transition-all duration-300 flex items-center justify-center"
+                                    aria-label="View source code">
+                                <i class="fab fa-github mr-2"></i>
+                                Source Code
+                            </button>
+                        </template>
+                        
+                        <template x-if="ui.selectedProject.links?.case_study">
+                            <button @click="window.open(ui.selectedProject.links.case_study, '_blank')"
+                                    class="flex-1 border-2 border-purple-500 text-purple-400 px-6 py-3 rounded-lg font-bold hover:bg-purple-500 hover:text-white transition-all duration-300 flex items-center justify-center"
+                                    aria-label="Read case study">
+                                <i class="fas fa-book-open mr-2"></i>
+                                Case Study
+                            </button>
+                        </template>
+                    </div>
                 </div>
             </div>
         </div>
     </div>
+</div>
 
-    <!-- Create manifest.json file -->
-    <script>
-        // Create manifest.json content
-        const manifest = {
-            "name": "Thanatsitt Santisamranwilai Portfolio",
-            "short_name": "Thanatsitt",
-            "description": "Thai-British interdisciplinary creator bridging ancient wisdom with modern technology",
-            "start_url": "/",
-            "display": "standalone",
-            "background_color": "#1A1A2E",
-            "theme_color": "#D4AF37",
-            "icons": [
-                {
-                    "src": "data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMTkyIiBoZWlnaHQ9IjE5MiIgdmlld0JveD0iMCAwIDE5MiAxOTIiIGZpbGw9Im5vbmUiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyI+CjxyZWN0IHdpZHRoPSIxOTIiIGhlaWdodD0iMTkyIiByeD0iMjQiIGZpbGw9IiMxQTFBMkUiLz4KPGNpcmNsZSBjeD0iOTYiIGN5PSI5NiIgcj0iNDAiIGZpbGw9IiNENEFGMzciLz4KPHN2Zz4K",
-                    "sizes": "192x192",
-                    "type": "image/svg+xml"
-                }
-            ]
-        };
+<!-- Enhanced Gallery Modal -->
+<div x-show="state.showGalleryModal" 
+     x-transition:enter="transition ease-out duration-300" 
+     x-transition:enter-start="opacity-0" 
+     x-transition:enter-end="opacity-100"
+     x-transition:leave="transition ease-in duration-200" 
+     x-transition:leave-start="opacity-100" 
+     x-transition:leave-end="opacity-0"
+     class="fixed inset-0 bg-black/95 backdrop-blur-sm flex items-center justify-center z-50 p-4"
+     @click="closeModal('gallery')"
+     @keydown.escape="closeModal('gallery')"
+     @keydown.arrow-left="navigateGallery('prev')"
+     @keydown.arrow-right="navigateGallery('next')"
+     role="dialog"
+     aria-modal="true"
+     aria-labelledby="gallery-modal-title">
         
-        // Create and download manifest.json
-        const manifestBlob = new Blob([JSON.stringify(manifest, null, 2)], { type: 'application/json' });
-        const manifestUrl = URL.createObjectURL(manifestBlob);
-        
-        // Update manifest link
-        document.querySelector('link[rel="manifest"]').href = manifestUrl;
-    </script>
+    <div class="max-w-6xl w-full" @click.stop>
+        <div class="relative">
+            <!-- Main Image Container -->
+            <div class="relative aspect-video bg-gradient-to-br from-gold/20 to-purple-600/20 rounded-xl flex items-center justify-center mb-6 overflow-hidden group">
+                <template x-if="ui.selectedGalleryImage.src">
+                    <img :src="ui.selectedGalleryImage.src" 
+                         :alt="ui.selectedGalleryImage.title"
+                         class="w-full h-full object-contain rounded-xl">
+                </template>
+                <template x-if="!ui.selectedGalleryImage.src">
+                    <i :class="ui.selectedGalleryImage.icon" class="text-8xl text-gold/70"></i>
+                </template>
+                
+                <!-- Loading Indicator -->
+                <div class="absolute inset-0 bg-black/20 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity">
+                    <div class="animate-spin rounded-full h-8 w-8 border-b-2 border-gold"></div>
+                </div>
+            </div>
+            
+            <!-- Navigation Controls -->
+            <button @click="navigateGallery('prev')" 
+                    class="absolute left-4 top-1/2 transform -translate-y-1/2 bg-black/50 backdrop-blur-sm text-white p-4 rounded-full hover:bg-black/70 hover:scale-110 transition-all duration-200 group"
+                    aria-label="Previous image">
+                <i class="fas fa-chevron-left group-hover:scale-110 transition-transform"></i>
+            </button>
+            
+            <button @click="navigateGallery('next')" 
+                    class="absolute right-4 top-1/2 transform -translate-y-1/2 bg-black/50 backdrop-blur-sm text-white p-4 rounded-full hover:bg-black/70 hover:scale-110 transition-all duration-200 group"
+                    aria-label="Next image">
+                <i class="fas fa-chevron-right group-hover:scale-110 transition-transform"></i>
+            </button>
+            
+            <!-- Close Button -->
+            <button @click="closeModal('gallery')" 
+                    class="absolute top-4 right-4 bg-black/50 backdrop-blur-sm text-white p-3 rounded-full hover:bg-black/70 hover:scale-110 transition-all duration-200"
+                    aria-label="Close gallery">
+                <i class="fas fa-times"></i>
+            </button>
+            
+            <!-- Image Counter -->
+            <div class="absolute top-4 left-4 bg-black/50 backdrop-blur-sm text-white px-4 py-2 rounded-full text-sm">
+                <span x-text="ui.selectedGalleryIndex + 1"></span> / <span x-text="galleryImages.length"></span>
+            </div>
+            
+            <!-- Image Information -->
+            <div class="text-center space-y-4">
+                <h3 id="gallery-modal-title" 
+                    class="text-3xl font-bold text-gold" 
+                    x-text="ui.selectedGalleryImage.title"></h3>
+                <p class="text-gray-300 text-lg" 
+                   x-text="ui.selectedGalleryImage.description"></p>
+                
+                <!-- Image Metadata -->
+                <template x-if="ui.selectedGalleryImage.metadata">
+                    <div class="flex flex-wrap justify-center gap-4 text-sm text-gray-400">
+                        <template x-if="ui.selectedGalleryImage.date">
+                            <span class="flex items-center">
+                                <i class="fas fa-calendar mr-1"></i>
+                                <span x-text="new Date(ui.selectedGalleryImage.date).toLocaleDateString()"></span>
+                            </span>
+                        </template>
+                        <template x-if="ui.selectedGalleryImage.location">
+                            <span class="flex items-center">
+                                <i class="fas fa-map-marker-alt mr-1"></i>
+                                <span x-text="ui.selectedGalleryImage.location"></span>
+                            </span>
+                        </template>
+                        <template x-if="ui.selectedGalleryImage.category">
+                            <span class="flex items-center">
+                                <i class="fas fa-tag mr-1"></i>
+                                <span x-text="ui.selectedGalleryImage.category"></span>
+                            </span>
+                        </template>
+                    </div>
+                </template>
+                
+                <!-- Image Tags -->
+                <template x-if="ui.selectedGalleryImage.tags">
+                    <div class="flex flex-wrap justify-center gap-2">
+                        <template x-for="tag in ui.selectedGalleryImage.tags">
+                            <span class="px-3 py-1 bg-gold/20 text-gold text-sm rounded-full border border-gold/30" 
+                                  x-text="tag"></span>
+                        </template>
+                    </div>
+                </template>
+            </div>
+            
+            <!-- Thumbnail Navigation -->
+            <div class="mt-8 flex justify-center">
+                <div class="flex space-x-2 overflow-x-auto max-w-full pb-2">
+                    <template x-for="(image, index) in galleryImages.slice(Math.max(0, ui.selectedGalleryIndex - 5), ui.selectedGalleryIndex + 6)" :key="index">
+                        <button @click="ui.selectedGalleryIndex = galleryImages.indexOf(image); ui.selectedGalleryImage = image"
+                                class="flex-shrink-0 w-16 h-16 rounded-lg overflow-hidden border-2 transition-all duration-200"
+                                :class="galleryImages.indexOf(image) === ui.selectedGalleryIndex ? 'border-gold' : 'border-transparent hover:border-white/50'">
+                            <template x-if="image.src">
+                                <img :src="image.src" :alt="image.title" class="w-full h-full object-cover">
+                            </template>
+                            <template x-if="!image.src">
+                                <div class="w-full h-full bg-gradient-to-br from-gold/20 to-purple-600/20 flex items-center justify-center">
+                                    <i :class="image.icon" class="text-gold/70"></i>
+                                </div>
+                            </template>
+                        </button>
+                    </template>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
 
-    <script>
-        function portfolioApp() {
-            return {
-                scrolled: false,
-                mobileMenuOpen: false,
-                showModal: false,
-                showGalleryModal: false,
-                selectedProject: {},
-                selectedGalleryImage: {},
-                selectedGalleryIndex: 0,
-                typedText: '',
-                isSubmitting: false,
-                formStatus: '',
-                
-                // Contact form
-                contactForm: {
-                    name: '',
-                    email: '',
-                    service: '',
-                    message: ''
-                },
-                
-                // Projects data
-                projects: [
-                    {
-                        title: 'Cultural AI Assistant',
-                        description: 'AI-powered cultural consulting platform bridging Eastern and Western business practices.',
-                        icon: 'fas fa-robot',
-                        year: '2024',
-                        tags: ['AI', 'Cultural Consulting', 'Python', 'NLP'],
-                        fullDescription: 'An innovative AI assistant designed to help international businesses navigate cultural differences between Eastern and Western markets. The platform uses advanced natural language processing to provide culturally-sensitive advice and recommendations.',
-                        features: [
-                            'Multi-language support (English, Thai, Mandarin)',
-                            'Cultural etiquette guidance',
-                            'Business practice recommendations',
-                            'Real-time cultural translation',
-                            'Interactive cultural assessment tools'
-                        ]
-                    },
-                    {
-                        title: 'Sustainable Fashion Collection',
-                        description: 'Eco-conscious fashion line blending traditional Thai craftsmanship with modern sustainable practices.',
-                        icon: 'fas fa-leaf',
-                        year: '2023',
-                        tags: ['Fashion Design', 'Sustainability', 'Traditional Crafts'],
-                        fullDescription: 'A groundbreaking fashion collection that honors traditional Thai weaving techniques while embracing modern sustainable materials and production methods.',
-                        features: [
-                            'Organic cotton and bamboo fiber materials',
-                            'Traditional hand-weaving techniques',
-                            'Zero-waste pattern design',
-                            'Local artisan collaboration',
-                            'Biodegradable packaging'
-                        ]
-                    },
-                    {
-                        title: 'Voice Acting Portfolio Platform',
-                        description: 'Interactive web platform showcasing multi-lingual voice acting capabilities across different media.',
-                        icon: 'fas fa-microphone',
-                        year: '2024',
-                        tags: ['Voice Acting', 'Web Design', 'Audio Production'],
-                        fullDescription: 'A comprehensive platform showcasing voice acting work across multiple languages and media formats, featuring interactive audio samples and booking capabilities.',
-                        features: [
-                            'Multi-language audio samples',
-                            'Character voice demonstrations',
-                            'Commercial and narrative portfolio',
-                            'Interactive booking system',
-                            'Real-time audio streaming'
-                        ]
-                    },
-                    {
-                        title: 'Digital Storytelling App',
-                        description: 'Mobile application for preserving and sharing traditional stories across cultures.',
-                        icon: 'fas fa-book-open',
-                        year: '2023',
-                        tags: ['Mobile App', 'Storytelling', 'Cultural Preservation'],
-                        fullDescription: 'A mobile application dedicated to preserving traditional stories from different cultures while making them accessible to modern audiences through interactive storytelling.',
-                        features: [
-                            'Interactive story maps',
-                            'Audio narration in multiple languages',
-                            'Cultural context explanations',
-                            'Community story submission',
-                            'Offline reading capabilities'
-                        ]
-                    },
-                    {
-                        title: 'London Fashion Week Exhibition',
-                        description: 'Curated exhibition exploring the intersection of technology and traditional craftsmanship.',
-                        icon: 'fas fa-palette',
-                        year: '2024',
-                        tags: ['Exhibition Design', 'Fashion', 'Technology Integration'],
-                        fullDescription: 'An immersive exhibition that explores how technology can enhance rather than replace traditional craftsmanship, featuring interactive installations and live demonstrations.',
-                        features: [
-                            'Interactive textile displays',
-                            'AR-enhanced garment visualization',
-                            'Live craftsmanship demonstrations',
-                            'Digital pattern projection',
-                            'Visitor engagement analytics'
-                        ]
-                    },
-                    {
-                        title: 'Cultural Bridge Consulting',
-                        description: 'Comprehensive consulting framework for international businesses entering Asian markets.',
-                        icon: 'fas fa-handshake',
-                        year: '2024',
-                        tags: ['Consulting', 'Strategy', 'International Business'],
-                        fullDescription: 'A strategic consulting framework that helps international businesses successfully enter and operate in Asian markets by understanding cultural nuances and local business practices.',
-                        features: [
-                            'Market entry strategy development',
-                            'Cultural sensitivity training',
-                            'Local partnership facilitation',
-                            'Communication protocol guides',
-                            'Ongoing cultural advisory support'
-                        ]
-                    }
-                ],
-                
-                // Gallery images data
-                galleryImages: [
-                    { title: 'Design Sketches', icon: 'fas fa-pencil-ruler', description: 'Early conceptual sketches for fashion collections' },
-                    { title: 'Traditional Weaving', icon: 'fas fa-loom', description: 'Learning traditional Thai weaving techniques' },
-                    { title: 'AI Development', icon: 'fas fa-brain', description: 'Working on machine learning algorithms' },
-                    { title: 'Cultural Research', icon: 'fas fa-globe-asia', description: 'Researching cultural patterns and traditions' },
-                    { title: 'Voice Recording', icon: 'fas fa-microphone-alt', description: 'Professional voice acting sessions' },
-                    { title: 'Fashion Photography', icon: 'fas fa-camera', description: 'Behind the scenes of fashion shoots' },
-                    { title: 'Code Development', icon: 'fas fa-code', description: 'Building innovative web applications' },
-                    { title: 'Textile Experiments', icon: 'fas fa-cut', description: 'Experimenting with sustainable materials' },
-                    { title: 'Cultural Workshops', icon: 'fas fa-users', description: 'Leading cultural awareness workshops' },
-                    { title: 'Design Process', icon: 'fas fa-drafting-compass', description: 'Technical fashion design process' },
-                    { title: 'AI Training', icon: 'fas fa-robot', description: 'Training AI models for cultural understanding' },
-                    { title: 'Collaboration', icon: 'fas fa-handshake', description: 'Working with international teams' },
-                    { title: 'Pattern Making', icon: 'fas fa-shapes', description: 'Creating sustainable fashion patterns' },
-                    { title: 'Voice Coaching', icon: 'fas fa-volume-up', description: 'Voice acting coaching sessions' },
-                    { title: 'Tech Innovation', icon: 'fas fa-lightbulb', description: 'Innovative technology solutions' },
-                    { title: 'Cultural Events', icon: 'fas fa-calendar-alt', description: 'Participating in cultural events' },
-                    { title: 'Writing Process', icon: 'fas fa-pen-fancy', description: 'Creative writing and content creation' },
-                    { title: 'Fashion Shows', icon: 'fas fa-tshirt', description: 'Runway shows and fashion presentations' },
-                    { title: 'Digital Art', icon: 'fas fa-paint-brush', description: 'Digital art and design creation' },
-                    { title: 'Consulting Sessions', icon: 'fas fa-comments', description: 'Client consulting and strategy sessions' },
-                    { title: 'Research Travel', icon: 'fas fa-plane', description: 'Cultural research travels' },
-                    { title: 'Studio Work', icon: 'fas fa-home', description: 'Creative work in the studio' },
-                    { title: 'Presentations', icon: 'fas fa-presentation', description: 'Project presentations and pitches' },
-                    { title: 'Inspiration', icon: 'fas fa-star', description: 'Sources of creative inspiration' }
-                ],
 
+<script>
 function portfolioApp() {
     return {
-        // State variables
-        scrolled: false,
-        mobileMenuOpen: false,
-        showModal: false,
-        showGalleryModal: false,
-        selectedProject: {},
-        selectedGalleryImage: {},
-        selectedGalleryIndex: 0,
-        typedText: '',
-        isSubmitting: false,
-        formStatus: '',
-
-        // Contact form
-        contactForm: {
-            name: '',
-            email: '',
-            service: '',
-            message: ''
+        // ===== ORGANIZED STATE MANAGEMENT =====
+        state: {
+            scrolled: false,
+            mobileMenuOpen: false,
+            showModal: false,
+            showGalleryModal: false,
+            currentTheme: 'dark',
+            isLoading: true,
+            currentSection: 'hero',
+            searchQuery: '',
+            filterCategory: 'all'
         },
 
-        // Projects data (your existing projects array)
+        ui: {
+            selectedProject: {},
+            selectedGalleryImage: {},
+            selectedGalleryIndex: 0,
+            typedText: '',
+            currentTestimonialIndex: 0,
+            animationSpeed: 150,
+            isReducedMotion: false
+        },
+
+        form: {
+            isSubmitting: false,
+            status: '',
+            data: {
+                name: '',
+                email: '',
+                service: '',
+                message: '',
+                budget: '',
+                timeline: ''
+            },
+            errors: {},
+            honeypot: ''
+        },
+
+        // ===== DATA COLLECTIONS =====
         projects: [
-            // ... your existing projects data
+            {
+                id: 'cultural-ai',
+                title: 'Cultural AI Assistant',
+                description: 'AI-powered cultural consulting platform bridging Eastern and Western business practices.',
+                icon: 'fas fa-robot',
+                year: '2024',
+                category: 'ai',
+                status: 'active',
+                tags: ['AI', 'Cultural Consulting', 'Python', 'NLP'],
+                technologies: ['Python', 'TensorFlow', 'FastAPI', 'React'],
+                fullDescription: 'An innovative AI assistant designed to help international businesses navigate cultural differences between Eastern and Western markets. The platform uses advanced natural language processing to provide culturally-sensitive advice and recommendations.',
+                features: [
+                    'Multi-language support (English, Thai, Mandarin)',
+                    'Cultural etiquette guidance',
+                    'Business practice recommendations',
+                    'Real-time cultural translation',
+                    'Interactive cultural assessment tools'
+                ],
+                metrics: {
+                    users: '10K+',
+                    accuracy: '96%',
+                    languages: 8,
+                    countries: 15
+                },
+                links: {
+                    demo: '#',
+                    github: '#',
+                    case_study: '#'
+                }
+            },
+            {
+                id: 'sustainable-fashion',
+                title: 'Sustainable Fashion Collection',
+                description: 'Eco-conscious fashion line blending traditional Thai craftsmanship with modern sustainable practices.',
+                icon: 'fas fa-leaf',
+                year: '2023',
+                category: 'fashion',
+                status: 'completed',
+                tags: ['Fashion Design', 'Sustainability', 'Traditional Crafts'],
+                technologies: ['3D Design', 'Pattern Making', 'Sustainable Materials'],
+                fullDescription: 'A groundbreaking fashion collection that honors traditional Thai weaving techniques while embracing modern sustainable materials and production methods.',
+                features: [
+                    'Organic cotton and bamboo fiber materials',
+                    'Traditional hand-weaving techniques',
+                    'Zero-waste pattern design',
+                    'Local artisan collaboration',
+                    'Biodegradable packaging'
+                ],
+                metrics: {
+                    pieces: 24,
+                    artisans: 12,
+                    waste_reduction: '85%'
+                },
+                links: {
+                    portfolio: '#',
+                    shop: '#'
+                }
+            },
+            // Add more projects...
         ],
 
-        // Gallery images data (your existing gallery array)
         galleryImages: [
-            // ... your existing gallery data
+            {
+                id: 'design-sketches-001',
+                title: 'Fashion Design Sketches',
+                icon: 'fas fa-pencil-ruler',
+                description: 'Early conceptual sketches for sustainable fashion collections',
+                category: 'design',
+                date: '2024-01-15',
+                location: 'London Studio',
+                tags: ['sketching', 'fashion', 'concept'],
+                metadata: {
+                    software: 'Procreate, Adobe Illustrator',
+                    time_spent: '4 hours'
+                }
+            },
+            // Add more gallery items...
         ],
 
-        // Testimonials data - SINGLE CLEAN VERSION
         testimonials: [
             {
+                id: 'sarah-chen',
                 text: "Thanatsitt's unique perspective bridging Thai and British cultures brought invaluable insights to our international expansion. Their fashion designs perfectly captured our brand's essence while respecting local cultural nuances.",
                 client: "Sarah Chen",
                 position: "Creative Director",
                 company: "London Fashion House",
                 projectType: "Fashion Design",
-                icon: "fas fa-palette"
+                icon: "fas fa-palette",
+                rating: 5,
+                date: "2024-02-15",
+                featured: true
             },
-            {
-                text: "The AI cultural consulting platform Thanatsitt developed for us has revolutionized how we approach international markets. Their technical expertise combined with deep cultural understanding is truly exceptional.",
-                client: "Marcus Thompson",
-                position: "CTO",
-                company: "TechStart London",
-                projectType: "AI Development",
-                icon: "fas fa-robot"
-            },
-            {
-                text: "Working with Thanatsitt on our cultural preservation project was enlightening. Their ability to translate complex cultural concepts into accessible digital experiences is remarkable.",
-                client: "Dr. Priya Patel",
-                position: "Research Director",
-                company: "Cultural Institute",
-                projectType: "Cultural Consulting",
-                icon: "fas fa-temple"
-            },
-            {
-                text: "Thanatsitt's voice acting brought our international campaign to life. Their multilingual capabilities and cultural sensitivity made our global launch a tremendous success.",
-                client: "James Wilson",
-                position: "Founder",
-                company: "Digital Agency",
-                projectType: "Voice Acting",
-                icon: "fas fa-microphone"
-            },
-            {
-                text: "The web development work Thanatsitt delivered exceeded our expectations. Their attention to cultural details and user experience design created a platform that truly resonates with our diverse audience.",
-                client: "Emma Rodriguez",
-                position: "Producer",
-                company: "Media Productions",
-                projectType: "Web Development",
-                icon: "fas fa-code"
-            },
-            {
-                text: "Thanatsitt's writing captures the perfect balance between professional expertise and cultural authenticity. Their content strategy helped us connect with Asian markets in ways we never thought possible.",
-                client: "David Kim",
-                position: "Brand Manager",
-                company: "Global Corp",
-                projectType: "Content Writing",
-                icon: "fas fa-pen-fancy"
-            }
+            // Add more testimonials...
         ],
 
-        // INITIALIZATION
-        init() {
-            // Initialize AOS animations
-            if (typeof AOS !== 'undefined') {
+        // ===== INITIALIZATION =====
+        async init() {
+            try {
+                this.ui.isReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+                
+                await this.initializeServices();
+                this.setupEventListeners();
+                await this.initializeComponents();
+                
+                this.state.isLoading = false;
+                document.body.classList.add('loaded');
+                
+                this.trackEvent('app_initialized', {
+                    projects_count: this.projects.length,
+                    testimonials_count: this.testimonials.length
+                });
+
+            } catch (error) {
+                this.handleError('Initialization failed', error);
+            }
+        },
+
+        async initializeServices() {
+            const services = [
+                this.initializeAOS(),
+                this.initializeEmailJS()
+            ];
+            await Promise.allSettled(services);
+        },
+
+        async initializeAOS() {
+            if (typeof AOS !== 'undefined' && !this.ui.isReducedMotion) {
                 AOS.init({
-                    duration: 1000,
+                    duration: 800,
                     once: true,
-                    offset: 100,
+                    offset: 120,
                     easing: 'ease-out-cubic'
                 });
             }
-
-            // Initialize components
-            this.typeWriter();
-            this.selectedProject = this.projects[0];
-            this.selectedGalleryImage = this.galleryImages[0];
-            
-            // Initialize EmailJS
-            emailjs.init("YOUR_PUBLIC_KEY"); // Replace with your EmailJS public key
-            
-            // Scroll listener
-            window.addEventListener('scroll', () => {
-                this.scrolled = window.scrollY > 100;
-            });
-            
-            // Mark page as loaded
-            setTimeout(() => {
-                document.body.classList.add('loaded');
-            }, 100);
         },
 
-        // TYPEWRITER EFFECT
-        typeWriter() {
-            const text = 'Thanatsitt';
-            let i = 0;
-            const timer = setInterval(() => {
-                if (i < text.length) {
-                    this.typedText += text.charAt(i);
-                    i++;
+        async initializeEmailJS() {
+            if (typeof emailjs !== 'undefined') {
+                emailjs.init("YOUR_PUBLIC_KEY");
+            }
+        },
+
+        async initializeComponents() {
+            this.enhancedTypeWriter();
+            
+            if (this.projects.length > 0) {
+                this.ui.selectedProject = this.projects[0];
+            }
+            if (this.galleryImages.length > 0) {
+                this.ui.selectedGalleryImage = this.galleryImages[0];
+            }
+        },
+
+        // ===== ENHANCED TYPEWRITER =====
+        enhancedTypeWriter() {
+            const texts = ['Thanatsitt', 'Cultural Bridge Builder', 'Digital Innovator'];
+            let textIndex = 0;
+            let charIndex = 0;
+            let isDeleting = false;
+
+            const type = () => {
+                const currentText = texts[textIndex];
+                
+                if (isDeleting) {
+                    this.ui.typedText = currentText.substring(0, charIndex - 1);
+                    charIndex--;
                 } else {
-                    clearInterval(timer);
+                    this.ui.typedText = currentText.substring(0, charIndex + 1);
+                    charIndex++;
                 }
-            }, 150);
+
+                if (!isDeleting && charIndex === currentText.length) {
+                    setTimeout(() => isDeleting = true, 2000);
+                } else if (isDeleting && charIndex === 0) {
+                    isDeleting = false;
+                    textIndex = (textIndex + 1) % texts.length;
+                }
+
+                const speed = isDeleting ? this.ui.animationSpeed / 2 : this.ui.animationSpeed;
+                setTimeout(type, speed);
+            };
+
+            type();
         },
 
-        // NAVIGATION
+        // ===== NAVIGATION =====
         scrollToSection(sectionId) {
             const element = document.getElementById(sectionId);
-            if (element) {
-                const navHeight = 80; // Adjust based on your navbar height
-                const elementPosition = element.getBoundingClientRect().top;
-                const offsetPosition = elementPosition + window.pageYOffset - navHeight;
+            if (!element) return;
 
-                window.scrollTo({
-                    top: offsetPosition,
-                    behavior: 'smooth'
-                });
-                
-                // Close mobile menu
-                this.mobileMenuOpen = false;
-                
-                // Track navigation
-                this.trackEvent('navigation', { section: sectionId });
-            }
+            const navHeight = 80;
+            const elementPosition = element.getBoundingClientRect().top;
+            const offsetPosition = elementPosition + window.pageYOffset - navHeight;
+
+            window.scrollTo({
+                top: offsetPosition,
+                behavior: 'smooth'
+            });
+
+            this.state.currentSection = sectionId;
+            this.state.mobileMenuOpen = false;
+            this.trackEvent('navigation', { section: sectionId });
         },
 
-        // PROJECT MODAL
-        openModal(index) {
-            this.selectedProject = this.projects[index];
-            this.showModal = true;
-            document.body.style.overflow = 'hidden';
-            
-            // Track portfolio view
-            this.trackEvent('portfolio_view', { project: this.selectedProject.title });
-        },
-
-        closeModal() {
-            this.showModal = false;
-            document.body.style.overflow = 'auto';
-        },
-
-        // GALLERY MODAL
-        openGalleryModal(index) {
-            this.selectedGalleryIndex = index;
-            this.selectedGalleryImage = this.galleryImages[index];
-            this.showGalleryModal = true;
-            document.body.style.overflow = 'hidden';
-        },
-
-        closeGalleryModal() {
-            this.showGalleryModal = false;
-            document.body.style.overflow = 'auto';
-        },
-
-        // GALLERY NAVIGATION
-        nextGalleryImage() {
-            this.selectedGalleryIndex = (this.selectedGalleryIndex + 1) % this.galleryImages.length;
-            this.selectedGalleryImage = this.galleryImages[this.selectedGalleryIndex];
-        },
-
-        prevGalleryImage() {
-            this.selectedGalleryIndex = this.selectedGalleryIndex === 0 
-                ? this.galleryImages.length - 1 
-                : this.selectedGalleryIndex - 1;
-            this.selectedGalleryImage = this.galleryImages[this.selectedGalleryIndex];
-        },
-
-        // FORM SUBMISSION
-        async submitForm() {
-            if (this.isSubmitting) return;
-            
-            this.isSubmitting = true;
-            this.formStatus = 'sending';
-            
+        // ===== ENHANCED MODAL SYSTEM =====
+        async openModal(index, type = 'project') {
             try {
-                // EmailJS submission
-                const result = await emailjs.send(
-                    'YOUR_SERVICE_ID', // Replace with your service ID
-                    'YOUR_TEMPLATE_ID', // Replace with your template ID
-                    {
-                        from_name: this.contactForm.name,
-                        from_email: this.contactForm.email,
-                        service: this.contactForm.service,
-                        message: this.contactForm.message
-                    }
-                );
-                
-                this.formStatus = 'success';
-                this.resetForm();
-                
-                // Track form submission
-                this.trackEvent('form_submit', { service: this.contactForm.service });
-                
+                if (type === 'project') {
+                    this.ui.selectedProject = this.projects[index];
+                    this.state.showModal = true;
+                    this.trackEvent('portfolio_view', {
+                        project: this.ui.selectedProject.title,
+                        project_id: this.ui.selectedProject.id
+                    });
+                } else if (type === 'gallery') {
+                    this.ui.selectedGalleryIndex = index;
+                    this.ui.selectedGalleryImage = this.galleryImages[index];
+                    this.state.showGalleryModal = true;
+                    this.trackEvent('gallery_view', {
+                        image: this.ui.selectedGalleryImage.title,
+                        image_id: this.ui.selectedGalleryImage.id
+                    });
+                }
+
+                document.body.style.overflow = 'hidden';
             } catch (error) {
-                console.error('Form submission error:', error);
-                this.formStatus = 'error';
-            } finally {
-                this.isSubmitting = false;
-                
-                // Reset status after 3 seconds
-                setTimeout(() => {
-                    this.formStatus = '';
-                }, 3000);
+                this.handleError(`Failed to open ${type} modal`, error);
             }
+        },
+
+        closeModal(type = null) {
+            if (type === 'project' || (!type && this.state.showModal)) {
+                this.state.showModal = false;
+            }
+            if (type === 'gallery' || (!type && this.state.showGalleryModal)) {
+                this.state.showGalleryModal = false;
+            }
+            
+            document.body.style.overflow = 'auto';
+        },
+
+        // ===== GALLERY NAVIGATION =====
+        navigateGallery(direction) {
+            const currentIndex = this.ui.selectedGalleryIndex;
+            const total = this.galleryImages.length;
+            
+            if (direction === 'next') {
+                this.ui.selectedGalleryIndex = (currentIndex + 1) % total;
+            } else {
+                this.ui.selectedGalleryIndex = currentIndex === 0 ? total - 1 : currentIndex - 1;
+            }
+            
+            this.ui.selectedGalleryImage = this.galleryImages[this.ui.selectedGalleryIndex];
+            
+            this.trackEvent('gallery_navigate', {
+                direction,
+                from_index: currentIndex,
+                to_index: this.ui.selectedGalleryIndex
+            });
+        },
+
+        // ===== FORM HANDLING =====
+        async submitForm() {
+            if (this.form.isSubmitting || this.form.honeypot) return;
+            
+            this.form.errors = {};
+            
+            if (!this.validateForm()) {
+                this.form.status = 'Please fix the errors below.';
+                return;
+            }
+
+            this.form.isSubmitting = true;
+            this.form.status = 'Sending your message...';
+
+            try {
+                if (typeof emailjs !== 'undefined') {
+                    await emailjs.send(
+                        'YOUR_SERVICE_ID',
+                        'YOUR_TEMPLATE_ID',
+                        {
+                            ...this.form.data,
+                            timestamp: new Date().toISOString()
+                        }
+                    );
+
+                    this.form.status = 'Thank you! Your message has been sent successfully.';
+                    this.resetForm();
+                    
+                    this.trackEvent('contact_form_submit', {
+                        service: this.form.data.service
+                    });
+
+                    setTimeout(() => this.form.status = '', 8000);
+                } else {
+                    throw new Error('Email service not available');
+                }
+            } catch (error) {
+                this.form.status = 'Sorry, there was an error. Please try again.';
+                this.handleError('Form submission failed', error);
+            } finally {
+                this.form.isSubmitting = false;
+            }
+        },
+
+        validateForm() {
+            let isValid = true;
+            const { name, email, message } = this.form.data;
+
+            if (!name || name.length < 2) {
+                this.form.errors.name = 'Name must be at least 2 characters';
+                isValid = false;
+            }
+
+            const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+            if (!email || !emailRegex.test(email)) {
+                this.form.errors.email = 'Please enter a valid email';
+                isValid = false;
+            }
+
+            if (!message || message.length < 10) {
+                this.form.errors.message = 'Message must be at least 10 characters';
+                isValid = false;
+            }
+
+            return isValid;
         },
 
         resetForm() {
-            this.contactForm = {
+            this.form.data = {
                 name: '',
                 email: '',
                 service: '',
-                message: ''
+                message: '',
+                budget: '',
+                timeline: ''
             };
+            this.form.errors = {};
         },
 
-        // ANALYTICS TRACKING
-        trackEvent(eventName, properties = {}) {
-            console.log('Event tracked:', eventName, properties);
-            
-            // Google Analytics 4
-            if (typeof gtag !== 'undefined') {
-                gtag('event', eventName, properties);
-            }
-            
-            // Facebook Pixel
-            if (typeof fbq !== 'undefined') {
-                fbq('track', eventName, properties);
-            }
-        }
-    }
-}
+        // ===== EVENT LISTENERS =====
+        setupEventListeners() {
+            window.addEventListener('scroll', this.throttle(() => {
+                this.handleScroll();
+            }, 16));
 
+            window.addEventListener('resize', this.debounce(() => {
+                this.handleResize();
+            }, 250));
+        },
 
-                    // Track gallery view
-                    this.trackEvent('gallery_view', { image: this.selectedGalleryImage.title });
-                },
-                
-                closeGalleryModal() {
-                    this.showGalleryModal = false;
-                    document.body.style.overflow = 'auto';
-                },
-                
-                previousGalleryImage() {
-                    this.selectedGalleryIndex = this.selectedGalleryIndex > 0 
-                        ? this.selectedGalleryIndex - 1 
-                        : this.galleryImages.length - 1;
-                    this.selectedGalleryImage = this.galleryImages[this.selectedGalleryIndex];
-                },
-                
-                nextGalleryImage() {
-                    this.selectedGalleryIndex = this.selectedGalleryIndex < this.galleryImages.length - 1 
-                        ? this.selectedGalleryIndex + 1 
-                        : 0;
-                    this.selectedGalleryImage = this.galleryImages[this.selectedGalleryIndex];
-                },
-                
-                async sendMessage() {
-                    if (!this.contactForm.name || !this.contactForm.email || !this.contactForm.message) {
-                        this.formStatus = 'Please fill in all required fields.';
-                        return;
-                    }
-                    
-                    this.isSubmitting = true;
-                    this.formStatus = '';
-                    
-                    try {
-                        // Replace with your EmailJS service configuration
-                        await emailjs.sendForm(
-                            'YOUR_SERVICE_ID', // Replace with your EmailJS service ID
-                            'YOUR_TEMPLATE_ID', // Replace with your EmailJS template ID
-                            document.querySelector('form'),
-                            'YOUR_PUBLIC_KEY' // Replace with your EmailJS public key
-                        );
-                        
-                        this.formStatus = 'Message sent successfully! I\'ll get back to you soon.';
-                        
-                        // Reset form
-                        this.contactForm = {
-                            name: '',
-                            email: '',
-                            service: '',
-                            message: ''
-                        };
-                        
-                        // Track form submission
-                        this.trackEvent('contact_form_submit', { 
-                            service: this.contactForm.service 
-                        });
-                        
-                    } catch (error) {
-                        console.error('EmailJS Error:', error);
-                        this.formStatus = 'Sorry, there was an error sending your message. Please try again.';
-                    } finally {
-                        this.isSubmitting = false;
-                        
-                        // Clear status message after 5 seconds
-                        setTimeout(() => {
-                            this.formStatus = '';
-                        }, 5000);
-                    }
-                },
-                
-                trackEvent(eventName, eventData) {
-                    // Replace with your analytics implementation
-                    console.log('Event tracked:', eventName, eventData);
-                    
-                    // Example Google Analytics 4 tracking
-                    if (typeof gtag !== 'undefined') {
-                        gtag('event', eventName, eventData);
-                    }
-                }
+        handleScroll() {
+            this.state.scrolled = window.pageYOffset > 100;
+            this.updateScrollProgress();
+        },
+
+        handleResize() {
+            // Handle responsive changes
+            if (window.innerWidth >= 1024) {
+                this.state.mobileMenuOpen = false;
             }
-        }
-        
-        // Enhanced keyboard navigation
-        document.addEventListener('keydown', function(e) {
-            const app = document.querySelector('[x-data]')?._x_dataStack?.[0];
-            
-            if (e.key === 'Escape') {
-                if (app) {
-                    if (app.showModal) {
-                        app.closeModal();
-                    }
-                    if (app.showGalleryModal) {
-                        app.closeGalleryModal();
-                    }
-                }
-            }
-            
-            // Gallery navigation
-            if (app && app.showGalleryModal) {
-                if (e.key === 'ArrowLeft') {
-                    e.preventDefault();
-                    app.previousGalleryImage();
-                } else if (e.key === 'ArrowRight') {
-                    e.preventDefault();
-                    app.nextGalleryImage();
-                }
-            }
-        });
-        
-        // Enhanced touch/swipe support
-        let touchStartX = 0;
-        let touchEndX = 0;
-        
-        document.addEventListener('touchstart', (e) => {
-            touchStartX = e.changedTouches[0].screenX;
-        }, { passive: true });
-        
-        document.addEventListener('touchend', (e) => {
-            touchEndX = e.changedTouches[0].screenX;
-            handleSwipe();
-        }, { passive: true });
-        
-        function handleSwipe() {
-            const app = document.querySelector('[x-data]')?._x_dataStack?.[0];
-            if (app && app.showGalleryModal) {
-                const swipeThreshold = 50;
-                const diff = touchStartX - touchEndX;
-                
-                if (Math.abs(diff) > swipeThreshold) {
-                    if (diff > 0) {
-                        app.nextGalleryImage();
-                    } else {
-                        app.previousGalleryImage();
-                    }
-                }
-            }
-        }
-        
-        // Scroll progress indicator
-        window.addEventListener('scroll', () => {
+        },
+
+        updateScrollProgress() {
             const scrollTop = document.documentElement.scrollTop;
             const scrollHeight = document.documentElement.scrollHeight - document.documentElement.clientHeight;
             const scrollProgress = (scrollTop / scrollHeight) * 100;
-            
+
             let progressBar = document.getElementById('scroll-progress');
             if (!progressBar) {
                 progressBar = document.createElement('div');
@@ -2546,249 +2629,133 @@ function portfolioApp() {
                     background: linear-gradient(90deg, #D4AF37, #F4D03F);
                     z-index: 9999;
                     transition: width 0.1s ease;
+                    pointer-events: none;
                 `;
                 document.body.appendChild(progressBar);
             } else {
                 progressBar.style.width = scrollProgress + '%';
             }
-        });
-        
-        // Lazy loading for images
-        const observeImages = () => {
-            const images = document.querySelectorAll('img[data-src]');
-            const imageObserver = new IntersectionObserver((entries, observer) => {
-                entries.forEach(entry => {
-                    if (entry.isIntersecting) {
-                        const img = entry.target;
-                        img.src = img.dataset.src;
-                        img.classList.remove('loading');
-                        imageObserver.unobserve(img);
-                    }
-                });
-            });
-            
-            images.forEach(img => imageObserver.observe(img));
-        };
-        
-        // Initialize when DOM is loaded
-        document.addEventListener('DOMContentLoaded', () => {
-            observeImages();
-            
-            // Check if user prefers reduced motion
-            const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)');
-            if (prefersReducedMotion.matches) {
-                document.body.classList.add('reduce-motion');
-            }
-        });
-        
-        // Service Worker registration for PWA
-        if ('serviceWorker' in navigator) {
-            window.addEventListener('load', () => {
-                navigator.serviceWorker.register('/sw.js')
-                    .then((registration) => {
-                        console.log('SW registered: ', registration);
-                    })
-                    .catch((registrationError) => {
-                        console.log('SW registration failed: ', registrationError);
-                    });
-            });
-        }
-        
-        // Performance monitoring
-        const perfObserver = new PerformanceObserver((list) => {
-            for (const entry of list.getEntries()) {
-                if (entry.entryType === 'largest-contentful-paint') {
-                    console.log('LCP:', entry.startTime);
-                }
-                if (entry.entryType === 'first-input') {
-                    console.log('FID:', entry.processingStart - entry.startTime);
-                }
-                if (entry.entryType === 'layout-shift') {
-                    if (!entry.hadRecentInput) {
-                        console.log('CLS:', entry.value);
-                    }
-                }
-            }
-        });
-        
-        try {
-            perfObserver.observe({ entryTypes: ['largest-contentful-paint', 'first-input', 'layout-shift'] });
-        } catch (e) {
-            // Silently fail if performance observer is not supported
-        }
-        
-        // Dark mode toggle (if needed)
-        const toggleDarkMode = () => {
-            document.documentElement.classList.toggle('dark-mode');
-            localStorage.setItem('darkMode', document.documentElement.classList.contains('dark-mode'));
-        };
-        
-        // Load dark mode preference
-        if (localStorage.getItem('darkMode') === 'true') {
-            document.documentElement.classList.add('dark-mode');
-        }
-        
-        // Enhanced error handling
-        window.addEventListener('error', (e) => {
-            console.error('JavaScript Error:', e.error);
-            // Implement error reporting here if needed
-        });
-        
-        window.addEventListener('unhandledrejection', (e) => {
-            console.error('Unhandled Promise Rejection:', e.reason);
-            // Implement error reporting here if needed
-        });
-        
-        // Intersection Observer for animations
-        const animateOnScroll = () => {
-            const elements = document.querySelectorAll('.animate-on-scroll');
-            const observer = new IntersectionObserver((entries) => {
-                entries.forEach(entry => {
-                    if (entry.isIntersecting) {
-                        entry.target.classList.add('animated');
-                    }
-                });
-            }, {
-                threshold: 0.1,
-                rootMargin: '0px 0px -50px 0px'
-            });
-            
-            elements.forEach(el => observer.observe(el));
-        };
-        
-        // Initialize scroll animations
-        document.addEventListener('DOMContentLoaded', animateOnScroll);
-    </script>
-
-    <!-- Service Worker Script -->
-    <script>
-        const swCode = `
-            const CACHE_NAME = 'thanatsitt-portfolio-v1';
-            const urlsToCache = [
-                '/',
-                '/manifest.json',
-                'https://cdn.tailwindcss.com',
-                'https://unpkg.com/alpinejs@3.x.x/dist/cdn.min.js',
-                'https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css',
-                'https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap',
-                'https://cdn.emailjs.com/dist/email.min.js'
-            ];
-            
-            self.addEventListener('install', (event) => {
-                event.waitUntil(
-                    caches.open(CACHE_NAME)
-                        .then((cache) => cache.addAll(urlsToCache))
-                );
-            });
-            
-            self.addEventListener('fetch', (event) => {
-                event.respondWith(
-                    caches.match(event.request)
-                        .then((response) => {
-                            if (response) {
-                                return response;
-                            }
-                            return fetch(event.request);
-                        }
-                    )
-                );
-            });
-            
-            self.addEventListener('activate', (event) => {
-                event.waitUntil(
-                    caches.keys().then((cacheNames) => {
-                        return Promise.all(
-                            cacheNames.map((cacheName) => {
-                                if (cacheName !== CACHE_NAME) {
-                                    return caches.delete(cacheName);
-                                }
-                            })
-                        );
-                    })
-                );
-            });
-        `;
-        
-        // Create service worker file
-        const swBlob = new Blob([swCode], { type: 'application/javascript' });
-        const swUrl = URL.createObjectURL(swBlob);
-        
-        // Register service worker
-        if ('serviceWorker' in navigator) {
-            navigator.serviceWorker.register(swUrl);
-        }
-    </script>
-
-    <!-- Schema.org Structured Data -->
-    <script type="application/ld+json">
-    {
-        "@context": "https://schema.org",
-        "@type": "Person",
-        "name": "Thanatsitt Santisamranwilai",
-        "image": "https://yourwebsite.com/profile-image.jpg",
-        "jobTitle": "Interdisciplinary Creator & Designer",
-        "description": "Thai-British interdisciplinary creator bridging ancient wisdom with modern technology",
-        "url": "https://yourwebsite.com",
-        "sameAs": [
-            "https://linkedin.com/in/thanatsitt",
-            "https://github.com/thanatsitt",
-            "https://instagram.com/thanatsitt",
-            "https://twitter.com/thanatsitt"
-        ],
-        "knowsAbout": [
-            "Fashion Design",
-            "AI Development",
-            "Cultural Consulting",
-            "Voice Acting",
-            "Web Development",
-            "Cultural Bridge Building"
-        ],
-        "nationality": ["Thai", "British"],
-        "worksFor": {
-            "@type": "Organization",
-            "name": "Freelance"
         },
-        "alumniOf": {
-            "@type": "CollegeOrUniversity",
-            "name": "London College of Fashion"
+
+        // ===== UTILITY FUNCTIONS =====
+        debounce(func, wait) {
+            let timeout;
+            return function executedFunction(...args) {
+                const later = () => {
+                    clearTimeout(timeout);
+                    func(...args);
+                };
+                clearTimeout(timeout);
+                timeout = setTimeout(later, wait);
+            };
+        },
+
+        throttle(func, limit) {
+            let inThrottle;
+            return function(...args) {
+                if (!inThrottle) {
+                    func.apply(this, args);
+                    inThrottle = true;
+                    setTimeout(() => inThrottle = false, limit);
+                }
+            };
+        },
+
+        handleError(message, error = null) {
+            console.error(message, error);
+            this.trackEvent('error_occurred', { message });
+        },
+
+        trackEvent(eventName, eventData = {}) {
+            console.log('📊 Event tracked:', eventName, eventData);
+
+            if (typeof gtag !== 'undefined') {
+                gtag('event', eventName, eventData);
+            }
+
+            if (typeof fbq !== 'undefined') {
+                fbq('track', eventName, eventData);
+            }
         }
     }
-    </script>
+}
 
-    <!-- Analytics (Replace with your tracking code) -->
-    <!-- Google Analytics 4 -->
-    <script async src="https://www.googletagmanager.com/gtag/js?id=GA_MEASUREMENT_ID"></script>
-    <script>
-        window.dataLayer = window.dataLayer || [];
-        function gtag(){dataLayer.push(arguments);}
-        gtag('js', new Date());
-        gtag('config', 'GA_MEASUREMENT_ID');
-    </script>
+// ===== GLOBAL EVENT HANDLERS =====
+document.addEventListener('keydown', (e) => {
+    const app = Alpine.store('portfolio');
+    if (!app) return;
 
-    <!-- Meta Pixel (Facebook) -->
-    <script>
-        !function(f,b,e,v,n,t,s)
-        {if(f.fbq)return;n=f.fbq=function(){n.callMethod?
-        n.callMethod.apply(n,arguments):n.queue.push(arguments)};
-        if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';
-        n.queue=[];t=b.createElement(e);t.async=!0;
-        t.src=v;s=b.getElementsByTagName(e)[0];
-        s.parentNode.insertBefore(t,s)}(window,document,'script',
-        'https://connect.facebook.net/en_US/fbevents.js');
-        fbq('init', 'YOUR_PIXEL_ID');
-        fbq('track', 'PageView');
-    </script>
+    if (e.key === 'Escape') {
+        app.closeModal();
+    }
 
-    <!-- Hotjar Tracking Code -->
-    <script>
-        (function(h,o,t,j,a,r){
-            h.hj=h.hj||function(){(h.hj.q=h.hj.q||[]).push(arguments)};
-            h._hjSettings={hjid:YOUR_HOTJAR_ID,hjsv:6};
-            a=o.getElementsByTagName('head')[0];
-            r=o.createElement('script');r.async=1;
-            r.src=t+h._hjSettings.hjid+j+h._hjSettings.hjsv;
-            a.appendChild(r);
-        })(window,document,'https://static.hotjar.com/c/hotjar-','.js?sv=');
+    if (app.state.showGalleryModal) {
+        if (e.key === 'ArrowLeft') {
+            e.preventDefault();
+            app.navigateGallery('prev');
+        } else if (e.key === 'ArrowRight') {
+            e.preventDefault();
+            app.navigateGallery('next');
+        }
+    }
+});
+
+// Touch/Swipe Support
+let touchStartX = 0;
+let touchEndX = 0;
+
+document.addEventListener('touchstart', (e) => {
+    touchStartX = e.changedTouches[0].screenX;
+}, { passive: true });
+
+document.addEventListener('touchend', (e) => {
+    touchEndX = e.changedTouches[0].screenX;
+    handleSwipe();
+}, { passive: true });
+
+function handleSwipe() {
+    const app = Alpine.store('portfolio');
+    if (!app || !app.state.showGalleryModal) return;
+
+    const swipeThreshold = 50;
+    const deltaX = touchStartX - touchEndX;
+
+    if (Math.abs(deltaX) > swipeThreshold) {
+        if (deltaX > 0) {
+            app.navigateGallery('next');
+        } else {
+            app.navigateGallery('prev');
+        }
+    }
+}
+
+console.log('🚀 Enhanced Portfolio App - Ready!');
+</script>
+
+<!-- PWA Manifest Script -->
+<script>
+const manifest = {
+    "name": "Thanatsitt Santisamranwilai Portfolio",
+    "short_name": "Thanatsitt",
+    "description": "Thai-British interdisciplinary creator bridging ancient wisdom with modern technology",
+    "start_url": "/",
+    "display": "standalone",
+    "background_color": "#1A1A2E",
+    "theme_color": "#D4AF37",
+    "icons": [
+        {
+            "src": "data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMTkyIiBoZWlnaHQ9IjE5MiIgdmlld0JveD0iMCAwIDE5MiAxOTIiIGZpbGw9Im5vbmUiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyI+CjxyZWN0IHdpZHRoPSIxOTIiIGhlaWdodD0iMTkyIiByeD0iMjQiIGZpbGw9IiMxQTFBMkUiLz4KPGNpcmNsZSBjeD0iOTYiIGN5PSI5NiIgcj0iNDAiIGZpbGw9IiNENEFGMzciLz4KPHN2Zz4K",
+            "sizes": "192x192",
+            "type": "image/svg+xml"
+        }
+    ]
+};
+
+const manifestBlob = new Blob([JSON.stringify(manifest, null, 2)], { type: 'application/json' });
+const manifestUrl = URL.createObjectURL(manifestBlob);
+document.querySelector('link[rel="manifest"]').href = manifestUrl;
+</script>
+
     </script>
 
 </body>
