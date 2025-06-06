@@ -6,9 +6,12 @@
     "build": "node scripts/build.js",
     "build:dev": "NODE_ENV=development node scripts/build.js",
     "build:prod": "NODE_ENV=production node scripts/build.js",
-    "dev": "netlify dev",
-    "dev:local": "live-server . --port=3000",
-    "test": "echo \"No tests specified\" && exit 0"
+    "dev": "npm run build:dev && netlify dev",
+    "dev:local": "npm run build:dev && live-server dist --port=3000",
+    "start": "npm run dev",
+    "test": "echo \"No tests specified\" && exit 0",
+    "clean": "rm -rf dist",
+    "env:check": "node -e \"require('dotenv').config(); console.log(process.env)\""
   },
   "dependencies": {
     "dotenv": "^16.3.1"
