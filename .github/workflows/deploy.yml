@@ -2,12 +2,12 @@ name: Deploy Thanatsitt Portfolio
 
 on:
   push:
-    branches: [ main ]
+    branches: [ main, staging ]
   pull_request:
     branches: [ main ]
 
 jobs:
-  test-and-build:
+  test:
     runs-on: ubuntu-latest
     
     steps:
@@ -23,22 +23,118 @@ jobs:
     - name: Install dependencies
       run: npm ci
     
-    - name: Run tests (if any)
+    - name: Run linting
+      run: npm run lint --if-present
+    
+    - name: Run tests
       run: npm test --if-present
     
     - name: Build project
       run: npm run build
       env:
         NODE_ENV: production
+
+  deploy-staging:
+    needs: test
+    runs-on: ubuntu-latest
+    if: github.ref == 'refs/heads/staging'
+    environment: staging
+    
+    steps:
+    - name: Checkout repository
+      uses: actions/checkout@v4
+    
+    - name: Setup Node.js
+      uses: actions/setup-node@v4
+      with:
+        node-version: '18'
+        cache: 'npm'
+    
+    - name: Install dependencies
+      run: npm ci
+    
+    - name: Build for staging
+      run: npm run build
+      env:
+        NODE_ENV: staging
+    
+    - name: Deploy to Netlify Staging
+      uses: nwtgck/actions-netlify@v3.0
+      with:
+        publish-dir: './dist'
+        production-branch: staging
+        github-token: ${{ secrets.GITHUB_TOKEN }}
+        deploy-message: "🧪 Staging deploy - ${{ github.sha }}"
+      env:
+        NETLIFY_AUTH_TOKEN: ${{ secrets.NETLIFY_AUTH_TOKEN }}
+        NETLIFY_SITE_ID: ${{ secrets.NETLIFY_STAGING_SITE_ID }}
+
+  deploy-production:
+    needs: test
+    runs-on: ubuntu-latest
+    if: github.ref == 'refs/heads/main'
+    environment: production
+    
+    steps:
+    - name: Checkout repository
+      uses: actions/checkout@v4
+    
+    - name: Setup Node.js
+      uses: actions/setup-node@v4
+      with:
+        node-version: '18'
+        cache: 'npm'
+    
+    - name: Install dependencies
+      run: npm ci
+    
+    - name: Build for production
+      run: npm run build
+      env:
+        NODE_ENV: production
     
     - name: Upload build artifacts
-      uses: actions/upload-artifact@v3
+      uses: actions/upload-artifact@v4
       with:
-        name: build-files
+        name: production-build
         path: dist/
+        retention-days: 30
+        compression-level: 9
+    
+    - name: Deploy to Netlify Production
+      uses: nwtgck/actions-netlify@v3.0
+      with:
+        publish-dir: './dist'
+        production-branch: main
+        github-token: ${{ secrets.GITHUB_TOKEN }}
+        deploy-message: "🚀 Production deploy - ${{ github.sha }}"
+        enable-pull-request-comment: false
+        enable-commit-comment: true
+      env:
+        NETLIFY_AUTH_TOKEN: ${{ secrets.NETLIFY_AUTH_TOKEN }}
+        NETLIFY_SITE_ID: ${{ secrets.NETLIFY_SITE_ID }}
+    
+    - name: Create GitHub Release
+      uses: actions/create-release@v1
+      env:
+        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      with:
+        tag_name: v${{ github.run_number }}
+        release_name: Release v${{ github.run_number }}
+        body: |
+          🚀 Automated release from GitHub Actions
+          
+          **Changes in this release:**
+          ${{ github.event.head_commit.message }}
+          
+          **Deployed to:** https://thanatsitt.com
+          **Commit:** ${{ github.sha }}
+        draft: false
+        prerelease: false
+      if: success()
 
-  deploy:
-    needs: test-and-build
+  lighthouse:
+    needs: deploy-production
     runs-on: ubuntu-latest
     if: github.ref == 'refs/heads/main'
     
@@ -46,19 +142,10 @@ jobs:
     - name: Checkout repository
       uses: actions/checkout@v4
     
-    - name: Download build artifacts
-      uses: actions/download-artifact@v3
+    - name: Run Lighthouse CI
+      uses: treosh/lighthouse-ci-action@v10
       with:
-        name: build-files
-        path: dist/
-    
-    - name: Deploy to Netlify
-      uses: nwtgck/actions-netlify@v2.0
-      with:
-        publish-dir: './dist'
-        production-branch: main
-        github-token: ${{ secrets.GITHUB_TOKEN }}
-        deploy-message: "Deploy from GitHub Actions"
-      env:
-        NETLIFY_AUTH_TOKEN: ${{ secrets.NETLIFY_AUTH_TOKEN }}
-        NETLIFY_SITE_ID: ${{ secrets.NETLIFY_SITE_ID }}
+        urls: |
+          https://thanatsitt.com
+        uploadArtifacts: true
+        temporaryPublicStorage: true
