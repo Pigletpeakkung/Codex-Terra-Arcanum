@@ -62,6 +62,27 @@ thanatsitt-portfolio/
 - Node.js 18+ 
 - npm or yarn
 - Git
+# Development
+npm run dev                    # Start development server
+npm run build:dev             # Build for development
+
+# Staging
+npm run build:staging         # Build for staging
+npm run deploy:staging        # Deploy to staging
+
+# Production
+npm run build:prod           # Build for production
+npm run deploy:prod          # Deploy to production
+
+# Testing & Quality
+npm test                     # Run tests
+npm run lint                 # Run linting
+npm run lighthouse          # Run Lighthouse audit
+npm run analyze             # Analyze bundle size
+
+# Utilities
+npm run format              # Format code
+npm run generate:sitemap    # Generate sitemap
 
 ### **Installation**
 
