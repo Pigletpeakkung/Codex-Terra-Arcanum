@@ -1,67 +1,107 @@
 {
   "compilerOptions": {
-    "target": "es5",
+    // Target modern browsers for better performance
+    "target": "ES2020",
     "lib": [
-      "dom",
-      "dom.iterable",
-      "es6"
+      "DOM",
+      "DOM.Iterable", 
+      "ES2020",
+      "WebWorker"
     ],
-    "allowJs": true,
-    "skipLibCheck": true,
-    "esModuleInterop": true,
-    "allowSyntheticDefaultImports": true,
-    "strict": true,
-    "forceConsistentCasingInFileNames": true,
-    "noFallthroughCasesInSwitch": true,
-    "module": "esnext",
+    
+    // Module system
+    "module": "ESNext",
     "moduleResolution": "node",
-    "resolveJsonModule": true,
-    "isolatedModules": true,
-    "noEmit": true,
-    "jsx": "react-jsx",
-    "declaration": true,
-    "declarationMap": true,
-    "sourceMap": true,
-    "removeComments": false,
+    "allowJs": true,
+    "checkJs": false,
+    
+    // Strict type checking
+    "strict": true,
     "noImplicitAny": true,
     "noImplicitReturns": true,
     "noImplicitThis": true,
-    "noUnusedLocals": true,
-    "noUnusedParameters": true,
+    "noUnusedLocals": false,
+    "noUnusedParameters": false,
     "exactOptionalPropertyTypes": true,
     "noUncheckedIndexedAccess": true,
-    "noImplicitOverride": true,
+    "noFallthroughCasesInSwitch": true,
     "useUnknownInCatchVariables": true,
-    "baseUrl": "src",
+    
+    // Module resolution
+    "esModuleInterop": true,
+    "allowSyntheticDefaultImports": true,
+    "forceConsistentCasingInFileNames": true,
+    "resolveJsonModule": true,
+    "isolatedModules": true,
+    
+    // Output settings
+    "noEmit": true,
+    "skipLibCheck": true,
+    "declaration": false,
+    "declarationMap": false,
+    "sourceMap": true,
+    "removeComments": false,
+    
+    // Path mapping for your static project
+    "baseUrl": ".",
     "paths": {
-      "@/*": ["*"],
-      "@/components/*": ["components/*"],
-      "@/hooks/*": ["hooks/*"],
-      "@/utils/*": ["utils/*"],
-      "@/types/*": ["types/*"],
+      "@/*": ["./*"],
+      "@/js/*": ["js/*"],
+      "@/css/*": ["css/*"],
       "@/assets/*": ["assets/*"],
-      "@/styles/*": ["styles/*"]
-    }
+      "@/images/*": ["images/*"],
+      "@/gallery/*": ["gallery/*"],
+      "@/voice-samples/*": ["voice-samples/*"],
+      "@/types/*": ["types/*"],
+      "@/utils/*": ["utils/*"],
+      "@/config/*": ["config/*"]
+    },
+    
+    // Type definitions
+    "types": [
+      "node",
+      "web"
+    ],
+    
+    // Additional options for Alpine.js and modern web APIs
+    "experimentalDecorators": true,
+    "emitDecoratorMetadata": true
   },
+  
+  // Include patterns for your static portfolio
   "include": [
-    "src/**/*",
-    "src/**/*.tsx",
-    "src/**/*.ts",
-    "public/manifest.json"
+    "**/*.ts",
+    "**/*.js",
+    "js/**/*",
+    "types/**/*",
+    "config/**/*",
+    "netlify/functions/**/*",
+    "netlify/edge-functions/**/*",
+    "manifest.json",
+    "sw.js"
   ],
+  
+  // Exclude unnecessary files
   "exclude": [
     "node_modules",
     "build",
     "dist",
+    ".netlify",
     "coverage",
     "**/*.test.ts",
-    "**/*.test.tsx",
+    "**/*.test.js",
     "**/*.spec.ts",
-    "**/*.spec.tsx"
+    "**/*.spec.js",
+    "**/*.min.js",
+    "vendor/**/*"
   ],
+  
+  // TypeScript Node configuration (for build scripts)
   "ts-node": {
     "compilerOptions": {
-      "module": "commonjs"
-    }
+      "module": "CommonJS",
+      "target": "ES2020"
+    },
+    "esm": true
   }
 }
