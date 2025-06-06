@@ -21,98 +21,154 @@
     "ai-development",
     "cultural-consulting",
     "voice-acting",
-    "react",
-    "typescript",
+    "alpine-js",
+    "static-site",
+    "vanilla-javascript",
     "responsive-design",
     "thai",
     "creative-technology",
     "thanatsitt",
     "pigletpeakkung",
     "codex-terra-arcanum",
-    "pegearts"
+    "pegearts",
+    "pwa",
+    "netlify"
   ],
   "license": "MIT",
   "private": true,
+  "type": "module",
+  "main": "index.html",
+  "scripts": {
+    "dev": "live-server --port=3000 --host=localhost --entry-file=index.html --watch=**/*.html,**/*.css,**/*.js --ignore=node_modules",
+    "start": "npm run dev",
+    "build": "npm run optimize && npm run generate-sitemap && npm run sw-precache",
+    "build:prod": "npm run clean && npm run build",
+    
+    "optimize": "npm run minify-css && npm run minify-js && npm run optimize-images",
+    "minify-css": "cleancss -o css/style.min.css css/style.css",
+    "minify-js": "terser js/app.js -o js/app.min.js --compress --mangle --source-map",
+    "optimize-images": "imagemin images/**/*.{jpg,jpeg,png,gif,webp} --out-dir=images/optimized --plugin=imagemin-mozjpeg --plugin=imagemin-pngquant",
+    
+    "generate-sitemap": "node scripts/generate-sitemap.js",
+    "sw-precache": "node scripts/generate-sw.js",
+    
+    "lint": "eslint **/*.js --ignore-path .gitignore",
+    "lint:fix": "eslint **/*.js --fix --ignore-path .gitignore",
+    "lint:check": "eslint **/*.js --ignore-path .gitignore",
+    
+    "format": "prettier --write **/*.{js,html,css,json,md} --ignore-path .gitignore",
+    "format:check": "prettier --check **/*.{js,html,css,json,md} --ignore-path .gitignore",
+    
+    "type-check": "tsc --noEmit",
+    "validate": "npm run lint && npm run format:check && npm run type-check",
+    
+    "test": "jest",
+    "test:watch": "jest --watch",
+    "test:coverage": "jest --coverage",
+    "test:ci": "jest --ci --coverage --watchAll=false",
+    
+    "lighthouse": "lighthouse http://localhost:3000 --output=html --output-path=./reports/lighthouse.html --chrome-flags='--headless'",
+    "lighthouse:ci": "lhci autorun",
+    
+    "serve": "live-server --port=8080 --entry-file=index.html",
+    "serve:dist": "live-server --port=8080 --entry-file=index.html --no-browser",
+    
+    "deploy": "npm run build && gh-pages -d .",
+    "deploy:github": "npm run build && gh-pages -d . -m 'Deploy portfolio'",
+    "deploy:netlify": "npm run build && netlify deploy --prod --dir=.",
+    "deploy:vercel": "npm run build && vercel --prod",
+    
+    "predeploy": "npm run build",
+    "postdeploy": "echo 'Portfolio deployed successfully! 🚀'",
+    
+    "clean": "rm -rf node_modules package-lock.json reports coverage .cache && npm install",
+    "clean:cache": "rm -rf .cache reports coverage",
+    
+    "analyze": "npm run build && bundlesize",
+    "security-check": "npm audit",
+    "update-deps": "npm update && npm audit fix",
+    
+    "pre-commit": "npm run validate && npm run test:ci",
+    "prepare": "husky install || true"
+  },
   "dependencies": {
-    "@testing-library/jest-dom": "^5.17.0",
-    "@testing-library/react": "^13.4.0",
-    "@testing-library/user-event": "^14.5.2",
-    "@types/jest": "^27.5.2",
-    "@types/node": "^16.18.68",
-    "@types/react": "^18.2.42",
-    "@types/react-dom": "^18.2.17",
-    "react": "^18.2.0",
-    "react-dom": "^18.2.0",
-    "react-scripts": "5.0.1",
-    "typescript": "^4.9.5",
-    "web-vitals": "^2.1.4"
+    "alpinejs": "^3.13.3"
   },
   "devDependencies": {
-    "@types/testing-library__jest-dom": "^5.14.9",
+    "@types/node": "^20.10.0",
     "@typescript-eslint/eslint-plugin": "^6.13.1",
     "@typescript-eslint/parser": "^6.13.1",
-    "eslint": "^8.54.0",
-    "eslint-config-prettier": "^9.0.0",
+    "bundlesize": "^0.18.1",
+    "clean-css-cli": "^5.6.2",
+    "eslint": "^8.55.0",
+    "eslint-config-prettier": "^9.1.0",
     "eslint-plugin-prettier": "^5.0.1",
-    "eslint-plugin-react": "^7.33.2",
-    "eslint-plugin-react-hooks": "^4.6.0",
     "gh-pages": "^6.1.0",
+    "husky": "^8.0.3",
+    "imagemin": "^8.0.1",
+    "imagemin-cli": "^7.0.0",
+    "imagemin-mozjpeg": "^10.0.0",
+    "imagemin-pngquant": "^9.0.2",
+    "jest": "^29.7.0",
+    "jest-environment-jsdom": "^29.7.0",
+    "lighthouse": "^11.4.0",
+    "@lhci/cli": "^0.12.0",
+    "live-server": "^1.2.2",
+    "netlify-cli": "^17.10.1",
     "prettier": "^3.1.0",
-    "sass": "^1.69.5"
+    "terser": "^5.24.0",
+    "typescript": "^5.3.2",
+    "vercel": "^32.7.2"
   },
-  "scripts": {
-    "start": "react-scripts start",
-    "build": "react-scripts build",
-    "test": "react-scripts test",
-    "eject": "react-scripts eject",
-    "predeploy": "npm run build",
-    "deploy": "gh-pages -d build",
-    "deploy:github": "npm run build && gh-pages -d build",
-    "lint": "eslint src/**/*.{js,jsx,ts,tsx} --quiet --fix",
-    "lint:check": "eslint src/**/*.{js,jsx,ts,tsx}",
-    "format": "prettier --write src/**/*.{js,jsx,ts,tsx,json,css,md}",
-    "format:check": "prettier --check src/**/*.{js,jsx,ts,tsx,json,css,md}",
-    "type-check": "tsc --noEmit",
-    "pre-commit": "npm run lint && npm run format && npm run type-check",
-    "build:analyze": "npm run build && npx serve -s build",
-    "clean": "rm -rf build node_modules package-lock.json && npm install",
-    "deploy:netlify": "netlify deploy --prod --dir=build",
-    "deploy:vercel": "vercel --prod",
-    "serve": "npx serve -s build -l 3000",
-    "test:coverage": "npm test -- --coverage --watchAll=false",
-    "test:ci": "CI=true npm test -- --coverage --watchAll=false"
+  "optionalDependencies": {
+    "sharp": "^0.32.6"
   },
   "eslintConfig": {
+    "env": {
+      "browser": true,
+      "es2021": true,
+      "node": true,
+      "jest": true
+    },
     "extends": [
-      "react-app",
-      "react-app/jest",
+      "eslint:recommended",
       "@typescript-eslint/recommended",
       "prettier"
     ],
     "plugins": [
       "@typescript-eslint",
-      "react-hooks",
       "prettier"
     ],
+    "parser": "@typescript-eslint/parser",
+    "parserOptions": {
+      "ecmaVersion": 2021,
+      "sourceType": "module"
+    },
     "rules": {
       "prettier/prettier": "error",
       "@typescript-eslint/no-unused-vars": "error",
       "@typescript-eslint/explicit-function-return-type": "off",
       "@typescript-eslint/explicit-module-boundary-types": "off",
       "@typescript-eslint/no-explicit-any": "warn",
-      "react-hooks/rules-of-hooks": "error",
-      "react-hooks/exhaustive-deps": "warn",
       "no-console": "warn",
-      "no-debugger": "error"
+      "no-debugger": "error",
+      "no-undef": "error",
+      "prefer-const": "error",
+      "no-var": "error"
     },
-    "parser": "@typescript-eslint/parser",
-    "parserOptions": {
-      "ecmaVersion": 2020,
-      "sourceType": "module",
-      "ecmaFeatures": {
-        "jsx": true
-      }
-    }
+    "globals": {
+      "Alpine": "readonly",
+      "AOS": "readonly",
+      "emailjs": "readonly",
+      "gtag": "readonly",
+      "fbq": "readonly"
+    },
+    "ignorePatterns": [
+      "node_modules/",
+      "*.min.js",
+      "vendor/",
+      "reports/"
+    ]
   },
   "prettier": {
     "semi": true,
@@ -124,13 +180,21 @@
     "bracketSpacing": true,
     "bracketSameLine": false,
     "arrowParens": "avoid",
-    "endOfLine": "lf"
+    "endOfLine": "lf",
+    "htmlWhitespaceSensitivity": "css",
+    "insertPragma": false,
+    "jsxSingleQuote": true,
+    "proseWrap": "preserve",
+    "quoteProps": "as-needed",
+    "requirePragma": false,
+    "vueIndentScriptAndStyle": false
   },
   "browserslist": {
     "production": [
-      ">0.2%",
+      "> 1%",
+      "last 2 versions",
       "not dead",
-      "not op_mini all"
+      "not ie 11"
     ],
     "development": [
       "last 1 chrome version",
@@ -139,15 +203,29 @@
     ]
   },
   "engines": {
-    "node": ">=16.0.0",
-    "npm": ">=8.0.0"
+    "node": ">=18.0.0",
+    "npm": ">=9.0.0"
   },
   "jest": {
+    "testEnvironment": "jsdom",
+    "setupFilesAfterEnv": [
+      "<rootDir>/tests/setup.js"
+    ],
+    "testMatch": [
+      "<rootDir>/tests/**/*.test.js",
+      "<rootDir>/js/**/*.test.js"
+    ],
     "collectCoverageFrom": [
-      "src/**/*.{js,jsx,ts,tsx}",
-      "!src/**/*.d.ts",
-      "!src/index.tsx",
-      "!src/reportWebVitals.ts"
+      "js/**/*.js",
+      "!js/**/*.min.js",
+      "!js/vendor/**",
+      "!**/node_modules/**"
+    ],
+    "coverageDirectory": "coverage",
+    "coverageReporters": [
+      "text",
+      "lcov",
+      "html"
     ],
     "coverageThreshold": {
       "global": {
@@ -156,6 +234,25 @@
         "lines": 70,
         "statements": 70
       }
+    },
+    "moduleNameMapping": {
+      "^@/(.*)$": "<rootDir>/$1"
+    }
+  },
+  "bundlesize": [
+    {
+      "path": "js/app.min.js",
+      "maxSize": "50 kB"
+    },
+    {
+      "path": "css/style.min.css",
+      "maxSize": "20 kB"
+    }
+  ],
+  "husky": {
+    "hooks": {
+      "pre-commit": "npm run pre-commit",
+      "pre-push": "npm run test:ci"
     }
   }
 }
