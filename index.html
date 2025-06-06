@@ -4,10 +4,21 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Thanatsitt Santisamranwilai - Portfolio</title>
+    <meta name="description" content="Thai-British interdisciplinary creator bridging ancient wisdom with modern technology. Fashion Design, AI Development, Cultural Consulting.">
+    <meta name="keywords" content="Fashion Design, AI Development, Cultural Consulting, Voice Acting, Web Development, Thai-British Designer">
+    
+    <!-- PWA Manifest -->
+    <link rel="manifest" href="/manifest.json">
+    <meta name="theme-color" content="#D4AF37">
+    <link rel="apple-touch-icon" href="/logo192.png">
+    
+    <!-- Scripts and Styles -->
     <script src="https://cdn.tailwindcss.com"></script>
     <script defer src="https://unpkg.com/alpinejs@3.x.x/dist/cdn.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@emailjs/browser@3/dist/email.min.js"></script>
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+    
     <script>
         tailwind.config = {
             theme: {
@@ -37,6 +48,7 @@
                         'moon-orbit': 'moonOrbit 20s linear infinite',
                         'moon-glow': 'moonGlow 4s ease-in-out infinite alternate',
                         'stars-twinkle': 'starsTwinkle 3s ease-in-out infinite alternate',
+                        'card-flip': 'cardFlip 0.6s ease-in-out',
                     },
                     backgroundImage: {
                         'cosmic-gradient': 'linear-gradient(135deg, #667eea 0%, #764ba2 100%)',
@@ -47,6 +59,7 @@
             }
         }
     </script>
+    
     <style>
         @keyframes gradient {
             0%, 100% { background-position: 0% 50%; }
@@ -81,6 +94,11 @@
         @keyframes zoomIn {
             0% { transform: scale(0.8); opacity: 0; }
             100% { transform: scale(1); opacity: 1; }
+        }
+        @keyframes cardFlip {
+            0% { transform: rotateY(0); }
+            50% { transform: rotateY(-90deg); }
+            100% { transform: rotateY(0); }
         }
         
         /* Enhanced Moon Animations */
@@ -209,6 +227,36 @@
             min-height: 300px;
         }
         
+        /* 3D Card Flip Effects */
+        .card-container {
+            perspective: 1000px;
+            height: 400px;
+        }
+        
+        .card-front, .card-back {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            backface-visibility: hidden;
+            transition: transform 0.6s;
+            padding: 2rem;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+        }
+        
+        .card-back {
+            transform: rotateY(180deg);
+        }
+        
+        .card-container:hover .card-front {
+            transform: rotateY(-180deg);
+        }
+        
+        .card-container:hover .card-back {
+            transform: rotateY(0);
+        }
+        
         /* Enhanced Moon Elements */
         .moon-container {
             position: relative;
@@ -287,9 +335,64 @@
             border-radius: 50%;
             box-shadow: 0 0 15px rgba(212, 175, 55, 0.6);
         }
+        
+        /* Accessibility improvements */
+        .sr-only {
+            position: absolute;
+            width: 1px;
+            height: 1px;
+            padding: 0;
+            margin: -1px;
+            overflow: hidden;
+            clip: rect(0, 0, 0, 0);
+            white-space: nowrap;
+            border: 0;
+        }
+        
+        .focus\:not-sr-only:focus {
+            position: static;
+            width: auto;
+            height: auto;
+            padding: inherit;
+            margin: inherit;
+            overflow: visible;
+            clip: auto;
+            white-space: normal;
+        }
+        
+        /* Print styles */
+        @media print {
+            .particle, .animate-float, nav, footer, .moon-container {
+                display: none !important;
+            }
+            
+            .hero-bg {
+                background: #1A1A2E !important;
+                animation: none !important;
+            }
+            
+            .glass-morphism {
+                background: rgba(255, 255, 255, 0.1) !important;
+                backdrop-filter: none !important;
+            }
+        }
+        
+        /* Reduced motion support */
+        @media (prefers-reduced-motion: reduce) {
+            *, *::before, *::after {
+                animation-duration: 0.01ms !important;
+                animation-iteration-count: 1 !important;
+                transition-duration: 0.01ms !important;
+            }
+        }
     </style>
 </head>
 <body class="hero-bg text-white min-h-screen custom-scrollbar overflow-x-hidden" x-data="portfolioApp()">
+    <!-- Skip to main content link for accessibility -->
+    <a href="#main-content" class="sr-only focus:not-sr-only focus:absolute focus:top-4 focus:left-4 bg-gold text-black px-4 py-2 rounded z-50">
+        Skip to main content
+    </a>
+
     <!-- Particle Background -->
     <div class="fixed inset-0 overflow-hidden pointer-events-none z-0">
         <template x-for="i in 50">
@@ -378,7 +481,7 @@
                 </div>
                 
                 <!-- Mobile Menu Button -->
-                <button @click="mobileMenuOpen = !mobileMenuOpen" class="md:hidden text-gold hover:animate-wiggle">
+                <button @click="mobileMenuOpen = !mobileMenuOpen" class="md:hidden text-gold hover:animate-wiggle" aria-label="Toggle mobile menu">
                     <i class="fas fa-bars text-xl"></i>
                 </button>
             </div>
@@ -417,7 +520,7 @@
         </nav>
 
     <!-- Hero Section -->
-    <section id="home" class="min-h-screen flex items-center justify-center relative overflow-hidden">
+    <section id="home" role="main" class="min-h-screen flex items-center justify-center relative overflow-hidden">
         <!-- Floating Elements -->
         <div class="absolute top-20 right-20 w-32 h-32 bg-gold/20 rounded-full animate-float hidden lg:block"></div>
         <div class="absolute bottom-20 left-20 w-24 h-24 bg-moon-silver/20 rounded-full animate-float hidden lg:block" style="animation-delay: -2s;"></div>
@@ -459,16 +562,16 @@
             
             <!-- Social Links -->
             <div class="flex justify-center space-x-8">
-                <a href="#" class="text-3xl text-gray-400 hover:text-gold transition-colors duration-300 hover:animate-bounce">
+                <a href="#" class="text-3xl text-gray-400 hover:text-gold transition-colors duration-300 hover:animate-bounce" aria-label="LinkedIn">
                     <i class="fab fa-linkedin"></i>
                 </a>
-                <a href="#" class="text-3xl text-gray-400 hover:text-gold transition-colors duration-300 hover:animate-bounce">
+                <a href="#" class="text-3xl text-gray-400 hover:text-gold transition-colors duration-300 hover:animate-bounce" aria-label="GitHub">
                     <i class="fab fa-github"></i>
                 </a>
-                <a href="#" class="text-3xl text-gray-400 hover:text-gold transition-colors duration-300 hover:animate-bounce">
+                <a href="#" class="text-3xl text-gray-400 hover:text-gold transition-colors duration-300 hover:animate-bounce" aria-label="Instagram">
                     <i class="fab fa-instagram"></i>
                 </a>
-                <a href="#" class="text-3xl text-gray-400 hover:text-gold transition-colors duration-300 hover:animate-bounce">
+                <a href="#" class="text-3xl text-gray-400 hover:text-gold transition-colors duration-300 hover:animate-bounce" aria-label="Twitter">
                     <i class="fab fa-twitter"></i>
                 </a>
             </div>
@@ -561,7 +664,7 @@
         </div>
     </section>
 
-    <!-- Skills Section -->
+    <!-- Skills Section with 3D Flip Cards -->
     <section id="skills" class="py-20 px-4 relative">
         <div class="max-w-7xl mx-auto">
             <div class="text-center mb-16">
@@ -570,168 +673,249 @@
             </div>
             
             <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
-                <!-- Design Skills -->
-                <div class="glass-morphism rounded-2xl p-8 card-hover">
-                    <div class="text-center mb-6">
-                        <div class="w-16 h-16 bg-gradient-to-br from-gold to-yellow-400 rounded-full flex items-center justify-center mx-auto mb-4">
-                            <i class="fas fa-palette text-2xl text-black"></i>
+                <!-- Design Skills Card with 3D Flip -->
+                <div class="glass-morphism rounded-2xl card-container">
+                    <div class="card-front">
+                        <div class="text-center mb-6">
+                            <div class="w-16 h-16 bg-gradient-to-br from-gold to-yellow-400 rounded-full flex items-center justify-center mx-auto mb-4">
+                                <i class="fas fa-palette text-2xl text-black"></i>
+                            </div>
+                            <h3 class="text-xl font-bold text-gold">Design</h3>
                         </div>
-                        <h3 class="text-xl font-bold text-gold">Design</h3>
+                        
+                        <div class="space-y-4" x-data="{ visible: false }" x-intersect="visible = true">
+                            <div class="skill-item">
+                                <div class="flex justify-between mb-2">
+                                    <span class="text-white">Fashion Design</span>
+                                    <span class="text-gold">95%</span>
+                                </div>
+                                <div class="w-full bg-gray-700 rounded-full h-2">
+                                    <div class="skill-bar rounded-full h-2" :style="visible ? 'width: 95%' : 'width: 0%'"></div>
+                                </div>
+                            </div>
+                            
+                            <div class="skill-item">
+                                <div class="flex justify-between mb-2">
+                                    <span class="text-white">UI/UX Design</span>
+                                    <span class="text-gold">88%</span>
+                                </div>
+                                <div class="w-full bg-gray-700 rounded-full h-2">
+                                    <div class="skill-bar rounded-full h-2" :style="visible ? 'width: 88%' : 'width: 0%'"></div>
+                                </div>
+                            </div>
+                            
+                            <div class="skill-item">
+                                <div class="flex justify-between mb-2">
+                                    <span class="text-white">Visual Identity</span>
+                                    <span class="text-gold">92%</span>
+                                </div>
+                                <div class="w-full bg-gray-700 rounded-full h-2">
+                                    <div class="skill-bar rounded-full h-2" :style="visible ? 'width: 92%' : 'width: 0%'"></div>
+                                </div>
+                            </div>
+                        </div>
                     </div>
-                    
-                    <div class="space-y-4" x-data="{ visible: false }" x-intersect="visible = true">
-                        <div class="skill-item">
-                            <div class="flex justify-between mb-2">
-                                <span class="text-white">Fashion Design</span>
-                                <span class="text-gold">95%</span>
+
+                    <div class="card-back">
+                        <h3 class="text-2xl font-bold text-gold mb-6">Design Expertise</h3>
+                        <div class="space-y-4 text-white">
+                            <div class="flex items-center justify-center space-x-2">
+                                <i class="fas fa-tshirt text-gold"></i>
+                                <span>Fashion Design - 95%</span>
                             </div>
-                            <div class="w-full bg-gray-700 rounded-full h-2">
-                                <div class="skill-bar rounded-full h-2" :style="visible ? 'width: 95%' : 'width: 0%'"></div>
+                            <div class="flex items-center justify-center space-x-2">
+                                <i class="fas fa-desktop text-gold"></i>
+                                <span>UI/UX Design - 88%</span>
                             </div>
-                        </div>
-                        
-                        <div class="skill-item">
-                            <div class="flex justify-between mb-2">
-                                <span class="text-white">UI/UX Design</span>
-                                <span class="text-gold">88%</span>
-                            </div>
-                            <div class="w-full bg-gray-700 rounded-full h-2">
-                                <div class="skill-bar rounded-full h-2" :style="visible ? 'width: 88%' : 'width: 0%'"></div>
-                            </div>
-                        </div>
-                        
-                        <div class="skill-item">
-                            <div class="flex justify-between mb-2">
-                                <span class="text-white">Visual Identity</span>
-                                <span class="text-gold">92%</span>
-                            </div>
-                            <div class="w-full bg-gray-700 rounded-full h-2">
-                                <div class="skill-bar rounded-full h-2" :style="visible ? 'width: 92%' : 'width: 0%'"></div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                
-                <!-- Technology Skills -->
-                <div class="glass-morphism rounded-2xl p-8 card-hover">
-                    <div class="text-center mb-6">
-                        <div class="w-16 h-16 bg-gradient-to-br from-blue-500 to-purple-600 rounded-full flex items-center justify-center mx-auto mb-4">
-                            <i class="fas fa-code text-2xl text-white"></i>
-                        </div>
-                        <h3 class="text-xl font-bold text-gold">Technology</h3>
-                    </div>
-                    
-                    <div class="space-y-4" x-data="{ visible: false }" x-intersect="visible = true">
-                        <div class="skill-item">
-                            <div class="flex justify-between mb-2">
-                                <span class="text-white">AI Development</span>
-                                <span class="text-gold">85%</span>
-                            </div>
-                            <div class="w-full bg-gray-700 rounded-full h-2">
-                                <div class="skill-bar rounded-full h-2" :style="visible ? 'width: 85%' : 'width: 0%'"></div>
-                            </div>
-                        </div>
-                        
-                        <div class="skill-item">
-                            <div class="flex justify-between mb-2">
-                                <span class="text-white">Web Development</span>
-                                <span class="text-gold">80%</span>
-                            </div>
-                            <div class="w-full bg-gray-700 rounded-full h-2">
-                                <div class="skill-bar rounded-full h-2" :style="visible ? 'width: 80%' : 'width: 0%'"></div>
-                            </div>
-                        </div>
-                        
-                        <div class="skill-item">
-                            <div class="flex justify-between mb-2">
-                                <span class="text-white">Video Editing</span>
-                                <span class="text-gold">78%</span>
-                            </div>
-                            <div class="w-full bg-gray-700 rounded-full h-2">
-                                <div class="skill-bar rounded-full h-2" :style="visible ? 'width: 78%' : 'width: 0%'"></div>
+                            <div class="flex items-center justify-center space-x-2">
+                                <i class="fas fa-eye text-gold"></i>
+                                <span>Visual Identity - 92%</span>
                             </div>
                         </div>
                     </div>
                 </div>
                 
-                <!-- Communication Skills -->
-                <div class="glass-morphism rounded-2xl p-8 card-hover">
-                    <div class="text-center mb-6">
-                        <div class="w-16 h-16 bg-gradient-to-br from-green-500 to-teal-600 rounded-full flex items-center justify-center mx-auto mb-4">
-                            <i class="fas fa-comments text-2xl text-white"></i>
+                <!-- Technology Skills Card with 3D Flip -->
+                <div class="glass-morphism rounded-2xl card-container">
+                    <div class="card-front">
+                        <div class="text-center mb-6">
+                            <div class="w-16 h-16 bg-gradient-to-br from-blue-500 to-purple-600 rounded-full flex items-center justify-center mx-auto mb-4">
+                                <i class="fas fa-code text-2xl text-white"></i>
+                            </div>
+                            <h3 class="text-xl font-bold text-gold">Technology</h3>
                         </div>
-                        <h3 class="text-xl font-bold text-gold">Communication</h3>
+                        
+                        <div class="space-y-4" x-data="{ visible: false }" x-intersect="visible = true">
+                            <div class="skill-item">
+                                <div class="flex justify-between mb-2">
+                                    <span class="text-white">AI Development</span>
+                                    <span class="text-gold">85%</span>
+                                </div>
+                                <div class="w-full bg-gray-700 rounded-full h-2">
+                                    <div class="skill-bar rounded-full h-2" :style="visible ? 'width: 85%' : 'width: 0%'"></div>
+                                </div>
+                            </div>
+                            
+                            <div class="skill-item">
+                                <div class="flex justify-between mb-2">
+                                    <span class="text-white">Web Development</span>
+                                    <span class="text-gold">80%</span>
+                                </div>
+                                <div class="w-full bg-gray-700 rounded-full h-2">
+                                    <div class="skill-bar rounded-full h-2" :style="visible ? 'width: 80%' : 'width: 0%'"></div>
+                                </div>
+                            </div>
+                            
+                            <div class="skill-item">
+                                <div class="flex justify-between mb-2">
+                                    <span class="text-white">Video Editing</span>
+                                    <span class="text-gold">78%</span>
+                                </div>
+                                <div class="w-full bg-gray-700 rounded-full h-2">
+                                    <div class="skill-bar rounded-full h-2" :style="visible ? 'width: 78%' : 'width: 0%'"></div>
+                                </div>
+                            </div>
+                        </div>
                     </div>
-                    
-                    <div class="space-y-4" x-data="{ visible: false }" x-intersect="visible = true">
-                        <div class="skill-item">
-                            <div class="flex justify-between mb-2">
-                                <span class="text-white">Voice Acting</span>
-                                <span class="text-gold">82%</span>
+
+                    <div class="card-back">
+                        <h3 class="text-2xl font-bold text-gold mb-6">Tech Stack</h3>
+                        <div class="space-y-4 text-white">
+                            <div class="flex items-center justify-center space-x-2">
+                                <i class="fas fa-robot text-gold"></i>
+                                <span>AI Development - 85%</span>
                             </div>
-                            <div class="w-full bg-gray-700 rounded-full h-2">
-                                <div class="skill-bar rounded-full h-2" :style="visible ? 'width: 82%' : 'width: 0%'"></div>
-                                                    </div>
-                        
-                        <div class="skill-item">
-                            <div class="flex justify-between mb-2">
-                                <span class="text-white">Writing</span>
-                                <span class="text-gold">90%</span>
+                            <div class="flex items-center justify-center space-x-2">
+                                <i class="fas fa-globe text-gold"></i>
+                                <span>Web Development - 80%</span>
                             </div>
-                            <div class="w-full bg-gray-700 rounded-full h-2">
-                                <div class="skill-bar rounded-full h-2" :style="visible ? 'width: 90%' : 'width: 0%'"></div>
-                            </div>
-                        </div>
-                        
-                        <div class="skill-item">
-                            <div class="flex justify-between mb-2">
-                                <span class="text-white">Languages</span>
-                                <span class="text-gold">95%</span>
-                            </div>
-                            <div class="w-full bg-gray-700 rounded-full h-2">
-                                <div class="skill-bar rounded-full h-2" :style="visible ? 'width: 95%' : 'width: 0%'"></div>
+                            <div class="flex items-center justify-center space-x-2">
+                                <i class="fas fa-video text-gold"></i>
+                                <span>Video Editing - 78%</span>
                             </div>
                         </div>
                     </div>
                 </div>
                 
-                <!-- Consulting Skills -->
-                <div class="glass-morphism rounded-2xl p-8 card-hover">
-                    <div class="text-center mb-6">
-                        <div class="w-16 h-16 bg-gradient-to-br from-pink-500 to-rose-600 rounded-full flex items-center justify-center mx-auto mb-4">
-                            <i class="fas fa-lightbulb text-2xl text-white"></i>
+                <!-- Communication Skills Card with 3D Flip -->
+                <div class="glass-morphism rounded-2xl card-container">
+                    <div class="card-front">
+                        <div class="text-center mb-6">
+                            <div class="w-16 h-16 bg-gradient-to-br from-green-500 to-teal-600 rounded-full flex items-center justify-center mx-auto mb-4">
+                                <i class="fas fa-comments text-2xl text-white"></i>
+                            </div>
+                            <h3 class="text-xl font-bold text-gold">Communication</h3>
                         </div>
-                        <h3 class="text-xl font-bold text-gold">Consulting</h3>
+                        
+                        <div class="space-y-4" x-data="{ visible: false }" x-intersect="visible = true">
+                            <div class="skill-item">
+                                <div class="flex justify-between mb-2">
+                                    <span class="text-white">Voice Acting</span>
+                                    <span class="text-gold">82%</span>
+                                </div>
+                                <div class="w-full bg-gray-700 rounded-full h-2">
+                                    <div class="skill-bar rounded-full h-2" :style="visible ? 'width: 82%' : 'width: 0%'"></div>
+                                </div>
+                            </div>
+                            
+                            <div class="skill-item">
+                                <div class="flex justify-between mb-2">
+                                    <span class="text-white">Writing</span>
+                                    <span class="text-gold">90%</span>
+                                </div>
+                                <div class="w-full bg-gray-700 rounded-full h-2">
+                                    <div class="skill-bar rounded-full h-2" :style="visible ? 'width: 90%' : 'width: 0%'"></div>
+                                </div>
+                            </div>
+                            
+                            <div class="skill-item">
+                                <div class="flex justify-between mb-2">
+                                    <span class="text-white">Public Speaking</span>
+                                    <span class="text-gold">85%</span>
+                                </div>
+                                <div class="w-full bg-gray-700 rounded-full h-2">
+                                    <div class="skill-bar rounded-full h-2" :style="visible ? 'width: 85%' : 'width: 0%'"></div>
+                                </div>
+                            </div>
+                        </div>
                     </div>
-                    
-                    <div class="space-y-4" x-data="{ visible: false }" x-intersect="visible = true">
-                        <div class="skill-item">
-                            <div class="flex justify-between mb-2">
-                                <span class="text-white">Cultural Consulting</span>
-                                <span class="text-gold">98%</span>
+
+                    <div class="card-back">
+                        <h3 class="text-2xl font-bold text-gold mb-6">Communication Skills</h3>
+                        <div class="space-y-4 text-white">
+                            <div class="flex items-center justify-center space-x-2">
+                                <i class="fas fa-microphone text-gold"></i>
+                                <span>Voice Acting - 82%</span>
                             </div>
-                            <div class="w-full bg-gray-700 rounded-full h-2">
-                                <div class="skill-bar rounded-full h-2" :style="visible ? 'width: 98%' : 'width: 0%'"></div>
+                            <div class="flex items-center justify-center space-x-2">
+                                <i class="fas fa-pen text-gold"></i>
+                                <span>Writing - 90%</span>
                             </div>
-                        </div>
-                        
-                        <div class="skill-item">
-                            <div class="flex justify-between mb-2">
-                                <span class="text-white">Strategy Planning</span>
-                                <span class="text-gold">85%</span>
-                            </div>
-                            <div class="w-full bg-gray-700 rounded-full h-2">
-                                <div class="skill-bar rounded-full h-2" :style="visible ? 'width: 85%' : 'width: 0%'"></div>
+                            <div class="flex items-center justify-center space-x-2">
+                                <i class="fas fa-users text-gold"></i>
+                                <span>Public Speaking - 85%</span>
                             </div>
                         </div>
-                        
-                        <div class="skill-item">
-                            <div class="flex justify-between mb-2">
-                                <span class="text-white">Project Management</span>
-                                <span class="text-gold">88%</span>
+                    </div>
+                </div>
+
+                <!-- Leadership Skills Card with 3D Flip -->
+                <div class="glass-morphism rounded-2xl card-container">
+                    <div class="card-front">
+                        <div class="text-center mb-6">
+                            <div class="w-16 h-16 bg-gradient-to-br from-purple-500 to-pink-600 rounded-full flex items-center justify-center mx-auto mb-4">
+                                <i class="fas fa-crown text-2xl text-white"></i>
                             </div>
-                            <div class="w-full bg-gray-700 rounded-full h-2">
-                                <div class="skill-bar rounded-full h-2" :style="visible ? 'width: 88%' : 'width: 0%'"></div>
+                            <h3 class="text-xl font-bold text-gold">Leadership</h3>
+                        </div>
+                        
+                        <div class="space-y-4" x-data="{ visible: false }" x-intersect="visible = true">
+                            <div class="skill-item">
+                                <div class="flex justify-between mb-2">
+                                    <span class="text-white">Team Management</span>
+                                    <span class="text-gold">88%</span>
+                                </div>
+                                <div class="w-full bg-gray-700 rounded-full h-2">
+                                    <div class="skill-bar rounded-full h-2" :style="visible ? 'width: 88%' : 'width: 0%'"></div>
+                                </div>
+                            </div>
+                            
+                            <div class="skill-item">
+                                <div class="flex justify-between mb-2">
+                                    <span class="text-white">Project Planning</span>
+                                    <span class="text-gold">92%</span>
+                                </div>
+                                <div class="w-full bg-gray-700 rounded-full h-2">
+                                    <div class="skill-bar rounded-full h-2" :style="visible ? 'width: 92%' : 'width: 0%'"></div>
+                                </div>
+                            </div>
+                            
+                            <div class="skill-item">
+                                <div class="flex justify-between mb-2">
+                                    <span class="text-white">Strategic Thinking</span>
+                                    <span class="text-gold">90%</span>
+                                </div>
+                                <div class="w-full bg-gray-700 rounded-full h-2">
+                                    <div class="skill-bar rounded-full h-2" :style="visible ? 'width: 90%' : 'width: 0%'"></div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="card-back">
+                        <h3 class="text-2xl font-bold text-gold mb-6">Leadership Skills</h3>
+                        <div class="space-y-4 text-white">
+                            <div class="flex items-center justify-center space-x-2">
+                                <i class="fas fa-users-cog text-gold"></i>
+                                <span>Team Management - 88%</span>
+                            </div>
+                            <div class="flex items-center justify-center space-x-2">
+                                <i class="fas fa-tasks text-gold"></i>
+                                <span>Project Planning - 92%</span>
+                            </div>
+                            <div class="flex items-center justify-center space-x-2">
+                                <i class="fas fa-chess text-gold"></i>
+                                <span>Strategic Thinking - 90%</span>
                             </div>
                         </div>
                     </div>
@@ -940,7 +1124,7 @@
         </div>
     </section>
 
-    <!-- Contact Section -->
+    <!-- Contact Section with Enhanced Form -->
     <section id="contact" class="py-20 px-4 relative">
         <div class="max-w-7xl mx-auto">
             <div class="text-center mb-16">
@@ -996,7 +1180,7 @@
                     </div>
                 </div>
                 
-                <!-- Contact Form -->
+                <!-- Enhanced Contact Form -->
                 <div class="glass-morphism rounded-2xl p-8 card-hover">
                     <h3 class="text-2xl font-bold mb-6 text-gold">
                         <i class="fas fa-envelope mr-3"></i>Send Message
@@ -1005,22 +1189,22 @@
                     <form class="space-y-6" @submit.prevent="sendMessage()">
                         <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
                             <div>
-                                <label class="block text-white font-medium mb-2">Name</label>
-                                <input type="text" x-model="contactForm.name" 
+                                <label class="block text-white font-medium mb-2" for="contact-name">Name *</label>
+                                <input type="text" id="contact-name" x-model="contactForm.name" required
                                        class="w-full px-4 py-3 bg-white/10 border border-white/20 rounded-lg text-white placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-gold focus:border-transparent transition-all duration-300"
                                        placeholder="Your Name">
                             </div>
                             <div>
-                                <label class="block text-white font-medium mb-2">Email</label>
-                                <input type="email" x-model="contactForm.email" 
+                                <label class="block text-white font-medium mb-2" for="contact-email">Email *</label>
+                                <input type="email" id="contact-email" x-model="contactForm.email" required
                                        class="w-full px-4 py-3 bg-white/10 border border-white/20 rounded-lg text-white placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-gold focus:border-transparent transition-all duration-300"
                                        placeholder="your.email@example.com">
                             </div>
                         </div>
                         
                         <div>
-                            <label class="block text-white font-medium mb-2">Service Needed</label>
-                            <select x-model="contactForm.service" 
+                            <label class="block text-white font-medium mb-2" for="contact-service">Service Needed</label>
+                            <select id="contact-service" x-model="contactForm.service" 
                                     class="w-full px-4 py-3 bg-white/10 border border-white/20 rounded-lg text-white focus:outline-none focus:ring-2 focus:ring-gold focus:border-transparent transition-all duration-300">
                                 <option value="">Select a service</option>
                                 <option value="fashion-design">Fashion Design</option>
@@ -1034,10 +1218,16 @@
                         </div>
                         
                         <div>
-                            <label class="block text-white font-medium mb-2">Message</label>
-                            <textarea x-model="contactForm.message" rows="5"
+                            <label class="block text-white font-medium mb-2" for="contact-message">Message *</label>
+                            <textarea id="contact-message" x-model="contactForm.message" rows="5" required
                                       class="w-full px-4 py-3 bg-white/10 border border-white/20 rounded-lg text-white placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-gold focus:border-transparent transition-all duration-300 resize-none"
                                       placeholder="Tell me about your project..."></textarea>
+                        </div>
+                        
+                        <!-- Form Status Message -->
+                        <div x-show="formStatus" x-transition class="p-4 rounded-lg" 
+                             :class="formStatus.includes('success') ? 'bg-green-500/20 text-green-300' : 'bg-red-500/20 text-red-300'">
+                            <p x-text="formStatus"></p>
                         </div>
                         
                         <button type="submit" 
@@ -1083,16 +1273,16 @@
                 </p>
                 
                 <div class="flex justify-center space-x-6 mb-8">
-                    <a href="#" class="text-gray-400 hover:text-gold transition-colors">
+                    <a href="#" class="text-gray-400 hover:text-gold transition-colors" aria-label="LinkedIn">
                         <i class="fab fa-linkedin text-xl"></i>
                     </a>
-                    <a href="#" class="text-gray-400 hover:text-gold transition-colors">
+                    <a href="#" class="text-gray-400 hover:text-gold transition-colors" aria-label="GitHub">
                         <i class="fab fa-github text-xl"></i>
                     </a>
-                    <a href="#" class="text-gray-400 hover:text-gold transition-colors">
+                    <a href="#" class="text-gray-400 hover:text-gold transition-colors" aria-label="Instagram">
                         <i class="fab fa-instagram text-xl"></i>
                     </a>
-                    <a href="#" class="text-gray-400 hover:text-gold transition-colors">
+                    <a href="#" class="text-gray-400 hover:text-gold transition-colors" aria-label="Twitter">
                         <i class="fab fa-twitter text-xl"></i>
                     </a>
                 </div>
@@ -1115,13 +1305,16 @@
          x-transition:leave-start="opacity-100" 
          x-transition:leave-end="opacity-0"
          class="fixed inset-0 bg-black/80 flex items-center justify-center z-50 p-4"
-         @click="showModal = false">
+         @click="showModal = false"
+         role="dialog"
+         aria-modal="true"
+         aria-labelledby="modal-title">
         
         <div class="glass-morphism rounded-2xl max-w-4xl w-full max-h-[90vh] overflow-y-auto custom-scrollbar" @click.stop>
             <div class="p-8">
                 <div class="flex justify-between items-start mb-6">
-                    <h2 class="text-3xl font-bold text-gold" x-text="selectedProject.title"></h2>
-                    <button @click="showModal = false" class="text-gray-400 hover:text-white text-2xl">
+                    <h2 id="modal-title" class="text-3xl font-bold text-gold" x-text="selectedProject.title"></h2>
+                    <button @click="showModal = false" class="text-gray-400 hover:text-white text-2xl" aria-label="Close modal">
                         <i class="fas fa-times"></i>
                     </button>
                 </div>
@@ -1178,7 +1371,10 @@
          x-transition:leave-start="opacity-100" 
          x-transition:leave-end="opacity-0"
          class="fixed inset-0 bg-black/90 flex items-center justify-center z-50 p-4"
-         @click="showGalleryModal = false">
+         @click="showGalleryModal = false"
+         role="dialog"
+         aria-modal="true"
+         aria-labelledby="gallery-modal-title">
         
         <div class="max-w-4xl w-full" @click.stop>
             <div class="relative">
@@ -1188,28 +1384,32 @@
                 </div>
                 
                 <!-- Navigation Arrows -->
-                <button @click="previousGalleryImage()" class="absolute left-4 top-1/2 transform -translate-y-1/2 bg-black/50 text-white p-3 rounded-full hover:bg-black/70 transition-colors">
+                <button @click="previousGalleryImage()" class="absolute left-4 top-1/2 transform -translate-y-1/2 bg-black/50 text-white p-3 rounded-full hover:bg-black/70 transition-colors" aria-label="Previous image">
                     <i class="fas fa-chevron-left"></i>
                 </button>
-                <button @click="nextGalleryImage()" class="absolute right-4 top-1/2 transform -translate-y-1/2 bg-black/50 text-white p-3 rounded-full hover:bg-black/70 transition-colors">
+                <button @click="nextGalleryImage()" class="absolute right-4 top-1/2 transform -translate-y-1/2 bg-black/50 text-white p-3 rounded-full hover:bg-black/70 transition-colors" aria-label="Next image">
                     <i class="fas fa-chevron-right"></i>
                 </button>
                 
                 <!-- Close Button -->
-                <button @click="showGalleryModal = false" class="absolute top-4 right-4 bg-black/50 text-white p-3 rounded-full hover:bg-black/70 transition-colors">
+                <button @click="showGalleryModal = false" class="absolute top-4 right-4 bg-black/50 text-white p-3 rounded-full hover:bg-black/70 transition-colors" aria-label="Close gallery">
                     <i class="fas fa-times"></i>
                 </button>
                 
                 <!-- Image Info -->
                 <div class="text-center">
-                    <h3 class="text-2xl font-bold text-gold mb-2" x-text="selectedGalleryImage.title"></h3>
+                    <h3 id="gallery-modal-title" class="text-2xl font-bold text-gold mb-2" x-text="selectedGalleryImage.title"></h3>
                     <p class="text-gray-300" x-text="selectedGalleryImage.description"></p>
                 </div>
             </div>
         </div>
     </div>
 
+    <!-- Enhanced JavaScript with EmailJS Integration -->
     <script>
+        // Initialize EmailJS
+        emailjs.init("YOUR_PUBLIC_KEY"); // Replace with your actual EmailJS public key
+        
         function portfolioApp() {
             return {
                 scrolled: false,
@@ -1221,6 +1421,7 @@
                 selectedGalleryIndex: 0,
                 typedText: '',
                 isSubmitting: false,
+                formStatus: '',
                 
                 // Contact form
                 contactForm: {
@@ -1456,15 +1657,25 @@
                 
                 async sendMessage() {
                     if (!this.contactForm.name || !this.contactForm.email || !this.contactForm.message) {
-                        alert('Please fill in all required fields.');
+                        this.formStatus = 'Please fill in all required fields.';
+                        setTimeout(() => this.formStatus = '', 5000);
                         return;
                     }
                     
                     this.isSubmitting = true;
+                    this.formStatus = '';
                     
-                    // Simulate form submission
                     try {
-                        await new Promise(resolve => setTimeout(resolve, 2000));
+                        // EmailJS integration
+                        const templateParams = {
+                            from_name: this.contactForm.name,
+                            from_email: this.contactForm.email,
+                            service: this.contactForm.service,
+                            message: this.contactForm.message,
+                            to_name: 'Thanatsitt'
+                        };
+                        
+                        await emailjs.send('YOUR_SERVICE_ID', 'YOUR_TEMPLATE_ID', templateParams);
                         
                         // Reset form
                         this.contactForm = {
@@ -1474,12 +1685,28 @@
                             message: ''
                         };
                         
-                        alert('Thank you for your message! I\'ll get back to you soon.');
+                        this.formStatus = 'Message sent successfully! I\'ll get back to you soon.';
+                        
+                        // Track successful form submission
+                        this.trackEvent('contact_form_submitted', {
+                            service: templateParams.service
+                        });
+                        
                     } catch (error) {
-                        alert('Sorry, there was an error sending your message. Please try again.');
+                        console.error('EmailJS Error:', error);
+                        this.formStatus = 'Sorry, there was an error sending your message. Please try again.';
                     } finally {
                         this.isSubmitting = false;
+                        setTimeout(() => this.formStatus = '', 10000);
                     }
+                },
+                
+                trackEvent(eventName, eventData) {
+                    // Analytics tracking placeholder
+                    console.log('Event tracked:', eventName, eventData);
+                    
+                    // Add your analytics implementation here
+                    // Example: gtag('event', eventName, eventData);
                 }
             }
         }
@@ -1487,131 +1714,16 @@
         // Close modals when clicking outside or pressing escape
         document.addEventListener('keydown', function(e) {
             if (e.key === 'Escape') {
-                const app = Alpine.store || window.Alpine?.store;
+                const app = document.querySelector('[x-data]')?._x_dataStack?.[0];
                 if (app) {
                     app.showModal = false;
-                    store.showGalleryModal = false;
+                    app.showGalleryModal = false;
                     document.body.style.overflow = 'auto';
                 }
             }
         });
         
-        // Restore body scroll when modals close
-        document.addEventListener('alpine:init', () => {
-            Alpine.effect(() => {
-                const showModal = Alpine.store?.showModal || false;
-                const showGalleryModal = Alpine.store?.showGalleryModal || false;
-                
-                if (!showModal && !showGalleryModal) {
-                    document.body.style.overflow = 'auto';
-                }
-            });
-        });
-        
-        // Smooth scrolling for anchor links
-        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-            anchor.addEventListener('click', function (e) {
-                e.preventDefault();
-                const target = document.querySelector(this.getAttribute('href'));
-                if (target) {
-                    target.scrollIntoView({
-                        behavior: 'smooth',
-                        block: 'start'
-                    });
-                }
-            });
-        });
-        
-        // Add intersection observer for animations
-        const observerOptions = {
-            threshold: 0.1,
-            rootMargin: '0px 0px -50px 0px'
-        };
-        
-        const observer = new IntersectionObserver((entries) => {
-            entries.forEach(entry => {
-                if (entry.isIntersecting) {
-                    entry.target.classList.add('animate-zoom-in');
-                }
-            });
-        }, observerOptions);
-        
-        // Observe elements for animation
-        document.addEventListener('DOMContentLoaded', () => {
-            const animatedElements = document.querySelectorAll('.card-hover, .glass-morphism');
-            animatedElements.forEach(el => observer.observe(el));
-        });
-        
-        // Add parallax effect to floating elements
-        window.addEventListener('scroll', () => {
-            const scrolled = window.pageYOffset;
-            const parallaxElements = document.querySelectorAll('.animate-float');
-            
-            parallaxElements.forEach((element, index) => {
-                const speed = 0.5 + (index * 0.1);
-                const yPos = -(scrolled * speed);
-                element.style.transform = `translateY(${yPos}px)`;
-            });
-        });
-        
-        // Add mouse movement effect for particles
-        document.addEventListener('mousemove', (e) => {
-            const particles = document.querySelectorAll('.particle');
-            const mouseX = e.clientX;
-            const mouseY = e.clientY;
-            
-            particles.forEach((particle, index) => {
-                const speed = (index % 3 + 1) * 0.01;
-                const x = (mouseX * speed);
-                const y = (mouseY * speed);
-                
-                particle.style.transform = `translate(${x}px, ${y}px)`;
-            });
-        });
-        
-        // Add loading animation
-        window.addEventListener('load', () => {
-            document.body.classList.add('loaded');
-            
-            // Trigger initial animations
-            setTimeout(() => {
-                const heroElements = document.querySelectorAll('#home h1, #home p, #home button');
-                heroElements.forEach((el, index) => {
-                    setTimeout(() => {
-                        el.classList.add('animate-zoom-in');
-                    }, index * 200);
-                });
-            }, 500);
-        });
-        
-        // Add scroll progress indicator
-        window.addEventListener('scroll', () => {
-            const scrollTop = document.documentElement.scrollTop;
-            const scrollHeight = document.documentElement.scrollHeight - document.documentElement.clientHeight;
-            const scrollProgress = (scrollTop / scrollHeight) * 100;
-            
-            // Create or update progress bar
-            let progressBar = document.getElementById('scroll-progress');
-            if (!progressBar) {
-                progressBar = document.createElement('div');
-                progressBar.id = 'scroll-progress';
-                progressBar.style.cssText = `
-                    position: fixed;
-                    top: 0;
-                    left: 0;
-                    width: ${scrollProgress}%;
-                    height: 3px;
-                    background: linear-gradient(90deg, #D4AF37, #F4D03F);
-                    z-index: 9999;
-                    transition: width 0.1s ease;
-                `;
-                document.body.appendChild(progressBar);
-            } else {
-                progressBar.style.width = `${scrollProgress}%`;
-            }
-        });
-        
-        // Add keyboard navigation for gallery
+        // Gallery keyboard navigation
         document.addEventListener('keydown', (e) => {
             const app = document.querySelector('[x-data]')?._x_dataStack?.[0];
             if (app && app.showGalleryModal) {
@@ -1623,7 +1735,7 @@
             }
         });
         
-        // Add touch/swipe support for mobile gallery
+        // Touch/swipe support for mobile gallery
         let touchStartX = 0;
         let touchEndX = 0;
         
@@ -1644,29 +1756,105 @@
                 
                 if (Math.abs(diff) > swipeThreshold) {
                     if (diff > 0) {
-                        // Swipe left - next image
                         app.nextGalleryImage();
                     } else {
-                        // Swipe right - previous image
                         app.previousGalleryImage();
                     }
                 }
             }
         }
         
-        // Add performance optimization for animations
-        const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)');
+        // Scroll progress indicator
+        window.addEventListener('scroll', () => {
+            const scrollTop = document.documentElement.scrollTop;
+            const scrollHeight = document.documentElement.scrollHeight - document.documentElement.clientHeight;
+            const scrollProgress = (scrollTop / scrollHeight) * 100;
+            
+            let progressBar = document.getElementById('scroll-progress');
+            if (!progressBar) {
+                progressBar = document.createElement('div');
+                progressBar.id = 'scroll-progress';
+                progressBar.style.cssText = `
+                    position: fixed;
+                    top: 0;
+                    left: 0;
+                    width: ${scrollProgress}%;
+                    height: 3px;
+                    background: linear-gradient(90deg, #D4AF37, #F4D03F);
+                    z-index: 9999;
+                    transition: width 0.1s ease;
+                `;
+                document.body.appendChild(progressBar);
+            } else {
+                progressBar.style.width = `${scrollProgress}%`;
+            }
+        });
         
-        if (prefersReducedMotion.matches) {
-            // Disable animations for users who prefer reduced motion
-            document.documentElement.style.setProperty('--animation-duration', '0s');
-        }
+        // Intersection observer for animations
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -50px 0px'
+        };
         
-        // Add error handling for images
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('animate-zoom-in');
+                }
+            });
+        }, observerOptions);
+        
+        // Initialize observers when DOM is loaded
+        document.addEventListener('DOMContentLoaded', () => {
+            const animatedElements = document.querySelectorAll('.card-hover, .glass-morphism');
+            animatedElements.forEach(el => observer.observe(el));
+        });
+        
+        // Parallax effect for floating elements
+        window.addEventListener('scroll', () => {
+            const scrolled = window.pageYOffset;
+            const parallaxElements = document.querySelectorAll('.animate-float');
+            
+            parallaxElements.forEach((element, index) => {
+                const speed = 0.5 + (index * 0.1);
+                const yPos = -(scrolled * speed);
+                element.style.transform = `translateY(${yPos}px)`;
+            });
+        });
+        
+        // Mouse movement effect for particles
+        document.addEventListener('mousemove', (e) => {
+            const particles = document.querySelectorAll('.particle');
+            const mouseX = e.clientX;
+            const mouseY = e.clientY;
+            
+            particles.forEach((particle, index) => {
+                const speed = (index % 3 + 1) * 0.01;
+                const x = (mouseX * speed);
+                const y = (mouseY * speed);
+                
+                particle.style.transform = `translate(${x}px, ${y}px)`;
+            });
+        });
+        
+        // Loading animation
+        window.addEventListener('load', () => {
+            document.body.classList.add('loaded');
+            
+            setTimeout(() => {
+                const heroElements = document.querySelectorAll('#home h1, #home p, #home button');
+                heroElements.forEach((el, index) => {
+                    setTimeout(() => {
+                        el.classList.add('animate-zoom-in');
+                    }, index * 200);
+                });
+            }, 500);
+        });
+        
+        // Error handling for images
         document.addEventListener('error', (e) => {
             if (e.target.tagName === 'IMG') {
                 e.target.style.display = 'none';
-                // Show fallback icon or placeholder
                 const fallback = document.createElement('div');
                 fallback.className = 'w-full h-full bg-gradient-to-br from-gold/20 to-purple-600/20 flex items-center justify-center';
                 fallback.innerHTML = '<i class="fas fa-image text-4xl text-gold/50"></i>';
@@ -1674,7 +1862,7 @@
             }
         }, true);
         
-        // Add service worker for offline functionality (optional)
+        // Service worker registration for PWA
         if ('serviceWorker' in navigator) {
             window.addEventListener('load', () => {
                 navigator.serviceWorker.register('/sw.js')
@@ -1687,71 +1875,14 @@
             });
         }
         
-        // Add analytics tracking (placeholder)
-        function trackEvent(eventName, eventData) {
-            // Replace with your analytics implementation
-            console.log('Event tracked:', eventName, eventData);
-        }
-        
-        // Track portfolio interactions
-        document.addEventListener('click', (e) => {
-            if (e.target.closest('.card-hover')) {
-                trackEvent('portfolio_item_clicked', {
-                    item: e.target.closest('.card-hover').querySelector('h3')?.textContent
-                });
-            }
-        });
-        
-        // Add accessibility improvements
-        document.addEventListener('DOMContentLoaded', () => {
-            // Add skip link
-            const skipLink = document.createElement('a');
-            skipLink.href = '#main-content';
-            skipLink.textContent = 'Skip to main content';
-            skipLink.className = 'sr-only focus:not-sr-only focus:absolute focus:top-4 focus:left-4 bg-gold text-black px-4 py-2 rounded z-50';
-            document.body.insertBefore(skipLink, document.body.firstChild);
-            
-            // Add main content landmark
-            const mainContent = document.querySelector('#home');
-            if (mainContent) {
-                mainContent.id = 'main-content';
-                mainContent.setAttribute('role', 'main');
-            }
-            
-            // Improve focus management for modals
-            const modals = document.querySelectorAll('[x-show="showModal"], [x-show="showGalleryModal"]');
-            modals.forEach(modal => {
-                modal.addEventListener('keydown', (e) => {
-                    if (e.key === 'Tab') {
-                        // Trap focus within modal
-                        const focusableElements = modal.querySelectorAll(
-                            'button, [href], input, select, textarea, [tabindex]:not([tabindex="-1"])'
-                        );
-                        const firstElement = focusableElements[0];
-                        const lastElement = focusableElements[focusableElements.length - 1];
-                        
-                        if (e.shiftKey && document.activeElement === firstElement) {
-                            lastElement.focus();
-                            e.preventDefault();
-                        } else if (!e.shiftKey && document.activeElement === lastElement) {
-                            firstElement.focus();
-                            e.preventDefault();
-                        }
-                    }
-                });
-            });
-        });
-        
-        // Add print styles optimization
+        // Print optimization
         window.addEventListener('beforeprint', () => {
-            // Hide unnecessary elements for printing
-            const hideElements = document.querySelectorAll('.particle, .animate-float, nav, footer');
+            const hideElements = document.querySelectorAll('.particle, .animate-float, nav, footer, .moon-container');
             hideElements.forEach(el => el.style.display = 'none');
         });
         
         window.addEventListener('afterprint', () => {
-            // Restore elements after printing
-            const hideElements = document.querySelectorAll('.particle, .animate-float, nav, footer');
+            const hideElements = document.querySelectorAll('.particle, .animate-float, nav, footer, .moon-container');
             hideElements.forEach(el => el.style.display = '');
         });
     </script>
