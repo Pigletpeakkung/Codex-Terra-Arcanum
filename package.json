@@ -1,36 +1,11 @@
 {
   "name": "thanatsitt-portfolio",
   "version": "1.0.0",
-  "description": "Cultural Navigator Portfolio",
   "scripts": {
-    "dev": "npm run dev:preview",
-    "dev:preview": "npm run build:dev && npm run serve:preview",
-    "dev:watch": "npm run build:dev && concurrently \"npm run watch:html\" \"npm run serve:preview\"",
-    "serve:preview": "live-server dist --port=3000 --host=localhost --open=/ --watch=dist --wait=200",
-    "serve": "live-server . --port=3000 --host=localhost --open=/ --ignore=node_modules",
-    "build": "npm run build:prod",
-    "build:dev": "NODE_ENV=development npm run process-html && npm run copy:assets",
-    "build:staging": "NODE_ENV=staging npm run process-html && npm run optimize:staging",
-    "build:prod": "NODE_ENV=production npm run process-html && npm run optimize:prod",
-    "process-html": "node scripts/build.js",
-    "copy:assets": "node scripts/copy-assets.js",
-    "optimize:staging": "npm run copy:assets && npm run optimize:images",
-    "optimize:prod": "npm run copy:assets && npm run optimize:images && npm run minify:html",
-    "optimize:images": "node scripts/optimize-images.js",
-    "minify:html": "html-minifier --collapse-whitespace --remove-comments --input-dir dist --output-dir dist --file-ext html",
-    "watch:html": "nodemon --watch index.html --watch scripts/ --exec \"npm run build:dev\"",
-    "netlify:dev": "netlify dev",
-    "netlify:build": "netlify build",
-    "netlify:deploy": "netlify deploy",
-    "netlify:deploy:prod": "netlify deploy --prod",
-    "test": "echo 'No tests specified' && exit 0",
-    "postbuild": "node scripts/post-build.js"
+    "build": "node scripts/build.js",
+    "dev": "live-server . --port=3000"
   },
   "devDependencies": {
-    "concurrently": "^8.2.2",
-    "html-minifier": "^4.0.0",
-    "live-server": "^1.2.2",
-    "netlify-cli": "^17.10.1",
-    "nodemon": "^3.0.2"
+    "live-server": "^1.2.2"
   }
 }
