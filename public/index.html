@@ -1,216 +1,254 @@
 <!DOCTYPE html>
-<html lang="en">
-  <head>
-    <meta charset="utf-8" />
-    <link rel="icon" href="%PUBLIC_URL%/favicon.ico" />
-    <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <meta name="theme-color" content="#D4AF37" />
-    <meta name="description" content="Thanatsitt Santisamranwilai - Thai interdisciplinary creator bridging ancient wisdom with modern technology. Fashion design, AI development, cultural consulting, and voice acting services." />
-    <meta name="keywords" content="Thanatsitt, Fashion Design, AI Development, Cultural Consulting, Voice Acting, Thai Designer, London Fashion, Technology Innovation, Pegearts, Cultural Bridge, Sustainable Fashion" />
-    <meta name="author" content="Thanatsitt Santisamranwilai" />
-    <meta name="robots" content="index, follow" />
-    <meta name="language" content="English" />
-    <meta name="revisit-after" content="7 days" />
+<html lang="en" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     
-    <!-- Open Graph Meta Tags -->
-    <meta property="og:title" content="Thanatsitt Santisamranwilai - Portfolio | Pegearts" />
-    <meta property="og:description" content="Thai interdisciplinary creator bridging ancient wisdom with modern technology. Specializing in fashion design, AI development, cultural consulting, and voice acting." />
-    <meta property="og:type" content="website" />
-    <meta property="og:url" content="https://pegearts.com" />
-    <meta property="og:image" content="%PUBLIC_URL%/og-image.jpg" />
-    <meta property="og:image:width" content="1200" />
-    <meta property="og:image:height" content="630" />
-    <meta property="og:image:alt" content="Thanatsitt Santisamranwilai Portfolio - Cultural Bridge Creator" />
-    <meta property="og:site_name" content="Pegearts" />
-    <meta property="og:locale" content="en_US" />
+    <!-- Environment-specific meta tags -->
+    <title>{{APP_NAME}} | Cultural Navigator & AI Developer</title>
+    <meta name="description" content="Thanatsitt Santisamranwilai - Cultural Navigator bridging ancient wisdom with modern technology.">
     
-    <!-- Twitter Card Meta Tags -->
-    <meta name="twitter:card" content="summary_large_image" />
-    <meta name="twitter:site" content="@thanatsitt" />
-    <meta name="twitter:creator" content="@thanatsitt" />
-    <meta name="twitter:title" content="Thanatsitt Santisamranwilai - Portfolio | Pegearts" />
-    <meta name="twitter:description" content="Thai interdisciplinary creator bridging ancient wisdom with modern technology" />
-    <meta name="twitter:image" content="%PUBLIC_URL%/twitter-image.jpg" />
-    <meta name="twitter:image:alt" content="Thanatsitt Santisamranwilai Portfolio" />
+    <!-- Environment-specific URLs -->
+    <meta property="og:url" content="{{APP_URL}}">
+    <meta property="og:image" content="{{CDN_URL}}/assets/og-image.jpg">
+    <link rel="canonical" href="{{APP_URL}}">
     
-    <!-- Additional Meta Tags -->
-    <meta name="format-detection" content="telephone=no" />
-    <meta name="msapplication-TileColor" content="#D4AF37" />
-    <meta name="msapplication-config" content="%PUBLIC_URL%/browserconfig.xml" />
+    <!-- Environment-specific preconnects -->
+    {{#if CDN_URL}}
+    <link rel="preconnect" href="{{CDN_URL}}">
+    {{/if}}
     
-    <!-- Preconnect to external domains -->
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link rel="dns-prefetch" href="//fonts.googleapis.com">
-    <link rel="dns-prefetch" href="//www.google-analytics.com">
+    <!-- Environment-specific stylesheets -->
+    {{#if NODE_ENV === 'development'}}
+    <link href="./src/styles/tailwind.css" rel="stylesheet">
+    {{else}}
+    <link href="{{CDN_URL}}/css/styles.min.css" rel="stylesheet">
+    {{/if}}
     
-    <!-- Favicon and Icons -->
-    <link rel="icon" type="image/x-icon" href="%PUBLIC_URL%/favicon.ico" />
-    <link rel="icon" type="image/png" sizes="16x16" href="%PUBLIC_URL%/favicon-16x16.png" />
-    <link rel="icon" type="image/png" sizes="32x32" href="%PUBLIC_URL%/favicon-32x32.png" />
-    <link rel="apple-touch-icon" sizes="180x180" href="%PUBLIC_URL%/apple-touch-icon.png" />
-    <link rel="icon" type="image/png" sizes="192x192" href="%PUBLIC_URL%/android-chrome-192x192.png" />
-    <link rel="icon" type="image/png" sizes="512x512" href="%PUBLIC_URL%/android-chrome-512x512.png" />
-    <link rel="manifest" href="%PUBLIC_URL%/manifest.json" />
-    
-    <!-- Canonical URL -->
-    <link rel="canonical" href="https://pegearts.com" />
-    
-    <!-- Structured Data -->
-    <script type="application/ld+json">
-    {
-      "@context": "https://schema.org",
-      "@type": "Person",
-      "name": "Thanatsitt Santisamranwilai",
-      "alternateName": "Pegearts",
-      "jobTitle": "Interdisciplinary Creator",
-      "description": "Thai interdisciplinary creator bridging ancient wisdom with modern technology",
-      "url": "https://pegearts.com",
-      "image": "https://pegearts.com/profile-image.jpg",
-      "sameAs": [
-        "https://linkedin.com/in/thanatsitts",
-        "https://github.com/pigletpeakkung",
-        "https://instagram.com/thanatsitt.S",
-        "https://twitter.com/thanatsitt"
-      ],
-      "knowsAbout": [
-        "Fashion Design",
-        "AI Development", 
-        "Cultural Consulting",
-        "Voice Acting",
-        "Sustainable Fashion",
-        "Cultural Bridge Building",
-        "Technology Innovation",
-        "Traditional Craftsmanship"
-      ],
-      "nationality": "Thai",
-      "workLocation": [
-        {
-          "@type": "Place",
-          "name": "London, UK"
-        },
-        {
-          "@type": "Place", 
-          "name": "Bangkok, Thailand"
-        }
-      ],
-      "alumniOf": [
-        {
-          "@type": "CollegeOrUniversity",
-          "name": "London College of Fashion"
-        }
-      ],
-      "hasOccupation": [
-        {
-          "@type": "Occupation",
-          "name": "Fashion Designer",
-          "occupationLocation": "London, UK"
-        },
-        {
-          "@type": "Occupation", 
-          "name": "AI Developer",
-          "occupationLocation": "Global"
-        },
-        {
-          "@type": "Occupation",
-          "name": "Cultural Consultant", 
-          "occupationLocation": "International"
-        },
-        {
-          "@type": "Occupation",
-          "name": "Voice Actor",
-          "occupationLocation": "Global"
-        }
-      ],
-      "offers": [
-        {
-          "@type": "Service",
-          "name": "Fashion Design Services",
-          "description": "Sustainable fashion design blending traditional craftsmanship with modern innovation"
-        },
-        {
-          "@type": "Service",
-          "name": "AI Development",
-          "description": "Cultural AI solutions and machine learning applications"
-        },
-        {
-          "@type": "Service", 
-          "name": "Cultural Consulting",
-          "description": "International business cultural consulting and strategy"
-        },
-        {
-          "@type": "Service",
-          "name": "Voice Acting",
-          "description": "Multi-lingual voice acting and audio production services"
-        }
-      ]
-    }
-    </script>
-    
-    <!-- Additional Structured Data for Portfolio -->
-    <script type="application/ld+json">
-    {
-      "@context": "https://schema.org",
-      "@type": "WebSite",
-      "name": "Pegearts - Thanatsitt Santisamranwilai Portfolio",
-      "url": "https://pegearts.com",
-      "description": "Portfolio showcasing interdisciplinary creative work bridging Thai culture with modern technology",
-      "inLanguage": "en-US",
-      "author": {
-        "@type": "Person",
-        "name": "Thanatsitt Santisamranwilai"
-      },
-      "potentialAction": {
-        "@type": "SearchAction",
-        "target": "https://pegearts.com/search?q={search_term_string}",
-        "query-input": "required name=search_term_string"
-      }
-    }
-    </script>
-    
-    <!-- Performance and Security -->
-    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-    <meta name="referrer" content="strict-origin-when-cross-origin" />
-    
-    <!-- PWA Meta Tags -->
-    <meta name="mobile-web-app-capable" content="yes" />
-    <meta name="apple-mobile-web-app-capable" content="yes" />
-    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
-    <meta name="apple-mobile-web-app-title" content="Pegearts" />
-    
-    <title>Thanatsitt Santisamranwilai - Portfolio | Pegearts</title>
-  </head>
-  <body>
-    <noscript>
-      <div style="
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        min-height: 100vh;
-        background: linear-gradient(135deg, #0B0B1A 0%, #1A1A2E 100%);
-        color: #D4AF37;
-        font-family: Arial, sans-serif;
-        text-align: center;
-        padding: 2rem;
-      ">
-        <div>
-          <h1 style="font-size: 2rem; margin-bottom: 1rem;">Thanatsitt Santisamranwilai</h1>
-          <p style="font-size: 1.2rem; margin-bottom: 2rem;">You need to enable JavaScript to run this portfolio.</p>
-          <p>Please enable JavaScript in your browser settings and refresh the page.</p>
-        </div>
-      </div>
-    </noscript>
-    <div id="root"></div>
-    
-    <!-- Performance Monitoring (Optional) -->
+    <!-- Environment-specific scripts -->
+    {{#if DEBUG}}
     <script>
-      // Basic performance monitoring
-      window.addEventListener('load', function() {
-        if ('performance' in window) {
-          const loadTime = performance.timing.loadEventEnd - performance.timing.navigationStart;
-          console.log('Page load time:', loadTime + 'ms');
-        }
-      });
+        window.DEBUG = true;
+        console.log('Environment:', '{{NODE_ENV}}');
     </script>
-  </body>
+    {{/if}}
+    
+    <!-- Analytics (production/staging only) -->
+    {{#if ENABLE_ANALYTICS}}
+    {{#if GOOGLE_ANALYTICS_ID}}
+    <script async src="https://www.googletagmanager.com/gtag/js?id={{GOOGLE_ANALYTICS_ID}}"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+        gtag('js', new Date());
+        gtag('config', '{{GOOGLE_ANALYTICS_ID}}');
+    </script>
+    {{/if}}
+    
+    {{#if HOTJAR_ID}}
+    <script>
+        (function(h,o,t,j,a,r){
+            h.hj=h.hj||function(){(h.hj.q=h.hj.q||[]).push(arguments)};
+            h._hjSettings={hjid:{{HOTJAR_ID}},hjsv:6};
+            a=o.getElementsByTagName('head')[0];
+            r=o.createElement('script');r.async=1;
+            r.src=t+h._hjSettings.hjid+j+h._hjSettings.hjsv;
+            a.appendChild(r);
+        })(window,document,'https://static.hotjar.com/c/hotjar-','.js?sv=');
+    </script>
+    {{/if}}
+    {{/if}}
+</head>
+
+<body class="bg-dark text-white font-sans antialiased" x-data="portfolioApp()" x-init="init()">
+    <!-- Environment indicator (development/staging only) -->
+    {{#if NODE_ENV !== 'production'}}
+    <div class="fixed top-0 left-0 bg-{{#if NODE_ENV === 'development'}}green{{else}}yellow{{/if}}-500 text-black px-3 py-1 text-xs font-bold z-50 rounded-br-md">
+        {{NODE_ENV}}
+    </div>
+    {{/if}}
+
+    <!-- Rest of your HTML content -->
+    <!-- ... (previous HTML content) ... -->
+
+    <!-- Environment-specific JavaScript -->
+    <script>
+        // Environment configuration
+        window.ENV = {
+            NODE_ENV: '{{NODE_ENV}}',
+            APP_URL: '{{APP_URL}}',
+            API_BASE_URL: '{{API_BASE_URL}}',
+            CDN_URL: '{{CDN_URL}}',
+            DEBUG: {{DEBUG}},
+            CONTACT_FORM_ENDPOINT: '{{CONTACT_FORM_ENDPOINT}}',
+            ENABLE_ANALYTICS: {{ENABLE_ANALYTICS}},
+            ENABLE_ERROR_REPORTING: {{ENABLE_ERROR_REPORTING}}'
+        };
+    </script>
+
+    <!-- Environment-specific Alpine.js configuration -->
+    <script>
+        function portfolioApp() {
+            return {
+                // ... (previous Alpine.js code) ...
+
+                // Environment-aware initialization
+                init() {
+                    this.setupEnvironment();
+                    this.setupScrollListeners();
+                    this.setupGSAPAnimations();
+                    this.setupTypewriter();
+                    this.preloadImages();
+                    
+                    if (window.ENV.NODE_ENV === 'production') {
+                        this.registerServiceWorker();
+                    }
+                    
+                    setTimeout(() => {
+                        this.loading = false;
+                        this.trackEvent('page_loaded');
+                    }, window.ENV.NODE_ENV === 'development' ? 500 : 1500);
+                },
+
+                setupEnvironment() {
+                    if (window.ENV.DEBUG) {
+                        console.log('Portfolio App initialized in', window.ENV.NODE_ENV, 'mode');
+                        console.log('Environment config:', window.ENV);
+                    }
+
+                    // Environment-specific error handling
+                    if (window.ENV.ENABLE_ERROR_REPORTING) {
+                        this.setupErrorReporting();
+                    }
+                },
+
+                setupErrorReporting() {
+                    window.addEventListener('error', (event) => {
+                        this.reportError(event.error, 'global_error');
+                    });
+
+                    window.addEventListener('unhandledrejection', (event) => {
+                        this.reportError(event.reason, 'unhandled_promise_rejection');
+                    });
+                },
+
+                reportError(error, context) {
+                    if (window.ENV.DEBUG) {
+                        console.error(`Error in ${context}:`, error);
+                    }
+
+                    // Send to error reporting service in staging/production
+                    if (window.ENV.NODE_ENV !== 'development') {
+                        fetch(`${window.ENV.API_BASE_URL}/errors`, {
+                            method: 'POST',
+                            headers: {
+                                'Content-Type': 'application/json',
+                            },
+                            body: JSON.stringify({
+                                error: error.message,
+                                stack: error.stack,
+                                context: context,
+                                url: window.location.href,
+                                userAgent: navigator.userAgent,
+                                timestamp: new Date().toISOString()
+                            })
+                        }).catch(err => {
+                            if (window.ENV.DEBUG) {
+                                console.error('Failed to report error:', err);
+                            }
+                        });
+                    }
+                },
+
+                // Environment-aware form submission
+                async submitForm() {
+                    if (this.form.honeypot) return;
+
+                    this.formSubmitting = true;
+                    this.hideFormStatus();
+
+                    try {
+                        const response = await fetch(window.ENV.CONTACT_FORM_ENDPOINT, {
+                            method: 'POST',
+                            headers: {
+                                'Content-Type': 'application/json',
+                            },
+                            body: JSON.stringify({
+                                ...this.form,
+                                source: window.ENV.APP_URL,
+                                environment: window.ENV.NODE_ENV
+                            })
+                        });
+
+                        if (response.ok) {
+                            this.showFormStatus('success', 'Thank you for your message! I\'ll get back to you soon.');
+                            this.resetForm();
+                            this.trackEvent('form_submitted', { success: true });
+                        } else {
+                            throw new Error('Form submission failed');
+                        }
+                        
+                    } catch (error) {
+                        this.showFormStatus('error', 'Sorry, there was an error sending your message. Please try again.');
+                        this.trackEvent('form_submitted', { success: false, error: error.message });
+                        this.reportError(error, 'form_submission');
+                        
+                    } finally {
+                        this.formSubmitting = false;
+                    }
+                },
+
+                // Environment-aware analytics
+                trackEvent(eventName, parameters = {}) {
+                    if (!window.ENV.ENABLE_ANALYTICS) return;
+
+                    // Add environment context
+                    const enrichedParameters = {
+                        ...parameters,
+                        environment: window.ENV.NODE_ENV,
+                        page_url: window.location.href
+                    };
+
+                    // Google Analytics 4
+                    if (typeof gtag !== 'undefined') {
+                        gtag('event', eventName, enrichedParameters);
+                    }
+
+                    // Custom analytics endpoint
+                    if (window.ENV.API_BASE_URL) {
+                        fetch(`${window.ENV.API_BASE_URL}/analytics`, {
+                            method: 'POST',
+                            headers: {
+                                'Content-Type': 'application/json',
+                            },
+                            body: JSON.stringify({
+                                event: eventName,
+                                parameters: enrichedParameters,
+                                timestamp: new Date().toISOString()
+                            })
+                        }).catch(err => {
+                            if (window.ENV.DEBUG) {
+                                console.error('Analytics tracking failed:', err);
+                            }
+                        });
+                    }
+
+                    if (window.ENV.DEBUG) {
+                        console.log('Event tracked:', eventName, enrichedParameters);
+                    }
+                },
+
+                // Environment-aware image loading
+                getImageUrl(path) {
+                    if (window.ENV.CDN_URL && window.ENV.NODE_ENV !== 'development') {
+                        return `${window.ENV.CDN_URL}${path}`;
+                    }
+                    return path;
+                },
+
+                // ... (rest of your Alpine.js methods)
+            }
+        }
+    </script>
+</body>
 </html>
