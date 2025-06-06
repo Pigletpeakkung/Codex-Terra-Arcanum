@@ -1,26 +1,159 @@
 {
-  "compilerOptions": {
-    "target": "es5",
-    "lib": [
-      "dom",
-      "dom.iterable",
-      "es6"
-    ],
-    "allowJs": true,
-    "skipLibCheck": true,
-    "esModuleInterop": true,
-    "allowSyntheticDefaultImports": true,
-    "strict": true,
-    "forceConsistentCasingInFileNames": true,
-    "noFallthroughCasesInSwitch": true,
-    "module": "esnext",
-    "moduleResolution": "node",
-    "resolveJsonModule": true,
-    "isolatedModules": true,
-    "noEmit": true,
-    "jsx": "react-jsx"
+  "name": "thanatsitt-portfolio",
+  "version": "1.0.0",
+  "description": "Professional portfolio for Thanatsitt Santisamranwilai - Thai interdisciplinary creator specializing in fashion design, AI development, cultural consulting, and voice acting",
+  "author": {
+    "name": "Thanatsitt Santisamranwilai",
+    "email": "thanattsitt.info@yahoo.co.uk",
+    "url": "https://pegearts.com"
   },
-  "include": [
-    "src"
-  ]
+  "homepage": "https://github.com/Pigletpeakkung/Codex-Terra-Arcanum",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/Pigletpeakkung/Codex-Terra-Arcanum.git"
+  },
+  "bugs": {
+    "url": "https://github.com/Pigletpeakkung/thanatsitt-portfolio/issues"
+  },
+  "keywords": [
+    "portfolio",
+    "fashion-design",
+    "ai-development",
+    "cultural-consulting",
+    "voice-acting",
+    "react",
+    "typescript",
+    "responsive-design",
+    "thai-british",
+    "creative-technology",
+    "thanatsitt",
+    "pigletpeakkung"
+  ],
+  "license": "MIT",
+  "private": true,
+  "dependencies": {
+    "@testing-library/jest-dom": "^5.17.0",
+    "@testing-library/react": "^13.4.0",
+    "@testing-library/user-event": "^14.5.2",
+    "@types/jest": "^27.5.2",
+    "@types/node": "^16.18.68",
+    "@types/react": "^18.2.42",
+    "@types/react-dom": "^18.2.17",
+    "react": "^18.2.0",
+    "react-dom": "^18.2.0",
+    "react-scripts": "5.0.1",
+    "typescript": "^4.9.5",
+    "web-vitals": "^2.1.4"
+  },
+  "devDependencies": {
+    "@types/testing-library__jest-dom": "^5.14.9",
+    "@typescript-eslint/eslint-plugin": "^6.13.1",
+    "@typescript-eslint/parser": "^6.13.1",
+    "eslint": "^8.54.0",
+    "eslint-config-prettier": "^9.0.0",
+    "eslint-plugin-prettier": "^5.0.1",
+    "eslint-plugin-react": "^7.33.2",
+    "eslint-plugin-react-hooks": "^4.6.0",
+    "gh-pages": "^6.1.0",
+    "prettier": "^3.1.0",
+    "sass": "^1.69.5"
+  },
+  "scripts": {
+    "start": "react-scripts start",
+    "build": "react-scripts build",
+    "test": "react-scripts test",
+    "eject": "react-scripts eject",
+    "predeploy": "npm run build",
+    "deploy": "gh-pages -d build",
+    "deploy:github": "npm run build && gh-pages -d build",
+    "lint": "eslint src/**/*.{js,jsx,ts,tsx} --quiet --fix",
+    "lint:check": "eslint src/**/*.{js,jsx,ts,tsx}",
+    "format": "prettier --write src/**/*.{js,jsx,ts,tsx,json,css,md}",
+    "format:check": "prettier --check src/**/*.{js,jsx,ts,tsx,json,css,md}",
+    "type-check": "tsc --noEmit",
+    "pre-commit": "npm run lint && npm run format && npm run type-check",
+    "build:analyze": "npm run build && npx serve -s build",
+    "clean": "rm -rf build node_modules package-lock.json && npm install",
+    "deploy:netlify": "netlify deploy --prod --dir=build",
+    "deploy:vercel": "vercel --prod",
+    "serve": "npx serve -s build -l 3000",
+    "test:coverage": "npm test -- --coverage --watchAll=false",
+    "test:ci": "CI=true npm test -- --coverage --watchAll=false"
+  },
+  "eslintConfig": {
+    "extends": [
+      "react-app",
+      "react-app/jest",
+      "@typescript-eslint/recommended",
+      "prettier"
+    ],
+    "plugins": [
+      "@typescript-eslint",
+      "react-hooks",
+      "prettier"
+    ],
+    "rules": {
+      "prettier/prettier": "error",
+      "@typescript-eslint/no-unused-vars": "error",
+      "@typescript-eslint/explicit-function-return-type": "off",
+      "@typescript-eslint/explicit-module-boundary-types": "off",
+      "@typescript-eslint/no-explicit-any": "warn",
+      "react-hooks/rules-of-hooks": "error",
+      "react-hooks/exhaustive-deps": "warn",
+      "no-console": "warn",
+      "no-debugger": "error"
+    ],
+    "parser": "@typescript-eslint/parser",
+    "parserOptions": {
+      "ecmaVersion": 2020,
+      "sourceType": "module",
+      "ecmaFeatures": {
+        "jsx": true
+      }
+    }
+  },
+  "prettier": {
+    "semi": true,
+    "trailingComma": "es5",
+    "singleQuote": true,
+    "printWidth": 80,
+    "tabWidth": 2,
+    "useTabs": false,
+    "bracketSpacing": true,
+    "bracketSameLine": false,
+    "arrowParens": "avoid",
+    "endOfLine": "lf"
+  },
+  "browserslist": {
+    "production": [
+      ">0.2%",
+      "not dead",
+      "not op_mini all"
+    ],
+    "development": [
+      "last 1 chrome version",
+      "last 1 firefox version",
+      "last 1 safari version"
+    ]
+  },
+  "engines": {
+    "node": ">=16.0.0",
+    "npm": ">=8.0.0"
+  },
+  "jest": {
+    "collectCoverageFrom": [
+      "src/**/*.{js,jsx,ts,tsx}",
+      "!src/**/*.d.ts",
+      "!src/index.tsx",
+      "!src/reportWebVitals.ts"
+    ],
+    "coverageThreshold": {
+      "global": {
+        "branches": 70,
+        "functions": 70,
+        "lines": 70,
+        "statements": 70
+      }
+    }
+  }
 }
