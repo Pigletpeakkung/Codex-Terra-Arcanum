@@ -1,11 +1,22 @@
 {
   "name": "thanatsitt-portfolio",
   "version": "1.0.0",
+  "description": "Thanatsitt Santisamranwilai - Cultural Navigator Portfolio",
+  "main": "index.html",
   "scripts": {
     "build": "node scripts/build.js",
-    "dev": "live-server . --port=3000"
+    "dev": "live-server . --port=3000 --open=/",
+    "test": "echo \"No tests specified\" && exit 0",
+    "start": "npm run dev"
   },
+  "keywords": ["portfolio", "cultural-navigator", "ai", "technology"],
+  "author": "Thanatsitt Santisamranwilai",
+  "license": "MIT",
   "devDependencies": {
     "live-server": "^1.2.2"
+  },
+  "engines": {
+    "node": ">=16.0.0",
+    "npm": ">=8.0.0"
   }
 }
