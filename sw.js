@@ -1,569 +1,545 @@
 // =============================================================================
-// SERVICE WORKER - THANATSITT PORTFOLIO (CODEX TERRA ARCANUM)
-// Advanced caching, offline support, and performance optimization
-// =============================================================================
-
-const CACHE_NAME = 'thanatsitt-portfolio-v1.0.0';
-const STATIC_CACHE = 'static-v1.0.0';
-const DYNAMIC_CACHE = 'dynamic-v1.0.0';
-const IMAGES_CACHE = 'images-v1.0.0';
-const API_CACHE = 'api-v1.0.0';
-
-// =============================================================================
-// CACHE STRATEGIES
-// =============================================================================
-
-// Critical assets that must be cached immediately
-const CRITICAL_ASSETS = [
-    '/',
-    '/index.html',
-    '/manifest.json',
-    '/favicon.ico',
-    '/apple-touch-icon.png'
-];
-
-// Static assets with long cache duration
-const STATIC_ASSETS = [
-    // CSS Files
-    '/css/style.css',
-    '/css/style.min.css',
-    
-    // JavaScript Files
-    '/js/app.js',
-    '/js/app.min.js',
-    '/js/config.js',
-    
-    // External CDN Assets (cached locally)
-    'https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap',
-    'https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css',
-    'https://unpkg.com/alpinejs@3.x.x/dist/cdn.min.js',
-    'https://unpkg.com/aos@2.3.1/dist/aos.css',
-    'https://unpkg.com/aos@2.3.1/dist/aos.js',
-    'https://cdn.emailjs.com/dist/email.min.js',
-    
-    // Fonts
-    'https://fonts.gstatic.com/s/inter/v12/UcCO3FwrK3iLTeHuS_fvQtMwCp50KnMw2boKoduKmMEVuLyfAZ9hiJ-Ek-_EeA.woff2',
-    'https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/webfonts/fa-solid-900.woff2',
-    'https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/webfonts/fa-brands-400.woff2'
-];
-
-// Image patterns to cache
-const IMAGE_PATTERNS = [
-    '/images/',
-    '/gallery/',
-    '/voice-samples/',
-    '/assets/',
-    'https://voice-samples.thanatsitt.com/',
-    'https://fashion.thanatsitt.com/'
-];
-
-// API endpoints to cache
-const API_PATTERNS = [
-    '/api/',
-    'https://api.thanatsitt.com/',
-    'https://formspree.io/',
-    'https://api.emailjs.com/'
-];
-
-// Assets to exclude from caching
-const EXCLUDE_PATTERNS = [
-    '/admin/',
-    '/analytics/',
-    'chrome-extension://',
-    'moz-extension://',
-    'safari-extension://',
-    '.map'
-];
-
-// =============================================================================
-// UTILITY FUNCTIONS
+// CONFIGURATION - THANATSITT PORTFOLIO (CODEX TERRA ARCANUM)
+// Centralized configuration management with environment detection
 // =============================================================================
 
 /**
- * Check if URL should be cached
+ * Environment Detection
  */
-function shouldCache(url) {
-    const urlObj = new URL(url);
-    
-    // Exclude certain patterns
-    if (EXCLUDE_PATTERNS.some(pattern => url.includes(pattern))) {
-        return false;
-    }
-    
-    // Only cache HTTP/HTTPS requests
-    if (!urlObj.protocol.startsWith('http')) {
-        return false;
-    }
-    
-    return true;
-}
+const ENV = {
+    isDevelopment: window.location.hostname === 'localhost' || window.location.hostname === '127.0.0.1',
+    isStaging: window.location.hostname.includes('deploy-preview') || window.location.hostname.includes('staging'),
+    isProduction: window.location.hostname.includes('github.io') || window.location.hostname.includes('netlify.app') || window.location.hostname.includes('thanatsitt.com'),
+    isNetlify: window.location.hostname.includes('netlify'),
+    isGitHubPages: window.location.hostname.includes('github.io')
+};
 
 /**
- * Get cache name for URL
+ * Base Configuration
  */
-function getCacheName(url) {
-    if (STATIC_ASSETS.includes(url) || CRITICAL_ASSETS.includes(url)) {
-        return STATIC_CACHE;
-    }
+const BASE_CONFIG = {
+    // Application Info
+    APP_NAME: 'Thanatsitt Portfolio',
+    APP_VERSION: '1.0.0',
+    APP_DESCRIPTION: 'Thai-British interdisciplinary creator bridging ancient wisdom with modern technology',
     
-    if (IMAGE_PATTERNS.some(pattern => url.includes(pattern))) {
-        return IMAGES_CACHE;
-    }
+    // Personal Information
+    PERSONAL: {
+        name: 'Thanatsitt Santisamranwilai',
+        title: 'Cultural Bridge Builder & Digital Innovator',
+        email: 'thanattsitt.info@yahoo.co.uk',
+        phone: '+44 123 456 7890', // Update with real number
+        location: 'London, United Kingdom',
+        timezone: 'Europe/London',
+        languages: ['English', 'Thai', 'Mandarin'],
+        pronouns: 'They/Them'
+    },
     
-    if (API_PATTERNS.some(pattern => url.includes(pattern))) {
-        return API_CACHE;
-    }
+    // URLs and Links
+    URLS: {
+        portfolio: 'https://pigletpeakkung.github.io/Codex-Terra-Arcanum',
+        business: 'https://pegearts.com',
+        repository: 'https://github.com/Pigletpeakkung/Codex-Terra-Arcanum',
+        linkedin: 'https://linkedin.com/in/thanatsitt',
+        github: 'https://github.com/thanatsitt',
+        instagram: 'https://instagram.com/thanatsitt',
+        twitter: 'https://twitter.com/thanatsitt',
+        youtube: 'https://youtube.com/@thanatsitt',
+        behance: 'https://behance.net/thanatsitt',
+        dribbble: 'https://dribbble.com/thanatsitt'
+    },
     
-    return DYNAMIC_CACHE;
-}
-
-/**
- * Clean old caches
- */
-async function cleanOldCaches() {
-    const cacheNames = await caches.keys();
-    const validCaches = [STATIC_CACHE, DYNAMIC_CACHE, IMAGES_CACHE, API_CACHE];
+    // Feature Flags
+    FEATURES: {
+        analytics: true,
+        serviceWorker: true,
+        pushNotifications: false,
+        offlineMode: true,
+        darkMode: true,
+        animations: true,
+        soundEffects: false,
+        blog: false,
+        shop: false,
+        booking: true,
+        newsletter: true,
+        testimonials: true,
+        gallery: true,
+        voiceSamples: true,
+        aiDemo: true,
+        fashionGallery: true,
+        culturalConsulting: true,
+        languageSwitcher: false,
+        chatbot: false,
+        videoBackground: false,
+        parallaxEffects: true,
+        lazyLoading: true,
+        imageOptimization: true
+    },
     
-    return Promise.all(
-        cacheNames
-            .filter(cacheName => !validCaches.includes(cacheName))
-            .map(cacheName => {
-                console.log('🗑️ Deleting old cache:', cacheName);
-                return caches.delete(cacheName);
-            })
-    );
-}
-
-/**
- * Preload critical resources
- */
-async function preloadCriticalResources() {
-    try {
-        const cache = await caches.open(STATIC_CACHE);
-        
-        // Add critical assets first
-        await cache.addAll(CRITICAL_ASSETS);
-        console.log('✅ Critical assets cached');
-        
-        // Add static assets in batches to avoid overwhelming the browser
-        const batchSize = 5;
-        for (let i = 0; i < STATIC_ASSETS.length; i += batchSize) {
-            const batch = STATIC_ASSETS.slice(i, i + batchSize);
-            try {
-                await cache.addAll(batch);
-                console.log(`✅ Static assets batch ${Math.floor(i/batchSize) + 1} cached`);
-            } catch (error) {
-                console.warn('⚠️ Failed to cache batch:', batch, error);
-                // Try to cache individually
-                for (const asset of batch) {
-                    try {
-                        await cache.add(asset);
-                    } catch (individualError) {
-                        console.warn('⚠️ Failed to cache asset:', asset, individualError);
-                    }
-                }
-            }
-        }
-        
-    } catch (error) {
-        console.error('❌ Failed to preload critical resources:', error);
-    }
-}
-
-/**
- * Network first strategy with fallback
- */
-async function networkFirstStrategy(request) {
-    try {
-        const networkResponse = await fetch(request);
-        
-        if (networkResponse.ok) {
-            // Cache successful responses
-            const cache = await caches.open(getCacheName(request.url));
-            cache.put(request, networkResponse.clone());
-        }
-        
-        return networkResponse;
-    } catch (error) {
-        // Network failed, try cache
-        const cachedResponse = await caches.match(request);
-        if (cachedResponse) {
-            console.log('📦 Serving from cache:', request.url);
-            return cachedResponse;
-        }
-        
-        // Return offline fallback
-        return getOfflineFallback(request);
-    }
-}
-
-/**
- * Cache first strategy with network fallback
- */
-async function cacheFirstStrategy(request) {
-    const cachedResponse = await caches.match(request);
+    // Performance Settings
+    PERFORMANCE: {
+        imageLazyLoading: true,
+        preloadImages: true,
+        cacheDuration: 86400000, // 24 hours in milliseconds
+        debounceDelay: 300,
+        throttleDelay: 100,
+        animationDuration: 300,
+        scrollThrottle: 16, // ~60fps
+        intersectionThreshold: 0.1,
+        maxImageSize: 2048,
+        compressionQuality: 0.8
+    },
     
-    if (cachedResponse) {
-        console.log('📦 Serving from cache:', request.url);
-        return cachedResponse;
-    }
-    
-    try {
-        const networkResponse = await fetch(request);
-        
-        if (networkResponse.ok && shouldCache(request.url)) {
-            const cache = await caches.open(getCacheName(request.url));
-            cache.put(request, networkResponse.clone());
-        }
-        
-        return networkResponse;
-    } catch (error) {
-        return getOfflineFallback(request);
-    }
-}
-
-/**
- * Stale while revalidate strategy
- */
-async function staleWhileRevalidateStrategy(request) {
-    const cachedResponse = await caches.match(request);
-    
-    const networkResponsePromise = fetch(request).then(networkResponse => {
-        if (networkResponse.ok && shouldCache(request.url)) {
-            const cache = caches.open(getCacheName(request.url));
-            cache.then(c => c.put(request, networkResponse.clone()));
-        }
-        return networkResponse;
-    }).catch(() => null);
-    
-    return cachedResponse || networkResponsePromise || getOfflineFallback(request);
-}
-
-/**
- * Get offline fallback response
- */
-function getOfflineFallback(request) {
-    const url = new URL(request.url);
-    
-    // HTML pages - return cached index.html
-    if (request.destination === 'document') {
-        return caches.match('/index.html') || new Response(
-            '<!DOCTYPE html><html><head><title>Offline</title></head><body><h1>You are offline</h1><p>Please check your internet connection.</p></body></html>',
-            { headers: { 'Content-Type': 'text/html' } }
-        );
-    }
-    
-    // Images - return placeholder SVG
-    if (request.destination === 'image') {
-        return new Response(
-            `<svg xmlns="http://www.w3.org/2000/svg" width="400" height="300" viewBox="0 0 400 300">
-                <rect width="400" height="300" fill="#1A1A2E"/>
-                <text x="200" y="150" text-anchor="middle" fill="#D4AF37" font-family="Arial" font-size="16">
-                    Image Unavailable Offline
-                </text>
-            </svg>`,
-            { headers: { 'Content-Type': 'image/svg+xml' } }
-        );
-    }
-    
-    // API requests - return error response
-    if (url.pathname.startsWith('/api/')) {
-        return new Response(
-            JSON.stringify({ 
-                error: 'Offline', 
-                message: 'This feature requires an internet connection' 
-            }),
-            { 
-                status: 503,
-                headers: { 'Content-Type': 'application/json' } 
-            }
-        );
-    }
-    
-    // Default fallback
-    return new Response('Offline', { status: 503 });
-}
-
-// =============================================================================
-// SERVICE WORKER EVENT HANDLERS
-// =============================================================================
-
-/**
- * Install Event - Cache critical resources
- */
-self.addEventListener('install', event => {
-    console.log('🚀 Service Worker: Installing...');
-    
-    event.waitUntil(
-        Promise.all([
-            preloadCriticalResources(),
-            self.skipWaiting() // Activate immediately
-        ])
-    );
-});
-
-/**
- * Activate Event - Clean up old caches
- */
-self.addEventListener('activate', event => {
-    console.log('✅ Service Worker: Activating...');
-    
-    event.waitUntil(
-        Promise.all([
-            cleanOldCaches(),
-            self.clients.claim() // Take control immediately
-        ])
-    );
-});
-
-/**
- * Fetch Event - Handle all network requests
- */
-self.addEventListener('fetch', event => {
-    const { request } = event;
-    const url = new URL(request.url);
-    
-    // Skip non-GET requests
-    if (request.method !== 'GET') {
-        return;
-    }
-    
-    // Skip chrome-extension and other non-http requests
-    if (!url.protocol.startsWith('http')) {
-        return;
-    }
-    
-    // Skip if shouldn't cache
-    if (!shouldCache(request.url)) {
-        return;
-    }
-    
-    // Choose caching strategy based on request type
-    if (CRITICAL_ASSETS.some(asset => request.url.endsWith(asset)) || 
-        STATIC_ASSETS.includes(request.url)) {
-        // Critical and static assets: Cache first
-        event.respondWith(cacheFirstStrategy(request));
-    } else if (IMAGE_PATTERNS.some(pattern => request.url.includes(pattern))) {
-        // Images: Cache first with long expiry
-        event.respondWith(cacheFirstStrategy(request));
-    } else if (API_PATTERNS.some(pattern => request.url.includes(pattern))) {
-        // API requests: Network first
-        event.respondWith(networkFirstStrategy(request));
-    } else if (request.destination === 'document') {
-        // HTML pages: Stale while revalidate
-        event.respondWith(staleWhileRevalidateStrategy(request));
-    } else {
-        // Everything else: Stale while revalidate
-        event.respondWith(staleWhileRevalidateStrategy(request));
-    }
-});
-
-/**
- * Background Sync - Handle offline form submissions
- */
-self.addEventListener('sync', event => {
-    console.log('🔄 Service Worker: Background sync triggered');
-    
-    if (event.tag === 'contact-form-sync') {
-        event.waitUntil(handleOfflineFormSubmissions());
-    }
-    
-    if (event.tag === 'analytics-sync') {
-        event.waitUntil(handleOfflineAnalytics());
-    }
-});
-
-/**
- * Push Notifications
- */
-self.addEventListener('push', event => {
-    console.log('📱 Service Worker: Push notification received');
-    
-    const options = {
-        body: event.data ? event.data.text() : 'New update available!',
-        icon: '/android-chrome-192x192.png',
-        badge: '/favicon-32x32.png',
-        vibrate: [100, 50, 100],
-        data: {
-            dateOfArrival: Date.now(),
-            primaryKey: 'portfolio-update'
+    // UI/UX Settings
+    UI: {
+        theme: 'dark', // 'dark' | 'light' | 'auto'
+        accentColor: '#D4AF37',
+        primaryColor: '#1A1A2E',
+        animationSpeed: 300,
+        transitionEasing: 'cubic-bezier(0.4, 0, 0.2, 1)',
+        borderRadius: '8px',
+        shadowLevel: 'medium',
+        fontFamily: 'Inter, sans-serif',
+        fontSize: {
+            small: '14px',
+            medium: '16px',
+            large: '18px',
+            xlarge: '24px'
         },
-        actions: [
-            {
-                action: 'explore',
-                title: 'View Portfolio',
-                icon: '/favicon-32x32.png'
-            },
-            {
-                action: 'close',
-                title: 'Close',
-                icon: '/favicon-32x32.png'
-            }
+        breakpoints: {
+            mobile: 768,
+            tablet: 1024,
+            desktop: 1280,
+            wide: 1920
+        }
+    }
+};
+
+/**
+ * Development Configuration
+ */
+const DEVELOPMENT_CONFIG = {
+    // API Configuration
+    API: {
+        baseUrl: 'http://localhost:3001',
+        timeout: 10000,
+        retries: 3,
+        endpoints: {
+            contact: '/api/contact',
+            newsletter: '/api/newsletter',
+            analytics: '/api/analytics',
+            gallery: '/api/gallery',
+            testimonials: '/api/testimonials'
+        }
+    },
+    
+    // EmailJS Configuration (Development)
+    EMAILJS: {
+        publicKey: 'dev_public_key_here',
+        serviceId: 'dev_service_gmail',
+        templateId: 'dev_template_contact',
+        newsletterTemplateId: 'dev_template_newsletter'
+    },
+    
+    // Analytics (Disabled in development)
+    ANALYTICS: {
+        googleAnalytics: {
+            trackingId: '',
+            enabled: false
+        },
+        facebookPixel: {
+            pixelId: '',
+            enabled: false
+        },
+        hotjar: {
+            hjid: '',
+            hjsv: '',
+            enabled: false
+        },
+        clarity: {
+            projectId: '',
+            enabled: false
+        }
+    },
+    
+    // Debug Settings
+    DEBUG: {
+        enableConsoleLog: true,
+        enablePerformanceLog: true,
+        enableErrorTracking: true,
+        showDebugInfo: true,
+        mockApiResponses: true,
+        bypassCache: true
+    }
+};
+
+/**
+ * Staging Configuration
+ */
+const STAGING_CONFIG = {
+    // API Configuration
+    API: {
+        baseUrl: 'https://staging-api.thanatsitt.com',
+        timeout: 15000,
+        retries: 2,
+        endpoints: {
+            contact: '/api/contact',
+            newsletter: '/api/newsletter',
+            analytics: '/api/analytics',
+            gallery: '/api/gallery',
+            testimonials: '/api/testimonials'
+        }
+    },
+    
+    // EmailJS Configuration (Staging)
+    EMAILJS: {
+        publicKey: 'staging_public_key_here',
+        serviceId: 'staging_service_gmail',
+        templateId: 'staging_template_contact',
+        newsletterTemplateId: 'staging_template_newsletter'
+    },
+    
+    // Analytics (Limited in staging)
+    ANALYTICS: {
+        googleAnalytics: {
+            trackingId: 'G-STAGING123',
+            enabled: true
+        },
+        facebookPixel: {
+            pixelId: '',
+            enabled: false
+        },
+        hotjar: {
+            hjid: '',
+            hjsv: '',
+            enabled: false
+        },
+        clarity: {
+            projectId: '',
+            enabled: false
+        }
+    },
+    
+    // Debug Settings
+    DEBUG: {
+        enableConsoleLog: true,
+        enablePerformanceLog: true,
+        enableErrorTracking: true,
+        showDebugInfo: false,
+        mockApiResponses: false,
+        bypassCache: false
+    }
+};
+
+/**
+ * Production Configuration
+ */
+const PRODUCTION_CONFIG = {
+    // API Configuration
+    API: {
+        baseUrl: 'https://api.thanatsitt.com',
+        timeout: 20000,
+        retries: 3,
+        endpoints: {
+            contact: '/api/contact',
+            newsletter: '/api/newsletter',
+            analytics: '/api/analytics',
+            gallery: '/api/gallery',
+            testimonials: '/api/testimonials'
+        }
+    },
+    
+    // EmailJS Configuration (Production)
+    EMAILJS: {
+        publicKey: 'your_actual_public_key_here', // Replace with real key
+        serviceId: 'service_gmail_prod', // Replace with real service ID
+        templateId: 'template_contact_prod', // Replace with real template ID
+        newsletterTemplateId: 'template_newsletter_prod' // Replace with real template ID
+    },
+    
+    // Analytics (Full tracking in production)
+    ANALYTICS: {
+        googleAnalytics: {
+            trackingId: 'G-XXXXXXXXXX', // Replace with real GA4 ID
+            enabled: true
+        },
+        facebookPixel: {
+            pixelId: '123456789012345', // Replace with real Pixel ID
+            enabled: true
+        },
+        hotjar: {
+            hjid: '1234567', // Replace with real Hotjar ID
+            hjsv: '6',
+            enabled: true
+        },
+        clarity: {
+            projectId: 'abcdefghij', // Replace with real Clarity ID
+            enabled: true
+        }
+    },
+    
+    // Debug Settings
+    DEBUG: {
+        enableConsoleLog: false,
+        enablePerformanceLog: false,
+        enableErrorTracking: true,
+        showDebugInfo: false,
+        mockApiResponses: false,
+        bypassCache: false
+    }
+};
+
+/**
+ * CDN and External Resources
+ */
+const EXTERNAL_RESOURCES = {
+    CDN: {
+        tailwind: 'https://cdn.tailwindcss.com',
+        alpinejs: 'https://unpkg.com/alpinejs@3.x.x/dist/cdn.min.js',
+        aos: {
+            css: 'https://unpkg.com/aos@2.3.1/dist/aos.css',
+            js: 'https://unpkg.com/aos@2.3.1/dist/aos.js'
+        },
+        fontawesome: 'https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css',
+        googleFonts: 'https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap',
+        emailjs: 'https://cdn.emailjs.com/dist/email.min.js'
+    },
+    
+    ASSETS: {
+        voiceSamples: 'https://voice-samples.thanatsitt.com',
+        fashionGallery: 'https://fashion.thanatsitt.com',
+        aiDemo: 'https://ai-demo.thanatsitt.com',
+        culturalAssets: 'https://cultural.thanatsitt.com'
+    },
+    
+    FALLBACKS: {
+        image: 'data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iNDAwIiBoZWlnaHQ9IjMwMCIgdmlld0JveD0iMCAwIDQwMCAzMDAiIGZpbGw9Im5vbmUiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyI+CjxyZWN0IHdpZHRoPSI0MDAiIGhlaWdodD0iMzAwIiBmaWxsPSIjMUExQTJFIi8+Cjx0ZXh0IHg9IjIwMCIgeT0iMTUwIiB0ZXh0LWFuY2hvcj0ibWlkZGxlIiBmaWxsPSIjRDRBRjM3IiBmb250LWZhbWlseT0iQXJpYWwiIGZvbnQtc2l6ZT0iMTYiPkltYWdlIFVuYXZhaWxhYmxlPC90ZXh0Pgo8L3N2Zz4K',
+        avatar: 'data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMTAwIiBoZWlnaHQ9IjEwMCIgdmlld0JveD0iMCAwIDEwMCAxMDAiIGZpbGw9Im5vbmUiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyI+CjxjaXJjbGUgY3g9IjUwIiBjeT0iNTAiIHI9IjUwIiBmaWxsPSIjMUExQTJFIi8+Cjx0ZXh0IHg9IjUwIiB5PSI1NSIgdGV4dC1hbmNob3I9Im1pZGRsZSIgZmlsbD0iI0Q0QUYzNyIgZm9udC1mYW1pbHk9IkFyaWFsIiBmb250LXNpemU9IjE0Ij5UPC90ZXh0Pgo8L3N2Zz4K'
+    }
+};
+
+/**
+ * Content Configuration
+ */
+const CONTENT_CONFIG = {
+    // Portfolio Sections
+    SECTIONS: {
+        hero: {
+            enabled: true,
+            backgroundVideo: false,
+            parallax: true,
+            typewriter: true
+        },
+        about: {
+            enabled: true,
+            showSkills: true,
+            showTimeline: true,
+            showAchievements: true
+        },
+        projects: {
+            enabled: true,
+            showFilters: true,
+            showSearch: true,
+            itemsPerPage: 6,
+            categories: ['all', 'ai', 'fashion', 'web', 'voice', 'consulting']
+        },
+        gallery: {
+            enabled: true,
+            showFilters: true,
+            lightbox: true,
+            infiniteScroll: false,
+            itemsPerPage: 12
+        },
+        testimonials: {
+            enabled: true,
+            autoplay: true,
+            showRatings: true,
+            itemsPerSlide: 1
+        },
+        contact: {
+            enabled: true,
+            showMap: false,
+            showSocial: true,
+            showCalendly: true
+        }
+    },
+    
+    // Default Content
+    DEFAULTS: {
+        metaDescription: 'Thai-British interdisciplinary creator bridging ancient wisdom with modern technology. Specializing in AI development, sustainable fashion, cultural consulting, and voice acting.',
+        metaKeywords: 'Cultural Consulting, AI Development, Fashion Design, Voice Acting, Thai-British, Digital Innovation',
+        ogImage: '/og-image.jpg',
+        twitterImage: '/twitter-image.jpg'
+    }
+};
+
+/**
+ * Security Configuration
+ */
+const SECURITY_CONFIG = {
+    CSP: {
+        'default-src': ["'self'"],
+        'script-src': [
+            "'self'",
+            "'unsafe-inline'",
+            "'unsafe-eval'",
+            'https://unpkg.com',
+            'https://cdn.tailwindcss.com',
+            'https://cdnjs.cloudflare.com',
+            'https://www.googletagmanager.com',
+            'https://www.google-analytics.com',
+            'https://connect.facebook.net',
+            'https://www.clarity.ms',
+            'https://cdn.emailjs.com'
         ],
-        requireInteraction: false,
-        silent: false
-    };
+        'style-src': [
+            "'self'",
+            "'unsafe-inline'",
+            'https://fonts.googleapis.com',
+            'https://cdnjs.cloudflare.com',
+            'https://unpkg.com'
+        ],
+        'font-src': [
+            "'self'",
+            'https://fonts.gstatic.com',
+            'https://cdnjs.cloudflare.com'
+        ],
+        'img-src': [
+            "'self'",
+            'data:',
+            'blob:',
+            'https:'
+        ],
+        'connect-src': [
+            "'self'",
+            'https://api.emailjs.com',
+            'https://www.google-analytics.com',
+            'https://www.clarity.ms',
+            'https://formspree.io'
+        ]
+    },
     
-    event.waitUntil(
-        self.registration.showNotification('Thanatsitt Portfolio', options)
-    );
-});
+    RATE_LIMITING: {
+        contactForm: {
+            maxRequests: 5,
+            windowMs: 900000 // 15 minutes
+        },
+        newsletter: {
+            maxRequests: 3,
+            windowMs: 3600000 // 1 hour
+        }
+    }
+};
 
 /**
- * Notification Click Handler
+ * Get Environment-Specific Configuration
  */
-self.addEventListener('notificationclick', event => {
-    console.log('🔔 Service Worker: Notification clicked');
-    
-    event.notification.close();
-    
-    if (event.action === 'explore') {
-        event.waitUntil(
-            clients.openWindow('/')
-        );
-    } else if (event.action === 'close') {
-        // Just close the notification
-        return;
+function getEnvironmentConfig() {
+    if (ENV.isDevelopment) {
+        return { ...BASE_CONFIG, ...DEVELOPMENT_CONFIG };
+    } else if (ENV.isStaging) {
+        return { ...BASE_CONFIG, ...STAGING_CONFIG };
     } else {
-        // Default action - open the app
-        event.waitUntil(
-            clients.openWindow('/')
-        );
+        return { ...BASE_CONFIG, ...PRODUCTION_CONFIG };
     }
-});
+}
 
 /**
- * Message Handler - Communication with main thread
+ * Configuration Manager
  */
-self.addEventListener('message', event => {
-    console.log('💬 Service Worker: Message received', event.data);
-    
-    if (event.data && event.data.type === 'SKIP_WAITING') {
-        self.skipWaiting();
-    }
-    
-    if (event.data && event.data.type === 'GET_VERSION') {
-        event.ports[0].postMessage({ version: CACHE_NAME });
-    }
-    
-    if (event.data && event.data.type === 'CLEAR_CACHE') {
-        event.waitUntil(
-            caches.keys().then(cacheNames => 
-                Promise.all(cacheNames.map(cacheName => caches.delete(cacheName)))
-            )
-        );
-    }
-});
-
-// =============================================================================
-// BACKGROUND TASKS
-// =============================================================================
-
-/**
- * Handle offline form submissions
- */
-async function handleOfflineFormSubmissions() {
-    try {
-        const cache = await caches.open(API_CACHE);
-        const requests = await cache.keys();
+class ConfigManager {
+    constructor() {
+        this.config = getEnvironmentConfig();
+        this.external = EXTERNAL_RESOURCES;
+        this.content = CONTENT_CONFIG;
+        this.security = SECURITY_CONFIG;
+        this.env = ENV;
         
-        for (const request of requests) {
-            if (request.url.includes('/api/contact') || request.url.includes('formspree.io')) {
-                try {
-                    const response = await fetch(request);
-                    if (response.ok) {
-                        await cache.delete(request);
-                        console.log('✅ Offline form submission sent successfully');
-                        
-                        // Notify the main thread
-                        const clients = await self.clients.matchAll();
-                        clients.forEach(client => {
-                            client.postMessage({
-                                type: 'FORM_SYNC_SUCCESS',
-                                message: 'Your message was sent successfully!'
-                            });
-                        });
-                    }
-                } catch (error) {
-                    console.error('❌ Failed to send offline form submission:', error);
-                }
+        // Initialize configuration
+        this.init();
+    }
+    
+    init() {
+        // Set global config
+        window.CONFIG = this.config;
+        window.EXTERNAL_RESOURCES = this.external;
+        window.CONTENT_CONFIG = this.content;
+        window.SECURITY_CONFIG = this.security;
+        window.ENV = this.env;
+        
+        // Log configuration in development
+        if (this.config.DEBUG?.enableConsoleLog) {
+            console.log('🔧 Configuration loaded:', this.config);
+            console.log('🌍 Environment:', this.env);
+        }
+    }
+    
+    get(key, defaultValue = null) {
+        return this.getNestedValue(this.config, key, defaultValue);
+    }
+    
+    getExternal(key, defaultValue = null) {
+        return this.getNestedValue(this.external, key, defaultValue);
+    }
+    
+    getContent(key, defaultValue = null) {
+        return this.getNestedValue(this.content, key, defaultValue);
+    }
+    
+    isFeatureEnabled(feature) {
+        return this.config.FEATURES?.[feature] || false;
+    }
+    
+    getApiUrl(endpoint = '') {
+        const baseUrl = this.config.API?.baseUrl || '';
+        const endpointPath = this.config.API?.endpoints?.[endpoint] || endpoint;
+        return `${baseUrl}${endpointPath}`;
+    }
+    
+    getNestedValue(obj, path, defaultValue = null) {
+        const keys = path.split('.');
+        let current = obj;
+        
+        for (const key of keys) {
+            if (current && typeof current === 'object' && key in current) {
+                current = current[key];
+            } else {
+                return defaultValue;
             }
         }
-    } catch (error) {
-        console.error('❌ Background sync failed:', error);
-    }
-}
-
-/**
- * Handle offline analytics
- */
-async function handleOfflineAnalytics() {
-    try {
-        const cache = await caches.open(API_CACHE);
-        const requests = await cache.keys();
         
-        for (const request of requests) {
-            if (request.url.includes('/api/analytics') || request.url.includes('google-analytics.com')) {
-                try {
-                    await fetch(request);
-                    await cache.delete(request);
-                    console.log('✅ Offline analytics data sent');
-                } catch (error) {
-                    console.warn('⚠️ Failed to send offline analytics:', error);
-                }
-            }
-        }
-    } catch (error) {
-        console.error('❌ Analytics sync failed:', error);
+        return current;
     }
-}
-
-// =============================================================================
-// PERIODIC BACKGROUND SYNC (if supported)
-// =============================================================================
-
-self.addEventListener('periodicsync', event => {
-    if (event.tag === 'portfolio-update-check') {
-        event.waitUntil(checkForPortfolioUpdates());
-    }
-});
-
-async function checkForPortfolioUpdates() {
-    try {
-        const response = await fetch('/api/version');
-        const data = await response.json();
+    
+    updateConfig(updates) {
+        this.config = { ...this.config, ...updates };
+        window.CONFIG = this.config;
         
-        if (data.version !== CACHE_NAME) {
-            // New version available
-            const clients = await self.clients.matchAll();
-            clients.forEach(client => {
-                client.postMessage({
-                    type: 'UPDATE_AVAILABLE',
-                    message: 'A new version of the portfolio is available!'
-                });
-            });
+        if (this.config.DEBUG?.enableConsoleLog) {
+            console.log('🔄 Configuration updated:', updates);
         }
-    } catch (error) {
-        console.warn('⚠️ Failed to check for updates:', error);
     }
 }
 
-// =============================================================================
-// ERROR HANDLING
-// =============================================================================
+// Initialize Configuration Manager
+const configManager = new ConfigManager();
 
-self.addEventListener('error', event => {
-    console.error('❌ Service Worker Error:', event.error);
-});
+// Export for use in other modules
+window.ConfigManager = configManager;
 
-self.addEventListener('unhandledrejection', event => {
-    console.error('❌ Service Worker Unhandled Rejection:', event.reason);
-});
+// Backward compatibility
+window.getConfig = (key, defaultValue) => configManager.get(key, defaultValue);
+window.isFeatureEnabled = (feature) => configManager.isFeatureEnabled(feature);
+window.getApiUrl = (endpoint) => configManager.getApiUrl(endpoint);
 
-// =============================================================================
-// INITIALIZATION
-// =============================================================================
+// Development helpers
+if (ENV.isDevelopment) {
+    window.debugConfig = () => {
+        console.table(configManager.config);
+        console.log('External Resources:', configManager.external);
+        console.log('Content Config:', configManager.content);
+        console.log('Security Config:', configManager.security);
+    };
+}
 
-console.log('🎯 Service Worker: Thanatsitt Portfolio SW loaded successfully!');
-console.log('📦 Cache Version:', CACHE_NAME);
-console.log('🚀 Ready to serve offline content and enhance performance!');
+console.log('⚙️ Configuration system initialized successfully!');
