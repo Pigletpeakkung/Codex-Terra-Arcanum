@@ -1,19 +1,33 @@
-# Netlify configuration for Thanatsitt Portfolio (Codex Terra Arcanum)
-# https://docs.netlify.com/configure-builds/file-based-configuration/
+# =============================================================================
+# NETLIFY CONFIGURATION - THANATSITT PORTFOLIO
+# Enhanced configuration for optimal performance and security
+# =============================================================================
 
 [build]
-  # Build command
-  command = "npm run build"
+  # Build command for static site (no React build needed)
+  command = "echo 'Static site - no build required'"
   
-  # Directory to publish (React build output)
-  publish = "build"
+  # Directory to publish (root directory for static HTML)
+  publish = "."
   
-  # Base directory for build
+  # Base directory
   base = "."
   
+  # Functions directory
+  functions = "netlify/functions"
+  
+  # Edge functions directory
+  edge_functions = "netlify/edge-functions"
+  
   # Environment variables for build
-  environment = { NODE_VERSION = "18" }
+  [build.environment]
+    NODE_VERSION = "18"
+    HUGO_VERSION = "0.111.3"
+    NETLIFY_SITE_ID = "${NETLIFY_SITE_ID}"
 
+# =============================================================================
+# BUILD PROCESSING & OPTIMIZATION
+# =============================================================================
 [build.processing]
   skip_processing = false
 
@@ -31,14 +45,19 @@
 [build.processing.images]
   compress = true
 
-# Development server settings
+# =============================================================================
+# DEVELOPMENT SERVER
+# =============================================================================
 [dev]
-  command = "npm start"
+  command = "npx live-server --port=3000 --host=localhost --entry-file=index.html"
   port = 3000
-  publish = "build"
+  publish = "."
   autoLaunch = true
+  framework = "#static"
 
-# Headers for security and performance
+# =============================================================================
+# SECURITY HEADERS
+# =============================================================================
 [[headers]]
   for = "/*"
   [headers.values]
@@ -47,103 +66,174 @@
     X-Content-Type-Options = "nosniff"
     X-XSS-Protection = "1; mode=block"
     Referrer-Policy = "strict-origin-when-cross-origin"
-    Content-Security-Policy = "default-src 'self'; script-src 'self' 'unsafe-inline' 'unsafe-eval' https://www.googletagmanager.com https://www.google-analytics.com https://www.clarity.ms; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src 'self' https://fonts.gstatic.com; img-src 'self' data: https:; connect-src 'self' https://www.google-analytics.com https://www.clarity.ms; frame-ancestors 'none';"
+    Permissions-Policy = "camera=(), microphone=(), geolocation=(), payment=()"
+    
+    # Enhanced Content Security Policy for your portfolio
+    Content-Security-Policy = """
+      default-src 'self';
+      script-src 'self' 'unsafe-inline' 'unsafe-eval' 
+        https://unpkg.com 
+        https://cdn.tailwindcss.com 
+        https://cdnjs.cloudflare.com 
+        https://www.googletagmanager.com 
+        https://www.google-analytics.com 
+        https://connect.facebook.net 
+        https://www.clarity.ms 
+        https://cdn.emailjs.com;
+      style-src 'self' 'unsafe-inline' 
+        https://fonts.googleapis.com 
+        https://cdnjs.cloudflare.com 
+        https://unpkg.com 
+        https://cdn.tailwindcss.com;
+      font-src 'self' 
+        https://fonts.gstatic.com 
+        https://cdnjs.cloudflare.com;
+      img-src 'self' data: blob: 
+        https: 
+        https://www.google-analytics.com 
+        https://www.clarity.ms;
+      connect-src 'self' 
+        https://api.emailjs.com 
+        https://www.google-analytics.com 
+        https://www.clarity.ms 
+        https://formspree.io 
+        https://api.thanatsitt.com;
+      media-src 'self' 
+        https://voice-samples.thanatsitt.com 
+        https://fashion.thanatsitt.com;
+      object-src 'none';
+      base-uri 'self';
+      form-action 'self' 
+        https://formspree.io 
+        https://api.emailjs.com;
+      frame-ancestors 'none';
+      upgrade-insecure-requests;
+    """
     
     # Performance Headers
-    Cache-Control = "public, max-age=3600"
+    Cache-Control = "public, max-age=3600, must-revalidate"
     
-    # CORS Headers
-    Access-Control-Allow-Origin = "*"
+    # CORS Headers (restrictive for security)
+    Access-Control-Allow-Origin = "https://thanatsitt.netlify.app"
     Access-Control-Allow-Methods = "GET, POST, OPTIONS"
-    Access-Control-Allow-Headers = "Content-Type"
+    Access-Control-Allow-Headers = "Content-Type, Authorization"
 
-# Cache static assets longer
-[[headers]]
-  for = "/static/*"
-  [headers.values]
-    Cache-Control = "public, max-age=31536000, immutable"
+# =============================================================================
+# STATIC ASSET CACHING
+# =============================================================================
 
-# Cache images
-[[headers]]
-  for = "*.png"
-  [headers.values]
-    Cache-Control = "public, max-age=31536000"
-
-[[headers]]
-  for = "*.jpg"
-  [headers.values]
-    Cache-Control = "public, max-age=31536000"
-
-[[headers]]
-  for = "*.jpeg"
-  [headers.values]
-    Cache-Control = "public, max-age=31536000"
-
-[[headers]]
-  for = "*.gif"
-  [headers.values]
-    Cache-Control = "public, max-age=31536000"
-
-[[headers]]
-  for = "*.webp"
-  [headers.values]
-    Cache-Control = "public, max-age=31536000"
-
-[[headers]]
-  for = "*.svg"
-  [headers.values]
-    Cache-Control = "public, max-age=31536000"
-
-# Cache fonts
-[[headers]]
-  for = "*.woff"
-  [headers.values]
-    Cache-Control = "public, max-age=31536000"
-
-[[headers]]
-  for = "*.woff2"
-  [headers.values]
-    Cache-Control = "public, max-age=31536000"
-
-# Cache CSS and JS
-[[headers]]
-  for = "*.css"
-  [headers.values]
-    Cache-Control = "public, max-age=31536000"
-
+# Cache JavaScript files
 [[headers]]
   for = "*.js"
   [headers.values]
-    Cache-Control = "public, max-age=31536000"
+    Cache-Control = "public, max-age=31536000, immutable"
+    Content-Type = "application/javascript; charset=utf-8"
 
-# Redirect rules for SPA (Single Page Application)
+# Cache CSS files
+[[headers]]
+  for = "*.css"
+  [headers.values]
+    Cache-Control = "public, max-age=31536000, immutable"
+    Content-Type = "text/css; charset=utf-8"
+
+# Cache images with long expiry
+[[headers]]
+  for = "*.@(png|jpg|jpeg|gif|webp|svg|ico)"
+  [headers.values]
+    Cache-Control = "public, max-age=31536000, immutable"
+
+# Cache fonts
+[[headers]]
+  for = "*.@(woff|woff2|ttf|eot)"
+  [headers.values]
+    Cache-Control = "public, max-age=31536000, immutable"
+    Access-Control-Allow-Origin = "*"
+
+# Cache gallery images
+[[headers]]
+  for = "/gallery/*"
+  [headers.values]
+    Cache-Control = "public, max-age=2592000"
+    Vary = "Accept-Encoding"
+
+# Cache voice samples
+[[headers]]
+  for = "/voice-samples/*"
+  [headers.values]
+    Cache-Control = "public, max-age=2592000"
+    Content-Type = "audio/mpeg"
+
+# =============================================================================
+# SPECIAL FILE HEADERS
+# =============================================================================
+
+# Service Worker (no cache)
+[[headers]]
+  for = "/sw.js"
+  [headers.values]
+    Cache-Control = "no-cache, no-store, must-revalidate"
+    Content-Type = "application/javascript; charset=utf-8"
+
+# Manifest file
+[[headers]]
+  for = "/manifest.json"
+  [headers.values]
+    Cache-Control = "public, max-age=86400"
+    Content-Type = "application/manifest+json; charset=utf-8"
+
+# Sitemap
+[[headers]]
+  for = "/sitemap.xml"
+  [headers.values]
+    Cache-Control = "public, max-age=86400"
+    Content-Type = "application/xml; charset=utf-8"
+
+# Robots.txt
+[[headers]]
+  for = "/robots.txt"
+  [headers.values]
+    Cache-Control = "public, max-age=86400"
+    Content-Type = "text/plain; charset=utf-8"
+
+# =============================================================================
+# REDIRECTS & URL HANDLING
+# =============================================================================
+
+# API proxy for contact forms
 [[redirects]]
-  from = "/*"
-  to = "/index.html"
+  from = "/api/contact"
+  to = "https://formspree.io/f/YOUR_FORM_ID"
   status = 200
-  conditions = {Role = ["admin"], Country = ["US"]}
+  force = true
+  headers = {X-From = "Netlify"}
 
-# Handle 404s by serving index.html (for React Router)
+# API proxy for newsletter
 [[redirects]]
-  from = "/*"
-  to = "/index.html"
+  from = "/api/newsletter"
+  to = "https://api.emailjs.com/api/v1.0/email/send"
   status = 200
+  force = true
 
-# Redirect old portfolio URLs (if migrating from another domain)
+# Legacy portfolio redirects
 [[redirects]]
   from = "/old-portfolio/*"
   to = "/"
   status = 301
 
-# Redirect portfolio sections
-[[redirects]]
-  from = "/portfolio"
-  to = "/#portfolio"
-  status = 301
-
+# Section redirects for direct links
 [[redirects]]
   from = "/about"
   to = "/#about"
+  status = 301
+
+[[redirects]]
+  from = "/portfolio"
+  to = "/#projects"
+  status = 301
+
+[[redirects]]
+  from = "/projects"
+  to = "/#projects"
   status = 301
 
 [[redirects]]
@@ -151,95 +241,242 @@
   to = "/#contact"
   status = 301
 
-# API proxy for contact forms (if using external service)
 [[redirects]]
-  from = "/api/*"
-  to = "https://formspree.io/f/YOUR_FORM_ID"
+  from = "/testimonials"
+  to = "/#testimonials"
+  status = 301
+
+[[redirects]]
+  from = "/gallery"
+  to = "/#gallery"
+  status = 301
+
+# Social media redirects
+[[redirects]]
+  from = "/linkedin"
+  to = "https://linkedin.com/in/thanatsitt"
+  status = 301
+
+[[redirects]]
+  from = "/github"
+  to = "https://github.com/thanatsitt"
+  status = 301
+
+[[redirects]]
+  from = "/instagram"
+  to = "https://instagram.com/thanatsitt"
+  status = 301
+
+# Download redirects
+[[redirects]]
+  from = "/cv"
+  to = "/assets/Thanatsitt_CV.pdf"
+  status = 301
+
+[[redirects]]
+  from = "/resume"
+  to = "/assets/Thanatsitt_CV.pdf"
+  status = 301
+
+# Handle SPA-like behavior for hash routing
+[[redirects]]
+  from = "/*"
+  to = "/index.html"
   status = 200
-  force = true
+  conditions = {Role = ["admin"]}
 
-# Environment-specific settings
+# Catch-all for 404s (serve index.html for client-side routing)
+[[redirects]]
+  from = "/*"
+  to = "/index.html"
+  status = 200
+
+# =============================================================================
+# ENVIRONMENT-SPECIFIC SETTINGS
+# =============================================================================
+
+# Production environment
 [context.production]
-  command = "npm run build"
+  command = "echo 'Production build complete'"
   
-[context.production.environment]
-  NODE_ENV = "production"
-  REACT_APP_ENV = "production"
+  [context.production.environment]
+    NODE_ENV = "production"
+    APP_ENV = "production"
+    ENABLE_ANALYTICS = "true"
+    ENABLE_SERVICE_WORKER = "true"
 
+# Deploy preview environment
 [context.deploy-preview]
-  command = "npm run build"
+  command = "echo 'Deploy preview build complete'"
   
-[context.deploy-preview.environment]
-  NODE_ENV = "production"
-  REACT_APP_ENV = "staging"
+  [context.deploy-preview.environment]
+    NODE_ENV = "production"
+    APP_ENV = "staging"
+    ENABLE_ANALYTICS = "false"
+    ENABLE_SERVICE_WORKER = "false"
 
+# Branch deploy environment
 [context.branch-deploy]
-  command = "npm run build"
+  command = "echo 'Branch deploy build complete'"
+  
+  [context.branch-deploy.environment]
+    NODE_ENV = "development"
+    APP_ENV = "development"
+    ENABLE_ANALYTICS = "false"
 
-[context.branch-deploy.environment]
-  NODE_ENV = "production"
+# =============================================================================
+# NETLIFY PLUGINS
+# =============================================================================
 
-# Forms handling (Netlify Forms)
-[build]
-  functions = "netlify/functions"
-
-# Edge functions (if needed)
-[build]
-  edge_functions = "netlify/edge-functions"
-
-# Plugin configuration
+# Lighthouse performance auditing
 [[plugins]]
   package = "@netlify/plugin-lighthouse"
   
+  [plugins.inputs]
+    output_path = "reports/lighthouse.html"
+    
   [plugins.inputs.thresholds]
     performance = 0.9
     accessibility = 0.9
     best-practices = 0.9
     seo = 0.9
+    pwa = 0.8
 
+# Sitemap submission
 [[plugins]]
   package = "netlify-plugin-submit-sitemap"
   
   [plugins.inputs]
-    baseUrl = "https://yourportfolio.netlify.app"
+    baseUrl = "https://thanatsitt.netlify.app"
     sitemapPath = "/sitemap.xml"
     ignorePeriod = 0
     providers = [
       "google",
-      "bing"
+      "bing",
+      "yandex"
     ]
 
-# Split testing (A/B testing)
+# Image optimization
+[[plugins]]
+  package = "netlify-plugin-image-optim"
+
+# Security scanning
+[[plugins]]
+  package = "netlify-plugin-checklinks"
+  
+  [plugins.inputs]
+    entryPoints = [
+      "*.html"
+    ]
+    recursive = true
+    pretty = true
+    skipPatterns = [
+      "mailto:",
+      "tel:",
+      "#"
+    ]
+
+# Bundle analyzer
+[[plugins]]
+  package = "netlify-plugin-bundle-analyzer"
+  
+  [plugins.inputs]
+    analyzeBundle = true
+
+# =============================================================================
+# FORMS CONFIGURATION
+# =============================================================================
+
+# Enable Netlify Forms
+[build]
+  ignore = "git diff --quiet $CACHED_COMMIT_REF $COMMIT_REF ."
+
+# Form settings
+[[forms]]
+  name = "contact"
+  action = "/thank-you"
+  
+[[forms]]
+  name = "newsletter"
+  action = "/newsletter-success"
+
+# =============================================================================
+# SPLIT TESTING (A/B TESTING)
+# =============================================================================
 [split_testing]
   [[split_testing.splits]]
-    name = "homepage"
+    name = "homepage-hero"
     path = "/"
-    branches = ["main", "experimental"]
+    branches = ["main", "hero-variant"]
 
-# Functions configuration
-[functions]
-  directory = "netlify/functions"
+# =============================================================================
+# LARGE MEDIA (Git LFS)
+# =============================================================================
+[large_media]
+  # Enable for large assets
+  enabled = true
 
-# Edge functions configuration  
-[edge_functions]
-  directory = "netlify/edge-functions"
+# =============================================================================
+# EDGE FUNCTIONS
+# =============================================================================
+[[edge_functions]]
+  function = "geolocation"
+  path = "/api/location"
 
-# Build hooks and notifications
-[template]
-  incoming_hooks = ["github", "gitlab"]
+[[edge_functions]]
+  function = "analytics"
+  path = "/api/track/*"
 
-# Analytics
-[build.environment]
-  REACT_APP_NETLIFY_SITE_ID = "${NETLIFY_SITE_ID}"
+# =============================================================================
+# CUSTOM DOMAINS & SSL
+# =============================================================================
+[ssl]
+  # Force HTTPS
+  force_ssl = true
 
-# Performance optimizations
-[build.processing.css]
-  bundle = true
-  minify = true
+# =============================================================================
+# NOTIFICATIONS
+# =============================================================================
+[notifications]
+  # Slack notifications for deploys
+  [[notifications.slack]]
+    url = "https://hooks.slack.com/services/YOUR/SLACK/WEBHOOK"
+    channel = "#deploys"
+    username = "Netlify"
+    
+  # Email notifications
+  [[notifications.email]]
+    email = "thanatsitt@example.com"
+    on = ["deploy-failed", "deploy-succeeded"]
 
-[build.processing.js]
-  bundle = true
-  minify = true
+# =============================================================================
+# ANALYTICS & MONITORING
+# =============================================================================
+[analytics]
+  provider = "netlify"
 
-[build.processing.images]
-  compress = true
+# =============================================================================
+# CUSTOM HEADERS FOR API ROUTES
+# =============================================================================
+[[headers]]
+  for = "/api/*"
+  [headers.values]
+    Access-Control-Allow-Origin = "*"
+    Access-Control-Allow-Methods = "GET, POST, PUT, DELETE, OPTIONS"
+    Access-Control-Allow-Headers = "Content-Type, Authorization, X-Requested-With"
+    Access-Control-Max-Age = "86400"
+
+# =============================================================================
+# PRERENDERING (for better SEO)
+# =============================================================================
+[prerender]
+  # Enable prerendering for better SEO
+  enabled = true
+  
+  # Paths to prerender
+  paths = [
+    "/",
+    "/#about",
+    "/#projects", 
+    "/#contact"
+  ]
