@@ -1,0 +1,295 @@
+/* Portfolio Styles */
+:root {
+  --gold: #D4AF37;
+  --moon-silver: #C0C0C8;
+  --deep-space: #0B0B1A;
+  --cosmic-purple: #1A1A2E;
+}
+
+.hero-bg {
+  background: linear-gradient(135deg, var(--deep-space) 0%, var(--cosmic-purple) 100%);
+  position: relative;
+  overflow-x: hidden;
+}
+
+.text-gold {
+  color: var(--gold);
+}
+
+.text-moon-silver {
+  color: var(--moon-silver);
+}
+
+.text-shadow {
+  text-shadow: 0 0 20px rgba(212, 175, 55, 0.5);
+}
+
+.glass-morphism {
+  background: rgba(255, 255, 255, 0.05);
+  backdrop-filter: blur(10px);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.card-hover {
+  transition: all 0.3s ease;
+}
+
+.card-hover:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 20px 40px rgba(212, 175, 55, 0.2);
+}
+
+.nav-link {
+  position: relative;
+  transition: all 0.3s ease;
+}
+
+.nav-link:hover {
+  color: var(--gold);
+}
+
+.nav-link::after {
+  content: '';
+  position: absolute;
+  bottom: -5px;
+  left: 0;
+  width: 0;
+  height: 2px;
+  background: linear-gradient(90deg, var(--gold), #F4D03F);
+  transition: width 0.3s ease;
+}
+
+.nav-link:hover::after {
+  width: 100%;
+}
+
+.particle-container {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+  z-index: 1;
+}
+
+.particle {
+  position: absolute;
+  background: radial-gradient(circle, var(--gold) 0%, transparent 70%);
+  border-radius: 50%;
+  opacity: 0.6;
+}
+
+.moon-container {
+  position: relative;
+  width: 120px;
+  height: 120px;
+}
+
+.animated-moon {
+  width: 100px;
+  height: 100px;
+  border-radius: 50%;
+  position: relative;
+  box-shadow: 0 0 30px rgba(212, 175, 55, 0.6);
+}
+
+.moon-crater {
+  position: absolute;
+  background: rgba(0, 0, 0, 0.2);
+  border-radius: 50%;
+}
+
+.crater-1 {
+  width: 12px;
+  height: 12px;
+  top: 20px;
+  left: 25px;
+}
+
+.crater-2 {
+  width: 8px;
+  height: 8px;
+  top: 45px;
+  right: 20px;
+}
+
+.crater-3 {
+  width: 6px;
+  height: 6px;
+  bottom: 25px;
+  left: 40px;
+}
+
+.moon-stars {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+}
+
+.star {
+  position: absolute;
+  width: 3px;
+  height: 3px;
+  background: white;
+  border-radius: 50%;
+  box-shadow: 0 0 6px rgba(255, 255, 255, 0.8);
+}
+
+.orbiting-moon {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 140px;
+  height: 140px;
+  margin: -70px 0 0 -70px;
+  border: 1px solid rgba(212, 175, 55, 0.3);
+  border-radius: 50%;
+}
+
+.orbiting-moon-element {
+  position: absolute;
+  top: -3px;
+  left: 50%;
+  width: 6px;
+  height: 6px;
+  background: var(--gold);
+  border-radius: 50%;
+  margin-left: -3px;
+  box-shadow: 0 0 10px var(--gold);
+}
+
+.typing-cursor::after {
+  content: '|';
+  animation: blink 1s infinite;
+  color: var(--gold);
+}
+
+@keyframes blink {
+  0%, 50% { opacity: 1; }
+  51%, 100% { opacity: 0; }
+}
+
+.card-container {
+  perspective: 1000px;
+  height: 400px;
+}
+
+.card-front,
+.card-back {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  backface-visibility: hidden;
+  padding: 2rem;
+  border-radius: 1rem;
+  background: rgba(255, 255, 255, 0.05);
+  backdrop-filter: blur(10px);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.card-back {
+  transform: rotateY(180deg);
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+}
+
+.skill-bar {
+  background: linear-gradient(90deg, var(--gold), #F4D03F);
+  box-shadow: 0 0 10px rgba(212, 175, 55, 0.5);
+}
+
+.form-input {
+  background: rgba(255, 255, 255, 0.1);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  border-radius: 0.5rem;
+  padding: 0.75rem 1rem;
+  color: white;
+  transition: all 0.3s ease;
+}
+
+.form-input:focus {
+  outline: none;
+  border-color: var(--gold);
+  box-shadow: 0 0 0 3px rgba(212, 175, 55, 0.1);
+}
+
+.form-input::placeholder {
+  color: rgba(255, 255, 255, 0.5);
+}
+
+.status-message {
+  padding: 1rem;
+  border-radius: 0.5rem;
+  text-align: center;
+  font-weight: 500;
+}
+
+.status-success {
+  background: rgba(34, 197, 94, 0.1);
+  border: 1px solid rgba(34, 197, 94, 0.3);
+  color: #22c55e;
+}
+
+.status-error {
+  background: rgba(239, 68, 68, 0.1);
+  border: 1px solid rgba(239, 68, 68, 0.3);
+  color: #ef4444;
+}
+
+.custom-scrollbar {
+  scrollbar-width: thin;
+  scrollbar-color: var(--gold) transparent;
+}
+
+.custom-scrollbar::-webkit-scrollbar {
+  width: 6px;
+}
+
+.custom-scrollbar::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+.custom-scrollbar::-webkit-scrollbar-thumb {
+  background: var(--gold);
+  border-radius: 3px;
+}
+
+.custom-scrollbar::-webkit-scrollbar-thumb:hover {
+  background: #F4D03F;
+}
+
+.testimonial-card {
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+}
+
+@media (max-width: 768px) {
+  .moon-container {
+    display: none;
+  }
+  
+  .hero-bg {
+    overflow-x: hidden;
+  }
+}
+
+/* Animation utilities */
+.animate-glow {
+  animation: glow 2s ease-in-out infinite alternate;
+}
+
+@keyframes glow {
+  from {
+    text-shadow: 0 0 20px rgba(212, 175, 55, 0.5);
+  }
+  to {
+    text-shadow: 0 0 30px rgba(212, 175, 55, 0.8), 0 0 40px rgba(212, 175, 55, 0.6);
+  }
+}
