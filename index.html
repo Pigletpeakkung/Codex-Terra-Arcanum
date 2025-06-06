@@ -1607,126 +1607,108 @@
         </div>
     </section>
 
-    <!-- Testimonials Section -->
-    <section id="testimonials" class="py-20 px-4 relative" aria-label="Client testimonials section">
-        <div class="max-w-7xl mx-auto">
-            <div class="text-center mb-16">
-                <h2 class="text-4xl md:text-6xl font-bold mb-6 text-gold text-shadow">Client Reviews</h2>
-                <div class="h-1 w-24 bg-gradient-to-r from-gold to-yellow-400 mx-auto rounded-full"></div>
-                <p class="text-gray-300 text-lg mt-6 max-w-2xl mx-auto">
-                    What clients say about working with me across different industries and cultures
-                </p>
-            </div>
-            
-            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-                <template x-for="(testimonial, index) in testimonials" :key="index">
-                    <div class="glass-morphism rounded-2xl p-8 card-hover testimonial-card" 
-                         x-data="{ visible: false }" 
-                         x-intersect="setTimeout(() => visible = true, index * 200)"
-                         :class="visible ? 'animate-zoom-in' : 'opacity-0'">
-                        <!-- Rating Stars -->
-                        <div class="flex mb-4" aria-label="5 star rating">
-                            <template x-for="i in 5">
+<!-- Testimonials Section -->
+<section id="testimonials" class="py-20 px-4 relative overflow-hidden" aria-label="Client testimonials section">
+    <div class="max-w-7xl mx-auto">
+        <!-- Section Header -->
+        <div class="text-center mb-16" data-aos="fade-up">
+            <h2 class="text-4xl md:text-6xl font-playfair font-bold mb-6 text-gradient">
+                Voices of Collaboration
+            </h2>
+            <div class="h-1 w-24 bg-gradient-to-r from-gold to-yellow-400 mx-auto rounded-full"></div>
+            <p class="text-xl text-gray-300 mt-6 max-w-3xl mx-auto leading-relaxed">
+                Testimonials from cultural communities, academic institutions, and technology partners who have experienced our collaborative approach to heritage preservation and innovation.
+            </p>
+        </div>
+
+        <!-- Testimonials Grid -->
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 mb-12">
+            <template x-for="(testimonial, index) in testimonials" :key="index">
+                <div class="glass-morphism rounded-2xl p-8 card-hover testimonial-card" 
+                     x-data="{ visible: false }" 
+                     x-intersect="setTimeout(() => visible = true, index * 200)"
+                     :class="visible ? 'animate-zoom-in' : 'opacity-0'"
+                     data-aos="fade-up" 
+                     :data-aos-delay="index * 100">
+                    
+                    <!-- Cultural Icon & Rating -->
+                    <div class="flex items-center justify-between mb-6">
+                        <div class="w-16 h-16 bg-gradient-to-r from-thai-gold to-cosmic-gold rounded-full flex items-center justify-center">
+                            <i :class="testimonial.icon || 'fas fa-user'" class="text-cosmic-blue text-xl"></i>
+                        </div>
+                        <div class="flex" aria-label="5 star rating">
+                            <template x-for="i in 5" :key="i">
                                 <i class="fas fa-star text-gold text-lg"></i>
                             </template>
                         </div>
-                        
-                        <!-- Testimonial Text -->
-                        <blockquote class="text-gray-300 mb-6 text-lg italic leading-relaxed" x-text="testimonial.text"></blockquote>
-                        
-                        <!-- Client Info -->
-                        <div class="border-t border-gray-600 pt-6">
-                            <div class="flex items-center space-x-4">
-                                <div class="w-12 h-12 bg-gradient-to-br from-gold to-yellow-400 rounded-full flex items-center justify-center">
-                                    <span class="font-bold text-black text-lg" x-text="testimonial.client.charAt(0)"></span>
-                                </div>
-                                <div class="flex-1">
-                                    <h4 class="font-semibold text-white" x-text="testimonial.client"></h4>
-                                    <p class="text-gold text-sm" x-text="testimonial.position"></p>
-                                    <p class="text-gray-400 text-xs" x-text="testimonial.company"></p>
-                                </div>
+                    </div>
+
+                    <!-- Testimonial Text with Quote Styling -->
+                    <blockquote class="text-gray-300 mb-6 text-lg italic leading-relaxed testimonial-quote" x-text="testimonial.text"></blockquote>
+
+                    <!-- Client Info -->
+                    <div class="border-t border-gray-600 pt-6">
+                        <div class="flex items-center space-x-4">
+                            <div class="w-12 h-12 bg-gradient-to-br from-gold to-yellow-400 rounded-full flex items-center justify-center">
+                                <span class="font-bold text-black text-lg" x-text="testimonial.client.charAt(0)"></span>
                             </div>
-                            
-                            <!-- Project Type Badge -->
-                            <div class="mt-4">
-                                <span class="px-3 py-1 bg-gold/20 text-gold text-xs rounded-full" x-text="testimonial.projectType"></span>
+                            <div class="flex-1">
+                                <h4 class="font-semibold text-white" x-text="testimonial.client"></h4>
+                                <p class="text-gold text-sm" x-text="testimonial.position"></p>
+                                <p class="text-gray-400 text-xs" x-text="testimonial.company"></p>
+                                <span class="inline-block mt-1 px-2 py-1 bg-gradient-to-r from-gold to-yellow-400 text-black text-xs rounded-full" x-text="testimonial.projectType"></span>
                             </div>
                         </div>
                     </div>
-                </template>
-            </div>
-            
-            <!-- Call to Action -->
-            <div class="text-center mt-16">
-                <div class="glass-morphism rounded-2xl p-8 max-w-2xl mx-auto">
-                    <h3 class="text-2xl font-bold text-gold mb-4">Ready to Work Together?</h3>
-                    <p class="text-gray-300 mb-6">Join these satisfied clients and let's create something extraordinary together.</p>
-                    <button class="bg-gradient-to-r from-gold to-yellow-500 text-black px-8 py-3 rounded-full font-bold hover:scale-105 transform transition-all duration-300 hover:shadow-2xl hover:shadow-gold/50"
-                            @click="scrollToSection('contact')"
-                            aria-label="Start your project">
-                        <i class="fas fa-rocket mr-2"></i>
-                        Start Your Project
-                    </button>
                 </div>
+            </template>
+        </div>
+
+        <!-- Statistics Section -->
+        <div class="grid grid-cols-2 md:grid-cols-4 gap-8 mb-12" data-aos="fade-up">
+            <div class="text-center glass-morphism rounded-xl p-6 hover:scale-105 transition-transform duration-300">
+                <div class="text-4xl font-bold text-gradient mb-2" x-data="{ count: 0 }" x-init="setTimeout(() => { let interval = setInterval(() => { count++; if(count >= 50) clearInterval(interval); }, 50); }, 500)" x-text="count + '+'"></div>
+                <p class="text-gray-400">Happy Clients</p>
+            </div>
+            <div class="text-center glass-morphism rounded-xl p-6 hover:scale-105 transition-transform duration-300">
+                <div class="text-4xl font-bold text-gradient mb-2" x-data="{ count: 0 }" x-init="setTimeout(() => { let interval = setInterval(() => { count++; if(count >= 100) clearInterval(interval); }, 30); }, 700)" x-text="count + '+'"></div>
+                <p class="text-gray-400">Projects Completed</p>
+            </div>
+            <div class="text-center glass-morphism rounded-xl p-6 hover:scale-105 transition-transform duration-300">
+                <div class="text-4xl font-bold text-gradient mb-2" x-data="{ count: 0 }" x-init="setTimeout(() => { let interval = setInterval(() => { count++; if(count >= 15) clearInterval(interval); }, 100); }, 900)" x-text="count + '+'"></div>
+                <p class="text-gray-400">Countries Served</p>
+            </div>
+            <div class="text-center glass-morphism rounded-xl p-6 hover:scale-105 transition-transform duration-300">
+                <div class="text-4xl font-bold text-gradient mb-2" x-data="{ count: 0 }" x-init="setTimeout(() => { let interval = setInterval(() => { count++; if(count >= 98) clearInterval(interval); }, 30); }, 1100)" x-text="count + '%'"></div>
+                <p class="text-gray-400">Client Satisfaction</p>
             </div>
         </div>
-    </section>
 
-    <!-- Enhanced Contact Section -->
-    <section id="contact" class="py-20 px-4 relative" aria-label="Contact section">
-        <div class="max-w-7xl mx-auto">
-            <div class="text-center mb-16">
-                <h2 class="text-4xl md:text-6xl font-bold mb-6 text-gold text-shadow">Let's Connect</h2>
-                <div class="h-1 w-24 bg-gradient-to-r from-gold to-yellow-400 mx-auto rounded-full"></div>
+        <!-- Call to Action -->
+        <div class="text-center" data-aos="fade-up">
+            <h3 class="text-2xl font-playfair font-bold mb-4 text-gold">Ready to Share Your Story?</h3>
+            <p class="text-gray-300 mb-8 max-w-2xl mx-auto">
+                Join our growing community of cultural collaborators and technology innovators. Let's create something meaningful together.
+            </p>
+            <div class="flex flex-col sm:flex-row gap-4 justify-center">
+                <a href="#contact" class="bg-gradient-to-r from-gold to-yellow-400 text-cosmic-blue px-8 py-4 rounded-full font-semibold text-lg transition-all duration-300 hover:scale-105">
+                    Start Collaboration
+                </a>
+                <a href="#projects" class="px-8 py-4 rounded-full font-semibold text-lg border-2 border-gold text-gold hover:bg-gold hover:text-cosmic-blue transition-all duration-300">
+                    View Projects
+                </a>
             </div>
-            
-            <div class="grid grid-cols-1 lg:grid-cols-2 gap-16">
-                <!-- Contact Info -->
-                <div class="space-y-8">
-                    <div class="glass-morphism rounded-2xl p-8 card-hover">
-                        <h3 class="text-2xl font-bold mb-6 text-gold">
-                            <i class="fas fa-globe-asia mr-3"></i>Global Reach
-                        </h3>
-                        <div class="space-y-4">
-                            <div class="flex items-center space-x-4">
-                                <div class="w-12 h-12 bg-gold/20 rounded-full flex items-center justify-center">
-                                    <i class="fas fa-map-marker-alt text-gold"></i>
-                                </div>
-                                <div>
-                                    <h4 class="font-semibold text-white">London, UK</h4>
-                                    <p class="text-gray-400">Primary Location</p>
-                                </div>
-                            </div>
-                            <div class="flex items-center space-x-4">
-                                <div class="w-12 h-12 bg-gold/20 rounded-full flex items-center justify-center">
-                                    <i class="fas fa-map-marker-alt text-gold"></i>
-                                </div>
-                                <div>
-                                    <h4 class="font-semibold text-white">Bangkok, Thailand</h4>
-                                    <p class="text-gray-400">Cultural Hub</p>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    
-                    <div class="glass-morphism rounded-2xl p-8 card-hover">
-                        <h3 class="text-2xl font-bold mb-6 text-gold">
-                            <i class="fas fa-clock mr-3"></i>Availability
-                        </h3>
-                        <p class="text-gray-300 leading-relaxed">
-                            Available for projects worldwide. I work across time zones to accommodate international clients and collaborate with diverse teams.
-                        </p>
-                    </div>
-                    
-                    <div class="glass-morphism rounded-2xl p-8 card-hover">
-                        <h3 class="text-2xl font-bold mb-6 text-gold">
-                            <i class="fas fa-handshake mr-3"></i>Let's Collaborate
-                        </h3>
-                        <p class="text-gray-300 leading-relaxed">
-                            Whether you need fashion design, AI development, cultural consulting, or voice acting services, I'm here to bring your vision to life with cultural sensitivity and technical excellence.
-                        </p>
-                    </div>
-                </div>
+        </div>
+    </div>
+
+    <!-- Background Elements -->
+    <div class="absolute top-0 left-0 w-full h-full pointer-events-none overflow-hidden">
+        <div class="absolute top-1/4 left-1/4 w-64 h-64 bg-thai-gold opacity-5 rounded-full blur-3xl"></div>
+        <div class="absolute bottom-1/4 right-1/4 w-64 h-64 bg-japanese-red opacity-5 rounded-full blur-3xl"></div>
+    </div>
+</section>
+
+    
                 
                 <!-- Enhanced Contact Form -->
                 <div class="glass-morphism rounded-2xl p-8 card-hover">
@@ -2150,113 +2132,264 @@
                     { title: 'Presentations', icon: 'fas fa-presentation', description: 'Project presentations and pitches' },
                     { title: 'Inspiration', icon: 'fas fa-star', description: 'Sources of creative inspiration' }
                 ],
+
+function portfolioApp() {
+    return {
+        // State variables
+        scrolled: false,
+        mobileMenuOpen: false,
+        showModal: false,
+        showGalleryModal: false,
+        selectedProject: {},
+        selectedGalleryImage: {},
+        selectedGalleryIndex: 0,
+        typedText: '',
+        isSubmitting: false,
+        formStatus: '',
+
+        // Contact form
+        contactForm: {
+            name: '',
+            email: '',
+            service: '',
+            message: ''
+        },
+
+        // Projects data (your existing projects array)
+        projects: [
+            // ... your existing projects data
+        ],
+
+        // Gallery images data (your existing gallery array)
+        galleryImages: [
+            // ... your existing gallery data
+        ],
+
+        // Testimonials data - SINGLE CLEAN VERSION
+        testimonials: [
+            {
+                text: "Thanatsitt's unique perspective bridging Thai and British cultures brought invaluable insights to our international expansion. Their fashion designs perfectly captured our brand's essence while respecting local cultural nuances.",
+                client: "Sarah Chen",
+                position: "Creative Director",
+                company: "London Fashion House",
+                projectType: "Fashion Design",
+                icon: "fas fa-palette"
+            },
+            {
+                text: "The AI cultural consulting platform Thanatsitt developed for us has revolutionized how we approach international markets. Their technical expertise combined with deep cultural understanding is truly exceptional.",
+                client: "Marcus Thompson",
+                position: "CTO",
+                company: "TechStart London",
+                projectType: "AI Development",
+                icon: "fas fa-robot"
+            },
+            {
+                text: "Working with Thanatsitt on our cultural preservation project was enlightening. Their ability to translate complex cultural concepts into accessible digital experiences is remarkable.",
+                client: "Dr. Priya Patel",
+                position: "Research Director",
+                company: "Cultural Institute",
+                projectType: "Cultural Consulting",
+                icon: "fas fa-temple"
+            },
+            {
+                text: "Thanatsitt's voice acting brought our international campaign to life. Their multilingual capabilities and cultural sensitivity made our global launch a tremendous success.",
+                client: "James Wilson",
+                position: "Founder",
+                company: "Digital Agency",
+                projectType: "Voice Acting",
+                icon: "fas fa-microphone"
+            },
+            {
+                text: "The web development work Thanatsitt delivered exceeded our expectations. Their attention to cultural details and user experience design created a platform that truly resonates with our diverse audience.",
+                client: "Emma Rodriguez",
+                position: "Producer",
+                company: "Media Productions",
+                projectType: "Web Development",
+                icon: "fas fa-code"
+            },
+            {
+                text: "Thanatsitt's writing captures the perfect balance between professional expertise and cultural authenticity. Their content strategy helped us connect with Asian markets in ways we never thought possible.",
+                client: "David Kim",
+                position: "Brand Manager",
+                company: "Global Corp",
+                projectType: "Content Writing",
+                icon: "fas fa-pen-fancy"
+            }
+        ],
+
+        // INITIALIZATION
+        init() {
+            // Initialize AOS animations
+            if (typeof AOS !== 'undefined') {
+                AOS.init({
+                    duration: 1000,
+                    once: true,
+                    offset: 100,
+                    easing: 'ease-out-cubic'
+                });
+            }
+
+            // Initialize components
+            this.typeWriter();
+            this.selectedProject = this.projects[0];
+            this.selectedGalleryImage = this.galleryImages[0];
+            
+            // Initialize EmailJS
+            emailjs.init("YOUR_PUBLIC_KEY"); // Replace with your EmailJS public key
+            
+            // Scroll listener
+            window.addEventListener('scroll', () => {
+                this.scrolled = window.scrollY > 100;
+            });
+            
+            // Mark page as loaded
+            setTimeout(() => {
+                document.body.classList.add('loaded');
+            }, 100);
+        },
+
+        // TYPEWRITER EFFECT
+        typeWriter() {
+            const text = 'Thanatsitt';
+            let i = 0;
+            const timer = setInterval(() => {
+                if (i < text.length) {
+                    this.typedText += text.charAt(i);
+                    i++;
+                } else {
+                    clearInterval(timer);
+                }
+            }, 150);
+        },
+
+        // NAVIGATION
+        scrollToSection(sectionId) {
+            const element = document.getElementById(sectionId);
+            if (element) {
+                const navHeight = 80; // Adjust based on your navbar height
+                const elementPosition = element.getBoundingClientRect().top;
+                const offsetPosition = elementPosition + window.pageYOffset - navHeight;
+
+                window.scrollTo({
+                    top: offsetPosition,
+                    behavior: 'smooth'
+                });
                 
-                // Testimonials data
-                testimonials: [
+                // Close mobile menu
+                this.mobileMenuOpen = false;
+                
+                // Track navigation
+                this.trackEvent('navigation', { section: sectionId });
+            }
+        },
+
+        // PROJECT MODAL
+        openModal(index) {
+            this.selectedProject = this.projects[index];
+            this.showModal = true;
+            document.body.style.overflow = 'hidden';
+            
+            // Track portfolio view
+            this.trackEvent('portfolio_view', { project: this.selectedProject.title });
+        },
+
+        closeModal() {
+            this.showModal = false;
+            document.body.style.overflow = 'auto';
+        },
+
+        // GALLERY MODAL
+        openGalleryModal(index) {
+            this.selectedGalleryIndex = index;
+            this.selectedGalleryImage = this.galleryImages[index];
+            this.showGalleryModal = true;
+            document.body.style.overflow = 'hidden';
+        },
+
+        closeGalleryModal() {
+            this.showGalleryModal = false;
+            document.body.style.overflow = 'auto';
+        },
+
+        // GALLERY NAVIGATION
+        nextGalleryImage() {
+            this.selectedGalleryIndex = (this.selectedGalleryIndex + 1) % this.galleryImages.length;
+            this.selectedGalleryImage = this.galleryImages[this.selectedGalleryIndex];
+        },
+
+        prevGalleryImage() {
+            this.selectedGalleryIndex = this.selectedGalleryIndex === 0 
+                ? this.galleryImages.length - 1 
+                : this.selectedGalleryIndex - 1;
+            this.selectedGalleryImage = this.galleryImages[this.selectedGalleryIndex];
+        },
+
+        // FORM SUBMISSION
+        async submitForm() {
+            if (this.isSubmitting) return;
+            
+            this.isSubmitting = true;
+            this.formStatus = 'sending';
+            
+            try {
+                // EmailJS submission
+                const result = await emailjs.send(
+                    'YOUR_SERVICE_ID', // Replace with your service ID
+                    'YOUR_TEMPLATE_ID', // Replace with your template ID
                     {
-                        text: "Thanatsitt's unique perspective bridging Thai and British cultures brought invaluable insights to our international expansion. Their fashion designs perfectly captured our brand's essence while respecting local cultural nuances.",
-                        client: "Sarah Chen",
-                        position: "Creative Director",
-                        company: "London Fashion House",
-                        projectType: "Fashion Design"
-                    },
-                    {
-                        text: "The AI cultural consulting platform Thanatsitt developed for us has revolutionized how we approach international markets. Their technical expertise combined with deep cultural understanding is truly exceptional.",
-                        client: "Marcus Thompson",
-                        position: "CTO",
-                        company: "TechStart London",
-                        projectType: "AI Development"
-                    },
-                    {
-                        text: "Working with Thanatsitt on our cultural preservation project was enlightening. Their ability to translate complex cultural concepts into accessible digital experiences is remarkable.",
-                        client: "Dr. Priya Patel",
-                        position: "Research Director",
-                        company: "Cultural Institute",
-                        projectType: "Cultural Consulting"
-                    },
-                    {
-                        text: "Thanatsitt's voice acting brought our international campaign to life. Their multilingual capabilities and cultural sensitivity made our global launch a tremendous success.",
-                        client: "James Wilson",
-                        position: "Founder",
-                        company: "Digital Agency",
-                        projectType: "Voice Acting"
-                    },
-                    {
-                        text: "The web development work Thanatsitt delivered exceeded our expectations. Their attention to cultural details and user experience design created a platform that truly resonates with our diverse audience.",
-                        client: "Emma Rodriguez",
-                        position: "Producer",
-                        company: "Media Productions",
-                        projectType: "Web Development"
-                    },
-                    {
-                        text: "Thanatsitt's writing captures the perfect balance between professional expertise and cultural authenticity. Their content strategy helped us connect with Asian markets in ways we never thought possible.",
-                        client: "David Kim",
-                        position: "Brand Manager",
-                        company: "Global Corp",
-                        projectType: "Content Writing"
+                        from_name: this.contactForm.name,
+                        from_email: this.contactForm.email,
+                        service: this.contactForm.service,
+                        message: this.contactForm.message
                     }
-                ],
+                );
                 
-                init() {
-                    this.typeWriter();
-                    this.selectedProject = this.projects[0];
-                    this.selectedGalleryImage = this.galleryImages[0];
-                    
-                    // Initialize EmailJS
-                    emailjs.init("YOUR_PUBLIC_KEY"); // Replace with your EmailJS public key
-                    
-                    // Mark page as loaded
-                    setTimeout(() => {
-                        document.body.classList.add('loaded');
-                    }, 100);
-                },
+                this.formStatus = 'success';
+                this.resetForm();
                 
-                typeWriter() {
-                    const text = 'Thanatsitt';
-                    let i = 0;
-                    const timer = setInterval(() => {
-                        if (i < text.length) {
-                            this.typedText += text.charAt(i);
-                            i++;
-                        } else {
-                            clearInterval(timer);
-                        }
-                    }, 150);
-                },
+                // Track form submission
+                this.trackEvent('form_submit', { service: this.contactForm.service });
                 
-                scrollToSection(sectionId) {
-                    const element = document.getElementById(sectionId);
-                    if (element) {
-                        element.scrollIntoView({ 
-                            behavior: 'smooth',
-                            block: 'start'
-                        });
-                        
-                        // Track navigation
-                        this.trackEvent('navigation', { section: sectionId });
-                    }
-                },
+            } catch (error) {
+                console.error('Form submission error:', error);
+                this.formStatus = 'error';
+            } finally {
+                this.isSubmitting = false;
                 
-                openModal(index) {
-                    this.selectedProject = this.projects[index];
-                    this.showModal = true;
-                    document.body.style.overflow = 'hidden';
-                    
-                    // Track portfolio view
-                    this.trackEvent('portfolio_view', { project: this.selectedProject.title });
-                },
-                
-                closeModal() {
-                    this.showModal = false;
-                    document.body.style.overflow = 'auto';
-                },
-                
-                openGalleryModal(index) {
-                    this.selectedGalleryIndex = index;
-                    this.selectedGalleryImage = this.galleryImages[index];
-                    this.showGalleryModal = true;
-                    document.body.style.overflow = 'hidden';
-                    
+                // Reset status after 3 seconds
+                setTimeout(() => {
+                    this.formStatus = '';
+                }, 3000);
+            }
+        },
+
+        resetForm() {
+            this.contactForm = {
+                name: '',
+                email: '',
+                service: '',
+                message: ''
+            };
+        },
+
+        // ANALYTICS TRACKING
+        trackEvent(eventName, properties = {}) {
+            console.log('Event tracked:', eventName, properties);
+            
+            // Google Analytics 4
+            if (typeof gtag !== 'undefined') {
+                gtag('event', eventName, properties);
+            }
+            
+            // Facebook Pixel
+            if (typeof fbq !== 'undefined') {
+                fbq('track', eventName, properties);
+            }
+        }
+    }
+}
+
+
                     // Track gallery view
                     this.trackEvent('gallery_view', { image: this.selectedGalleryImage.title });
                 },
