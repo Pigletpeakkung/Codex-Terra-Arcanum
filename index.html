@@ -3390,7 +3390,89 @@ try {
 document.addEventListener('DOMContentLoaded', () => {
     console.log('🚀 Portfolio App Enhanced - Ready to Launch!');
 });
+
+
+
+// Service Worker Registration and Management
+if ('serviceWorker' in navigator) {
+    window.addEventListener('load', async () => {
+        try {
+            const registration = await navigator.serviceWorker.register('/sw.js', {
+                scope: '/'
+            });
+            
+            console.log('✅ Service Worker registered:', registration.scope);
+            
+            // Handle updates
+            registration.addEventListener('updatefound', () => {
+                const newWorker = registration.installing;
+                
+                newWorker.addEventListener('statechange', () => {
+                    if (newWorker.state === 'installed' && navigator.serviceWorker.controller) {
+                        // New version available
+                        showUpdateNotification();
+                    }
+                });
+            });
+            
+            // Listen for messages from SW
+            navigator.serviceWorker.addEventListener('message', event => {
+                const { type, message } = event.data;
+                
+                if (type === 'UPDATE_AVAILABLE') {
+                    showUpdateNotification();
+                } else if (type === 'FORM_SYNC_SUCCESS') {
+                    showSuccessMessage(message);
+                }
+            });
+            
+        } catch (error) {
+            console.error('❌ Service Worker registration failed:', error);
+        }
+    });
+}
+
+// Show update notification
+function showUpdateNotification() {
+    const notification = document.createElement('div');
+    notification.innerHTML = `
+        <div style="position: fixed; top: 20px; right: 20px; background: #D4AF37; color: #1A1A2E; padding: 15px; border-radius: 8px; z-index: 10000; box-shadow: 0 4px 12px rgba(0,0,0,0.3);">
+            <p style="margin: 0 0 10px 0; font-weight: 600;">New version available!</p>
+            <button onclick="updateServiceWorker()" style="background: #1A1A2E; color: #D4AF37; border: none; padding: 8px 16px; border-radius: 4px; cursor: pointer; margin-right: 8px;">Update</button>
+            <button onclick="this.parentElement.parentElement.remove()" style="background: transparent; color: #1A1A2E; border: 1px solid #1A1A2E; padding: 8px 16px; border-radius: 4px; cursor: pointer;">Later</button>
+        </div>
+    `;
+    document.body.appendChild(notification);
+}
+
+// Update service worker
+function updateServiceWorker() {
+    if ('serviceWorker' in navigator) {
+        navigator.serviceWorker.getRegistration().then(registration => {
+            if (registration && registration.waiting) {
+                registration.waiting.postMessage({ type: 'SKIP_WAITING' });
+                window.location.reload();
+            }
+        });
+    }
+}
+
+// Show success message
+function showSuccessMessage(message) {
+    const notification = document.createElement('div');
+    notification.innerHTML = `
+        <div style="position: fixed; top: 20px; right: 20px; background: #10B981; color: white; padding: 15px; border-radius: 8px; z-index: 10000; box-shadow: 0 4px 12px rgba(0,0,0,0.3);">
+            <p style="margin: 0; font-weight: 600;">${message}</p>
+        </div>
+    `;
+    document.body.appendChild(notification);
+    
+    setTimeout(() => {
+        notification.remove();
+    }, 5000);
+}
 </script>
+
 
 
 </body>
