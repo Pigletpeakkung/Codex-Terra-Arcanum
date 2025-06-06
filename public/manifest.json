@@ -1,7 +1,7 @@
 {
-  "short_name": "Thanatsitt",
-  "name": "Thanatsitt Santisamranwilai Portfolio", 
-  "description": "Thai  interdisciplinary creator bridging ancient wisdom with modern technology",
+  "short_name": "Pegearts",
+  "name": "Thanatsitt Santisamranwilai - Portfolio",
+  "description": "Thai interdisciplinary creator bridging ancient wisdom with modern technology",
   "icons": [
     {
       "src": "favicon.ico",
@@ -9,29 +9,14 @@
       "type": "image/x-icon"
     },
     {
-      "src": "favicon-16x16.png",
-      "type": "image/png",
-      "sizes": "16x16"
-    },
-    {
-      "src": "favicon-32x32.png",
-      "type": "image/png",
-      "sizes": "32x32"
-    },
-    {
-      "src": "favicon-96x96.png",
-      "type": "image/png",
-      "sizes": "96x96"
-    },
-    {
-      "src": "android-icon-192x192.png",
+      "src": "android-chrome-192x192.png",
       "type": "image/png",
       "sizes": "192x192"
     },
     {
-      "src": "apple-icon-180x180.png",
+      "src": "android-chrome-512x512.png",
       "type": "image/png",
-      "sizes": "180x180"
+      "sizes": "512x512"
     }
   ],
   "start_url": ".",
@@ -39,7 +24,7 @@
   "theme_color": "#D4AF37",
   "background_color": "#0B0B1A",
   "orientation": "portrait-primary",
-  "categories": ["portfolio", "design", "technology", "consulting"],
+  "categories": ["portfolio", "design", "technology", "art"],
   "lang": "en-US",
   "dir": "ltr",
   "scope": "/",
