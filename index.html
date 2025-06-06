@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -5,19 +6,23 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Thanatsitt Santisamranwilai - Portfolio</title>
     <meta name="description" content="Thai-British interdisciplinary creator bridging ancient wisdom with modern technology. Fashion Design, AI Development, Cultural Consulting.">
-    <meta name="keywords" content="Fashion Design, AI Development, Cultural Consulting, Voice Acting, Web Development, Thai-British Designer">
+    <meta name="keywords" content="Fashion Design, AI Development, Cultural Consulting, Voice Acting, Thai-British Designer">
     
     <!-- PWA Manifest -->
     <link rel="manifest" href="/manifest.json">
     <meta name="theme-color" content="#D4AF37">
-    <link rel="apple-touch-icon" href="/logo192.png">
     
-    <!-- Scripts and Styles -->
+    <!-- Preload critical resources -->
+    <link rel="preload" href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" as="style">
+    <link rel="preload" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" as="style">
+    
     <script src="https://cdn.tailwindcss.com"></script>
     <script defer src="https://unpkg.com/alpinejs@3.x.x/dist/cdn.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/@emailjs/browser@3/dist/email.min.js"></script>
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+    
+    <!-- EmailJS -->
+    <script src="https://cdn.emailjs.com/dist/email.min.js"></script>
     
     <script>
         tailwind.config = {
@@ -49,6 +54,7 @@
                         'moon-glow': 'moonGlow 4s ease-in-out infinite alternate',
                         'stars-twinkle': 'starsTwinkle 3s ease-in-out infinite alternate',
                         'card-flip': 'cardFlip 0.6s ease-in-out',
+                        'skill-progress': 'skillProgress 2s ease-out forwards',
                     },
                     backgroundImage: {
                         'cosmic-gradient': 'linear-gradient(135deg, #667eea 0%, #764ba2 100%)',
@@ -59,7 +65,6 @@
             }
         }
     </script>
-    
     <style>
         @keyframes gradient {
             0%, 100% { background-position: 0% 50%; }
@@ -95,10 +100,17 @@
             0% { transform: scale(0.8); opacity: 0; }
             100% { transform: scale(1); opacity: 1; }
         }
+        
+        /* Enhanced 3D Card Flip Animation */
         @keyframes cardFlip {
-            0% { transform: rotateY(0); }
+            0% { transform: rotateY(0deg); }
             50% { transform: rotateY(-90deg); }
-            100% { transform: rotateY(0); }
+            100% { transform: rotateY(0deg); }
+        }
+        
+        @keyframes skillProgress {
+            0% { width: 0%; }
+            100% { width: var(--progress-width); }
         }
         
         /* Enhanced Moon Animations */
@@ -208,11 +220,49 @@
             transform: translateY(-10px) scale(1.02);
         }
         
+        /* Enhanced 3D Card Container */
+        .card-container {
+            perspective: 1000px;
+            height: 400px;
+            position: relative;
+        }
+        
+        .card-front, .card-back {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            backface-visibility: hidden;
+            transition: transform 0.6s ease-in-out;
+            padding: 2rem;
+            border-radius: 1rem;
+            background: rgba(255, 255, 255, 0.05);
+            backdrop-filter: blur(20px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+        
+        .card-back {
+            transform: rotateY(180deg);
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+        }
+        
+        .card-container:hover .card-front {
+            transform: rotateY(-180deg);
+        }
+        
+        .card-container:hover .card-back {
+            transform: rotateY(0deg);
+        }
+        
         .skill-bar {
             background: linear-gradient(90deg, #D4AF37 0%, #F4D03F 100%);
-            height: 4px;
-            border-radius: 2px;
+            height: 8px;
+            border-radius: 4px;
             transition: width 2s ease-in-out;
+            box-shadow: 0 2px 10px rgba(212, 175, 55, 0.3);
         }
         
         .gallery-scroll {
@@ -224,37 +274,7 @@
         }
         
         .testimonial-card {
-            min-height: 300px;
-        }
-        
-        /* 3D Card Flip Effects */
-        .card-container {
-            perspective: 1000px;
-            height: 400px;
-        }
-        
-        .card-front, .card-back {
-            position: absolute;
-            width: 100%;
-            height: 100%;
-            backface-visibility: hidden;
-            transition: transform 0.6s;
-            padding: 2rem;
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-        }
-        
-        .card-back {
-            transform: rotateY(180deg);
-        }
-        
-        .card-container:hover .card-front {
-            transform: rotateY(-180deg);
-        }
-        
-        .card-container:hover .card-back {
-            transform: rotateY(0);
+            min-height: 350px;
         }
         
         /* Enhanced Moon Elements */
@@ -385,9 +405,62 @@
                 transition-duration: 0.01ms !important;
             }
         }
+        
+        /* Loading state */
+        .loading {
+            opacity: 0;
+            transform: translateY(20px);
+        }
+        
+        .loaded .loading {
+            opacity: 1;
+            transform: translateY(0);
+            transition: all 0.6s ease-out;
+        }
+        
+        /* Enhanced form styles */
+        .form-input {
+            background: rgba(255, 255, 255, 0.1);
+            border: 2px solid rgba(255, 255, 255, 0.2);
+            border-radius: 12px;
+            padding: 16px;
+            color: white;
+            transition: all 0.3s ease;
+        }
+        
+        .form-input:focus {
+            outline: none;
+            border-color: #D4AF37;
+            box-shadow: 0 0 0 3px rgba(212, 175, 55, 0.1);
+            background: rgba(255, 255, 255, 0.15);
+        }
+        
+        .form-input::placeholder {
+            color: rgba(255, 255, 255, 0.6);
+        }
+        
+        /* Status message styles */
+        .status-message {
+            padding: 12px 16px;
+            border-radius: 8px;
+            margin-top: 16px;
+            font-weight: 500;
+        }
+        
+        .status-success {
+            background: rgba(34, 197, 94, 0.1);
+            border: 1px solid rgba(34, 197, 94, 0.3);
+            color: #22c55e;
+        }
+        
+        .status-error {
+            background: rgba(239, 68, 68, 0.1);
+            border: 1px solid rgba(239, 68, 68, 0.3);
+            color: #ef4444;
+        }
     </style>
 </head>
-<body class="hero-bg text-white min-h-screen custom-scrollbar overflow-x-hidden" x-data="portfolioApp()">
+<body class="hero-bg text-white min-h-screen custom-scrollbar overflow-x-hidden loading" x-data="portfolioApp()">
     <!-- Skip to main content link for accessibility -->
     <a href="#main-content" class="sr-only focus:not-sr-only focus:absolute focus:top-4 focus:left-4 bg-gold text-black px-4 py-2 rounded z-50">
         Skip to main content
@@ -432,10 +505,12 @@
     <!-- Navigation with Enhanced Moon -->
     <nav class="fixed w-full z-50 transition-all duration-500" 
          :class="scrolled ? 'glass-morphism shadow-2xl' : 'bg-transparent'"
-         x-init="window.addEventListener('scroll', () => scrolled = window.scrollY > 50)">
+         x-init="window.addEventListener('scroll', () => scrolled = window.scrollY > 50)"
+         role="navigation"
+         aria-label="Main navigation">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div class="flex justify-between items-center py-4">
-                <a href="#" class="text-2xl font-bold text-gold hover:animate-glow transition-all duration-300 flex items-center group">
+                <a href="#" class="text-2xl font-bold text-gold hover:animate-glow transition-all duration-300 flex items-center group" aria-label="Thanatsitt Santisamranwilai - Home">
                     <div class="relative mr-3">
                         <div class="w-8 h-8 bg-gradient-to-br from-gold to-yellow-400 rounded-full animate-moon-glow group-hover:animate-pulse">
                             <div class="absolute inset-0 bg-gradient-to-br from-gold/20 to-transparent rounded-full"></div>
@@ -450,38 +525,41 @@
                 
                 <!-- Desktop Menu -->
                 <div class="hidden md:flex space-x-8">
-                    <a href="#home" class="nav-link relative group" @click="scrollToSection('home')">
+                    <a href="#home" class="nav-link relative group px-3 py-2" @click="scrollToSection('home')" aria-label="Go to Home section">
                         <span class="relative z-10">Home</span>
                         <div class="absolute inset-0 bg-gold/20 rounded-lg scale-0 group-hover:scale-100 transition-transform duration-300"></div>
                     </a>
-                    <a href="#about" class="nav-link relative group" @click="scrollToSection('about')">
+                    <a href="#about" class="nav-link relative group px-3 py-2" @click="scrollToSection('about')" aria-label="Go to About section">
                         <span class="relative z-10">About</span>
                         <div class="absolute inset-0 bg-gold/20 rounded-lg scale-0 group-hover:scale-100 transition-transform duration-300"></div>
                     </a>
-                    <a href="#portfolio" class="nav-link relative group" @click="scrollToSection('portfolio')">
+                    <a href="#portfolio" class="nav-link relative group px-3 py-2" @click="scrollToSection('portfolio')" aria-label="Go to Portfolio section">
                         <span class="relative z-10">Portfolio</span>
                         <div class="absolute inset-0 bg-gold/20 rounded-lg scale-0 group-hover:scale-100 transition-transform duration-300"></div>
                     </a>
-                    <a href="#skills" class="nav-link relative group" @click="scrollToSection('skills')">
+                    <a href="#skills" class="nav-link relative group px-3 py-2" @click="scrollToSection('skills')" aria-label="Go to Skills section">
                         <span class="relative z-10">Skills</span>
                         <div class="absolute inset-0 bg-gold/20 rounded-lg scale-0 group-hover:scale-100 transition-transform duration-300"></div>
                     </a>
-                    <a href="#gallery" class="nav-link relative group" @click="scrollToSection('gallery')">
+                    <a href="#gallery" class="nav-link relative group px-3 py-2" @click="scrollToSection('gallery')" aria-label="Go to Gallery section">
                         <span class="relative z-10">Gallery</span>
                         <div class="absolute inset-0 bg-gold/20 rounded-lg scale-0 group-hover:scale-100 transition-transform duration-300"></div>
                     </a>
-                    <a href="#testimonials" class="nav-link relative group" @click="scrollToSection('testimonials')">
+                    <a href="#testimonials" class="nav-link relative group px-3 py-2" @click="scrollToSection('testimonials')" aria-label="Go to Reviews section">
                         <span class="relative z-10">Reviews</span>
                         <div class="absolute inset-0 bg-gold/20 rounded-lg scale-0 group-hover:scale-100 transition-transform duration-300"></div>
                     </a>
-                    <a href="#contact" class="nav-link relative group" @click="scrollToSection('contact')">
+                    <a href="#contact" class="nav-link relative group px-3 py-2" @click="scrollToSection('contact')" aria-label="Go to Contact section">
                         <span class="relative z-10">Contact</span>
                         <div class="absolute inset-0 bg-gold/20 rounded-lg scale-0 group-hover:scale-100 transition-transform duration-300"></div>
                     </a>
                 </div>
                 
                 <!-- Mobile Menu Button -->
-                <button @click="mobileMenuOpen = !mobileMenuOpen" class="md:hidden text-gold hover:animate-wiggle" aria-label="Toggle mobile menu">
+                <button @click="mobileMenuOpen = !mobileMenuOpen" 
+                        class="md:hidden text-gold hover:animate-wiggle"
+                        aria-label="Toggle mobile menu"
+                        :aria-expanded="mobileMenuOpen">
                     <i class="fas fa-bars text-xl"></i>
                 </button>
             </div>
@@ -520,12 +598,12 @@
         </nav>
 
     <!-- Hero Section -->
-    <section id="home" role="main" class="min-h-screen flex items-center justify-center relative overflow-hidden">
+    <section id="home" class="min-h-screen flex items-center justify-center relative overflow-hidden" role="main" aria-label="Hero section">
         <!-- Floating Elements -->
-        <div class="absolute top-20 right-20 w-32 h-32 bg-gold/20 rounded-full animate-float hidden lg:block"></div>
-        <div class="absolute bottom-20 left-20 w-24 h-24 bg-moon-silver/20 rounded-full animate-float hidden lg:block" style="animation-delay: -2s;"></div>
-        <div class="absolute top-1/2 left-10 w-16 h-16 bg-stellar-purple/30 rounded-full animate-bounce-slow hidden lg:block" style="animation-delay: -1s;"></div>
-        <div class="absolute bottom-1/3 right-1/4 w-20 h-20 bg-cosmic-blue/40 rounded-full animate-pulse-slow hidden lg:block"></div>
+        <div class="absolute top-20 right-20 w-32 h-32 bg-gold/20 rounded-full animate-float hidden lg:block" aria-hidden="true"></div>
+        <div class="absolute bottom-20 left-20 w-24 h-24 bg-moon-silver/20 rounded-full animate-float hidden lg:block" style="animation-delay: -2s;" aria-hidden="true"></div>
+        <div class="absolute top-1/2 left-10 w-16 h-16 bg-stellar-purple/30 rounded-full animate-bounce-slow hidden lg:block" style="animation-delay: -1s;" aria-hidden="true"></div>
+        <div class="absolute bottom-1/3 right-1/4 w-20 h-20 bg-cosmic-blue/40 rounded-full animate-pulse-slow hidden lg:block" aria-hidden="true"></div>
         
         <div class="relative z-10 text-center max-w-6xl mx-auto px-4">
             <div class="mb-8">
@@ -543,7 +621,8 @@
             
             <div class="flex flex-col sm:flex-row gap-6 justify-center items-center mb-16">
                 <button class="group bg-gradient-to-r from-gold to-yellow-500 text-black px-10 py-5 rounded-full font-bold text-lg hover:scale-105 transform transition-all duration-300 hover:shadow-2xl hover:shadow-gold/50 relative overflow-hidden"
-                        @click="scrollToSection('portfolio')">
+                        @click="scrollToSection('portfolio')"
+                        aria-label="Explore my portfolio">
                     <span class="relative z-10 flex items-center">
                         <i class="fas fa-eye mr-3 group-hover:animate-wiggle"></i>
                         Explore Portfolio
@@ -552,7 +631,8 @@
                 </button>
                 
                 <button class="group border-2 border-moon-silver text-moon-silver px-10 py-5 rounded-full font-bold text-lg hover:bg-moon-silver hover:text-black transition-all duration-300 relative overflow-hidden"
-                        @click="scrollToSection('contact')">
+                        @click="scrollToSection('contact')"
+                        aria-label="Get in touch with me">
                     <span class="relative z-10 flex items-center">
                         <i class="fas fa-paper-plane mr-3 group-hover:animate-wiggle"></i>
                         Get In Touch
@@ -561,24 +641,24 @@
             </div>
             
             <!-- Social Links -->
-            <div class="flex justify-center space-x-8">
-                <a href="#" class="text-3xl text-gray-400 hover:text-gold transition-colors duration-300 hover:animate-bounce" aria-label="LinkedIn">
+            <div class="flex justify-center space-x-8" role="list" aria-label="Social media links">
+                <a href="#" class="text-3xl text-gray-400 hover:text-gold transition-colors duration-300 hover:animate-bounce" aria-label="LinkedIn profile">
                     <i class="fab fa-linkedin"></i>
                 </a>
-                <a href="#" class="text-3xl text-gray-400 hover:text-gold transition-colors duration-300 hover:animate-bounce" aria-label="GitHub">
+                <a href="#" class="text-3xl text-gray-400 hover:text-gold transition-colors duration-300 hover:animate-bounce" aria-label="GitHub profile">
                     <i class="fab fa-github"></i>
                 </a>
-                <a href="#" class="text-3xl text-gray-400 hover:text-gold transition-colors duration-300 hover:animate-bounce" aria-label="Instagram">
+                <a href="#" class="text-3xl text-gray-400 hover:text-gold transition-colors duration-300 hover:animate-bounce" aria-label="Instagram profile">
                     <i class="fab fa-instagram"></i>
                 </a>
-                <a href="#" class="text-3xl text-gray-400 hover:text-gold transition-colors duration-300 hover:animate-bounce" aria-label="Twitter">
+                <a href="#" class="text-3xl text-gray-400 hover:text-gold transition-colors duration-300 hover:animate-bounce" aria-label="Twitter profile">
                     <i class="fab fa-twitter"></i>
                 </a>
             </div>
         </div>
         
         <!-- Scroll Indicator -->
-        <div class="absolute bottom-8 left-1/2 transform -translate-x-1/2 animate-bounce">
+        <div class="absolute bottom-8 left-1/2 transform -translate-x-1/2 animate-bounce" aria-hidden="true">
             <div class="w-6 h-10 border-2 border-gold rounded-full flex justify-center">
                 <div class="w-1 h-3 bg-gold rounded-full mt-2 animate-pulse"></div>
             </div>
@@ -586,7 +666,7 @@
     </section>
 
     <!-- About Section -->
-    <section id="about" class="py-20 px-4 relative">
+    <section id="about" class="py-20 px-4 relative" aria-label="About me section">
         <div class="max-w-7xl mx-auto">
             <div class="text-center mb-16">
                 <h2 class="text-4xl md:text-6xl font-bold mb-6 text-gold text-shadow">About Me</h2>
@@ -601,15 +681,15 @@
                             <div class="absolute inset-0 bg-gradient-to-br from-gold/10 to-transparent"></div>
                             <i class="fas fa-user text-8xl text-gold/50"></i>
                             <!-- Replace with actual image -->
-                            <!-- <img src="profile.jpg" alt="Thanatsitt" class="w-full h-full object-cover rounded-2xl"> -->
+                            <!-- <img src="profile.jpg" alt="Thanatsitt Santisamranwilai" class="w-full h-full object-cover rounded-2xl"> -->
                         </div>
                     </div>
                     
                     <!-- Floating badges -->
-                    <div class="absolute -top-4 -right-4 glass-morphism rounded-full p-4 animate-float">
+                    <div class="absolute -top-4 -right-4 glass-morphism rounded-full p-4 animate-float" aria-hidden="true">
                         <i class="fas fa-palette text-2xl text-gold"></i>
                     </div>
-                    <div class="absolute -bottom-4 -left-4 glass-morphism rounded-full p-4 animate-float" style="animation-delay: -1s;">
+                    <div class="absolute -bottom-4 -left-4 glass-morphism rounded-full p-4 animate-float" style="animation-delay: -1s;" aria-hidden="true">
                         <i class="fas fa-brain text-2xl text-gold"></i>
                     </div>
                 </div>
@@ -664,8 +744,8 @@
         </div>
     </section>
 
-    <!-- Skills Section with 3D Flip Cards -->
-    <section id="skills" class="py-20 px-4 relative">
+    <!-- Enhanced Skills Section with 3D Flip Cards -->
+    <section id="skills" class="py-20 px-4 relative" aria-label="Skills and expertise section">
         <div class="max-w-7xl mx-auto">
             <div class="text-center mb-16">
                 <h2 class="text-4xl md:text-6xl font-bold mb-6 text-gold text-shadow">Skills & Expertise</h2>
@@ -674,7 +754,7 @@
             
             <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
                 <!-- Design Skills Card with 3D Flip -->
-                <div class="glass-morphism rounded-2xl card-container">
+                <div class="card-container">
                     <div class="card-front">
                         <div class="text-center mb-6">
                             <div class="w-16 h-16 bg-gradient-to-br from-gold to-yellow-400 rounded-full flex items-center justify-center mx-auto mb-4">
@@ -736,7 +816,7 @@
                 </div>
                 
                 <!-- Technology Skills Card with 3D Flip -->
-                <div class="glass-morphism rounded-2xl card-container">
+                <div class="card-container">
                     <div class="card-front">
                         <div class="text-center mb-6">
                             <div class="w-16 h-16 bg-gradient-to-br from-blue-500 to-purple-600 rounded-full flex items-center justify-center mx-auto mb-4">
@@ -798,7 +878,7 @@
                 </div>
                 
                 <!-- Communication Skills Card with 3D Flip -->
-                <div class="glass-morphism rounded-2xl card-container">
+                <div class="card-container">
                     <div class="card-front">
                         <div class="text-center mb-6">
                             <div class="w-16 h-16 bg-gradient-to-br from-green-500 to-teal-600 rounded-full flex items-center justify-center mx-auto mb-4">
@@ -860,7 +940,7 @@
                 </div>
 
                 <!-- Leadership Skills Card with 3D Flip -->
-                <div class="glass-morphism rounded-2xl card-container">
+                <div class="card-container">
                     <div class="card-front">
                         <div class="text-center mb-6">
                             <div class="w-16 h-16 bg-gradient-to-br from-purple-500 to-pink-600 rounded-full flex items-center justify-center mx-auto mb-4">
@@ -925,7 +1005,7 @@
     </section>
 
     <!-- Gallery Section -->
-    <section id="gallery" class="py-20 px-4 relative overflow-hidden">
+    <section id="gallery" class="py-20 px-4 relative overflow-hidden" aria-label="Creative gallery section">
         <div class="max-w-7xl mx-auto">
             <div class="text-center mb-16">
                 <h2 class="text-4xl md:text-6xl font-bold mb-6 text-gold text-shadow">Creative Gallery</h2>
@@ -944,7 +1024,8 @@
                             <div class="flex space-x-6 shrink-0">
                                 <template x-for="(image, index) in galleryImages.slice(0, 8)" :key="index">
                                     <div class="w-80 h-60 glass-morphism rounded-2xl overflow-hidden shrink-0 cursor-pointer transform hover:scale-105 transition-all duration-300 relative group" 
-                                         @click="openGalleryModal(index)">
+                                         @click="openGalleryModal(index)"
+                                         :aria-label="`View ${image.title} in gallery`">
                                         <div class="w-full h-full bg-gradient-to-br from-gold/20 to-purple-600/20 flex items-center justify-center relative">
                                             <div class="absolute inset-0 bg-gradient-to-br from-gold/10 to-transparent"></div>
                                             <i :class="image.icon" class="text-4xl text-gold/70"></i>
@@ -971,7 +1052,8 @@
                             <div class="flex space-x-6 shrink-0">
                                 <template x-for="(image, index) in galleryImages.slice(8, 16)" :key="index + 8">
                                     <div class="w-80 h-60 glass-morphism rounded-2xl overflow-hidden shrink-0 cursor-pointer transform hover:scale-105 transition-all duration-300 relative group" 
-                                         @click="openGalleryModal(index + 8)">
+                                         @click="openGalleryModal(index + 8)"
+                                         :aria-label="`View ${image.title} in gallery`">
                                         <div class="w-full h-full bg-gradient-to-br from-blue-500/20 to-green-600/20 flex items-center justify-center relative">
                                             <div class="absolute inset-0 bg-gradient-to-br from-blue-500/10 to-transparent"></div>
                                             <i :class="image.icon" class="text-4xl text-blue-400/70"></i>
@@ -997,7 +1079,8 @@
                             <div class="flex space-x-6 shrink-0">
                                 <template x-for="(image, index) in galleryImages.slice(16, 24)" :key="index + 16">
                                     <div class="w-80 h-60 glass-morphism rounded-2xl overflow-hidden shrink-0 cursor-pointer transform hover:scale-105 transition-all duration-300 relative group" 
-                                         @click="openGalleryModal(index + 16)">
+                                         @click="openGalleryModal(index + 16)"
+                                         :aria-label="`View ${image.title} in gallery`">
                                         <div class="w-full h-full bg-gradient-to-br from-pink-500/20 to-yellow-600/20 flex items-center justify-center relative">
                                             <div class="absolute inset-0 bg-gradient-to-br from-pink-500/10 to-transparent"></div>
                                             <i :class="image.icon" class="text-4xl text-pink-400/70"></i>
@@ -1020,7 +1103,7 @@
     </section>
 
     <!-- Portfolio Section -->
-    <section id="portfolio" class="py-20 px-4 relative">
+    <section id="portfolio" class="py-20 px-4 relative" aria-label="Portfolio section">
         <div class="max-w-7xl mx-auto">
             <div class="text-center mb-16">
                 <h2 class="text-4xl md:text-6xl font-bold mb-6 text-gold text-shadow">Portfolio</h2>
@@ -1029,7 +1112,9 @@
             
             <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
                 <template x-for="(project, index) in projects" :key="index">
-                    <div class="glass-morphism rounded-2xl overflow-hidden card-hover cursor-pointer" @click="openModal(index)">
+                    <div class="glass-morphism rounded-2xl overflow-hidden card-hover cursor-pointer" 
+                         @click="openModal(index)"
+                         :aria-label="`View details for ${project.title}`">
                         <div class="h-64 bg-gradient-to-br from-gold/20 to-purple-600/20 flex items-center justify-center relative">
                             <div class="absolute inset-0 bg-gradient-to-br from-gold/10 to-transparent"></div>
                             <i :class="project.icon" class="text-6xl text-gold/70"></i>
@@ -1049,8 +1134,8 @@
                             <div class="flex items-center justify-between">
                                 <span class="text-moon-silver text-sm" x-text="project.year"></span>
                                 <div class="flex space-x-2">
-                                    <i class="fas fa-eye text-gold hover:animate-bounce cursor-pointer"></i>
-                                    <i class="fas fa-external-link-alt text-gold hover:animate-bounce cursor-pointer"></i>
+                                    <i class="fas fa-eye text-gold hover:animate-bounce cursor-pointer" aria-label="View project"></i>
+                                    <i class="fas fa-external-link-alt text-gold hover:animate-bounce cursor-pointer" aria-label="Open project link"></i>
                                 </div>
                             </div>
                         </div>
@@ -1061,7 +1146,7 @@
     </section>
 
     <!-- Testimonials Section -->
-    <section id="testimonials" class="py-20 px-4 relative">
+    <section id="testimonials" class="py-20 px-4 relative" aria-label="Client testimonials section">
         <div class="max-w-7xl mx-auto">
             <div class="text-center mb-16">
                 <h2 class="text-4xl md:text-6xl font-bold mb-6 text-gold text-shadow">Client Reviews</h2>
@@ -1078,7 +1163,7 @@
                          x-intersect="setTimeout(() => visible = true, index * 200)"
                          :class="visible ? 'animate-zoom-in' : 'opacity-0'">
                         <!-- Rating Stars -->
-                        <div class="flex mb-4">
+                        <div class="flex mb-4" aria-label="5 star rating">
                             <template x-for="i in 5">
                                 <i class="fas fa-star text-gold text-lg"></i>
                             </template>
@@ -1115,7 +1200,8 @@
                     <h3 class="text-2xl font-bold text-gold mb-4">Ready to Work Together?</h3>
                     <p class="text-gray-300 mb-6">Join these satisfied clients and let's create something extraordinary together.</p>
                     <button class="bg-gradient-to-r from-gold to-yellow-500 text-black px-8 py-3 rounded-full font-bold hover:scale-105 transform transition-all duration-300 hover:shadow-2xl hover:shadow-gold/50"
-                            @click="scrollToSection('contact')">
+                            @click="scrollToSection('contact')"
+                            aria-label="Start your project">
                         <i class="fas fa-rocket mr-2"></i>
                         Start Your Project
                     </button>
@@ -1124,8 +1210,8 @@
         </div>
     </section>
 
-    <!-- Contact Section with Enhanced Form -->
-    <section id="contact" class="py-20 px-4 relative">
+    <!-- Enhanced Contact Section -->
+    <section id="contact" class="py-20 px-4 relative" aria-label="Contact section">
         <div class="max-w-7xl mx-auto">
             <div class="text-center mb-16">
                 <h2 class="text-4xl md:text-6xl font-bold mb-6 text-gold text-shadow">Let's Connect</h2>
@@ -1189,23 +1275,32 @@
                     <form class="space-y-6" @submit.prevent="sendMessage()">
                         <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
                             <div>
-                                <label class="block text-white font-medium mb-2" for="contact-name">Name *</label>
-                                <input type="text" id="contact-name" x-model="contactForm.name" required
-                                       class="w-full px-4 py-3 bg-white/10 border border-white/20 rounded-lg text-white placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-gold focus:border-transparent transition-all duration-300"
-                                       placeholder="Your Name">
+                                <label for="contact-name" class="block text-white font-medium mb-2">Name *</label>
+                                <input type="text" 
+                                       id="contact-name"
+                                       x-model="contactForm.name" 
+                                       class="form-input w-full"
+                                       placeholder="Your Name"
+                                       required
+                                       aria-required="true">
                             </div>
                             <div>
-                                <label class="block text-white font-medium mb-2" for="contact-email">Email *</label>
-                                <input type="email" id="contact-email" x-model="contactForm.email" required
-                                       class="w-full px-4 py-3 bg-white/10 border border-white/20 rounded-lg text-white placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-gold focus:border-transparent transition-all duration-300"
-                                       placeholder="your.email@example.com">
+                                <label for="contact-email" class="block text-white font-medium mb-2">Email *</label>
+                                <input type="email" 
+                                       id="contact-email"
+                                       x-model="contactForm.email" 
+                                       class="form-input w-full"
+                                       placeholder="your.email@example.com"
+                                       required
+                                       aria-required="true">
                             </div>
                         </div>
                         
                         <div>
-                            <label class="block text-white font-medium mb-2" for="contact-service">Service Needed</label>
-                            <select id="contact-service" x-model="contactForm.service" 
-                                    class="w-full px-4 py-3 bg-white/10 border border-white/20 rounded-lg text-white focus:outline-none focus:ring-2 focus:ring-gold focus:border-transparent transition-all duration-300">
+                            <label for="contact-service" class="block text-white font-medium mb-2">Service Needed</label>
+                            <select id="contact-service"
+                                    x-model="contactForm.service" 
+                                    class="form-input w-full">
                                 <option value="">Select a service</option>
                                 <option value="fashion-design">Fashion Design</option>
                                 <option value="ai-development">AI Development</option>
@@ -1218,21 +1313,20 @@
                         </div>
                         
                         <div>
-                            <label class="block text-white font-medium mb-2" for="contact-message">Message *</label>
-                            <textarea id="contact-message" x-model="contactForm.message" rows="5" required
-                                      class="w-full px-4 py-3 bg-white/10 border border-white/20 rounded-lg text-white placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-gold focus:border-transparent transition-all duration-300 resize-none"
-                                      placeholder="Tell me about your project..."></textarea>
-                        </div>
-                        
-                        <!-- Form Status Message -->
-                        <div x-show="formStatus" x-transition class="p-4 rounded-lg" 
-                             :class="formStatus.includes('success') ? 'bg-green-500/20 text-green-300' : 'bg-red-500/20 text-red-300'">
-                            <p x-text="formStatus"></p>
+                            <label for="contact-message" class="block text-white font-medium mb-2">Message *</label>
+                            <textarea id="contact-message"
+                                      x-model="contactForm.message" 
+                                      rows="5"
+                                      class="form-input w-full resize-none"
+                                      placeholder="Tell me about your project..."
+                                      required
+                                      aria-required="true"></textarea>
                         </div>
                         
                         <button type="submit" 
-                                class="w-full bg-gradient-to-r from-gold to-yellow-500 text-black py-4 rounded-lg font-bold text-lg hover:scale-105 transform transition-all duration-300 hover:shadow-2xl hover:shadow-gold/50 flex items-center justify-center space-x-2"
-                                :disabled="isSubmitting">
+                                class="w-full bg-gradient-to-r from-gold to-yellow-500 text-black py-4 rounded-lg font-bold text-lg hover:scale-105 transform transition-all duration-300 hover:shadow-2xl hover:shadow-gold/50 flex items-center justify-center space-x-2 disabled:opacity-50 disabled:cursor-not-allowed"
+                                :disabled="isSubmitting"
+                                aria-label="Send message">
                             <span x-show="!isSubmitting">
                                 <i class="fas fa-paper-plane mr-2"></i>
                                 Send Message
@@ -1242,6 +1336,14 @@
                                 Sending...
                             </span>
                         </button>
+                        
+                        <!-- Status Message -->
+                        <div x-show="formStatus" 
+                             x-transition
+                             class="status-message"
+                             :class="formStatus.includes('success') ? 'status-success' : 'status-error'"
+                             x-text="formStatus">
+                        </div>
                     </form>
                 </div>
             </div>
@@ -1249,7 +1351,7 @@
     </section>
 
     <!-- Enhanced Footer with Moon -->
-    <footer class="py-12 px-4 border-t border-white/10">
+    <footer class="py-12 px-4 border-t border-white/10" role="contentinfo">
         <div class="max-w-7xl mx-auto">
             <div class="text-center">
                 <div class="flex justify-center items-center mb-6">
@@ -1261,9 +1363,9 @@
                             <div class="absolute top-1/2 right-1 w-1 h-1 bg-white/40 rounded-full"></div>
                         </div>
                         <!-- Twinkling stars around footer moon -->
-                        <div class="absolute -top-2 -right-2 w-1 h-1 bg-white rounded-full animate-stars-twinkle" style="animation-delay: 0s;"></div>
-                        <div class="absolute -bottom-2 -left-2 w-1 h-1 bg-white rounded-full animate-stars-twinkle" style="animation-delay: 1s;"></div>
-                        <div class="absolute top-0 -left-3 w-1 h-1 bg-white rounded-full animate-stars-twinkle" style="animation-delay: 2s;"></div>
+                        <div class="absolute -top-2 -right-2 w-1 h-1 bg-white rounded-full animate-stars-twinkle" style="animation-delay: 0s;" aria-hidden="true"></div>
+                        <div class="absolute -bottom-2 -left-2 w-1 h-1 bg-white rounded-full animate-stars-twinkle" style="animation-delay: 1s;" aria-hidden="true"></div>
+                        <div class="absolute top-0 -left-3 w-1 h-1 bg-white rounded-full animate-stars-twinkle" style="animation-delay: 2s;" aria-hidden="true"></div>
                     </div>
                     <h3 class="text-2xl font-bold text-gold">Thanatsitt Santisamranwilai</h3>
                 </div>
@@ -1272,17 +1374,17 @@
                     Bridging cultures, creating futures. Where ancient wisdom meets modern innovation.
                 </p>
                 
-                <div class="flex justify-center space-x-6 mb-8">
-                    <a href="#" class="text-gray-400 hover:text-gold transition-colors" aria-label="LinkedIn">
+                <div class="flex justify-center space-x-6 mb-8" role="list" aria-label="Social media links">
+                    <a href="#" class="text-gray-400 hover:text-gold transition-colors" aria-label="LinkedIn profile">
                         <i class="fab fa-linkedin text-xl"></i>
                     </a>
-                    <a href="#" class="text-gray-400 hover:text-gold transition-colors" aria-label="GitHub">
+                    <a href="#" class="text-gray-400 hover:text-gold transition-colors" aria-label="GitHub profile">
                         <i class="fab fa-github text-xl"></i>
                     </a>
-                    <a href="#" class="text-gray-400 hover:text-gold transition-colors" aria-label="Instagram">
+                    <a href="#" class="text-gray-400 hover:text-gold transition-colors" aria-label="Instagram profile">
                         <i class="fab fa-instagram text-xl"></i>
                     </a>
-                    <a href="#" class="text-gray-400 hover:text-gold transition-colors" aria-label="Twitter">
+                    <a href="#" class="text-gray-400 hover:text-gold transition-colors" aria-label="Twitter profile">
                         <i class="fab fa-twitter text-xl"></i>
                     </a>
                 </div>
@@ -1305,7 +1407,7 @@
          x-transition:leave-start="opacity-100" 
          x-transition:leave-end="opacity-0"
          class="fixed inset-0 bg-black/80 flex items-center justify-center z-50 p-4"
-         @click="showModal = false"
+         @click="closeModal()"
          role="dialog"
          aria-modal="true"
          aria-labelledby="modal-title">
@@ -1314,7 +1416,9 @@
             <div class="p-8">
                 <div class="flex justify-between items-start mb-6">
                     <h2 id="modal-title" class="text-3xl font-bold text-gold" x-text="selectedProject.title"></h2>
-                    <button @click="showModal = false" class="text-gray-400 hover:text-white text-2xl" aria-label="Close modal">
+                    <button @click="closeModal()" 
+                            class="text-gray-400 hover:text-white text-2xl"
+                            aria-label="Close modal">
                         <i class="fas fa-times"></i>
                     </button>
                 </div>
@@ -1347,11 +1451,13 @@
                         </ul>
                         
                         <div class="flex space-x-4">
-                            <button class="bg-gradient-to-r from-gold to-yellow-500 text-black px-6 py-3 rounded-lg font-bold hover:scale-105 transform transition-all duration-300">
+                            <button class="bg-gradient-to-r from-gold to-yellow-500 text-black px-6 py-3 rounded-lg font-bold hover:scale-105 transform transition-all duration-300"
+                                    aria-label="View live demo">
                                 <i class="fas fa-eye mr-2"></i>
                                 Live Demo
                             </button>
-                            <button class="border-2 border-gold text-gold px-6 py-3 rounded-lg font-bold hover:bg-gold hover:text-black transition-all duration-300">
+                            <button class="border-2 border-gold text-gold px-6 py-3 rounded-lg font-bold hover:bg-gold hover:text-black transition-all duration-300"
+                                    aria-label="View source code">
                                 <i class="fab fa-github mr-2"></i>
                                 Source Code
                             </button>
@@ -1371,7 +1477,7 @@
          x-transition:leave-start="opacity-100" 
          x-transition:leave-end="opacity-0"
          class="fixed inset-0 bg-black/90 flex items-center justify-center z-50 p-4"
-         @click="showGalleryModal = false"
+         @click="closeGalleryModal()"
          role="dialog"
          aria-modal="true"
          aria-labelledby="gallery-modal-title">
@@ -1384,15 +1490,21 @@
                 </div>
                 
                 <!-- Navigation Arrows -->
-                <button @click="previousGalleryImage()" class="absolute left-4 top-1/2 transform -translate-y-1/2 bg-black/50 text-white p-3 rounded-full hover:bg-black/70 transition-colors" aria-label="Previous image">
+                <button @click="previousGalleryImage()" 
+                        class="absolute left-4 top-1/2 transform -translate-y-1/2 bg-black/50 text-white p-3 rounded-full hover:bg-black/70 transition-colors"
+                        aria-label="Previous image">
                     <i class="fas fa-chevron-left"></i>
                 </button>
-                <button @click="nextGalleryImage()" class="absolute right-4 top-1/2 transform -translate-y-1/2 bg-black/50 text-white p-3 rounded-full hover:bg-black/70 transition-colors" aria-label="Next image">
+                <button @click="nextGalleryImage()" 
+                        class="absolute right-4 top-1/2 transform -translate-y-1/2 bg-black/50 text-white p-3 rounded-full hover:bg-black/70 transition-colors"
+                        aria-label="Next image">
                     <i class="fas fa-chevron-right"></i>
                 </button>
                 
                 <!-- Close Button -->
-                <button @click="showGalleryModal = false" class="absolute top-4 right-4 bg-black/50 text-white p-3 rounded-full hover:bg-black/70 transition-colors" aria-label="Close gallery">
+                <button @click="closeGalleryModal()" 
+                        class="absolute top-4 right-4 bg-black/50 text-white p-3 rounded-full hover:bg-black/70 transition-colors"
+                        aria-label="Close gallery">
                     <i class="fas fa-times"></i>
                 </button>
                 
@@ -1405,11 +1517,35 @@
         </div>
     </div>
 
-    <!-- Enhanced JavaScript with EmailJS Integration -->
+    <!-- Create manifest.json file -->
     <script>
-        // Initialize EmailJS
-        emailjs.init("YOUR_PUBLIC_KEY"); // Replace with your actual EmailJS public key
+        // Create manifest.json content
+        const manifest = {
+            "name": "Thanatsitt Santisamranwilai Portfolio",
+            "short_name": "Thanatsitt",
+            "description": "Thai-British interdisciplinary creator bridging ancient wisdom with modern technology",
+            "start_url": "/",
+            "display": "standalone",
+            "background_color": "#1A1A2E",
+            "theme_color": "#D4AF37",
+            "icons": [
+                {
+                    "src": "data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMTkyIiBoZWlnaHQ9IjE5MiIgdmlld0JveD0iMCAwIDE5MiAxOTIiIGZpbGw9Im5vbmUiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyI+CjxyZWN0IHdpZHRoPSIxOTIiIGhlaWdodD0iMTkyIiByeD0iMjQiIGZpbGw9IiMxQTFBMkUiLz4KPGNpcmNsZSBjeD0iOTYiIGN5PSI5NiIgcj0iNDAiIGZpbGw9IiNENEFGMzciLz4KPHN2Zz4K",
+                    "sizes": "192x192",
+                    "type": "image/svg+xml"
+                }
+            ]
+        };
         
+        // Create and download manifest.json
+        const manifestBlob = new Blob([JSON.stringify(manifest, null, 2)], { type: 'application/json' });
+        const manifestUrl = URL.createObjectURL(manifestBlob);
+        
+        // Update manifest link
+        document.querySelector('link[rel="manifest"]').href = manifestUrl;
+    </script>
+
+    <script>
         function portfolioApp() {
             return {
                 scrolled: false,
@@ -1603,6 +1739,14 @@
                     this.typeWriter();
                     this.selectedProject = this.projects[0];
                     this.selectedGalleryImage = this.galleryImages[0];
+                    
+                    // Initialize EmailJS
+                    emailjs.init("YOUR_PUBLIC_KEY"); // Replace with your EmailJS public key
+                    
+                    // Mark page as loaded
+                    setTimeout(() => {
+                        document.body.classList.add('loaded');
+                    }, 100);
                 },
                 
                 typeWriter() {
@@ -1625,6 +1769,9 @@
                             behavior: 'smooth',
                             block: 'start'
                         });
+                        
+                        // Track navigation
+                        this.trackEvent('navigation', { section: sectionId });
                     }
                 },
                 
@@ -1632,6 +1779,14 @@
                     this.selectedProject = this.projects[index];
                     this.showModal = true;
                     document.body.style.overflow = 'hidden';
+                    
+                    // Track portfolio view
+                    this.trackEvent('portfolio_view', { project: this.selectedProject.title });
+                },
+                
+                closeModal() {
+                    this.showModal = false;
+                    document.body.style.overflow = 'auto';
                 },
                 
                 openGalleryModal(index) {
@@ -1639,6 +1794,14 @@
                     this.selectedGalleryImage = this.galleryImages[index];
                     this.showGalleryModal = true;
                     document.body.style.overflow = 'hidden';
+                    
+                    // Track gallery view
+                    this.trackEvent('gallery_view', { image: this.selectedGalleryImage.title });
+                },
+                
+                closeGalleryModal() {
+                    this.showGalleryModal = false;
+                    document.body.style.overflow = 'auto';
                 },
                 
                 previousGalleryImage() {
@@ -1658,7 +1821,6 @@
                 async sendMessage() {
                     if (!this.contactForm.name || !this.contactForm.email || !this.contactForm.message) {
                         this.formStatus = 'Please fill in all required fields.';
-                        setTimeout(() => this.formStatus = '', 5000);
                         return;
                     }
                     
@@ -1666,16 +1828,15 @@
                     this.formStatus = '';
                     
                     try {
-                        // EmailJS integration
-                        const templateParams = {
-                            from_name: this.contactForm.name,
-                            from_email: this.contactForm.email,
-                            service: this.contactForm.service,
-                            message: this.contactForm.message,
-                            to_name: 'Thanatsitt'
-                        };
+                        // Replace with your EmailJS service configuration
+                        await emailjs.sendForm(
+                            'YOUR_SERVICE_ID', // Replace with your EmailJS service ID
+                            'YOUR_TEMPLATE_ID', // Replace with your EmailJS template ID
+                            document.querySelector('form'),
+                            'YOUR_PUBLIC_KEY' // Replace with your EmailJS public key
+                        );
                         
-                        await emailjs.send('YOUR_SERVICE_ID', 'YOUR_TEMPLATE_ID', templateParams);
+                        this.formStatus = 'Message sent successfully! I\'ll get back to you soon.';
                         
                         // Reset form
                         this.contactForm = {
@@ -1685,11 +1846,9 @@
                             message: ''
                         };
                         
-                        this.formStatus = 'Message sent successfully! I\'ll get back to you soon.';
-                        
-                        // Track successful form submission
-                        this.trackEvent('contact_form_submitted', {
-                            service: templateParams.service
+                        // Track form submission
+                        this.trackEvent('contact_form_submit', { 
+                            service: this.contactForm.service 
                         });
                         
                     } catch (error) {
@@ -1697,56 +1856,65 @@
                         this.formStatus = 'Sorry, there was an error sending your message. Please try again.';
                     } finally {
                         this.isSubmitting = false;
-                        setTimeout(() => this.formStatus = '', 10000);
+                        
+                        // Clear status message after 5 seconds
+                        setTimeout(() => {
+                            this.formStatus = '';
+                        }, 5000);
                     }
                 },
                 
                 trackEvent(eventName, eventData) {
-                    // Analytics tracking placeholder
+                    // Replace with your analytics implementation
                     console.log('Event tracked:', eventName, eventData);
                     
-                    // Add your analytics implementation here
-                    // Example: gtag('event', eventName, eventData);
+                    // Example Google Analytics 4 tracking
+                    if (typeof gtag !== 'undefined') {
+                        gtag('event', eventName, eventData);
+                    }
                 }
             }
         }
         
-        // Close modals when clicking outside or pressing escape
+        // Enhanced keyboard navigation
         document.addEventListener('keydown', function(e) {
+            const app = document.querySelector('[x-data]')?._x_dataStack?.[0];
+            
             if (e.key === 'Escape') {
-                const app = document.querySelector('[x-data]')?._x_dataStack?.[0];
                 if (app) {
-                    app.showModal = false;
-                    app.showGalleryModal = false;
-                    document.body.style.overflow = 'auto';
+                    if (app.showModal) {
+                        app.closeModal();
+                    }
+                    if (app.showGalleryModal) {
+                        app.closeGalleryModal();
+                    }
                 }
             }
-        });
-        
-        // Gallery keyboard navigation
-        document.addEventListener('keydown', (e) => {
-            const app = document.querySelector('[x-data]')?._x_dataStack?.[0];
+            
+            // Gallery navigation
             if (app && app.showGalleryModal) {
                 if (e.key === 'ArrowLeft') {
+                    e.preventDefault();
                     app.previousGalleryImage();
                 } else if (e.key === 'ArrowRight') {
+                    e.preventDefault();
                     app.nextGalleryImage();
                 }
             }
         });
         
-        // Touch/swipe support for mobile gallery
+        // Enhanced touch/swipe support
         let touchStartX = 0;
         let touchEndX = 0;
         
         document.addEventListener('touchstart', (e) => {
             touchStartX = e.changedTouches[0].screenX;
-        });
+        }, { passive: true });
         
         document.addEventListener('touchend', (e) => {
             touchEndX = e.changedTouches[0].screenX;
             handleSwipe();
-        });
+        }, { passive: true });
         
         function handleSwipe() {
             const app = document.querySelector('[x-data]')?._x_dataStack?.[0];
@@ -1786,83 +1954,39 @@
                 `;
                 document.body.appendChild(progressBar);
             } else {
-                progressBar.style.width = `${scrollProgress}%`;
+                progressBar.style.width = scrollProgress + '%';
             }
         });
         
-        // Intersection observer for animations
-        const observerOptions = {
-            threshold: 0.1,
-            rootMargin: '0px 0px -50px 0px'
+        // Lazy loading for images
+        const observeImages = () => {
+            const images = document.querySelectorAll('img[data-src]');
+            const imageObserver = new IntersectionObserver((entries, observer) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        const img = entry.target;
+                        img.src = img.dataset.src;
+                        img.classList.remove('loading');
+                        imageObserver.unobserve(img);
+                    }
+                });
+            });
+            
+            images.forEach(img => imageObserver.observe(img));
         };
         
-        const observer = new IntersectionObserver((entries) => {
-            entries.forEach(entry => {
-                if (entry.isIntersecting) {
-                    entry.target.classList.add('animate-zoom-in');
-                }
-            });
-        }, observerOptions);
-        
-        // Initialize observers when DOM is loaded
+        // Initialize when DOM is loaded
         document.addEventListener('DOMContentLoaded', () => {
-            const animatedElements = document.querySelectorAll('.card-hover, .glass-morphism');
-            animatedElements.forEach(el => observer.observe(el));
-        });
-        
-        // Parallax effect for floating elements
-        window.addEventListener('scroll', () => {
-            const scrolled = window.pageYOffset;
-            const parallaxElements = document.querySelectorAll('.animate-float');
+            observeImages();
             
-            parallaxElements.forEach((element, index) => {
-                const speed = 0.5 + (index * 0.1);
-                const yPos = -(scrolled * speed);
-                element.style.transform = `translateY(${yPos}px)`;
-            });
-        });
-        
-        // Mouse movement effect for particles
-        document.addEventListener('mousemove', (e) => {
-            const particles = document.querySelectorAll('.particle');
-            const mouseX = e.clientX;
-            const mouseY = e.clientY;
-            
-            particles.forEach((particle, index) => {
-                const speed = (index % 3 + 1) * 0.01;
-                const x = (mouseX * speed);
-                const y = (mouseY * speed);
-                
-                particle.style.transform = `translate(${x}px, ${y}px)`;
-            });
-        });
-        
-        // Loading animation
-        window.addEventListener('load', () => {
-            document.body.classList.add('loaded');
-            
-            setTimeout(() => {
-                const heroElements = document.querySelectorAll('#home h1, #home p, #home button');
-                heroElements.forEach((el, index) => {
-                    setTimeout(() => {
-                        el.classList.add('animate-zoom-in');
-                    }, index * 200);
-                });
-            }, 500);
-        });
-        
-        // Error handling for images
-        document.addEventListener('error', (e) => {
-            if (e.target.tagName === 'IMG') {
-                e.target.style.display = 'none';
-                const fallback = document.createElement('div');
-                fallback.className = 'w-full h-full bg-gradient-to-br from-gold/20 to-purple-600/20 flex items-center justify-center';
-                fallback.innerHTML = '<i class="fas fa-image text-4xl text-gold/50"></i>';
-                e.target.parentNode.appendChild(fallback);
+            // Check if user prefers reduced motion
+            const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)');
+            if (prefersReducedMotion.matches) {
+                document.body.classList.add('reduce-motion');
             }
-        }, true);
+        });
         
-        // Service worker registration for PWA
+        // Service Worker registration for PWA
         if ('serviceWorker' in navigator) {
             window.addEventListener('load', () => {
                 navigator.serviceWorker.register('/sw.js')
@@ -1875,16 +1999,202 @@
             });
         }
         
-        // Print optimization
-        window.addEventListener('beforeprint', () => {
-            const hideElements = document.querySelectorAll('.particle, .animate-float, nav, footer, .moon-container');
-            hideElements.forEach(el => el.style.display = 'none');
+        // Performance monitoring
+        const perfObserver = new PerformanceObserver((list) => {
+            for (const entry of list.getEntries()) {
+                if (entry.entryType === 'largest-contentful-paint') {
+                    console.log('LCP:', entry.startTime);
+                }
+                if (entry.entryType === 'first-input') {
+                    console.log('FID:', entry.processingStart - entry.startTime);
+                }
+                if (entry.entryType === 'layout-shift') {
+                    if (!entry.hadRecentInput) {
+                        console.log('CLS:', entry.value);
+                    }
+                }
+            }
         });
         
-        window.addEventListener('afterprint', () => {
-            const hideElements = document.querySelectorAll('.particle, .animate-float, nav, footer, .moon-container');
-            hideElements.forEach(el => el.style.display = '');
+        try {
+            perfObserver.observe({ entryTypes: ['largest-contentful-paint', 'first-input', 'layout-shift'] });
+        } catch (e) {
+            // Silently fail if performance observer is not supported
+        }
+        
+        // Dark mode toggle (if needed)
+        const toggleDarkMode = () => {
+            document.documentElement.classList.toggle('dark-mode');
+            localStorage.setItem('darkMode', document.documentElement.classList.contains('dark-mode'));
+        };
+        
+        // Load dark mode preference
+        if (localStorage.getItem('darkMode') === 'true') {
+            document.documentElement.classList.add('dark-mode');
+        }
+        
+        // Enhanced error handling
+        window.addEventListener('error', (e) => {
+            console.error('JavaScript Error:', e.error);
+            // Implement error reporting here if needed
         });
+        
+        window.addEventListener('unhandledrejection', (e) => {
+            console.error('Unhandled Promise Rejection:', e.reason);
+            // Implement error reporting here if needed
+        });
+        
+        // Intersection Observer for animations
+        const animateOnScroll = () => {
+            const elements = document.querySelectorAll('.animate-on-scroll');
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.classList.add('animated');
+                    }
+                });
+            }, {
+                threshold: 0.1,
+                rootMargin: '0px 0px -50px 0px'
+            });
+            
+            elements.forEach(el => observer.observe(el));
+        };
+        
+        // Initialize scroll animations
+        document.addEventListener('DOMContentLoaded', animateOnScroll);
     </script>
+
+    <!-- Service Worker Script -->
+    <script>
+        const swCode = `
+            const CACHE_NAME = 'thanatsitt-portfolio-v1';
+            const urlsToCache = [
+                '/',
+                '/manifest.json',
+                'https://cdn.tailwindcss.com',
+                'https://unpkg.com/alpinejs@3.x.x/dist/cdn.min.js',
+                'https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css',
+                'https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap',
+                'https://cdn.emailjs.com/dist/email.min.js'
+            ];
+            
+            self.addEventListener('install', (event) => {
+                event.waitUntil(
+                    caches.open(CACHE_NAME)
+                        .then((cache) => cache.addAll(urlsToCache))
+                );
+            });
+            
+            self.addEventListener('fetch', (event) => {
+                event.respondWith(
+                    caches.match(event.request)
+                        .then((response) => {
+                            if (response) {
+                                return response;
+                            }
+                            return fetch(event.request);
+                        }
+                    )
+                );
+            });
+            
+            self.addEventListener('activate', (event) => {
+                event.waitUntil(
+                    caches.keys().then((cacheNames) => {
+                        return Promise.all(
+                            cacheNames.map((cacheName) => {
+                                if (cacheName !== CACHE_NAME) {
+                                    return caches.delete(cacheName);
+                                }
+                            })
+                        );
+                    })
+                );
+            });
+        `;
+        
+        // Create service worker file
+        const swBlob = new Blob([swCode], { type: 'application/javascript' });
+        const swUrl = URL.createObjectURL(swBlob);
+        
+        // Register service worker
+        if ('serviceWorker' in navigator) {
+            navigator.serviceWorker.register(swUrl);
+        }
+    </script>
+
+    <!-- Schema.org Structured Data -->
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "Person",
+        "name": "Thanatsitt Santisamranwilai",
+        "image": "https://yourwebsite.com/profile-image.jpg",
+        "jobTitle": "Interdisciplinary Creator & Designer",
+        "description": "Thai-British interdisciplinary creator bridging ancient wisdom with modern technology",
+        "url": "https://yourwebsite.com",
+        "sameAs": [
+            "https://linkedin.com/in/thanatsitt",
+            "https://github.com/thanatsitt",
+            "https://instagram.com/thanatsitt",
+            "https://twitter.com/thanatsitt"
+        ],
+        "knowsAbout": [
+            "Fashion Design",
+            "AI Development",
+            "Cultural Consulting",
+            "Voice Acting",
+            "Web Development",
+            "Cultural Bridge Building"
+        ],
+        "nationality": ["Thai", "British"],
+        "worksFor": {
+            "@type": "Organization",
+            "name": "Freelance"
+        },
+        "alumniOf": {
+            "@type": "CollegeOrUniversity",
+            "name": "London College of Fashion"
+        }
+    }
+    </script>
+
+    <!-- Analytics (Replace with your tracking code) -->
+    <!-- Google Analytics 4 -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=GA_MEASUREMENT_ID"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+        gtag('js', new Date());
+        gtag('config', 'GA_MEASUREMENT_ID');
+    </script>
+
+    <!-- Meta Pixel (Facebook) -->
+    <script>
+        !function(f,b,e,v,n,t,s)
+        {if(f.fbq)return;n=f.fbq=function(){n.callMethod?
+        n.callMethod.apply(n,arguments):n.queue.push(arguments)};
+        if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';
+        n.queue=[];t=b.createElement(e);t.async=!0;
+        t.src=v;s=b.getElementsByTagName(e)[0];
+        s.parentNode.insertBefore(t,s)}(window,document,'script',
+        'https://connect.facebook.net/en_US/fbevents.js');
+        fbq('init', 'YOUR_PIXEL_ID');
+        fbq('track', 'PageView');
+    </script>
+
+    <!-- Hotjar Tracking Code -->
+    <script>
+        (function(h,o,t,j,a,r){
+            h.hj=h.hj||function(){(h.hj.q=h.hj.q||[]).push(arguments)};
+            h._hjSettings={hjid:YOUR_HOTJAR_ID,hjsv:6};
+            a=o.getElementsByTagName('head')[0];
+            r=o.createElement('script');r.async=1;
+            r.src=t+h._hjSettings.hjid+j+h._hjSettings.hjsv;
+            a.appendChild(r);
+        })(window,document,'https://static.hotjar.com/c/hotjar-','.js?sv=');
+    </script>
+
 </body>
 </html>
