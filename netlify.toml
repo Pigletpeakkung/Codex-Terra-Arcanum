@@ -1,47 +1,18 @@
+# Netlify configuration for Thanatsitt Portfolio (Codex Terra Arcanum)
+# https://docs.netlify.com/configure-builds/file-based-configuration/
+
 [build]
+  # Build command
   command = "npm run build"
+  
+  # Directory to publish (React build output)
   publish = "build"
+  
+  # Base directory for build
+  base = "."
+  
+  # Environment variables for build
   environment = { NODE_VERSION = "18" }
-
-[build.environment]
-  CI = "true"
-  GENERATE_SOURCEMAP = "false"
-  REACT_APP_ENV = "production"
-
-# SPA redirect
-[[redirects]]
-  from = "/*"
-  to = "/index.html"
-  status = 200
-
-# Security headers
-[[headers]]
-  for = "/*"
-  [headers.values]
-    X-Frame-Options = "DENY"
-    X-XSS-Protection = "1; mode=block"
-    X-Content-Type-Options = "nosniff"
-    Referrer-Policy = "strict-origin-when-cross-origin"
-    Permissions-Policy = "camera=(), microphone=(), geolocation=()"
-    Cache-Control = "public, max-age=31536000, immutable"
-
-# HTML files
-[[headers]]
-  for = "/*.html"
-  [headers.values]
-    Cache-Control = "public, max-age=0, must-revalidate"
-
-# Static assets
-[[headers]]
-  for = "/static/*"
-  [headers.values]
-    Cache-Control = "public, max-age=31536000, immutable"
-
-# Manifest
-[[headers]]
-  for = "/manifest.json"
-  [headers.values]
-    Cache-Control = "public, max-age=86400"
 
 [build.processing]
   skip_processing = false
@@ -57,11 +28,218 @@
 [build.processing.html]
   pretty_urls = true
 
+[build.processing.images]
+  compress = true
+
+# Development server settings
 [dev]
   command = "npm start"
   port = 3000
   publish = "build"
   autoLaunch = true
 
+# Headers for security and performance
+[[headers]]
+  for = "/*"
+  [headers.values]
+    # Security Headers
+    X-Frame-Options = "DENY"
+    X-Content-Type-Options = "nosniff"
+    X-XSS-Protection = "1; mode=block"
+    Referrer-Policy = "strict-origin-when-cross-origin"
+    Content-Security-Policy = "default-src 'self'; script-src 'self' 'unsafe-inline' 'unsafe-eval' https://www.googletagmanager.com https://www.google-analytics.com https://www.clarity.ms; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src 'self' https://fonts.gstatic.com; img-src 'self' data: https:; connect-src 'self' https://www.google-analytics.com https://www.clarity.ms; frame-ancestors 'none';"
+    
+    # Performance Headers
+    Cache-Control = "public, max-age=3600"
+    
+    # CORS Headers
+    Access-Control-Allow-Origin = "*"
+    Access-Control-Allow-Methods = "GET, POST, OPTIONS"
+    Access-Control-Allow-Headers = "Content-Type"
+
+# Cache static assets longer
+[[headers]]
+  for = "/static/*"
+  [headers.values]
+    Cache-Control = "public, max-age=31536000, immutable"
+
+# Cache images
+[[headers]]
+  for = "*.png"
+  [headers.values]
+    Cache-Control = "public, max-age=31536000"
+
+[[headers]]
+  for = "*.jpg"
+  [headers.values]
+    Cache-Control = "public, max-age=31536000"
+
+[[headers]]
+  for = "*.jpeg"
+  [headers.values]
+    Cache-Control = "public, max-age=31536000"
+
+[[headers]]
+  for = "*.gif"
+  [headers.values]
+    Cache-Control = "public, max-age=31536000"
+
+[[headers]]
+  for = "*.webp"
+  [headers.values]
+    Cache-Control = "public, max-age=31536000"
+
+[[headers]]
+  for = "*.svg"
+  [headers.values]
+    Cache-Control = "public, max-age=31536000"
+
+# Cache fonts
+[[headers]]
+  for = "*.woff"
+  [headers.values]
+    Cache-Control = "public, max-age=31536000"
+
+[[headers]]
+  for = "*.woff2"
+  [headers.values]
+    Cache-Control = "public, max-age=31536000"
+
+# Cache CSS and JS
+[[headers]]
+  for = "*.css"
+  [headers.values]
+    Cache-Control = "public, max-age=31536000"
+
+[[headers]]
+  for = "*.js"
+  [headers.values]
+    Cache-Control = "public, max-age=31536000"
+
+# Redirect rules for SPA (Single Page Application)
+[[redirects]]
+  from = "/*"
+  to = "/index.html"
+  status = 200
+  conditions = {Role = ["admin"], Country = ["US"]}
+
+# Handle 404s by serving index.html (for React Router)
+[[redirects]]
+  from = "/*"
+  to = "/index.html"
+  status = 200
+
+# Redirect old portfolio URLs (if migrating from another domain)
+[[redirects]]
+  from = "/old-portfolio/*"
+  to = "/"
+  status = 301
+
+# Redirect portfolio sections
+[[redirects]]
+  from = "/portfolio"
+  to = "/#portfolio"
+  status = 301
+
+[[redirects]]
+  from = "/about"
+  to = "/#about"
+  status = 301
+
+[[redirects]]
+  from = "/contact"
+  to = "/#contact"
+  status = 301
+
+# API proxy for contact forms (if using external service)
+[[redirects]]
+  from = "/api/*"
+  to = "https://formspree.io/f/YOUR_FORM_ID"
+  status = 200
+  force = true
+
+# Environment-specific settings
 [context.production]
-  environment = { NODE_ENV = "production" }
+  command = "npm run build"
+  
+[context.production.environment]
+  NODE_ENV = "production"
+  REACT_APP_ENV = "production"
+
+[context.deploy-preview]
+  command = "npm run build"
+  
+[context.deploy-preview.environment]
+  NODE_ENV = "production"
+  REACT_APP_ENV = "staging"
+
+[context.branch-deploy]
+  command = "npm run build"
+
+[context.branch-deploy.environment]
+  NODE_ENV = "production"
+
+# Forms handling (Netlify Forms)
+[build]
+  functions = "netlify/functions"
+
+# Edge functions (if needed)
+[build]
+  edge_functions = "netlify/edge-functions"
+
+# Plugin configuration
+[[plugins]]
+  package = "@netlify/plugin-lighthouse"
+  
+  [plugins.inputs.thresholds]
+    performance = 0.9
+    accessibility = 0.9
+    best-practices = 0.9
+    seo = 0.9
+
+[[plugins]]
+  package = "netlify-plugin-submit-sitemap"
+  
+  [plugins.inputs]
+    baseUrl = "https://yourportfolio.netlify.app"
+    sitemapPath = "/sitemap.xml"
+    ignorePeriod = 0
+    providers = [
+      "google",
+      "bing"
+    ]
+
+# Split testing (A/B testing)
+[split_testing]
+  [[split_testing.splits]]
+    name = "homepage"
+    path = "/"
+    branches = ["main", "experimental"]
+
+# Functions configuration
+[functions]
+  directory = "netlify/functions"
+
+# Edge functions configuration  
+[edge_functions]
+  directory = "netlify/edge-functions"
+
+# Build hooks and notifications
+[template]
+  incoming_hooks = ["github", "gitlab"]
+
+# Analytics
+[build.environment]
+  REACT_APP_NETLIFY_SITE_ID = "${NETLIFY_SITE_ID}"
+
+# Performance optimizations
+[build.processing.css]
+  bundle = true
+  minify = true
+
+[build.processing.js]
+  bundle = true
+  minify = true
+
+[build.processing.images]
+  compress = true
