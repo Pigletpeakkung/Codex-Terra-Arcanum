@@ -1,0 +1,558 @@
+/* Portfolio Component Styles */
+
+/* Custom Properties */
+:root {
+  --gold: #D4AF37;
+  --moon-silver: #C0C0C8;
+  --deep-space: #0B0B1A;
+  --cosmic-purple: #1A0B2E;
+  --gradient-gold: linear-gradient(135deg, #D4AF37 0%, #F4D03F 100%);
+  --gradient-space: linear-gradient(135deg, #0B0B1A 0%, #1A0B2E 50%, #2D1B69 100%);
+}
+
+/* Global Styles */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', sans-serif;
+  line-height: 1.6;
+  color: #ffffff;
+  overflow-x: hidden;
+}
+
+/* Custom Scrollbar */
+.custom-scrollbar::-webkit-scrollbar {
+  width: 8px;
+}
+
+.custom-scrollbar::-webkit-scrollbar-track {
+  background: rgba(255, 255, 255, 0.1);
+  border-radius: 4px;
+}
+
+.custom-scrollbar::-webkit-scrollbar-thumb {
+  background: var(--gradient-gold);
+  border-radius: 4px;
+}
+
+.custom-scrollbar::-webkit-scrollbar-thumb:hover {
+  background: linear-gradient(135deg, #F4D03F 0%, #D4AF37 100%);
+}
+
+/* Background Styles */
+.hero-bg {
+  background: var(--gradient-space);
+  min-height: 100vh;
+  position: relative;
+  overflow-x: hidden;
+}
+
+.hero-bg::before {
+  content: '';
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: 
+    radial-gradient(circle at 20% 80%, rgba(212, 175, 55, 0.1) 0%, transparent 50%),
+    radial-gradient(circle at 80% 20%, rgba(192, 192, 200, 0.1) 0%, transparent 50%),
+    radial-gradient(circle at 40% 40%, rgba(45, 27, 105, 0.2) 0%, transparent 50%);
+  pointer-events: none;
+  z-index: 1;
+}
+
+/* Particle Animation */
+.particle-container {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+  z-index: 2;
+}
+
+.particle {
+  position: absolute;
+  background: radial-gradient(circle, rgba(212, 175, 55, 0.8) 0%, rgba(212, 175, 55, 0.2) 70%, transparent 100%);
+  border-radius: 50%;
+  filter: blur(1px);
+}
+
+/* Moon Animation */
+.moon-container {
+  position: relative;
+  width: 120px;
+  height: 120px;
+}
+
+.animated-moon {
+  width: 100px;
+  height: 100px;
+  border-radius: 50%;
+  position: relative;
+  background: radial-gradient(circle at 30% 30%, #D4AF37 0%, #F4D03F 30%, #FFF 100%);
+  box-shadow: 
+    0 0 30px rgba(212, 175, 55, 0.6),
+    inset -10px -10px 20px rgba(0, 0, 0, 0.2);
+}
+
+.moon-crater {
+  position: absolute;
+  border-radius: 50%;
+  background: rgba(0, 0, 0, 0.1);
+}
+
+.crater-1 {
+  width: 12px;
+  height: 12px;
+  top: 20px;
+  left: 25px;
+}
+
+.crater-2 {
+  width: 8px;
+  height: 8px;
+  top: 45px;
+  right: 20px;
+}
+
+.crater-3 {
+  width: 6px;
+  height: 6px;
+  bottom: 25px;
+  left: 35px;
+}
+
+.moon-stars {
+  position: absolute;
+  top: -20px;
+  left: -20px;
+  right: -20px;
+  bottom: -20px;
+}
+
+.star {
+  position: absolute;
+  width: 2px;
+  height: 2px;
+  background: #ffffff;
+  border-radius: 50%;
+  box-shadow: 0 0 6px rgba(255, 255, 255, 0.8);
+}
+
+.orbiting-moon {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 140px;
+  height: 140px;
+  margin: -70px 0 0 -70px;
+  border: 1px solid rgba(212, 175, 55, 0.3);
+  border-radius: 50%;
+}
+
+.orbiting-moon-element {
+  position: absolute;
+  top: -3px;
+  left: 50%;
+  width: 6px;
+  height: 6px;
+  background: var(--gradient-gold);
+  border-radius: 50%;
+  margin-left: -3px;
+  box-shadow: 0 0 10px rgba(212, 175, 55, 0.8);
+}
+
+/* Typography */
+.text-shadow {
+  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+}
+
+.text-gold {
+  color: var(--gold);
+}
+
+.text-moon-silver {
+  color: var(--moon-silver);
+}
+
+/* Typewriter Effect */
+.typing-cursor::after {
+  content: '|';
+  animation: blink 1s infinite;
+  color: var(--gold);
+}
+
+@keyframes blink {
+  0%, 50% { opacity: 1; }
+  51%, 100% { opacity: 0; }
+}
+
+/* Glass Morphism */
+.glass-morphism {
+  background: rgba(255, 255, 255, 0.05);
+  backdrop-filter: blur(20px);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  box-shadow: 
+    0 8px 32px rgba(0, 0, 0, 0.3),
+    inset 0 1px 0 rgba(255, 255, 255, 0.1);
+}
+
+/* Card Hover Effects */
+.card-hover {
+  transition: all 0.3s ease;
+}
+
+.card-hover:hover {
+  transform: translateY(-5px);
+  box-shadow: 
+    0 20px 40px rgba(0, 0, 0, 0.4),
+    0 0 30px rgba(212, 175, 55, 0.2);
+}
+
+/* Navigation Styles */
+.nav-link {
+  position: relative;
+  color: #ffffff;
+  text-decoration: none;
+  transition: all 0.3s ease;
+}
+
+.nav-link:hover {
+  color: var(--gold);
+}
+
+.nav-link::after {
+  content: '';
+  position: absolute;
+  bottom: -5px;
+  left: 0;
+  width: 0;
+  height: 2px;
+  background: var(--gradient-gold);
+  transition: width 0.3s ease;
+}
+
+.nav-link:hover::after {
+  width: 100%;
+}
+
+/* Skill Cards */
+.card-container {
+  perspective: 1000px;
+  height: 300px;
+}
+
+.card-front,
+.card-back {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  backface-visibility: hidden;
+  border-radius: 1rem;
+  padding: 2rem;
+  background: rgba(255, 255, 255, 0.05);
+  backdrop-filter: blur(20px);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.card-back {
+  transform: rotateY(180deg);
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+}
+
+.skill-item {
+  margin-bottom: 1rem;
+}
+
+.skill-bar {
+  background: var(--gradient-gold);
+  box-shadow: 0 0 10px rgba(212, 175, 55, 0.5);
+}
+
+/* Form Styles */
+.form-input {
+  background: rgba(255, 255, 255, 0.05);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  border-radius: 0.5rem;
+  padding: 1rem;
+  color: #ffffff;
+  font-size: 1rem;
+  transition: all 0.3s ease;
+}
+
+.form-input:focus {
+  outline: none;
+  border-color: var(--gold);
+  box-shadow: 0 0 0 3px rgba(212, 175, 55, 0.2);
+  background: rgba(255, 255, 255, 0.08);
+}
+
+.form-input::placeholder {
+  color: rgba(255, 255, 255, 0.5);
+}
+
+/* Status Messages */
+.status-message {
+  padding: 1rem;
+  border-radius: 0.5rem;
+  font-weight: 500;
+  text-align: center;
+}
+
+.status-success {
+  background: rgba(34, 197, 94, 0.2);
+  border: 1px solid rgba(34, 197, 94, 0.3);
+  color: #22c55e;
+}
+
+.status-error {
+  background: rgba(239, 68, 68, 0.2);
+  border: 1px solid rgba(239, 68, 68, 0.3);
+  color: #ef4444;
+}
+
+/* Gallery Styles */
+.gallery-row {
+  overflow: hidden;
+  margin: 2rem 0;
+}
+
+.gallery-item {
+  flex-shrink: 0;
+  width: 300px;
+  height: 200px;
+  margin-right: 1.5rem;
+  border-radius: 1rem;
+  overflow: hidden;
+  cursor: pointer;
+  transition: transform 0.3s ease;
+}
+
+.gallery-item:hover {
+  transform: scale(1.05);
+}
+
+/* Testimonial Cards */
+.testimonial-card {
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+/* Animation Classes */
+.animate-glow {
+  animation: glow 2s ease-in-out infinite alternate;
+}
+
+@keyframes glow {
+  from {
+    text-shadow: 0 0 20px rgba(212, 175, 55, 0.5);
+  }
+  to {
+    text-shadow: 0 0 30px rgba(212, 175, 55, 0.8);
+  }
+}
+
+.animate-bounce {
+  animation: bounce 1s infinite;
+}
+
+@keyframes bounce {
+  0%, 20%, 53%, 80%, 100% {
+    transform: translate3d(0, 0, 0);
+  }
+  40%, 43% {
+    transform: translate3d(0, -8px, 0);
+  }
+  70% {
+    transform: translate3d(0, -4px, 0);
+  }
+  90% {
+    transform: translate3d(0, -2px, 0);
+  }
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+  .hero-bg {
+    padding: 0 1rem;
+  }
+  
+  .moon-container {
+    display: none;
+  }
+  
+  .card-container {
+    height: auto;
+  }
+  
+  .card-front,
+  .card-back {
+    position: relative;
+    transform: none !important;
+    backface-visibility: visible;
+  }
+  
+  .card-back {
+    display: none;
+  }
+}
+
+@media (max-width: 640px) {
+  .text-5xl {
+    font-size: 2.5rem;
+  }
+  
+  .text-4xl {
+    font-size: 2rem;
+  }
+  
+  .text-3xl {
+    font-size: 1.5rem;
+  }
+  
+  .px-10 {
+    padding-left: 1.5rem;
+    padding-right: 1.5rem;
+  }
+  
+  .py-5 {
+    padding-top: 1rem;
+    padding-bottom: 1rem;
+  }
+}
+
+/* Utility Classes */
+.bg-gold {
+  background-color: var(--gold);
+}
+
+.bg-moon-silver {
+  background-color: var(--moon-silver);
+}
+
+.border-gold {
+  border-color: var(--gold);
+}
+
+.border-moon-silver {
+  border-color: var(--moon-silver);
+}
+
+/* Loading Animation */
+.loading-spinner {
+  width: 20px;
+  height: 20px;
+  border: 2px solid transparent;
+  border-top: 2px solid currentColor;
+  border-radius: 50%;
+  animation: spin 1s linear infinite;
+}
+
+@keyframes spin {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}
+
+/* Gradient Text */
+.gradient-text {
+  background: var(--gradient-gold);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+/* Custom Shadows */
+.shadow-gold {
+  box-shadow: 0 10px 25px rgba(212, 175, 55, 0.3);
+}
+
+.shadow-moon {
+  box-shadow: 0 10px 25px rgba(192, 192, 200, 0.3);
+}
+
+/* Smooth Transitions */
+.transition-all {
+  transition: all 0.3s ease;
+}
+
+.transition-colors {
+  transition: color 0.3s ease, background-color 0.3s ease, border-color 0.3s ease;
+}
+
+.transition-transform {
+  transition: transform 0.3s ease;
+}
+
+/* Focus States */
+.focus-gold:focus {
+  outline: none;
+  box-shadow: 0 0 0 3px rgba(212, 175, 55, 0.3);
+}
+
+/* Hover States */
+.hover-scale:hover {
+  transform: scale(1.05);
+}
+
+.hover-glow:hover {
+  box-shadow: 0 0 30px rgba(212, 175, 55, 0.5);
+}
+
+/* Print Styles */
+@media print {
+  .hero-bg::before,
+  .particle-container,
+  .moon-container {
+    display: none;
+  }
+  
+  .glass-morphism {
+    background: rgba(255, 255, 255, 0.9);
+    color: #000;
+  }
+}
+
+/* High Contrast Mode */
+@media (prefers-contrast: high) {
+  .glass-morphism {
+    background: rgba(0, 0, 0, 0.8);
+    border: 2px solid #ffffff;
+  }
+  
+  .text-gold {
+    color: #ffff00;
+  }
+}
+
+/* Reduced Motion */
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+  
+  .particle-container,
+  .moon-container {
+    display: none;
+  }
+}
