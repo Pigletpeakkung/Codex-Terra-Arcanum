@@ -1,0 +1,517 @@
+/**
+ * =============================================================================
+ * GSAP ENHANCED ANIMATIONS
+ * Advanced CSS animations optimized for GSAP
+ * =============================================================================
+ */
+
+/* Particle System */
+.particle-container {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+  z-index: 1;
+}
+
+.cosmic-particle {
+  position: absolute;
+  border-radius: 50%;
+  background: radial-gradient(circle, var(--color-gold), transparent);
+  filter: blur(0.5px);
+  animation: cosmicFloat 15s ease-in-out infinite;
+}
+
+@keyframes cosmicFloat {
+  0%, 100% { 
+    transform: translateY(0px) rotate(0deg);
+    opacity: 0.3;
+  }
+  25% { 
+    transform: translateY(-20px) rotate(90deg);
+    opacity: 0.8;
+  }
+  50% { 
+    transform: translateY(-10px) rotate(180deg);
+    opacity: 0.5;
+  }
+  75% { 
+    transform: translateY(-30px) rotate(270deg);
+    opacity: 0.9;
+  }
+}
+
+/* Enhanced Moon Animation */
+.moon-container {
+  position: relative;
+  width: 120px;
+  height: 120px;
+}
+
+.animated-moon {
+  position: relative;
+  width: 80px;
+  height: 80px;
+  background: radial-gradient(circle at 30% 30%, #FFF, var(--color-gold), #B8860B);
+  border-radius: 50%;
+  box-shadow: 
+    0 0 30px rgba(212, 175, 55, 0.6),
+    inset -10px -10px 20px rgba(0, 0, 0, 0.2);
+  overflow: hidden;
+  animation: moonRotate 20s linear infinite;
+}
+
+.moon-crater {
+  position: absolute;
+  background: rgba(0, 0, 0, 0.1);
+  border-radius: 50%;
+}
+
+.crater-1 {
+  width: 12px;
+  height: 12px;
+  top: 20%;
+  left: 25%;
+}
+
+.crater-2 {
+  width: 8px;
+  height: 8px;
+  top: 60%;
+  right: 30%;
+}
+
+.crater-3 {
+  width: 6px;
+  height: 6px;
+  bottom: 25%;
+  left: 45%;
+}
+
+.moon-stars {
+  position: absolute;
+  width: 200px;
+  height: 200px;
+  top: -60px;
+  left: -60px;
+  pointer-events: none;
+}
+
+.star {
+  position: absolute;
+  width: 3px;
+  height: 3px;
+  background: var(--color-gold);
+  border-radius: 50%;
+  box-shadow: 0 0 10px rgba(212, 175, 55, 0.8);
+  animation: starTwinkle 3s ease-in-out infinite alternate;
+}
+
+.star::before {
+  content: '';
+  position: absolute;
+  top: -1px;
+  left: -1px;
+  width: 5px;
+  height: 5px;
+  background: radial-gradient(circle, rgba(212, 175, 55, 0.8), transparent);
+  border-radius: 50%;
+}
+
+.orbiting-moon {
+  position: absolute;
+  width: 200px;
+  height: 200px;
+  top: -60px;
+  left: -60px;
+  pointer-events: none;
+  animation: moonOrbit 15s linear infinite;
+}
+
+.orbiting-moon-element {
+  position: absolute;
+  width: 15px;
+  height: 15px;
+  background: radial-gradient(circle, var(--color-moon-silver), #8A8A8A);
+  border-radius: 50%;
+  top: 0;
+  left: 50%;
+  transform: translateX(-50%);
+  box-shadow: 0 0 15px rgba(192, 192, 200, 0.5);
+}
+
+@keyframes moonRotate {
+  from { transform: rotate(0deg); }
+  to { transform: rotate(360deg); }
+}
+
+@keyframes moonOrbit {
+  from { transform: rotate(0deg); }
+  to { transform: rotate(360deg); }
+}
+
+@keyframes starTwinkle {
+  0% { 
+    opacity: 0.3;
+    transform: scale(0.8);
+  }
+  100% { 
+    opacity: 1;
+    transform: scale(1.2);
+  }
+}
+
+/* Floating Elements */
+.floating-element {
+  animation: floatingMotion 8s ease-in-out infinite;
+  filter: blur(1px);
+  opacity: 0.7;
+}
+
+@keyframes floatingMotion {
+  0%, 100% {
+    transform: translateY(0px) translateX(0px) rotate(0deg);
+  }
+  25% {
+    transform: translateY(-20px) translateX(10px) rotate(90deg);
+  }
+  50% {
+    transform: translateY(-10px) translateX(-10px) rotate(180deg);
+  }
+  75% {
+    transform: translateY(-30px) translateX(5px) rotate(270deg);
+  }
+}
+
+/* Text Animations */
+.animate-text {
+  opacity: 0;
+  transform: translateY(50px);
+}
+
+.animate-text.animate-in {
+  opacity: 1;
+  transform: translateY(0);
+  transition: all var(--duration-normal) var(--ease-cosmic);
+}
+
+/* Typing Animation */
+.typing-text {
+  position: relative;
+}
+
+.typing-cursor {
+  display: inline-block;
+  width: 2px;
+  height: 1em;
+  background: var(--color-gold);
+  margin-left: 2px;
+  animation: typingBlink 1s infinite;
+}
+
+@keyframes typingBlink {
+  0%, 50% { opacity: 1; }
+  51%, 100% { opacity: 0; }
+}
+
+/* Loading Animations */
+.loading-spinner {
+  width: 40px;
+  height: 40px;
+  border: 4px solid rgba(212, 175, 55, 0.3);
+  border-top: 4px solid var(--color-gold);
+  border-radius: 50%;
+  animation: spin 1s linear infinite;
+}
+
+@keyframes spin {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}
+
+/* Pulse Animation */
+.pulse-gold {
+  animation: pulseGold 2s ease-in-out infinite;
+}
+
+@keyframes pulseGold {
+  0%, 100% {
+    box-shadow: 0 0 0 0 rgba(212, 175, 55, 0.7);
+  }
+  50% {
+    box-shadow: 0 0 0 20px rgba(212, 175, 55, 0);
+  }
+}
+
+/* Glow Effect */
+.glow-effect {
+  animation: glowPulse 3s ease-in-out infinite alternate;
+}
+
+@keyframes glowPulse {
+  from {
+    filter: drop-shadow(0 0 5px rgba(212, 175, 55, 0.5));
+  }
+  to {
+    filter: drop-shadow(0 0 20px rgba(212, 175, 55, 0.9));
+  }
+}
+
+/* Slide Animations */
+.slide-in-left {
+  animation: slideInLeft var(--duration-normal) var(--ease-cosmic);
+}
+
+.slide-in-right {
+  animation: slideInRight var(--duration-normal) var(--ease-cosmic);
+}
+
+.slide-in-up {
+  animation: slideInUp var(--duration-normal) var(--ease-cosmic);
+}
+
+.slide-in-down {
+  animation: slideInDown var(--duration-normal) var(--ease-cosmic);
+}
+
+@keyframes slideInLeft {
+  from {
+    opacity: 0;
+    transform: translateX(-100px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+@keyframes slideInRight {
+  from {
+    opacity: 0;
+    transform: translateX(100px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+@keyframes slideInUp {
+  from {
+    opacity: 0;
+    transform: translateY(100px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes slideInDown {
+  from {
+    opacity: 0;
+    transform: translateY(-100px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Scale Animations */
+.scale-in {
+  animation: scaleIn var(--duration-normal) var(--ease-bounce);
+}
+
+.scale-out {
+  animation: scaleOut var(--duration-fast) var(--ease-smooth);
+}
+
+@keyframes scaleIn {
+  from {
+    opacity: 0;
+    transform: scale(0.8);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+@keyframes scaleOut {
+  from {
+    opacity: 1;
+    transform: scale(1);
+  }
+  to {
+    opacity: 0;
+    transform: scale(0.8);
+  }
+}
+
+/* Fade Animations */
+.fade-in {
+  animation: fadeIn var(--duration-normal) var(--ease-smooth);
+}
+
+.fade-out {
+  animation: fadeOut var(--duration-fast) var(--ease-smooth);
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+@keyframes fadeOut {
+  from { opacity: 1; }
+  to { opacity: 0; }
+}
+
+/* Bounce Animations */
+.bounce-in {
+  animation: bounceIn var(--duration-normal) var(--ease-bounce);
+}
+
+@keyframes bounceIn {
+  0% {
+    opacity: 0;
+    transform: scale(0.3);
+  }
+  50% {
+    opacity: 1;
+    transform: scale(1.05);
+  }
+  70% {
+    transform: scale(0.9);
+  }
+  100% {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+/* Elastic Animations */
+.elastic-in {
+  animation: elasticIn var(--duration-slow) var(--ease-elastic);
+}
+
+@keyframes elasticIn {
+  0% {
+    opacity: 0;
+    transform: scale(0);
+  }
+  55% {
+    opacity: 1;
+    transform: scale(1.1);
+  }
+  75% {
+    transform: scale(0.95);
+  }
+  100% {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+/* Notification Animations */
+.notification-enter {
+  animation: notificationEnter 0.6s var(--ease-bounce);
+}
+
+.notification-exit {
+  animation: notificationExit 0.4s var(--ease-smooth);
+}
+
+@keyframes notificationEnter {
+  from {
+    opacity: 0;
+    transform: translateY(100px) scale(0.8);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+}
+
+@keyframes notificationExit {
+  from {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+  to {
+    opacity: 0;
+    transform: translateY(100px) scale(0.8);
+  }
+}
+
+/* Stagger Animation Classes */
+.stagger-children > * {
+  opacity: 0;
+  transform: translateY(30px);
+}
+
+.stagger-children.animate-in > * {
+  opacity: 1;
+  transform: translateY(0);
+  transition: all var(--duration-normal) var(--ease-cosmic);
+}
+
+.stagger-children.animate-in > *:nth-child(1) { transition-delay: 0.1s; }
+.stagger-children.animate-in > *:nth-child(2) { transition-delay: 0.2s; }
+.stagger-children.animate-in > *:nth-child(3) { transition-delay: 0.3s; }
+.stagger-children.animate-in > *:nth-child(4) { transition-delay: 0.4s; }
+.stagger-children.animate-in > *:nth-child(5) { transition-delay: 0.5s; }
+.stagger-children.animate-in > *:nth-child(6) { transition-delay: 0.6s; }
+
+/* Hover Effects */
+.hover-lift {
+  transition: transform var(--duration-fast) var(--ease-smooth);
+}
+
+.hover-lift:hover {
+  transform: translateY(-10px);
+}
+
+.hover-glow {
+  transition: all var(--duration-fast) var(--ease-smooth);
+}
+
+.hover-glow:hover {
+  box-shadow: 0 0 30px rgba(212, 175, 55, 0.4);
+  transform: scale(1.02);
+}
+
+.hover-rotate {
+  transition: transform var(--duration-fast) var(--ease-smooth);
+}
+
+.hover-rotate:hover {
+  transform: rotate(5deg);
+}
+
+/* Performance Optimizations */
+.animate-gpu {
+  transform: translateZ(0);
+  backface-visibility: hidden;
+  perspective: 1000px;
+}
+
+/* Reduced Motion Support */
+@media (prefers-reduced-motion: reduce) {
+  .cosmic-particle,
+  .floating-element,
+  .animated-moon,
+  .orbiting-moon,
+  .star {
+    animation: none !important;
+  }
+  
+  .hover-lift:hover,
+  .hover-glow:hover,
+  .hover-rotate:hover {
+    transform: none !important;
+  }
+}
