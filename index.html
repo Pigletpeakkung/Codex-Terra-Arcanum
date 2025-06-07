@@ -1,27 +1,98 @@
-l<!DOCTYPE html>
-<html lang="en" class="scroll-smooth">
+<!DOCTYPE html>
+<html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="Thanatsitt Santisamranwilai - Cultural Navigator bridging ancient wisdom with modern technology. Expert in AI development, cultural design, and cross-cultural innovation.">
-    <meta name="keywords" content="Cultural Navigator, AI Development, Cross-cultural Design, Innovation, Technology, Thai Culture, Japanese Culture, British Culture">
+    <title>Thanatsitt Santisamranwilai - Cultural Bridge Builder & Digital Innovator</title>
+    
+    <!-- Meta Tags for SEO -->
+    <meta name="description" content="Interdisciplinary creator blending Eastern heritage with Western innovation across AI, fashion, and cultural consulting.">
+    <meta name="keywords" content="Cultural Consulting, AI Development, Fashion Design, Voice Acting, Thai Creator, Digital Innovation, Sustainable Fashion, Technology">
     <meta name="author" content="Thanatsitt Santisamranwilai">
     <meta name="robots" content="index, follow">
     
-    <!-- Open Graph / Facebook -->
+    <!-- Open Graph Meta Tags -->
+    <meta property="og:title" content="Thanatsitt Santisamranwilai - Cultural Bridge Builder & Digital Innovator">
+    <meta property="og:description" content="Interdisciplinary creator blending Eastern heritage with Western innovation across AI, fashion, and cultural consulting.">
+    <meta property="og:image" content="https://pigletpeakkung.github.io/Codex-Terra-Arcanum/og-image.jpg">
+    <meta property="og:url" content="https://pigletpeakkung.github.io/Codex-Terra-Arcanum">
     <meta property="og:type" content="website">
-    <meta property="og:url" content="https://thanatsitt.com/">
-    <meta property="og:title" content="Thanatsitt Santisamranwilai - Cultural Navigator">
-    <meta property="og:description" content="Bridging ancient wisdom with modern technology through innovative AI development and cross-cultural design.">
-    <meta property="og:image" content="https://thanatsitt.com/assets/og-image.jpg">
     <meta property="og:site_name" content="Thanatsitt Portfolio">
     
-    <!-- Twitter -->
-    <meta property="twitter:card" content="summary_large_image">
-    <meta property="twitter:url" content="https://thanatsitt.com/">
-    <meta property="twitter:title" content="Thanatsitt Santisamranwilai - Cultural Navigator">
-    <meta property="twitter:description" content="Bridging ancient wisdom with modern technology through innovative AI development and cross-cultural design.">
-    <meta property="twitter:image" content="https://thanatsitt.com/assets/twitter-card.jpg">
+    <!-- Twitter Card Meta Tags -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="Thanatsitt Santisamranwilai - Cultural Bridge Builder">
+    <meta name="twitter:description" content="Interdisciplinary creator blending Eastern heritage with Western innovation across AI, fashion, and culture.">
+    <meta name="twitter:image" content="https://pigletpeakkung.github.io/Codex-Terra-Arcanum/twitter-image.jpg">
+    
+    <!-- Favicon -->
+    <link rel="icon" type="image/x-icon" href="/favicon.ico">
+    <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+    <link rel="manifest" href="/manifest.json">
+    
+    <!-- Preload Critical Resources -->
+    <link rel="preload" href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" as="style">
+    <link rel="preload" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" as="style">
+    
+    <!-- GSAP Scripts - Load First for Animations -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/TextPlugin.min.js"></script>
+    
+    <!-- External Stylesheets -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+    
+    <!-- Configuration -->
+    <script src="config.js"></script>
+    
+    <!-- Tailwind Configuration -->
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: {
+                        'sans': ['Inter', 'system-ui', 'sans-serif'],
+                    },
+                    colors: {
+                        'gold': '#D4AF37',
+                        'deep-purple': '#1A1A2E',
+                        'moon-silver': '#C0C0C8',
+                        'cosmic-blue': '#16213E',
+                        'stellar-purple': '#0F3460',
+                    },
+                    animation: {
+                        'gradient': 'gradient 15s ease infinite',
+                        'float': 'float 6s ease-in-out infinite',
+                        'glow': 'glow 2s ease-in-out infinite alternate',
+                        'pulse-slow': 'pulse 3s cubic-bezier(0.4, 0, 0.6, 1) infinite',
+                        'bounce-slow': 'bounce 3s infinite',
+                        'spin-slow': 'spin 8s linear infinite',
+                        'wiggle': 'wiggle 1s ease-in-out infinite',
+                        'slide-left': 'slideLeft 20s linear infinite',
+                        'slide-right': 'slideRight 25s linear infinite',
+                        'zoom-in': 'zoomIn 0.5s ease-out',
+                        'moon-phases': 'moonPhases 8s ease-in-out infinite',
+                        'moon-orbit': 'moonOrbit 20s linear infinite',
+                        'moon-glow': 'moonGlow 4s ease-in-out infinite alternate',
+                        'stars-twinkle': 'starsTwinkle 3s ease-in-out infinite alternate',
+                    },
+                    backgroundImage: {
+                        'cosmic-gradient': 'linear-gradient(135deg, #667eea 0%, #764ba2 100%)',
+                        'stellar-gradient': 'linear-gradient(135deg, #f093fb 0%, #f5576c 100%)',
+                        'aurora-gradient': 'linear-gradient(135deg, #4facfe 0%, #00f2fe 100%)',
+                    }
+                }
+            }
+        }
+    </script>
+    
+    <!-- Custom Styles -->
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/gsap-animations.css">
     
     <!-- Structured Data -->
     <script type="application/ld+json">
@@ -29,1470 +100,908 @@ l<!DOCTYPE html>
         "@context": "https://schema.org",
         "@type": "Person",
         "name": "Thanatsitt Santisamranwilai",
-        "jobTitle": "Cultural Navigator & AI Developer",
-        "description": "Expert in bridging ancient wisdom with modern technology through innovative AI development and cross-cultural design",
-        "url": "https://thanatsitt.com",
+        "jobTitle": "Cultural Bridge Builder & Digital Innovator",
+        "description": "Interdisciplinary creator blending Eastern heritage with Western innovation across AI, fashion, and cultural consulting.",
+        "url": "https://pigletpeakkung.github.io/Codex-Terra-Arcanum",
         "sameAs": [
             "https://linkedin.com/in/thanatsitt",
             "https://github.com/thanatsitt",
-            "https://twitter.com/thanatsitt"
+            "https://instagram.com/thanatsitt"
         ],
-        "knowsAbout": ["AI Development", "Cultural Design", "Cross-cultural Innovation", "Technology Integration"],
-        "nationality": ["Thai", "British"],
-        "alumniOf": "University Name",
-        "workLocation": {
-            "@type": "Place",
-            "name": "Global"
-        }
+        "knowsAbout": ["AI Development", "Fashion Design", "Cultural Consulting", "Voice Acting", "Web Development"],
+        "nationality": ["Thai"],
+        "alumniOf": "London College of Fashion"
     }
     </script>
-    
-    <title>Thanatsitt Santisamranwilai - Cultural Navigator | AI Development & Cross-Cultural Innovation</title>
-    
-    <!-- Preconnect to external domains -->
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link rel="preconnect" href="https://cdnjs.cloudflare.com">
-    
-    <!-- DNS prefetch for performance -->
-    <link rel="dns-prefetch" href="//www.google-analytics.com">
-    <link rel="dns-prefetch" href="//fonts.googleapis.com">
-    
-    <!-- Preload critical resources -->
-    <link rel="preload" href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Playfair+Display:wght@400;500;600;700&display=swap" as="style">
-    <link rel="preload" href="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js" as="script">
-    
-    <!-- Fonts -->
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Playfair+Display:wght@400;500;600;700&display=swap" rel="stylesheet">
-    
-    <!-- Icons -->
-    <link rel="icon" type="image/x-icon" href="/favicon.ico">
-    <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
-    <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
-    <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
-    <link rel="manifest" href="/manifest.json">
-    
-    <!-- PWA -->
-    <meta name="theme-color" content="#D4AF37">
-    <meta name="apple-mobile-web-app-capable" content="yes">
-    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
-    <meta name="apple-mobile-web-app-title" content="Thanatsitt">
-    
-    <!-- Tailwind CSS -->
-    <script src="https://cdn.tailwindcss.com"></script>
-    <script>
-        tailwind.config = {
-            theme: {
-                extend: {
-                    fontFamily: {
-                        'sans': ['Inter', 'sans-serif'],
-                        'serif': ['Playfair Display', 'serif'],
-                    },
-                    colors: {
-                        'primary': '#D4AF37',
-                        'secondary': '#16213E',
-                        'accent': '#E94560',
-                        'dark': '#1A1A2E',
-                        'light': '#F5F5F5',
-                    },
-                    animation: {
-                        'float': 'float 6s ease-in-out infinite',
-                        'pulse-slow': 'pulse 4s cubic-bezier(0.4, 0, 0.6, 1) infinite',
-                        'bounce-slow': 'bounce 3s infinite',
-                        'fade-in': 'fadeIn 0.5s ease-in-out',
-                        'slide-up': 'slideUp 0.6s ease-out',
-                        'scale-in': 'scaleIn 0.4s ease-out',
-                    },
-                    keyframes: {
-                        float: {
-                            '0%, 100%': { transform: 'translateY(0px)' },
-                            '50%': { transform: 'translateY(-20px)' },
-                        },
-                        fadeIn: {
-                            '0%': { opacity: '0' },
-                            '100%': { opacity: '1' },
-                        },
-                        slideUp: {
-                            '0%': { transform: 'translateY(30px)', opacity: '0' },
-                            '100%': { transform: 'translateY(0)', opacity: '1' },
-                        },
-                        scaleIn: {
-                            '0%': { transform: 'scale(0.9)', opacity: '0' },
-                            '100%': { transform: 'scale(1)', opacity: '1' },
-                        },
-                    },
-                    backdropBlur: {
-                        xs: '2px',
-                    }
-                }
-            }
-        }
-    </script>
-    
-    <!-- Alpine.js -->
-    <script defer src="https://unpkg.com/alpinejs@3.x.x/dist/cdn.min.js"></script>
-    
-    <!-- GSAP -->
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/TextPlugin.min.js"></script>
-    
-    <!-- Custom Styles -->
-    <style>
-        /* Custom scrollbar */
-        ::-webkit-scrollbar {
-            width: 8px;
-        }
-        
-        ::-webkit-scrollbar-track {
-            background: #1A1A2E;
-        }
-        
-        ::-webkit-scrollbar-thumb {
-            background: linear-gradient(45deg, #D4AF37, #E94560);
-            border-radius: 4px;
-        }
-        
-        ::-webkit-scrollbar-thumb:hover {
-            background: linear-gradient(45deg, #E94560, #D4AF37);
-        }
-        
-        /* Smooth scrolling for all browsers */
-        html {
-            scroll-behavior: smooth;
-        }
-        
-        /* Custom gradient backgrounds */
-        .gradient-primary {
-            background: linear-gradient(135deg, #D4AF37 0%, #E94560 100%);
-        }
-        
-        .gradient-secondary {
-            background: linear-gradient(135deg, #16213E 0%, #1A1A2E 100%);
-        }
-        
-        .gradient-text {
-            background: linear-gradient(135deg, #D4AF37 0%, #E94560 100%);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            background-clip: text;
-        }
-        
-        /* Glass morphism effect */
-        .glass {
-            background: rgba(255, 255, 255, 0.1);
-            backdrop-filter: blur(10px);
-            border: 1px solid rgba(255, 255, 255, 0.2);
-        }
-        
-        .glass-dark {
-            background: rgba(26, 26, 46, 0.8);
-            backdrop-filter: blur(10px);
-            border: 1px solid rgba(212, 175, 55, 0.2);
-        }
-        
-        /* Cultural pattern overlay */
-        .pattern-overlay {
-            background-image: 
-                radial-gradient(circle at 25% 25%, rgba(212, 175, 55, 0.1) 0%, transparent 50%),
-                radial-gradient(circle at 75% 75%, rgba(233, 69, 96, 0.1) 0%, transparent 50%);
-        }
-        
-        /* Hover effects */
-        .hover-lift {
-            transition: transform 0.3s ease, box-shadow 0.3s ease;
-        }
-        
-        .hover-lift:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3);
-        }
-        
-        /* Loading animation */
-        .loading-dots::after {
-            content: '';
-            animation: dots 2s infinite;
-        }
-        
-        @keyframes dots {
-            0%, 20% { content: ''; }
-            40% { content: '.'; }
-            60% { content: '..'; }
-            80%, 100% { content: '...'; }
-        }
-        
-        /* Focus styles for accessibility */
-        .focus-visible:focus {
-            outline: 2px solid #D4AF37;
-            outline-offset: 2px;
-        }
-        
-        /* Reduced motion support */
-        @media (prefers-reduced-motion: reduce) {
-            *, *::before, *::after {
-                animation-duration: 0.01ms !important;
-                animation-iteration-count: 1 !important;
-                transition-duration: 0.01ms !important;
-            }
-        }
-        
-        /* Print styles */
-        @media print {
-            .no-print {
-                display: none !important;
-            }
-        }
-        
-        /* High contrast mode support */
-        @media (prefers-contrast: high) {
-            .gradient-text {
-                -webkit-text-fill-color: #D4AF37;
-                color: #D4AF37;
-            }
-        }
-    </style>
 </head>
 
-<body class="bg-dark text-white font-sans antialiased" x-data="portfolioApp()" x-init="init()">
-    <!-- Skip to main content for accessibility -->
-    <a href="#main-content" class="sr-only focus:not-sr-only focus:absolute focus:top-4 focus:left-4 bg-primary text-dark px-4 py-2 rounded-md z-50">
-        Skip to main content
-    </a>
+<body class="hero-bg text-white min-h-screen custom-scrollbar overflow-x-hidden" x-data="portfolioApp()">
+    <!-- Service Worker Registration -->
+    <script>
+        if ('serviceWorker' in navigator) {
+            window.addEventListener('load', () => {
+                navigator.serviceWorker.register('/sw.js')
+                    .then(registration => console.log('✅ SW registered:', registration.scope))
+                    .catch(error => console.log('❌ SW registration failed:', error));
+            });
+        }
+    </script>
 
-    <!-- Loading Screen -->
-    <div x-show="loading" 
-         x-transition:leave="transition ease-in duration-300"
-         x-transition:leave-start="opacity-100"
-         x-transition:leave-end="opacity-0"
-         class="fixed inset-0 bg-dark z-50 flex items-center justify-center"
-         aria-hidden="true">
-        <div class="text-center">
-            <div class="w-16 h-16 border-4 border-primary border-t-transparent rounded-full animate-spin mx-auto mb-4"></div>
-            <p class="text-primary font-medium">Loading<span class="loading-dots"></span></p>
+    <!-- Enhanced Particle Background System -->
+    <div class="particle-container fixed inset-0 overflow-hidden pointer-events-none z-0">
+        <!-- GSAP will populate this with cosmic particles -->
+    </div>
+
+    <!-- Enhanced Moon Animation System -->
+    <div class="fixed top-20 right-20 z-10 hidden lg:block">
+        <div class="moon-container relative">
+            <!-- Main Animated Moon -->
+            <div class="animated-moon relative">
+                <div class="moon-crater crater-1"></div>
+                <div class="moon-crater crater-2"></div>
+                <div class="moon-crater crater-3"></div>
+            </div>
+            
+            <!-- Orbiting Moon -->
+            <div class="orbiting-moon">
+                <div class="orbiting-moon-element"></div>
+            </div>
+            
+            <!-- Twinkling Stars Around Moon -->
+            <div class="moon-stars">
+                <div class="star" style="top: 10%; left: 20%;"></div>
+                <div class="star" style="top: 15%; right: 15%;"></div>
+                <div class="star" style="top: 30%; left: 10%;"></div>
+                <div class="star" style="bottom: 20%; right: 25%;"></div>
+                <div class="star" style="bottom: 15%; left: 25%;"></div>
+                <div class="star" style="top: 50%; right: 5%;"></div>
+                <div class="star" style="top: 70%; left: 40%;"></div>
+                <div class="star" style="bottom: 40%; right: 10%;"></div>
+            </div>
         </div>
     </div>
 
-    <!-- Navigation -->
-    <nav class="fixed top-0 left-0 right-0 z-40 transition-all duration-300"
-         :class="scrolled ? 'glass-dark shadow-lg' : 'bg-transparent'"
-         role="navigation"
-         aria-label="Main navigation">
+    <!-- Enhanced Navigation -->
+    <nav class="fixed top-0 left-0 right-0 z-50 transition-all duration-300" 
+         :class="scrolled ? 'nav-scrolled' : 'nav-transparent'">
         <div class="container mx-auto px-6 py-4">
             <div class="flex items-center justify-between">
                 <!-- Logo -->
-                <a href="#home" 
-                   class="text-2xl font-serif font-bold gradient-text hover:scale-105 transition-transform duration-300 focus-visible"
-                   aria-label="Thanatsitt Santisamranwilai - Home">
-                    Thanatsitt
-                </a>
+                <div class="flex items-center space-x-3">
+                    <div class="w-10 h-10 rounded-full bg-gradient-to-r from-gold to-yellow-400 flex items-center justify-center">
+                        <span class="text-deep-purple font-bold text-lg">T</span>
+                    </div>
+                    <span class="text-xl font-bold bg-gradient-to-r from-gold to-yellow-400 bg-clip-text text-transparent">
+                        Thanatsitt
+                    </span>
+                </div>
 
                 <!-- Desktop Navigation -->
                 <div class="hidden md:flex items-center space-x-8">
-                    <template x-for="item in navigation" :key="item.id">
-                        <a :href="'#' + item.id" 
-                           class="relative py-2 px-1 text-sm font-medium transition-colors duration-300 hover:text-primary focus-visible"
-                           :class="activeSection === item.id ? 'text-primary' : 'text-gray-300'"
-                           @click="trackEvent('navigation_click', { section: item.id })"
-                           x-text="item.label"></a>
-                    </template>
+                    <a href="#home" @click="scrollToSection('home')" 
+                       class="nav-link" :class="currentSection === 'home' ? 'nav-active' : ''">
+                        <i class="fas fa-home mr-2"></i>Home
+                    </a>
+                    <a href="#about" @click="scrollToSection('about')" 
+                       class="nav-link" :class="currentSection === 'about' ? 'nav-active' : ''">
+                        <i class="fas fa-user mr-2"></i>About
+                    </a>
+                    <a href="#skills" @click="scrollToSection('skills')" 
+                       class="nav-link" :class="currentSection === 'skills' ? 'nav-active' : ''">
+                        <i class="fas fa-cogs mr-2"></i>Skills
+                    </a>
+                    <a href="#portfolio" @click="scrollToSection('portfolio')" 
+                       class="nav-link" :class="currentSection === 'portfolio' ? 'nav-active' : ''">
+                        <i class="fas fa-briefcase mr-2"></i>Portfolio
+                    </a>
+                    <a href="#gallery" @click="scrollToSection('gallery')" 
+                       class="nav-link" :class="currentSection === 'gallery' ? 'nav-active' : ''">
+                        <i class="fas fa-images mr-2"></i>Gallery
+                    </a>
+                    <a href="#testimonials" @click="scrollToSection('testimonials')" 
+                       class="nav-link" :class="currentSection === 'testimonials' ? 'nav-active' : ''">
+                        <i class="fas fa-star mr-2"></i>Testimonials
+                    </a>
+                    <a href="#contact" @click="scrollToSection('contact')" 
+                       class="nav-link" :class="currentSection === 'contact' ? 'nav-active' : ''">
+                        <i class="fas fa-envelope mr-2"></i>Contact
+                    </a>
                 </div>
 
                 <!-- Mobile Menu Button -->
-                <button @click="mobileMenuOpen = !mobileMenuOpen"
-                        class="md:hidden p-2 rounded-md hover:bg-white/10 transition-colors duration-300 focus-visible"
-                        :aria-expanded="mobileMenuOpen"
-                        aria-label="Toggle mobile menu">
-                    <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                        <path x-show="!mobileMenuOpen" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"></path>
-                        <path x-show="mobileMenuOpen" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path>
-                    </svg>
+                <button @click="mobileMenuOpen = !mobileMenuOpen" 
+                        class="md:hidden text-white hover:text-gold transition-colors">
+                    <i class="fas fa-bars text-xl"></i>
                 </button>
             </div>
 
             <!-- Mobile Navigation -->
             <div x-show="mobileMenuOpen" 
-                 x-transition:enter="transition ease-out duration-200"
+                 x-transition:enter="transition ease-out duration-300"
                  x-transition:enter-start="opacity-0 transform -translate-y-2"
                  x-transition:enter-end="opacity-100 transform translate-y-0"
-                 x-transition:leave="transition ease-in duration-150"
+                 x-transition:leave="transition ease-in duration-200"
                  x-transition:leave-start="opacity-100 transform translate-y-0"
                  x-transition:leave-end="opacity-0 transform -translate-y-2"
-                 class="md:hidden mt-4 py-4 border-t border-white/10"
-                 @click.away="mobileMenuOpen = false">
-                <template x-for="item in navigation" :key="item.id">
-                    <a :href="'#' + item.id" 
-                       class="block py-3 px-1 text-base font-medium transition-colors duration-300 hover:text-primary focus-visible"
-                       :class="activeSection === item.id ? 'text-primary' : 'text-gray-300'"
-                       @click="mobileMenuOpen = false; trackEvent('mobile_navigation_click', { section: item.id })"
-                       x-text="item.label"></a>
-                </template>
+                 class="md:hidden mt-4 glass-morphism rounded-lg p-4">
+                <div class="flex flex-col space-y-3">
+                    <a href="#home" @click="scrollToSection('home')" class="mobile-nav-link">
+                        <i class="fas fa-home mr-3"></i>Home
+                    </a>
+                    <a href="#about" @click="scrollToSection('about')" class="mobile-nav-link">
+                        <i class="fas fa-user mr-3"></i>About
+                    </a>
+                    <a href="#skills" @click="scrollToSection('skills')" class="mobile-nav-link">
+                        <i class="fas fa-cogs mr-3"></i>Skills
+                    </a>
+                    <a href="#portfolio" @click="scrollToSection('portfolio')" class="mobile-nav-link">
+                        <i class="fas fa-briefcase mr-3"></i>Portfolio
+                    </a>
+                    <a href="#gallery" @click="scrollToSection('gallery')" class="mobile-nav-link">
+                        <i class="fas fa-images mr-3"></i>Gallery
+                    </a>
+                    <a href="#testimonials" @click="scrollToSection('testimonials')" class="mobile-nav-link">
+                        <i class="fas fa-star mr-3"></i>Testimonials
+                    </a>
+                    <a href="#contact" @click="scrollToSection('contact')" class="mobile-nav-link">
+                        <i class="fas fa-envelope mr-3"></i>Contact
+                    </a>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Enhanced Hero Section -->
+    <section id="home" class="min-h-screen flex items-center justify-center relative overflow-hidden">
+        <div class="container mx-auto px-6 text-center relative z-10">
+            <div class="max-w-4xl mx-auto">
+                <!-- Hero Greeting -->
+                <div class="hero-greeting mb-6">
+                    <p class="text-lg md:text-xl text-gold font-medium">
+                        <i class="fas fa-star mr-2"></i>
+                        Welcome to my digital universe
+                    </p>
+                </div>
+
+                <!-- Hero Title -->
+                <div class="hero-title mb-8">
+                    <h1 class="text-4xl md:text-6xl lg:text-7xl font-bold mb-4">
+                        I'm <span class="typing-text bg-gradient-to-r from-gold to-yellow-400 bg-clip-text text-transparent"></span>
+                        <span class="animate-pulse">|</span>
+                    </h1>
+                </div>
+
+                <!-- Hero Subtitle -->
+                <div class="hero-subtitle mb-12">
+                    <p class="text-xl md:text-2xl text-gray-300 max-w-3xl mx-auto leading-relaxed">
+                        Thai-British Cultural Bridge Builder & Digital Innovator
+                        <br>
+                        <span class="text-gold">Blending Eastern Heritage with Western Innovation</span>
+                    </p>
+                </div>
+
+                <!-- Hero Buttons -->
+                <div class="hero-buttons flex flex-col sm:flex-row gap-4 justify-center mb-12">
+                    <button @click="scrollToSection('portfolio')" 
+                            class="btn-cosmic px-8 py-4 rounded-full font-semibold text-lg transition-all duration-300 hover:scale-105">
+                        <i class="fas fa-briefcase mr-2"></i>
+                        Explore My Work
+                    </button>
+                    <button @click="scrollToSection('contact')" 
+                            class="px-8 py-4 rounded-full border-2 border-gold text-gold font-semibold text-lg hover:bg-gold hover:text-deep-purple transition-all duration-300 hover:scale-105">
+                        <i class="fas fa-envelope mr-2"></i>
+                        Get In Touch
+                    </button>
+                </div>
+
+                <!-- Hero Social Links -->
+                <div class="hero-social flex justify-center space-x-6">
+                    <a href="https://linkedin.com/in/thanatsitt" target="_blank" 
+                       class="social-icon text-2xl hover:text-gold transition-all duration-300 hover:scale-125">
+                        <i class="fab fa-linkedin"></i>
+                    </a>
+                    <a href="https://github.com/thanatsitt" target="_blank" 
+                       class="social-icon text-2xl hover:text-gold transition-all duration-300 hover:scale-125">
+                        <i class="fab fa-github"></i>
+                    </a>
+                    <a href="https://instagram.com/thanatsitt" target="_blank" 
+                       class="social-icon text-2xl hover:text-gold transition-all duration-300 hover:scale-125">
+                        <i class="fab fa-instagram"></i>
+                    </a>
+                    <a href="mailto:thanattsitt.info@yahoo.co.uk" 
+                       class="social-icon text-2xl hover:text-gold transition-all duration-300 hover:scale-125">
+                        <i class="fas fa-envelope"></i>
+                    </a>
+                    <a href="https://pegearts.com" target="_blank" 
+                       class="social-icon text-2xl hover:text-gold transition-all duration-300 hover:scale-125">
+                        <i class="fas fa-globe"></i>
+                    </a>
+                </div>
             </div>
         </div>
 
-        <!-- Progress Bar -->
-        <div class="absolute bottom-0 left-0 h-1 bg-gradient-to-r from-primary to-accent transition-all duration-300"
-             :style="`width: ${scrollProgress}%`"
-             role="progressbar"
-             :aria-valuenow="scrollProgress"
-             aria-valuemin="0"
-             aria-valuemax="100"
-             aria-label="Page scroll progress"></div>
-    </nav>
+        <!-- Floating Elements -->
+        <div class="absolute inset-0 pointer-events-none">
+            <div class="floating-element absolute top-1/4 left-1/4 w-4 h-4 bg-gold rounded-full opacity-60"></div>
+            <div class="floating-element absolute top-1/3 right-1/4 w-3 h-3 bg-moon-silver rounded-full opacity-40"></div>
+            <div class="floating-element absolute bottom-1/4 left-1/3 w-5 h-5 bg-gold rounded-full opacity-50"></div>
+            <div class="floating-element absolute bottom-1/3 right-1/3 w-2 h-2 bg-moon-silver rounded-full opacity-70"></div>
+        </div>
 
-    <!-- Main Content -->
-    <main id="main-content">
-        <!-- Hero Section -->
-        <section id="home" class="min-h-screen flex items-center justify-center relative overflow-hidden pattern-overlay">
-            <!-- Background Elements -->
-            <div class="absolute inset-0 opacity-20">
-                <div class="absolute top-20 left-10 w-32 h-32 bg-primary/20 rounded-full blur-xl animate-float"></div>
-                <div class="absolute bottom-20 right-10 w-48 h-48 bg-accent/20 rounded-full blur-xl animate-float" style="animation-delay: -2s;"></div>
-                <div class="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-64 h-64 bg-secondary/20 rounded-full blur-2xl animate-pulse-slow"></div>
+        <!-- Scroll Indicator -->
+        <div class="absolute bottom-8 left-1/2 transform -translate-x-1/2 animate-bounce">
+            <div class="w-6 h-10 border-2 border-gold rounded-full flex justify-center">
+                <div class="w-1 h-3 bg-gold rounded-full mt-2 animate-pulse"></div>
+            </div>
+        </div>
+    </section>
+
+    <!-- About Section -->
+    <section id="about" class="py-20 relative">
+        <div class="container mx-auto px-6">
+            <div class="text-center mb-16">
+                <h2 class="text-4xl md:text-5xl font-bold mb-6 animate-text">
+                    About <span class="text-gold">Me</span>
+                </h2>
+                <p class="text-xl text-gray-300 max-w-3xl mx-auto animate-text">
+                    Bridging cultures through technology, creativity, and innovation
+                </p>
             </div>
 
-            <div class="container mx-auto px-6 text-center relative z-10">
-                <!-- Cultural Greetings -->
-                <div class="mb-8 space-y-2 opacity-0" data-gsap="fade-up">
-                    <p class="text-lg text-gray-300">
-                        <span class="inline-block mx-2">สวัสดี</span>
-                        <span class="text-primary">•</span>
-                        <span class="inline-block mx-2">Hello</span>
-                        <span class="text-primary">•</span>
-                        <span class="inline-block mx-2">こんにちは</span>
-                    </p>
-                    <p class="text-sm text-gray-400">
-                        (sa-wat-dee) • (hel-lo) • (kon-ni-chi-wa)
-                    </p>
-                </div>
-
-                <!-- Main Heading -->
-                <h1 class="text-5xl md:text-7xl font-serif font-bold mb-6 opacity-0" data-gsap="fade-up" data-delay="0.2">
-                    <span class="block">Thanatsitt</span>
-                    <span class="block gradient-text">Santisamranwilai</span>
-                </h1>
-
-                <!-- Subtitle -->
-                <div class="text-xl md:text-2xl text-gray-300 mb-8 opacity-0" data-gsap="fade-up" data-delay="0.4">
-                    <span id="typewriter-text"></span>
-                    <span class="animate-pulse">|</span>
-                </div>
-
-                <!-- Cultural Bridge Visualization -->
-                <div class="flex items-center justify-center space-x-4 mb-12 opacity-0" data-gsap="fade-up" data-delay="0.6">
-                    <!-- Thai Culture -->
-                    <div class="flex flex-col items-center group">
-                        <div class="w-16 h-16 bg-gradient-to-br from-red-500 to-yellow-500 rounded-full flex items-center justify-center mb-2 group-hover:scale-110 transition-transform duration-300">
-                            <span class="text-2xl">🏛️</span>
+            <div class="grid lg:grid-cols-2 gap-12 items-center">
+                <!-- Profile Image -->
+                <div class="relative">
+                    <div class="glass-morphism p-8 rounded-2xl">
+                        <div class="relative">
+                            <img src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=500&h=500&fit=crop&crop=face" 
+                                 alt="Thanatsitt Santisamranwilai" 
+                                 class="w-full h-96 object-cover rounded-xl shadow-2xl">
+                            <div class="absolute inset-0 bg-gradient-to-t from-deep-purple/50 to-transparent rounded-xl"></div>
                         </div>
-                        <span class="text-xs text-gray-400">Thai</span>
-                    </div>
-
-                    <!-- Bridge -->
-                    <div class="flex-1 max-w-xs">
-                        <div class="h-1 bg-gradient-to-r from-red-500 via-primary to-blue-500 rounded-full relative">
-                            <div class="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-8 h-8 bg-primary rounded-full flex items-center justify-center">
-                                <span class="text-xs">∞</span>
-                            </div>
-                        </div>
-                    </div>
-
-                    <!-- Japanese Culture -->
-                    <div class="flex flex-col items-center group">
-                        <div class="w-16 h-16 bg-gradient-to-br from-red-600 to-white rounded-full flex items-center justify-center mb-2 group-hover:scale-110 transition-transform duration-300">
-                            <span class="text-2xl">⛩️</span>
-                        </div>
-                        <span class="text-xs text-gray-400">Japanese</span>
-                    </div>
-
-                    <!-- Bridge -->
-                    <div class="flex-1 max-w-xs">
-                        <div class="h-1 bg-gradient-to-r from-blue-500 via-primary to-blue-800 rounded-full relative">
-                            <div class="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-8 h-8 bg-primary rounded-full flex items-center justify-center">
-                                <span class="text-xs">∞</span>
-                            </div>
-                        </div>
-                    </div>
-
-                    <!-- British Culture -->
-                    <div class="flex flex-col items-center group">
-                        <div class="w-16 h-16 bg-gradient-to-br from-blue-800 to-red-600 rounded-full flex items-center justify-center mb-2 group-hover:scale-110 transition-transform duration-300">
-                            <span class="text-2xl">🏰</span>
-                        </div>
-                        <span class="text-xs text-gray-400">British</span>
                     </div>
                 </div>
 
-                <!-- CTA Buttons -->
-                <div class="flex flex-col sm:flex-row items-center justify-center space-y-4 sm:space-y-0 sm:space-x-6 opacity-0" data-gsap="fade-up" data-delay="0.8">
-                    <a href="#portfolio" 
-                       class="px-8 py-4 bg-gradient-to-r from-primary to-accent text-dark font-semibold rounded-full hover:shadow-lg hover:scale-105 transition-all duration-300 focus-visible">
-                        Explore My Work
-                    </a>
-                    <a href="#contact" 
-                       class="px-8 py-4 border-2 border-primary text-primary hover:bg-primary hover:text-dark font-semibold rounded-full transition-all duration-300 focus-visible">
-                        Let's Connect
-                    </a>
-                </div>
-
-                <!-- Scroll Indicator -->
-                <div class="absolute bottom-8 left-1/2 transform -translate-x-1/2 opacity-0" data-gsap="fade-up" data-delay="1">
-                    <div class="flex flex-col items-center space-y-2 animate-bounce-slow">
-                        <span class="text-sm text-gray-400">Scroll to explore</span>
-                        <svg class="w-6 h-6 text-primary" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 14l-7 7m0 0l-7-7m7 7V3"></path>
-                        </svg>
-                    </div>
-                </div>
-            </div>
-        </section>
-
-        <!-- About Section -->
-        <section id="about" class="py-20 bg-secondary/50">
-            <div class="container mx-auto px-6">
-                <div class="max-w-4xl mx-auto">
-                    <!-- Section Header -->
-                    <div class="text-center mb-16">
-                        <h2 class="text-4xl md:text-5xl font-serif font-bold mb-6 gradient-text opacity-0" data-gsap="fade-up">
-                            Cultural Navigator
-                        </h2>
-                        <p class="text-xl text-gray-300 opacity-0" data-gsap="fade-up" data-delay="0.2">
-                            Bridging ancient wisdom with modern technology
+                <!-- About Content -->
+                <div class="glass-morphism p-8 rounded-2xl">
+                    <h3 class="text-2xl font-bold mb-6 text-gold">Cultural Bridge Builder & Digital Innovator</h3>
+                    
+                    <div class="space-y-4 text-gray-300 leading-relaxed">
+                        <p>
+                            As a Thai-British creator, I specialize in bridging the gap between Eastern heritage and Western innovation. 
+                            My interdisciplinary approach spans AI development, sustainable fashion design, cultural consulting, and voice acting.
+                        </p>
+                        
+                        <p>
+                            With a deep understanding of both Thai and British cultures, I help organizations navigate cross-cultural 
+                            challenges while creating innovative solutions that respect and celebrate diversity.
+                        </p>
+                        
+                        <p>
+                            My work in AI focuses on developing culturally-aware systems that preserve nuance and context in 
+                            cross-cultural communications, while my fashion designs celebrate traditional Thai craftsmanship 
+                            through contemporary sustainable practices.
                         </p>
                     </div>
 
-                    <!-- About Content -->
-                    <div class="grid md:grid-cols-2 gap-12 items-center">
-                        <!-- Profile Image -->
-                        <div class="relative opacity-0" data-gsap="fade-right">
-                            <div class="relative z-10">
-                                <img src="/assets/thanatsitt-profile.jpg" 
-                                     alt="Thanatsitt Santisamranwilai - Cultural Navigator"
-                                     class="w-full max-w-md mx-auto rounded-2xl shadow-2xl hover-lift"
-                                     loading="lazy">
+                    <!-- Key Stats -->
+                    <div class="grid grid-cols-2 gap-6 mt-8">
+                        <div class="text-center">
+                            <div class="text-3xl font-bold text-gold mb-2">50+</div>
+                            <div class="text-sm text-gray-400">Projects Completed</div>
+                        </div>
+                        <div class="text-center">
+                            <div class="text-3xl font-bold text-gold mb-2">15+</div>
+                            <div class="text-sm text-gray-400">Happy Clients</div>
+                        </div>
+                        <div class="text-center">
+                            <div class="text-3xl font-bold text-gold mb-2">5+</div>
+                            <div class="text-sm text-gray-400">Years Experience</div>
+                        </div>
+                        <div class="text-center">
+                            <div class="text-3xl font-bold text-gold mb-2">3</div>
+                            <div class="text-sm text-gray-400">Countries</div>
+                        </div>
+                    </div>
+
+                    <!-- Download CV Button -->
+                    <div class="mt-8">
+                        <button @click="downloadResume()" 
+                                class="btn-cosmic px-6 py-3 rounded-full font-semibold transition-all duration-300 hover:scale-105">
+                            <i class="fas fa-download mr-2"></i>
+                            Download Resume
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Skills Section -->
+    <section id="skills" class="py-20 relative">
+        <div class="container mx-auto px-6">
+            <div class="text-center mb-16">
+                <h2 class="text-4xl md:text-5xl font-bold mb-6 animate-text">
+                    My <span class="text-gold">Skills</span>
+                </h2>
+                <p class="text-xl text-gray-300 max-w-3xl mx-auto animate-text">
+                    A diverse skill set spanning technology, creativity, and cultural expertise
+                </p>
+            </div>
+
+            <div class="grid lg:grid-cols-2 gap-12">
+                <!-- Technical Skills -->
+                <div class="glass-morphism p-8 rounded-2xl">
+                    <h3 class="text-2xl font-bold mb-8 text-gold flex items-center">
+                        <i class="fas fa-code mr-3"></i>
+                        Technical Skills
+                    </h3>
+                    
+                    <div class="space-y-6">
+                        <div class="skill-item">
+                            <div class="flex justify-between mb-2">
+                                <span class="font-medium">AI & Machine Learning</span>
+                                <span class="text-gold">95%</span>
                             </div>
-                            <!-- Decorative Elements -->
-                            <div class="absolute -top-4 -left-4 w-24 h-24 bg-primary/20 rounded-full blur-xl"></div>
-                            <div class="absolute -bottom-4 -right-4 w-32 h-32 bg-accent/20 rounded-full blur-xl"></div>
+                            <div class="skill-bar-container">
+                                <div class="skill-bar" data-percentage="95%"></div>
+                            </div>
                         </div>
 
-                        <!-- About Text -->
-                        <div class="space-y-6 opacity-0" data-gsap="fade-left">
-                            <div class="prose prose-lg prose-invert">
-                                <p class="text-gray-300 leading-relaxed">
-                                    As a <strong class="text-primary">Cultural Navigator</strong>, I bridge the gap between ancient wisdom and cutting-edge technology. My unique multicultural background—spanning Thai heritage, Japanese influences, and British education—provides me with a distinctive perspective on global innovation.
-                                </p>
-                                
-                                <p class="text-gray-300 leading-relaxed">
-                                    I specialize in <strong class="text-accent">AI development</strong> and <strong class="text-accent">cross-cultural design</strong>, creating solutions that honor traditional values while embracing technological advancement. My work focuses on making technology more inclusive, culturally sensitive, and globally accessible.
-                                </p>
-                                
-                                <p class="text-gray-300 leading-relaxed">
-                                    Through my journey across cultures, I've learned that the most powerful innovations emerge when we combine diverse perspectives with modern capabilities. I'm passionate about creating technology that serves humanity while respecting our rich cultural heritage.
-                                </p>
+                        <div class="skill-item">
+                            <div class="flex justify-between mb-2">
+                                <span class="font-medium">Python Development</span>
+                                <span class="text-gold">90%</span>
                             </div>
+                            <div class="skill-bar-container">
+                                <div class="skill-bar" data-percentage="90%"></div>
+                            </div>
+                        </div>
 
-                            <!-- Skills Highlights -->
-                            <div class="grid grid-cols-2 gap-4 mt-8">
-                                <div class="text-center p-4 glass rounded-lg hover-lift">
-                                    <div class="text-2xl mb-2">🤖</div>
-                                    <h3 class="font-semibold text-primary">AI Development</h3>
-                                    <p class="text-sm text-gray-400">Machine Learning & Neural Networks</p>
-                                </div>
-                                <div class="text-center p-4 glass rounded-lg hover-lift">
-                                    <div class="text-2xl mb-2">🌏</div>
-                                    <h3 class="font-semibold text-primary">Cultural Design</h3>
-                                    <p class="text-sm text-gray-400">Cross-Cultural User Experience</p>
-                                </div>
-                                <div class="text-center p-4 glass rounded-lg hover-lift">
-                                    <div class="text-2xl mb-2">🔗</div>
-                                    <h3 class="font-semibold text-primary">Innovation Bridge</h3>
-                                    <p class="text-sm text-gray-400">Tradition Meets Technology</p>
-                                </div>
-                                <div class="text-center p-4 glass rounded-lg hover-lift">
-                                    <div class="text-2xl mb-2">🎯</div>
-                                    <h3 class="font-semibold text-primary">Global Impact</h3>
-                                    <p class="text-sm text-gray-400">Inclusive Technology Solutions</p>
-                                </div>
+                        <div class="skill-item">
+                            <div class="flex justify-between mb-2">
+                                <span class="font-medium">Web Development</span>
+                                <span class="text-gold">85%</span>
+                            </div>
+                            <div class="skill-bar-container">
+                                <div class="skill-bar" data-percentage="85%"></div>
+                            </div>
+                        </div>
+
+                        <div class="skill-item">
+                            <div class="flex justify-between mb-2">
+                                <span class="font-medium">Data Analysis</span>
+                                <span class="text-gold">88%</span>
+                            </div>
+                            <div class="skill-bar-container">
+                                <div class="skill-bar" data-percentage="88%"></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Creative Skills -->
+                <div class="glass-morphism p-8 rounded-2xl">
+                    <h3 class="text-2xl font-bold mb-8 text-gold flex items-center">
+                        <i class="fas fa-palette mr-3"></i>
+                        Creative Skills
+                    </h3>
+                    
+                    <div class="space-y-6">
+                        <div class="skill-item">
+                            <div class="flex justify-between mb-2">
+                                <span class="font-medium">Fashion Design</span>
+                                <span class="text-gold">92%</span>
+                            </div>
+                            <div class="skill-bar-container">
+                                <div class="skill-bar" data-percentage="92%"></div>
+                            </div>
+                        </div>
+
+                        <div class="skill-item">
+                            <div class="flex justify-between mb-2">
+                                <span class="font-medium">Voice Acting</span>
+                                <span class="text-gold">88%</span>
+                            </div>
+                            <div class="skill-bar-container">
+                                <div class="skill-bar" data-percentage="88%"></div>
+                            </div>
+                        </div>
+
+                        <div class="skill-item">
+                            <div class="flex justify-between mb-2">
+                                <span class="font-medium">Cultural Consulting</span>
+                                <span class="text-gold">96%</span>
+                            </div>
+                            <div class="skill-bar-container">
+                                <div class="skill-bar" data-percentage="96%"></div>
+                            </div>
+                        </div>
+
+                        <div class="skill-item">
+                            <div class="flex justify-between mb-2">
+                                <span class="font-medium">UI/UX Design</span>
+                                <span class="text-gold">82%</span>
+                            </div>
+                            <div class="skill-bar-container">
+                                <div class="skill-bar" data-percentage="82%"></div>
                             </div>
                         </div>
                     </div>
                 </div>
             </div>
-        </section>
 
-        <!-- Portfolio Section -->
-        <section id="portfolio" class="py-20">
-            <div class="container mx-auto px-6">
-                <!-- Section Header -->
-                <div class="text-center mb-16">
-                    <h2 class="text-4xl md:text-5xl font-serif font-bold mb-6 gradient-text opacity-0" data-gsap="fade-up">
-                        Featured Work
-                    </h2>
-                    <p class="text-xl text-gray-300 opacity-0" data-gsap="fade-up" data-delay="0.2">
-                        Innovations at the intersection of culture and technology
-                    </p>
-                </div>
-
-                <!-- Portfolio Grid -->
-                <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
-                    <template x-for="(project, index) in portfolioItems" :key="project.id">
-                        <div class="group cursor-pointer opacity-0" 
-                             data-gsap="fade-up" 
-                             :data-delay="(index * 0.1).toString()"
-                             @click="openPortfolioModal(project)">
-                            <div class="relative overflow-hidden rounded-2xl bg-secondary/30 hover-lift">
-                                <!-- Project Image -->
-                                <div class="aspect-video bg-gradient-to-br from-primary/20 to-accent/20 relative overflow-hidden">
-                                    <img :src="project.image" 
-                                         :alt="project.title"
-                                         class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500"
-                                         loading="lazy">
-                                    <div class="absolute inset-0 bg-dark/40 group-hover:bg-dark/20 transition-colors duration-300"></div>
-                                    
-                                    <!-- Overlay Content -->
-                                    <div class="absolute inset-0 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-300">
-                                        <div class="text-center">
-                                            <div class="w-16 h-16 bg-primary rounded-full flex items-center justify-center mx-auto mb-4">
-                                                <svg class="w-8 h-8 text-dark" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"></path>
-                                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z"></path>
-                                                </svg>
-                                            </div>
-                                            <p class="text-white font-medium">View Details</p>
-                                        </div>
-                                    </div>
-                                </div>
-
-                                <!-- Project Info -->
-                                <div class="p-6">
-                                    <div class="flex items-center space-x-2 mb-3">
-                                        <template x-for="tag in project.tags.slice(0, 2)" :key="tag">
-                                            <span class="px-3 py-1 bg-primary/20 text-primary text-xs font-medium rounded-full" x-text="tag"></span>
-                                        </template>
-                                    </div>
-                                    <h3 class="text-xl font-semibold mb-2 group-hover:text-primary transition-colors duration-300" x-text="project.title"></h3>
-                                    <p class="text-gray-400 text-sm line-clamp-2" x-text="project.description"></p>
-                                </div>
-                            </div>
+            <!-- Language Skills -->
+            <div class="mt-12 glass-morphism p-8 rounded-2xl">
+                <h3 class="text-2xl font-bold mb-8 text-gold flex items-center">
+                    <i class="fas fa-language mr-3"></i>
+                    Languages
+                </h3>
+                
+                <div class="grid md:grid-cols-3 gap-8">
+                    <div class="text-center">
+                        <div class="w-20 h-20 mx-auto mb-4 rounded-full bg-gradient-to-r from-gold to-yellow-400 flex items-center justify-center">
+                            <span class="text-2xl font-bold text-deep-purple">EN</span>
                         </div>
-                    </template>
-                </div>
-
-                <!-- View All Projects Button -->
-                <div class="text-center mt-12 opacity-0" data-gsap="fade-up" data-delay="0.6">
-                    <button @click="showAllProjects = !showAllProjects"
-                            class="px-8 py-4 border-2 border-primary text-primary hover:bg-primary hover:text-dark font-semibold rounded-full transition-all duration-300 focus-visible">
-                        <span x-text="showAllProjects ? 'Show Less' : 'View All Projects'"></span>
-                    </button>
-                </div>
-            </div>
-        </section>
-
-        <!-- Gallery Section -->
-        <section id="gallery" class="py-20 bg-secondary/30">
-            <div class="container mx-auto px-6">
-                <!-- Section Header -->
-                <div class="text-center mb-16">
-                    <h2 class="text-4xl md:text-5xl font-serif font-bold mb-6 gradient-text opacity-0" data-gsap="fade-up">
-                        Cultural Journey
-                    </h2>
-                    <p class="text-xl text-gray-300 opacity-0" data-gsap="fade-up" data-delay="0.2">
-                        Moments that shaped my multicultural perspective
-                    </p>
-                </div>
-
-                <!-- Gallery Grid -->
-                <div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
-                    <template x-for="(image, index) in galleryImages" :key="index">
-                        <div class="relative group cursor-pointer opacity-0" 
-                             data-gsap="fade-up" 
-                             :data-delay="(index * 0.05).toString()"
-                             @click="openGalleryModal(index)">
-                            <div class="aspect-square bg-gradient-to-br from-primary/20 to-accent/20 rounded-lg overflow-hidden hover-lift">
-                                <img :src="image.src" 
-                                     :alt="image.alt"
-                                     class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500"
-                                     loading="lazy">
-                                <div class="absolute inset-0 bg-dark/40 group-hover:bg-dark/20 transition-colors duration-300"></div>
-                                
-                                <!-- Overlay -->
-                                <div class="absolute inset-0 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-300">
-                                    <div class="w-12 h-12 bg-primary rounded-full flex items-center justify-center">
-                                        <svg class="w-6 h-6 text-dark" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0zM10 7v3m0 0v3m0-3h3m-3 0H7"></path>
-                                        </svg>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </template>
-                </div>
-            </div>
-        </section>
-
-        <!-- Contact Section -->
-        <section id="contact" class="py-20">
-            <div class="container mx-auto px-6">
-                <div class="max-w-4xl mx-auto">
-                    <!-- Section Header -->
-                    <div class="text-center mb-16">
-                        <h2 class="text-4xl md:text-5xl font-serif font-bold mb-6 gradient-text opacity-0" data-gsap="fade-up">
-                            Let's Create Together
-                        </h2>
-                        <p class="text-xl text-gray-300 opacity-0" data-gsap="fade-up" data-delay="0.2">
-                            Ready to bridge cultures through technology?
-                        </p>
+                        <h4 class="font-semibold mb-2">English</h4>
+                        <p class="text-gray-400">Native</p>
                     </div>
+                    
+                    <div class="text-center">
+                        <div class="w-20 h-20 mx-auto mb-4 rounded-full bg-gradient-to-r from-gold to-yellow-400 flex items-center justify-center">
+                            <span class="text-2xl font-bold text-deep-purple">TH</span>
+                        </div>
+                        <h4 class="font-semibold mb-2">Thai</h4>
+                        <p class="text-gray-400">Native</p>
+                    </div>
+                    
+                    <div class="text-center">
+                        <div class="w-20 h-20 mx-auto mb-4 rounded-full bg-gradient-to-r from-gold to-yellow-400 flex items-center justify-center">
+                            <span class="text-2xl font-bold text-deep-purple">JP</span>
+                        </div>
+                        <h4 class="font-semibold mb-2">Japanese</h4>
+                        <p class="text-gray-400">Conversational</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
 
-                    <div class="grid md:grid-cols-2 gap-12">
-                        <!-- Contact Form -->
-                        <div class="opacity-0" data-gsap="fade-right">
-                            <form @submit.prevent="submitForm" class="space-y-6">
-                                <div>
-                                    <label for="name" class="block text-sm font-medium text-gray-300 mb-2">Name *</label>
-                                    <input type="text" 
-                                           id="name" 
-                                           x-model="form.name"
-                                           required
-                                           class="w-full px-4 py-3 bg-secondary/50 border border-gray-600 rounded-lg focus:ring-2 focus:ring-primary focus:border-transparent transition-colors duration-300 text-white placeholder-gray-400"
-                                           placeholder="Your full name">
-                                </div>
+    <!-- Portfolio Section -->
+    <section id="portfolio" class="py-20 relative">
+        <div class="container mx-auto px-6">
+            <div class="text-center mb-16">
+                <h2 class="text-4xl md:text-5xl font-bold mb-6 animate-text">
+                    My <span class="text-gold">Portfolio</span>
+                </h2>
+                <p class="text-xl text-gray-300 max-w-3xl mx-auto animate-text">
+                    Showcasing innovative projects that bridge cultures and push boundaries
+                </p>
+            </div>
 
-                                <div>
-                                    <label for="email" class="block text-sm font-medium text-gray-300 mb-2">Email *</label>
-                                    <input type="email" 
-                                           id="email" 
-                                           x-model="form.email"
-                                           required
-                                           class="w-full px-4 py-3 bg-secondary/50 border border-gray-600 rounded-lg focus:ring-2 focus:ring-primary focus:border-transparent transition-colors duration-300 text-white placeholder-gray-400"
-                                           placeholder="your.email@example.com">
-                                </div>
+            <!-- Portfolio Filter -->
+            <div class="flex flex-wrap justify-center gap-4 mb-12">
+                <button @click="filterProjects('all')" 
+                        :class="portfolioFilter === 'all' ? 'bg-gold text-deep-purple' : 'bg-transparent border-gold text-gold'"
+                        class="px-6 py-2 rounded-full border-2 font-medium transition-all duration-300 hover:scale-105">
+                    All Projects
+                </button>
+                <button @click="filterProjects('ai')" 
+                        :class="portfolioFilter === 'ai' ? 'bg-gold text-deep-purple' : 'bg-transparent border-gold text-gold'"
+                        class="px-6 py-2 rounded-full border-2 font-medium transition-all duration-300 hover:scale-105">
+                    AI Development
+                </button>
+                <button @click="filterProjects('fashion')" 
+                        :class="portfolioFilter === 'fashion' ? 'bg-gold text-deep-purple' : 'bg-transparent border-gold text-gold'"
+                        class="px-6 py-2 rounded-full border-2 font-medium transition-all duration-300 hover:scale-105">
+                    Fashion Design
+                </button>
+                <button @click="filterProjects('consulting')" 
+                        :class="portfolioFilter === 'consulting' ? 'bg-gold text-deep-purple' : 'bg-transparent border-gold text-gold'"
+                        class="px-6 py-2 rounded-full border-2 font-medium transition-all duration-300 hover:scale-105">
+                    Cultural Consulting
+                </button>
+                <button @click="filterProjects('voice')" 
+                        :class="portfolioFilter === 'voice' ? 'bg-gold text-deep-purple' : 'bg-transparent border-gold text-gold'"
+                        class="px-6 py-2 rounded-full border-2 font-medium transition-all duration-300 hover:scale-105">
+                    Voice Acting
+                </button>
+            </div>
 
-                                <div>
-                                    <label for="subject" class="block text-sm font-medium text-gray-300 mb-2">Subject</label>
-                                    <input type="text" 
-                                           id="subject" 
-                                           x-model="form.subject"
-                                           class="w-full px-4 py-3 bg-secondary/50 border border-gray-600 rounded-lg focus:ring-2 focus:ring-primary focus:border-transparent transition-colors duration-300 text-white placeholder-gray-400"
-                                           placeholder="What would you like to discuss?">
-                                </div>
-
-                                <div>
-                                    <label for="message" class="block text-sm font-medium text-gray-300 mb-2">Message *</label>
-                                    <textarea id="message" 
-                                              x-model="form.message"
-                                              required
-                                              rows="5"
-                                              class="w-full px-4 py-3 bg-secondary/50 border border-gray-600 rounded-lg focus:ring-2 focus:ring-primary focus:border-transparent transition-colors duration-300 text-white placeholder-gray-400 resize-none"
-                                              placeholder="Tell me about your project or idea..."></textarea>
-                                </div>
-
-                                <!-- Honeypot field for spam protection -->
-                                <input type="text" x-model="form.honeypot" class="hidden" tabindex="-1" autocomplete="off">
-
-                                <button type="submit" 
-                                        :disabled="formSubmitting"
-                                        class="w-full px-8 py-4 bg-gradient-to-r from-primary to-accent text-dark font-semibold rounded-lg hover:shadow-lg hover:scale-105 transition-all duration-300 disabled:opacity-50 disabled:cursor-not-allowed focus-visible">
-                                    <span x-show="!formSubmitting">Send Message</span>
-                                    <span x-show="formSubmitting" class="flex items-center justify-center">
-                                        <svg class="animate-spin -ml-1 mr-3 h-5 w-5 text-dark" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
-                                            <circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4"></circle>
-                                            <path class="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path>
-                                        </svg>
-                                        Sending...
-                                    </span>
+            <!-- Portfolio Grid -->
+            <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+                <template x-for="project in filteredProjects" :key="project.id">
+                    <div class="portfolio-item glass-morphism rounded-2xl overflow-hidden hover:scale-105 transition-all duration-300 cursor-pointer"
+                         @click="openProjectModal(project)">
+                        <div class="relative h-48 bg-gradient-to-br from-cosmic-blue to-stellar-purple">
+                            <div class="absolute inset-0 flex items-center justify-center">
+                                <i :class="project.icon" class="text-6xl text-gold"></i>
+                            </div>
+                            <div class="absolute top-4 right-4">
+                                <span :class="project.categoryColor" 
+                                      class="px-3 py-1 rounded-full text-xs font-medium" 
+                                      x-text="project.category"></span>
+                            </div>
+                        </div>
+                        
+                        <div class="p-6">
+                            <h3 class="text-xl font-bold mb-3" x-text="project.title"></h3>
+                            <p class="text-gray-300 text-sm mb-4 line-clamp-3" x-text="project.description"></p>
+                            
+                            <div class="flex items-center justify-between">
+                                <span class="text-gold font-medium" x-text="project.year"></span>
+                                <button class="text-gold hover:text-yellow-400 transition-colors">
+                                    <i class="fas fa-arrow-right"></i>
                                 </button>
-                            </form>
-
-                            <!-- Form Status Messages -->
-                            <div x-show="formStatus.show" 
-                                 x-transition
-                                 class="mt-4 p-4 rounded-lg"
-                                 :class="formStatus.type === 'success' ? 'bg-green-500/20 text-green-400 border border-green-500/30' : 'bg-red-500/20 text-red-400 border border-red-500/30'">
-                                <p x-text="formStatus.message"></p>
                             </div>
                         </div>
+                    </div>
+                </template>
+            </div>
+        </div>
+    </section>
 
-                        <!-- Contact Information -->
-                        <div class="opacity-0" data-gsap="fade-left">
-                            <div class="space-y-8">
-                                <!-- Contact Methods -->
+    <!-- Gallery Section -->
+    <section id="gallery" class="py-20 relative">
+        <div class="container mx-auto px-6">
+            <div class="text-center mb-16">
+                <h2 class="text-4xl md:text-5xl font-bold mb-6 animate-text">
+                    Creative <span class="text-gold">Gallery</span>
+                </h2>
+                <p class="text-xl text-gray-300 max-w-3xl mx-auto animate-text">
+                    A visual journey through my creative works and cultural projects
+                </p>
+            </div>
+
+            <div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
+                <!-- Gallery items will be populated by JavaScript -->
+                <template x-for="i in 12" :key="i">
+                    <div class="gallery-item relative group cursor-pointer overflow-hidden rounded-lg">
+                        <img :src="`https://images.unsplash.com/photo-${1500000000000 + i * 1000000}?w=400&h=400&fit=crop`" 
+                             :alt="`Gallery item ${i}`"
+                             class="w-full h-48 object-cover transition-transform duration-300 group-hover:scale-110">
+                        <div class="absolute inset-0 bg-gradient-to-t from-black/70 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+                            <div class="absolute bottom-4 left-4 right-4">
+                                <h4 class="text-white font-semibold mb-1">Creative Work</h4>
+                                <p class="text-gray-300 text-sm">Cultural Innovation</p>
+                            </div>
+                        </div>
+                    </div>
+                </template>
+            </div>
+        </div>
+    </section>
+
+    <!-- Testimonials Section -->
+    <section id="testimonials" class="py-20 relative">
+        <div class="container mx-auto px-6">
+            <div class="text-center mb-16">
+                <h2 class="text-4xl md:text-5xl font-bold mb-6 animate-text">
+                    Client <span class="text-gold">Testimonials</span>
+                </h2>
+                <p class="text-xl text-gray-300 max-w-3xl mx-auto animate-text">
+                    What clients say about working with me
+                </p>
+            </div>
+
+            <div class="testimonials-grid grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+                <template x-for="testimonial in testimonials" :key="testimonial.id">
+                    <div class="testimonial-item glass-morphism p-6 rounded-2xl">
+                        <div class="testimonial-stars flex mb-4">
+                            <template x-for="i in testimonial.rating" :key="i">
+                                <i class="fas fa-star text-gold"></i>
+                            </template>
+                        </div>
+                        
+                        <p class="text-gray-300 mb-6 italic" x-text="testimonial.content"></p>
+                        
+                        <div class="flex items-center">
+                            <img :src="testimonial.avatar" 
+                                 :alt="testimonial.name"
+                                 class="w-12 h-12 rounded-full object-cover mr-4">
+                            <div>
+                                <h4 class="font-semibold" x-text="testimonial.name"></h4>
+                                <p class="text-gold text-sm" x-text="testimonial.role"></p>
+                            </div>
+                        </div>
+                    </div>
+                </template>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section id="contact" class="py-20 relative">
+        <div class="container mx-auto px-6">
+            <div class="text-center mb-16">
+                <h2 class="text-4xl md:text-5xl font-bold mb-6 animate-text">
+                    Get In <span class="text-gold">Touch</span>
+                </h2>
+                <p class="text-xl text-gray-300 max-w-3xl mx-auto animate-text">
+                    Ready to bridge cultures and create something amazing together?
+                </p>
+            </div>
+
+            <div class="grid lg:grid-cols-2 gap-12">
+                <!-- Contact Form -->
+                <div class="contact-form glass-morphism p-8 rounded-2xl">
+                    <h3 class="text-2xl font-bold mb-6 text-gold">Send Me a Message</h3>
+                    
+                    <form @submit.prevent="submitContactForm()" class="space-y-6">
+                        <div class="grid md:grid-cols-2 gap-4">
+                            <div>
+                                <label class="block text-sm font-medium mb-2">Name *</label>
+                                <input type="text" 
+                                       x-model="contactForm.name"
+                                       class="form-input w-full px-4 py-3 rounded-lg bg-white/10 border border-white/20 text-white placeholder-gray-400 focus:outline-none focus:border-gold"
+                                       placeholder="Your Name"
+                                       required>
+                            </div>
+                            <div>
+                                <label class="block text-sm font-medium mb-2">Email *</label>
+                                <input type="email" 
+                                       x-model="contactForm.email"
+                                       class="form-input w-full px-4 py-3 rounded-lg bg-white/10 border border-white/20 text-white placeholder-gray-400 focus:outline-none focus:border-gold"
+                                       placeholder="your@email.com"
+                                       required>
+                            </div>
+                        </div>
+                        
+                        <div>
+                            <label class="block text-sm font-medium mb-2">Subject *</label>
+                            <input type="text" 
+                                   x-model="contactForm.subject"
+                                   class="form-input w-full px-4 py-3 rounded-lg bg-white/10 border border-white/20 text-white placeholder-gray-400 focus:outline-none focus:border-gold"
+                                   placeholder="Project Subject"
+                                   required>
+                        </div>
+                        
+                        <div>
+                            <label class="block text-sm font-medium mb-2">Message *</label>
+                            <textarea x-model="contactForm.message"
+                                      rows="5"
+                                      class="form-input w-full px-4 py-3 rounded-lg bg-white/10 border border-white/20 text-white placeholder-gray-400 focus:outline-none focus:border-gold resize-none"
+                                      placeholder="Tell me about your project..."
+                                      required></textarea>
+                        </div>
+                        
+                        <button type="submit" 
+                                :disabled="!isContactFormValid || contactForm.loading"
+                                class="contact-submit w-full py-4 rounded-lg font-semibold text-lg transition-all duration-300 hover:scale-105 disabled:opacity-50 disabled:cursor-not-allowed">
+                            <span x-show="!contactForm.loading">
+                                <i class="fas fa-paper-plane mr-2"></i>
+                                Send Message
+                            </span>
+                            <span x-show="contactForm.loading">
+                                <i class="fas fa-spinner fa-spin mr-2"></i>
+                                Sending...
+                            </span>
+                        </button>
+                    </form>
+                </div>
+
+                <!-- Contact Info -->
+                <div class="contact-info space-y-8">
+                    <div class="glass-morphism p-6 rounded-2xl">
+                        <h3 class="text-xl font-bold mb-4 text-gold">Contact Information</h3>
+                        
+                        <div class="space-y-4">
+                            <div class="flex items-center">
+                                <i class="fas fa-envelope text-gold mr-4 w-6"></i>
                                 <div>
-                                    <h3 class="text-2xl font-semibold mb-6 gradient-text">Get In Touch</h3>
-                                    <div class="space-y-4">
-                                        <a href="mailto:hello@thanatsitt.com" 
-                                           class="flex items-center space-x-4 p-4 glass rounded-lg hover-lift group">
-                                            <div class="w-12 h-12 bg-primary/20 rounded-lg flex items-center justify-center group-hover:bg-primary/30 transition-colors duration-300">
-                                                <svg class="w-6 h-6 text-primary" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 8l7.89 4.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"></path>
-                                                </svg>
-                                            </div>
-                                            <div>
-                                                <p class="font-medium">Email</p>
-                                                <p class="text-gray-400">hello@thanatsitt.com</p>
-                                            </div>
-                                        </a>
-
-                                        <a href="https://linkedin.com/in/thanatsitt" 
-                                           target="_blank"
-                                           rel="noopener noreferrer"
-                                           class="flex items-center space-x-4 p-4 glass rounded-lg hover-lift group">
-                                            <div class="w-12 h-12 bg-primary/20 rounded-lg flex items-center justify-center group-hover:bg-primary/30 transition-colors duration-300">
-                                                <svg class="w-6 h-6 text-primary" fill="currentColor" viewBox="0 0 24 24">
-                                                    <path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433c-1.144 0-2.063-.926-2.063-2.065 0-1.138.92-2.063 2.063-2.063 1.14 0 2.064.925 2.064 2.063 0 1.139-.925 2.065-2.064 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/>
-                                                </svg>
-                                            </div>
-                                            <div>
-                                                <p class="font-medium">LinkedIn</p>
-                                                <p class="text-gray-400">Professional Network</p>
-                                            </div>
-                                        </a>
-
-                                        <div class="flex items-center space-x-4 p-4 glass rounded-lg">
-                                            <div class="w-12 h-12 bg-primary/20 rounded-lg flex items-center justify-center">
-                                                <svg class="w-6 h-6 text-primary" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"></path>
-                                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"></path>
-                                                </svg>
-                                            </div>
-                                            <div>
-                                                <p class="font-medium">Location</p>
-                                                <p class="text-gray-400">Global • Remote</p>
-                                            </div>
-                                        </div>
-                                    </div>
+                                    <p class="font-medium">Email</p>
+                                    <a href="mailto:thanattsitt.info@yahoo.co.uk" 
+                                       class="text-gray-300 hover:text-gold transition-colors">
+                                        thanattsitt.info@yahoo.co.uk
+                                    </a>
                                 </div>
-
-                                <!-- Cultural Quote -->
-                                <div class="p-6 glass rounded-lg">
-                                    <blockquote class="text-center">
-                                        <p class="text-lg italic text-gray-300 mb-4">
-                                            "The best way to take care of the future is to take care of the present moment."
-                                        </p>
-                                        <footer class="text-primary font-medium">
-                                            — Thich Nhat Hanh
-                                        </footer>
-                                    </blockquote>
+                            </div>
+                            
+                            <div class="flex items-center">
+                                <i class="fas fa-map-marker-alt text-gold mr-4 w-6"></i>
+                                <div>
+                                    <p class="font-medium">Location</p>
+                                    <p class="text-gray-300">London, United Kingdom</p>
+                                </div>
+                            </div>
+                            
+                            <div class="flex items-center">
+                                <i class="fas fa-globe text-gold mr-4 w-6"></i>
+                                <div>
+                                    <p class="font-medium">Website</p>
+                                    <a href="https://pegearts.com" target="_blank"
+                                       class="text-gray-300 hover:text-gold transition-colors">
+                                        pegearts.com
+                                    </a>
                                 </div>
                             </div>
                         </div>
                     </div>
+
+                    <div class="glass-morphism p-6 rounded-2xl">
+                        <h3 class="text-xl font-bold mb-4 text-gold">Follow Me</h3>
+                        
+                        <div class="flex space-x-4">
+                            <a href="https://linkedin.com/in/thanatsitt" target="_blank"
+                               class="w-12 h-12 bg-gradient-to-r from-gold to-yellow-400 rounded-full flex items-center justify-center text-deep-purple hover:scale-110 transition-transform">
+                                <i class="fab fa-linkedin text-lg"></i>
+                            </a>
+                            <a href="https://github.com/thanatsitt" target="_blank"
+                               class="w-12 h-12 bg-gradient-to-r from-gold to-yellow-400 rounded-full flex items-center justify-center text-deep-purple hover:scale-110 transition-transform">
+                                <i class="fab fa-github text-lg"></i>
+                            </a>
+                            <a href="https://instagram.com/thanatsitt" target="_blank"
+                               class="w-12 h-12 bg-gradient-to-r from-gold to-yellow-400 rounded-full flex items-center justify-center text-deep-purple hover:scale-110 transition-transform">
+                                <i class="fab fa-instagram text-lg"></i>
+                            </a>
+                            <a href="mailto:thanattsitt.info@yahoo.co.uk"
+                               class="w-12 h-12 bg-gradient-to-r from-gold to-yellow-400 rounded-full flex items-center justify-center text-deep-purple hover:scale-110 transition-transform">
+                                <i class="fas fa-envelope text-lg"></i>
+                            </a>
+                        </div>
+                    </div>
+
+                    <div class="glass-morphism p-6 rounded-2xl">
+                        <h3 class="text-xl font-bold mb-4 text-gold">Quick Actions</h3>
+                        
+                        <div class="space-y-3">
+                            <button @click="downloadResume()" 
+                                    class="w-full py-3 bg-gradient-to-r from-gold to-yellow-400 text-deep-purple rounded-lg font-semibold hover:scale-105 transition-transform">
+                                <i class="fas fa-download mr-2"></i>
+                                Download Resume
+                            </button>
+                            <button @click="sharePortfolio()" 
+                                    class="w-full py-3 border-2 border-gold text-gold rounded-lg font-semibold hover:bg-gold hover:text-deep-purple transition-all">
+                                <i class="fas fa-share mr-2"></i>
+                                Share Portfolio
+                            </button>
+                        </div>
+                    </div>
                 </div>
             </div>
-        </section>
-    </main>
+        </div>
+    </section>
 
     <!-- Footer -->
-    <footer class="bg-secondary/80 py-12 border-t border-gray-800">
+    <footer class="py-12 border-t border-white/10">
         <div class="container mx-auto px-6">
-            <div class="grid md:grid-cols-3 gap-8">
-                <!-- Brand -->
-                <div>
-                    <h3 class="text-2xl font-serif font-bold gradient-text mb-4">Thanatsitt</h3>
-                    <p class="text-gray-400 mb-4">Cultural Navigator bridging ancient wisdom with modern technology.</p>
-                    <div class="flex space-x-4">
-                        <a href="https://linkedin.com/in/thanatsitt" 
-                           target="_blank"
-                           rel="noopener noreferrer"
-                           class="w-10 h-10 bg-primary/20 rounded-lg flex items-center justify-center hover:bg-primary/30 transition-colors duration-300 focus-visible"
-                           aria-label="LinkedIn Profile">
-                            <svg class="w-5 h-5 text-primary" fill="currentColor" viewBox="0 0 24 24">
-                                <path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433c-1.144 0-2.063-.926-2.063-2.065 0-1.138.92-2.063 2.063-2.063 1.14 0 2.064.925 2.064 2.063 0 1.139-.925 2.065-2.064 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/>
-                            </svg>
-                        </a>
-                        <a href="https://github.com/thanatsitt" 
-                           target="_blank"
-                           rel="noopener noreferrer"
-                           class="w-10 h-10 bg-primary/20 rounded-lg flex items-center justify-center hover:bg-primary/30 transition-colors duration-300 focus-visible"
-                           aria-label="GitHub Profile">
-                            <svg class="w-5 h-5 text-primary" fill="currentColor" viewBox="0 0 24 24">
-                                <path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z"/>
-                            </svg>
-                        </a>
-                        <a href="mailto:hello@thanatsitt.com" 
-                           class="w-10 h-10 bg-primary/20 rounded-lg flex items-center justify-center hover:bg-primary/30 transition-colors duration-300 focus-visible"
-                           aria-label="Email Contact">
-                            <svg class="w-5 h-5 text-primary" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 8l7.89 4.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"></path>
-                            </svg>
-                        </a>
+            <div class="text-center">
+                <div class="flex items-center justify-center space-x-3 mb-6">
+                    <div class="w-10 h-10 rounded-full bg-gradient-to-r from-gold to-yellow-400 flex items-center justify-center">
+                        <span class="text-deep-purple font-bold text-lg">T</span>
                     </div>
+                    <span class="text-xl font-bold bg-gradient-to-r from-gold to-yellow-400 bg-clip-text text-transparent">
+                        Thanatsitt Santisamranwilai
+                    </span>
                 </div>
-
-                <!-- Quick Links -->
-                <div>
-                    <h4 class="text-lg font-semibold mb-4 text-primary">Quick Links</h4>
-                    <ul class="space-y-2">
-                        <template x-for="item in navigation" :key="item.id">
-                            <li>
-                                <a :href="'#' + item.id" 
-                                   class="text-gray-400 hover:text-primary transition-colors duration-300 focus-visible"
-                                   x-text="item.label"></a>
-                            </li>
-                        </template>
-                    </ul>
-                </div>
-
-                <!-- Cultural Elements -->
-                <div>
-                    <h4 class="text-lg font-semibold mb-4 text-primary">Cultural Bridge</h4>
-                    <div class="space-y-2 text-gray-400">
-                        <p class="flex items-center space-x-2">
-                            <span>🇹🇭</span>
-                            <span>Thai Heritage</span>
-                        </p>
-                        <p class="flex items-center space-x-2">
-                            <span>🇯🇵</span>
-                            <span>Japanese Influence</span>
-                        </p>
-                        <p class="flex items-center space-x-2">
-                            <span>🇬🇧</span>
-                            <span>British Education</span>
-                        </p>
-                        <p class="flex items-center space-x-2">
-                            <span>🌍</span>
-                            <span>Global Perspective</span>
-                        </p>
-                    </div>
-                </div>
-            </div>
-
-            <!-- Copyright -->
-            <div class="border-t border-gray-800 mt-8 pt-8 text-center">
-                <p class="text-gray-400">
-                    © <span x-text="new Date().getFullYear()"></span> Thanatsitt Santisamranwilai. All rights reserved.
+                
+                <p class="text-gray-400 mb-6">
+                    Cultural Bridge Builder & Digital Innovator
                 </p>
-                <p class="text-sm text-gray-500 mt-2">
-                    Built with ❤️ and cultural wisdom
+                
+                <div class="flex justify-center space-x-6 mb-6">
+                    <a href="https://linkedin.com/in/thanatsitt" target="_blank" 
+                       class="text-gray-400 hover:text-gold transition-colors">
+                        <i class="fab fa-linkedin text-xl"></i>
+                    </a>
+                    <a href="https://github.com/thanatsitt" target="_blank" 
+                       class="text-gray-400 hover:text-gold transition-colors">
+                        <i class="fab fa-github text-xl"></i>
+                    </a>
+                    <a href="https://instagram.com/thanatsitt" target="_blank" 
+                       class="text-gray-400 hover:text-gold transition-colors">
+                        <i class="fab fa-instagram text-xl"></i>
+                    </a>
+                    <a href="mailto:thanattsitt.info@yahoo.co.uk" 
+                       class="text-gray-400 hover:text-gold transition-colors">
+                        <i class="fas fa-envelope text-xl"></i>
+                    </a>
+                </div>
+                
+                <p class="text-gray-500 text-sm">
+                    © 2024 Thanatsitt Santisamranwilai. All rights reserved.
                 </p>
             </div>
         </div>
     </footer>
 
-    <!-- Portfolio Modal -->
-    <div x-show="portfolioModal.show" 
+    <!-- Project Modal -->
+    <div x-show="projectModal.show" 
          x-transition:enter="transition ease-out duration-300"
          x-transition:enter-start="opacity-0"
          x-transition:enter-end="opacity-100"
          x-transition:leave="transition ease-in duration-200"
          x-transition:leave-start="opacity-100"
          x-transition:leave-end="opacity-0"
-         class="fixed inset-0 bg-black/80 backdrop-blur-sm z-50 flex items-center justify-center p-4"
-         @click="closePortfolioModal()"
-         @keydown.escape="closePortfolioModal()">
+         class="modal-backdrop fixed inset-0 z-50 flex items-center justify-center p-4"
+         @click.self="closeProjectModal()">
         
-        <div class="bg-secondary rounded-2xl max-w-4xl w-full max-h-[90vh] overflow-y-auto"
-             @click.stop>
-            <!-- Modal Header -->
-            <div class="flex items-center justify-between p-6 border-b border-gray-700">
-                <h3 class="text-2xl font-bold gradient-text" x-text="portfolioModal.project?.title"></h3>
-                <button @click="closePortfolioModal()"
-                        class="w-10 h-10 rounded-full hover:bg-white/10 flex items-center justify-center transition-colors duration-300 focus-visible">
-                    <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path>
-                    </svg>
-                </button>
-            </div>
-
-            <!-- Modal Content -->
-            <div class="p-6">
-                <!-- Project Image -->
-                <div class="aspect-video bg-gradient-to-br from-primary/20 to-accent/20 rounded-lg overflow-hidden mb-6">
-                    <img :src="portfolioModal.project?.image" 
-                         :alt="portfolioModal.project?.title"
-                         class="w-full h-full object-cover">
-                </div>
-
-                <!-- Project Details -->
-                <div class="grid md:grid-cols-3 gap-6">
-                    <div class="md:col-span-2">
-                        <h4 class="text-lg font-semibold mb-3 text-primary">Project Overview</h4>
-                        <p class="text-gray-300 mb-6" x-text="portfolioModal.project?.fullDescription"></p>
-
-                        <h4 class="text-lg font-semibold mb-3 text-primary">Key Features</h4>
-                        <ul class="space-y-2 text-gray-300">
-                            <template x-for="feature in portfolioModal.project?.features || []" :key="feature">
-                                <li class="flex items-start space-x-2">
-                                    <svg class="w-5 h-5 text-accent mt-0.5 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path>
-                                    </svg>
-                                    <span x-text="feature"></span>
-                                </li>
-                            </template>
-                        </ul>
+        <div class="modal-content max-w-4xl w-full max-h-[90vh] overflow-y-auto rounded-2xl p-8 relative">
+            <button @click="closeProjectModal()" 
+                    class="absolute top-4 right-4 text-gray-400 hover:text-white text-2xl">
+                <i class="fas fa-times"></i>
+            </button>
+            
+            <template x-if="projectModal.project">
+                <div>
+                    <div class="flex items-center mb-6">
+                        <i :class="projectModal.project.icon" class="text-4xl text-gold mr-4"></i>
+                        <div>
+                            <h2 class="text-3xl font-bold" x-text="projectModal.project.title"></h2>
+                            <p class="text-gold" x-text="projectModal.project.category"></p>
+                        </div>
                     </div>
-
-                    <div>
-                        <h4 class="text-lg font-semibold mb-3 text-primary">Technologies</h4>
-                        <div class="flex flex-wrap gap-2 mb-6">
-                            <template x-for="tag in portfolioModal.project?.tags || []" :key="tag">
-                                <span class="px-3 py-1 bg-primary/20 text-primary text-sm rounded-full" x-text="tag"></span>
-                            </template>
+                    
+                    <div class="grid lg:grid-cols-3 gap-8">
+                        <div class="lg:col-span-2">
+                            <h3 class="text-xl font-bold mb-4">Project Overview</h3>
+                            <p class="text-gray-300 mb-6" x-text="projectModal.project.fullDescription"></p>
+                            
+                            <h3 class="text-xl font-bold mb-4">Key Features</h3>
+                            <ul class="space-y-2 mb-6">
+                                <template x-for="feature in projectModal.project.features" :key="feature">
+                                    <li class="flex items-center text-gray-300">
+                                        <i class="fas fa-check text-gold mr-3"></i>
+                                        <span x-text="feature"></span>
+                                    </li>
+                                </template>
+                            </ul>
+                            
+                            <h3 class="text-xl font-bold mb-4">Technologies Used</h3>
+                            <div class="flex flex-wrap gap-2">
+                                <template x-for="tech in projectModal.project.technologies" :key="tech">
+                                    <span class="px-3 py-1 bg-gold/20 text-gold rounded-full text-sm" x-text="tech"></span>
+                                </template>
+                            </div>
                         </div>
-
-                        <h4 class="text-lg font-semibold mb-3 text-primary">Project Info</h4>
-                        <div class="space-y-3 text-sm">
-                            <div>
-                                <span class="text-gray-400">Duration:</span>
-                                <span class="text-white ml-2" x-text="portfolioModal.project?.duration"></span>
+                        
+                        <div>
+                            <h3 class="text-xl font-bold mb-4">Project Details</h3>
+                            <div class="space-y-4">
+                                <div>
+                                    <p class="text-gray-400 text-sm">Year</p>
+                                    <p class="font-medium" x-text="projectModal.project.year"></p>
+                                </div>
+                                <div>
+                                    <p class="text-gray-400 text-sm">Role</p>
+                                    <p class="font-medium" x-text="projectModal.project.role"></p>
+                                </div>
+                                <div>
+                                    <p class="text-gray-400 text-sm">Client</p>
+                                    <p class="font-medium" x-text="projectModal.project.client"></p>
+                                </div>
                             </div>
-                            <div>
-                                <span class="text-gray-400">Role:</span>
-                                <span class="text-white ml-2" x-text="portfolioModal.project?.role"></span>
-                            </div>
-                            <div>
-                                <span class="text-gray-400">Status:</span>
-                                <span class="text-white ml-2" x-text="portfolioModal.project?.status"></span>
-                            </div>
-                        </div>
-
-                        <!-- Action Buttons -->
-                        <div class="mt-6 space-y-3">
-                            <template x-if="portfolioModal.project?.liveUrl">
-                                <a :href="portfolioModal.project.liveUrl" 
-                                   target="_blank"
-                                   rel="noopener noreferrer"
-                                   class="block w-full px-4 py-3 bg-gradient-to-r from-primary to-accent text-dark font-semibold rounded-lg text-center hover:shadow-lg transition-all duration-300">
-                                    View Live Project
-                                </a>
-                            </template>
-                            <template x-if="portfolioModal.project?.githubUrl">
-                                <a :href="portfolioModal.project.githubUrl" 
-                                   target="_blank"
-                                   rel="noopener noreferrer"
-                                   class="block w-full px-4 py-3 border-2 border-primary text-primary hover:bg-primary hover:text-dark font-semibold rounded-lg text-center transition-all duration-300">
-                                    View Source Code
-                                </a>
+                            
+                            <template x-if="projectModal.project.link && projectModal.project.link !== '#'">
+                                <div class="mt-6">
+                                    <a :href="projectModal.project.link" target="_blank"
+                                       class="btn-cosmic px-6 py-3 rounded-full font-semibold transition-all duration-300 hover:scale-105 inline-block">
+                                        <i class="fas fa-external-link-alt mr-2"></i>
+                                        View Project
+                                    </a>
+                                </div>
                             </template>
                         </div>
                     </div>
                 </div>
-            </div>
+            </template>
         </div>
     </div>
 
-    <!-- Gallery Modal -->
-    <div x-show="galleryModal.show" 
-         x-transition:enter="transition ease-out duration-300"
-         x-transition:enter-start="opacity-0"
-         x-transition:enter-end="opacity-100"
-         x-transition:leave="transition ease-in duration-200"
-         x-transition:leave-start="opacity-100"
-         x-transition:leave-end="opacity-0"
-         class="fixed inset-0 bg-black/90 backdrop-blur-sm z-50 flex items-center justify-center"
-         @click="closeGalleryModal()"
-         @keydown.escape="closeGalleryModal()"
-         @keydown.arrow-left="previousImage()"
-         @keydown.arrow-right="nextImage()">
-        
-        <div class="relative w-full h-full flex items-center justify-center p-4"
-             @click.stop>
-            <!-- Close Button -->
-            <button @click="closeGalleryModal()"
-                    class="absolute top-4 right-4 w-12 h-12 bg-black/50 rounded-full hover:bg-black/70 flex items-center justify-center transition-colors duration-300 z-10 focus-visible">
-                <svg class="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path>
-                </svg>
-            </button>
+    <!-- Notification Container -->
+    <div id="notification" class="cosmic-notification" style="display: none;"></div>
 
-            <!-- Navigation Buttons -->
-            <button @click="previousImage()"
-                    class="absolute left-4 top-1/2 transform -translate-y-1/2 w-12 h-12 bg-black/50 rounded-full hover:bg-black/70 flex items-center justify-center transition-colors duration-300 z-10 focus-visible">
-                <svg class="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7"></path>
-                </svg>
-            </button>
+    <!-- Scripts -->
+    <script defer src="https://unpkg.com/alpinejs@3.x.x/dist/cdn.min.js"></script>
+    <script src="https://cdn.emailjs.com/dist/email.min.js"></script>
+    <script src="js/app.js"></script>
 
-            <button @click="nextImage()"
-                    class="absolute right-4 top-1/2 transform -translate-y-1/2 w-12 h-12 bg-black/50 rounded-full hover:bg-black/70 flex items-center justify-center transition-colors duration-300 z-10 focus-visible">
-                <svg class="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path>
-                </svg>
-            </button>
-
-            <!-- Image -->
-            <div class="max-w-4xl max-h-full">
-                <img :src="galleryImages[galleryModal.currentIndex]?.src" 
-                     :alt="galleryImages[galleryModal.currentIndex]?.alt"
-                     class="max-w-full max-h-full object-contain rounded-lg shadow-2xl">
-            </div>
-
-            <!-- Image Counter -->
-            <div class="absolute bottom-4 left-1/2 transform -translate-x-1/2 bg-black/50 px-4 py-2 rounded-full">
-                <span class="text-white text-sm" x-text="`${galleryModal.currentIndex + 1} / ${galleryImages.length}`"></span>
-            </div>
-        </div>
-    </div>
-
-    <!-- Back to Top Button -->
-    <button x-show="scrolled" 
-            x-transition
-            @click="scrollToTop()"
-            class="fixed bottom-6 right-6 w-12 h-12 bg-primary rounded-full shadow-lg hover:shadow-xl hover:scale-110 flex items-center justify-center transition-all duration-300 z-30 focus-visible no-print"
-            aria-label="Back to top">
-        <svg class="w-6 h-6 text-dark" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 10l7-7m0 0l7 7m-7-7v18"></path>
-        </svg>
-    </button>
-
-    <!-- Alpine.js Application -->
-    <script>
-        function portfolioApp() {
-            return {
-                // State
-                loading: true,
-                scrolled: false,
-                scrollProgress: 0,
-                activeSection: 'home',
-                mobileMenuOpen: false,
-                showAllProjects: false,
-                formSubmitting: false,
-                
-                // Navigation
-                navigation: [
-                    { id: 'home', label: 'Home' },
-                    { id: 'about', label: 'About' },
-                    { id: 'portfolio', label: 'Portfolio' },
-                    { id: 'gallery', label: 'Gallery' },
-                    { id: 'contact', label: 'Contact' }
-                ],
-
-                // Form
-                form: {
-                    name: '',
-                    email: '',
-                    subject: '',
-                    message: '',
-                    honeypot: ''
-                },
-                formStatus: {
-                    show: false,
-                    type: '',
-                    message: ''
-                },
-
-                // Portfolio
-                portfolioItems: [
-                    {
-                        id: 1,
-                        title: "AI Cultural Translator",
-                        description: "Machine learning system that preserves cultural context in translations",
-                        fullDescription: "An advanced AI system that goes beyond literal translation to preserve cultural nuances, idioms, and contextual meanings across Thai, Japanese, and English languages. This project combines natural language processing with cultural knowledge graphs to deliver translations that maintain the original intent and cultural significance.",
-                        image: "/assets/portfolio-preview.jpg",
-                        tags: ["AI/ML", "NLP", "Cultural Tech", "Python"],
-                        features: [
-                            "Context-aware translation engine",
-                            "Cultural idiom preservation",
-                            "Multi-language support (Thai, Japanese, English)",
-                            "Real-time cultural context analysis",
-                            "Integration with popular translation platforms"
-                        ],
-                        duration: "6 months",
-                        role: "Lead AI Developer",
-                        status: "Production",
-                        liveUrl: "https://cultural-translator.demo.com",
-                        githubUrl: "https://github.com/thanatsitt/cultural-translator"
-                    },
-                    {
-                        id: 2,
-                        title: "Cross-Cultural UX Platform",
-                        description: "Design system that adapts interfaces based on cultural preferences",
-                        fullDescription: "A comprehensive UX platform that automatically adapts user interfaces based on cultural preferences and behavioral patterns. The system analyzes user interactions and cultural background to optimize layouts, color schemes, navigation patterns, and content presentation for maximum cultural relevance and usability.",
-                        image: "/assets/portfolio-preview.jpg",
-                        tags: ["UX Design", "Cultural Research", "React", "Design Systems"],
-                        features: [
-                            "Adaptive interface components",
-                            "Cultural preference detection",
-                            "Real-time layout optimization",
-                            "Accessibility compliance across cultures",
-                            "A/B testing framework for cultural variants"
-                        ],
-                        duration: "8 months",
-                        role: "UX Lead & Developer",
-                        status: "Beta Testing",
-                        liveUrl: "https://cultural-ux.demo.com",
-                        githubUrl: "https://github.com/thanatsitt/cultural-ux"
-                    },
-                    {
-                        id: 3,
-                        title: "Heritage Preservation App",
-                        description: "Digital platform for documenting and sharing cultural heritage",
-                        fullDescription: "A mobile and web application designed to help communities document, preserve, and share their cultural heritage. Features include AR visualization of historical sites, oral history recording, traditional craft tutorials, and community storytelling platforms. The app serves as a bridge between generations, ensuring cultural knowledge is preserved and accessible.",
-                        image: "/assets/portfolio-preview.jpg",
-                        tags: ["Mobile App", "AR/VR", "Community", "Heritage"],
-                        features: [
-                            "AR historical site visualization",
-                            "Oral history recording and archival",
-                            "Traditional craft video tutorials",
-                            "Community storytelling platform",
-                            "Multi-generational knowledge sharing"
-                        ],
-                        duration: "12 months",
-                        role: "Full-Stack Developer",
-                        status: "Live",
-                        liveUrl: "https://heritage-app.demo.com",
-                        githubUrl: "https://github.com/thanatsitt/heritage-app"
-                    }
-                ],
-
-                // Portfolio Modal
-                portfolioModal: {
-                    show: false,
-                    project: null
-                },
-
-                // Gallery
-                galleryImages: [
-                    { src: '/assets/gallery/design-sketches-001.jpg', alt: 'Traditional design sketches blending cultural motifs' },
-                    { src: '/assets/gallery/traditional-weaving-002.jpg', alt: 'Learning traditional weaving techniques in Thailand' },
-                    { src: '/assets/gallery/ai-development-003.jpg', alt: 'AI development workspace with cultural artifacts' },
-                    { src: '/assets/gallery/cultural-workshop-004.jpg', alt: 'Leading a cross-cultural design workshop' },
-                    { src: '/assets/gallery/temple-architecture-005.jpg', alt: 'Studying temple architecture for design inspiration' },
-                    { src: '/assets/gallery/tech-conference-006.jpg', alt: 'Speaking at international technology conference' },
-                    { src: '/assets/gallery/collaboration-007.jpg', alt: 'Collaborating with international design teams' },
-                    { src: '/assets/gallery/cultural-research-008.jpg', alt: 'Field research in traditional communities' }
-                ],
-
-                // Gallery Modal
-                galleryModal: {
-                    show: false,
-                    currentIndex: 0
-                },
-
-                // Initialization
-                init() {
-                    this.setupScrollListeners();
-                    this.setupGSAPAnimations();
-                    this.setupTypewriter();
-                    this.preloadImages();
-                    this.registerServiceWorker();
-                    
-                    // Hide loading screen after initialization
-                    setTimeout(() => {
-                        this.loading = false;
-                        this.trackEvent('page_loaded');
-                    }, 1500);
-                },
-
-                // Scroll Management
-                setupScrollListeners() {
-                    window.addEventListener('scroll', () => {
-                        this.updateScrollState();
-                        this.updateActiveSection();
-                    });
-                },
-
-                updateScrollState() {
-                    const scrollTop = window.pageYOffset;
-                    const docHeight = document.documentElement.scrollHeight - window.innerHeight;
-                    
-                    this.scrolled = scrollTop > 100;
-                    this.scrollProgress = (scrollTop / docHeight) * 100;
-                },
-
-                updateActiveSection() {
-                    const sections = this.navigation.map(item => item.id);
-                    const scrollPosition = window.scrollY + 100;
-
-                    for (let i = sections.length - 1; i >= 0; i--) {
-                        const section = document.getElementById(sections[i]);
-                        if (section && section.offsetTop <= scrollPosition) {
-                            this.activeSection = sections[i];
-                            break;
-                        }
-                    }
-                },
-
-                scrollToTop() {
-                    window.scrollTo({ top: 0, behavior: 'smooth' });
-                    this.trackEvent('scroll_to_top');
-                },
-
-                // GSAP Animations
-                setupGSAPAnimations() {
-                    gsap.registerPlugin(ScrollTrigger);
-
-                    // Fade up animations
-                    gsap.utils.toArray('[data-gsap="fade-up"]').forEach((element, index) => {
-                        const delay = element.dataset.delay || 0;
-                        
-                        gsap.fromTo(element, 
-                            {
-                                opacity: 0,
-                                y: 30
-                            },
-                            {
-                                opacity: 1,
-                                y: 0,
-                                duration: 0.8,
-                                delay: parseFloat(delay),
-                                ease: "power2.out",
-                                scrollTrigger: {
-                                    trigger: element,
-                                    start: "top 80%",
-                                    toggleActions: "play none none reverse"
-                                }
-                            }
-                        );
-                    });
-
-                    // Fade right animations
-                    gsap.utils.toArray('[data-gsap="fade-right"]').forEach((element) => {
-                        gsap.fromTo(element,
-                            {
-                                opacity: 0,
-                                x: -50
-                            },
-                            {
-                                opacity: 1,
-                                x: 0,
-                                duration: 0.8,
-                                ease: "power2.out",
-                                scrollTrigger: {
-                                    trigger: element,
-                                    start: "top 80%",
-                                    toggleActions: "play none none reverse"
-                                }
-                            }
-                        );
-                    });
-
-                    // Fade left animations
-                    gsap.utils.toArray('[data-gsap="fade-left"]').forEach((element) => {
-                        gsap.fromTo(element,
-                            {
-                                opacity: 0,
-                                x: 50
-                            },
-                            {
-                                opacity: 1,
-                                x: 0,
-                                duration: 0.8,
-                                ease: "power2.out",
-                                scrollTrigger: {
-                                    trigger: element,
-                                    start: "top 80%",
-                                    toggleActions: "play none none reverse"
-                                }
-                            }
-                        );
-                    });
-                },
-
-                // Typewriter Effect
-                setupTypewriter() {
-                    const phrases = [
-                        "Cultural Navigator",
-                        "AI Developer",
-                        "Cross-Cultural Designer",
-                        "Innovation Bridge Builder",
-                        "Technology Humanizer"
-                    ];
-                    
-                    let currentPhrase = 0;
-                    let currentChar = 0;
-                    let isDeleting = false;
-                    const typeSpeed = 100;
-                    const deleteSpeed = 50;
-                    const pauseTime = 2000;
-
-                    const typeWriter = () => {
-                        const element = document.getElementById('typewriter-text');
-                        if (!element) return;
-
-                        const current = phrases[currentPhrase];
-                        
-                        if (isDeleting) {
-                            element.textContent = current.substring(0, currentChar - 1);
-                            currentChar--;
-                        } else {
-                            element.textContent = current.substring(0, currentChar + 1);
-                            currentChar++;
-                        }
-
-                        let speed = isDeleting ? deleteSpeed : typeSpeed;
-
-                        if (!isDeleting && currentChar === current.length) {
-                            speed = pauseTime;
-                            isDeleting = true;
-                        } else if (isDeleting && currentChar === 0) {
-                            isDeleting = false;
-                            currentPhrase = (currentPhrase + 1) % phrases.length;
-                        }
-
-                        setTimeout(typeWriter, speed);
-                    };
-
-                    setTimeout(typeWriter, 1000);
-                },
-
-                // Portfolio Modal
-                openPortfolioModal(project) {
-                    this.portfolioModal.project = project;
-                    this.portfolioModal.show = true;
-                    document.body.style.overflow = 'hidden';
-                    this.trackEvent('portfolio_modal_opened', { project_id: project.id });
-                },
-
-                closePortfolioModal() {
-                    this.portfolioModal.show = false;
-                    this.portfolioModal.project = null;
-                    document.body.style.overflow = 'auto';
-                    this.trackEvent('portfolio_modal_closed');
-                },
-
-                // Gallery Modal
-                openGalleryModal(index) {
-                    this.galleryModal.currentIndex = index;
-                    this.galleryModal.show = true;
-                    document.body.style.overflow = 'hidden';
-                    this.trackEvent('gallery_modal_opened', { image_index: index });
-                },
-
-                closeGalleryModal() {
-                    this.galleryModal.show = false;
-                    document.body.style.overflow = 'auto';
-                    this.trackEvent('gallery_modal_closed');
-                },
-
-                nextImage() {
-                    this.galleryModal.currentIndex = (this.galleryModal.currentIndex + 1) % this.galleryImages.length;
-                    this.trackEvent('gallery_next_image');
-                },
-
-                previousImage() {
-                    this.galleryModal.currentIndex = this.galleryModal.currentIndex === 0 
-                        ? this.galleryImages.length - 1 
-                        : this.galleryModal.currentIndex - 1;
-                    this.trackEvent('gallery_previous_image');
-                },
-
-                // Form Handling
-                async submitForm() {
-                    // Basic spam protection
-                    if (this.form.honeypot) {
-                        return;
-                    }
-
-                    this.formSubmitting = true;
-                    this.hideFormStatus();
-
-                    try {
-                        // Simulate form submission (replace with actual endpoint)
-                        await new Promise(resolve => setTimeout(resolve, 2000));
-                        
-                        // Success
-                        this.showFormStatus('success', 'Thank you for your message! I\'ll get back to you soon.');
-                        this.resetForm();
-                        this.trackEvent('form_submitted', { success: true });
-                        
-                    } catch (error) {
-                        // Error
-                        this.showFormStatus('error', 'Sorry, there was an error sending your message. Please try again.');
-                        this.trackEvent('form_submitted', { success: false, error: error.message });
-                        
-                    } finally {
-                        this.formSubmitting = false;
-                    }
-                },
-
-                resetForm() {
-                    this.form = {
-                        name: '',
-                        email: '',
-                        subject: '',
-                        message: '',
-                        honeypot: ''
-                    };
-                },
-
-                showFormStatus(type, message) {
-                    this.formStatus = {
-                        show: true,
-                        type: type,
-                        message: message
-                    };
-
-                    // Auto-hide after 5 seconds
-                    setTimeout(() => {
-                        this.hideFormStatus();
-                    }, 5000);
-                },
-
-                hideFormStatus() {
-                    this.formStatus.show = false;
-                },
-
-                // Performance Optimization
-                preloadImages() {
-                    const imagesToPreload = [
-                        '/assets/thanatsitt-profile.jpg',
-                        '/assets/portfolio-preview.jpg',
-                        ...this.galleryImages.map(img => img.src)
-                    ];
-
-                    imagesToPreload.forEach(src => {
-                        const img = new Image();
-                        img.src = src;
-                    });
-                },
-
-                // PWA Support
-                registerServiceWorker() {
-                    if ('serviceWorker' in navigator) {
-                        navigator.serviceWorker.register('/sw.js')
-                            .then(registration => {
-                                console.log('SW registered:', registration);
-                            })
-                            .catch(error => {
-                                console.log('SW registration failed:', error);
-                            });
-                    }
-                },
-
-                // Analytics
-                trackEvent(eventName, parameters = {}) {
-                    // Google Analytics 4
-                    if (typeof gtag !== 'undefined') {
-                        gtag('event', eventName, parameters);
-                    }
-
-                    // Custom analytics
-                    console.log('Event tracked:', eventName, parameters);
-                },
-
-                // Error Handling
-                handleError(error, context = '') {
-                    console.error(`Error in ${context}:`, error);
-                    this.trackEvent('error_occurred', {
-                        error_message: error.message,
-                        context: context
-                    });
-                }
-            }
-        }
-
-        // Global error handling
-        window.addEventListener('error', (event) => {
-            console.error('Global error:', event.error);
-        });
-
-        // Performance monitoring
-        window.addEventListener('load', () => {
-            // Core Web Vitals
-            if ('web-vital' in window) {
-                // Implementation would go here
-            }
-        });
-    </script>
-
-    <!-- Google Analytics (replace with your tracking ID) -->
-    <script async src="https://www.googletagmanager.com/gtag/js?id=GA_TRACKING_ID"></script>
+    <!-- Analytics -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=GA_MEASUREMENT_ID"></script>
     <script>
         window.dataLayer = window.dataLayer || [];
         function gtag(){dataLayer.push(arguments);}
         gtag('js', new Date());
-        gtag('config', 'GA_TRACKING_ID');
+        gtag('config', 'GA_MEASUREMENT_ID');
     </script>
 </body>
 </html>
