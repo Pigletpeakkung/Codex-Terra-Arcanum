@@ -1,5 +1,1043 @@
 /**
  * =============================================================================
+ * THANATSITT PORTFOLIO - MAIN APPLICATION SCRIPT
+ * Advanced Alpine.js application with modern JavaScript features
+ * =============================================================================
+ */
+
+// =============================================================================
+// GLOBAL CONFIGURATION & UTILITIES
+// =============================================================================
+
+/**
+ * Global application configuration
+ */
+const APP_CONFIG = {
+    // Animation settings
+    animations: {
+        typingSpeed: 100,
+        typingDelay: 2000,
+        scrollOffset: 100,
+        intersectionThreshold: 0.1
+    },
+    
+    // Contact form settings
+    contact: {
+        emailjsServiceId: 'service_your_id', // Replace with your EmailJS service ID
+        emailjsTemplateId: 'template_your_id', // Replace with your EmailJS template ID
+        emailjsPublicKey: 'your_public_key' // Replace with your EmailJS public key
+    },
+    
+    // Social media links
+    social: {
+  linkedin: 'https://www.linkedin.com/in/thanatsitts',
+  github: 'https://github.com/pigletpeakkung',
+  instagram: 'https://www.instagram.com/thanatsitts',
+  twitter: 'https://x.com/thanatsitts',
+  email: 'thanattsitt.info@yahoo.co.uk',
+  website: 'https://pegearts.com'
+    }
+    
+    // Performance settings
+    performance: {
+        debounceDelay: 300,
+        throttleDelay: 100,
+        lazyLoadOffset: 50
+    }
+};
+
+/**
+ * Utility functions
+ */
+const Utils = {
+    // Debounce function for performance optimization
+    debounce(func, wait) {
+        let timeout;
+        return function executedFunction(...args) {
+            const later = () => {
+                clearTimeout(timeout);
+                func(...args);
+            };
+            clearTimeout(timeout);
+            timeout = setTimeout(later, wait);
+        };
+    },
+
+    // Throttle function for scroll events
+    throttle(func, limit) {
+        let inThrottle;
+        return function() {
+            const args = arguments;
+            const context = this;
+            if (!inThrottle) {
+                func.apply(context, args);
+                inThrottle = true;
+                setTimeout(() => inThrottle = false, limit);
+            }
+        };
+    },
+
+    // Smooth scroll to element
+    scrollToElement(elementId, offset = 0) {
+        const element = document.getElementById(elementId);
+        if (element) {
+            const elementPosition = element.getBoundingClientRect().top;
+            const offsetPosition = elementPosition + window.pageYOffset - offset;
+
+            window.scrollTo({
+                top: offsetPosition,
+                behavior: 'smooth'
+            });
+        }
+    },
+
+    // Format date
+    formatDate(date) {
+        return new Intl.DateTimeFormat('en-US', {
+            year: 'numeric',
+            month: 'long',
+            day: 'numeric'
+        }).format(new Date(date));
+    },
+
+    // Generate unique ID
+    generateId() {
+        return Math.random().toString(36).substr(2, 9);
+    },
+
+    // Validate email
+    isValidEmail(email) {
+        const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+        return emailRegex.test(email);
+    },
+
+    // Sanitize HTML
+    sanitizeHtml(str) {
+        const temp = document.createElement('div');
+        temp.textContent = str;
+        return temp.innerHTML;
+    }
+};
+
+/**
+ * Toast notification system
+ */
+const Toast = {
+    container: null,
+
+    init() {
+        this.container = document.getElementById('toast-container');
+        if (!this.container) {
+            this.container = document.createElement('div');
+            this.container.id = 'toast-container';
+            this.container.className = 'toast-container';
+            document.body.appendChild(this.container);
+        }
+    },
+
+    show(message, type = 'info', duration = 5000) {
+        if (!this.container) this.init();
+
+        const toast = document.createElement('div');
+        toast.className = `toast toast-${type}`;
+        toast.innerHTML = `
+            <div class="flex items-center justify-between">
+                <span>${Utils.sanitizeHtml(message)}</span>
+                <button onclick="this.parentElement.parentElement.remove()" class="ml-4 text-white/80 hover:text-white">
+                    <i class="fas fa-times"></i>
+                </button>
+            </div>
+        `;
+
+        this.container.appendChild(toast);
+
+        // Auto remove after duration
+        setTimeout(() => {
+            if (toast.parentNode) {
+                toast.style.opacity = '0';
+                toast.style.transform = 'translateX(100%)';
+                setTimeout(() => toast.remove(), 300);
+            }
+        }, duration);
+
+        return toast;
+    },
+
+    success(message, duration) {
+        return this.show(message, 'success', duration);
+    },
+
+    error(message, duration) {
+        return this.show(message, 'error', duration);
+    },
+
+    warning(message, duration) {
+        return this.show(message, 'warning', duration);
+    },
+
+    info(message, duration) {
+        return this.show(message, 'info', duration);
+    }
+};
+
+/**
+ * Analytics tracking
+ */
+const Analytics = {
+    track(event, data = {}) {
+        // Google Analytics 4
+        if (typeof gtag !== 'undefined') {
+            gtag('event', event, data);
+        }
+
+        // Custom analytics
+        console.log('Analytics Event:', event, data);
+    },
+
+    trackPageView(page) {
+        this.track('page_view', { page_title: page });
+    },
+
+    trackContact(method) {
+        this.track('contact', { method });
+    },
+
+    trackProjectView(projectId) {
+        this.track('project_view', { project_id: projectId });
+    },
+
+    trackSkillInteraction(skill) {
+        this.track('skill_interaction', { skill_name: skill });
+    }
+};
+
+// =============================================================================
+// MAIN ALPINE.JS APPLICATION
+// =============================================================================
+
+/**
+ * Main portfolio application
+ */
+function portfolioApp() {
+    return {
+        // =============================================================================
+        // STATE MANAGEMENT
+        // =============================================================================
+        
+        // Navigation state
+        scrolled: false,
+        mobileMenuOpen: false,
+        currentSection: 'home',
+        
+        // Typing animation state
+        typedText: '',
+        typingIndex: 0,
+        typingTexts: [
+            'Thanatsitt',
+            'Cultural Bridge Builder',
+            'AI Developer',
+            'Fashion Designer',
+            'Voice Artist',
+            'Digital Innovator'
+        ],
+        currentTextIndex: 0,
+        isTyping: true,
+        
+        // Portfolio state
+        portfolioFilter: 'all',
+        projectModal: {
+            show: false,
+            project: null
+        },
+        
+        // Contact form state
+        contactForm: {
+            name: '',
+            email: '',
+            subject: '',
+            message: '',
+            loading: false
+        },
+        contactStatus: {
+            show: false,
+            type: 'success',
+            message: ''
+        },
+        
+        // Performance tracking
+        intersectionObserver: null,
+        scrollThrottled: null,
+
+        // =============================================================================
+        // DATA COLLECTIONS
+        // =============================================================================
+        
+        /**
+         * Portfolio projects data
+         */
+        projects: [
+            {
+                id: 1,
+                title: 'AI-Powered Cultural Translation Platform',
+                category: 'AI Development',
+                categoryColor: 'bg-blue-500/20 text-blue-400',
+                description: 'Revolutionary AI system that preserves cultural nuances in real-time translation, bridging communication gaps between Thai and English speakers.',
+                fullDescription: 'This groundbreaking AI platform combines natural language processing with deep cultural understanding to provide translations that maintain emotional context, cultural references, and subtle meanings often lost in traditional translation systems. The platform has been trained on thousands of cultural texts and conversations.',
+                year: '2024',
+                role: 'Lead AI Developer & Cultural Consultant',
+                client: 'International Cultural Exchange Foundation',
+                technologies: ['Python', 'TensorFlow', 'Natural Language Processing', 'Cultural AI', 'REST API'],
+                features: [
+                    'Real-time cultural context preservation',
+                    'Emotion-aware translation algorithms',
+                    'Cultural reference database integration',
+                    'Multi-dialect support for Thai languages',
+                    'Continuous learning from user feedback'
+                ],
+                icon: 'fas fa-robot',
+                link: 'https://github.com/thanatsitt/cultural-ai',
+                filter: 'ai'
+            },
+            {
+                id: 2,
+                title: 'Sustainable Thai Silk Fashion Line',
+                category: 'Fashion Design',
+                categoryColor: 'bg-purple-500/20 text-purple-400',
+                description: 'Contemporary fashion collection celebrating traditional Thai silk craftsmanship with modern sustainable practices and innovative design techniques.',
+                fullDescription: 'This collection represents a harmonious blend of ancient Thai silk weaving traditions with contemporary sustainable fashion practices. Each piece tells a story of cultural heritage while addressing modern environmental concerns through innovative eco-friendly production methods.',
+                year: '2023',
+                role: 'Creative Director & Designer',
+                client: 'London Fashion Week',
+                technologies: ['Sustainable Materials', 'Traditional Weaving', 'Modern Tailoring', 'Eco-Dyeing'],
+                features: [
+                    'Zero-waste pattern design',
+                    'Traditional Thai silk integration',
+                    'Modern silhouette adaptation',
+                    'Eco-friendly dyeing processes',
+                    'Cultural storytelling through design'
+                ],
+                icon: 'fas fa-tshirt',
+                link: 'https://pegearts.com/fashion',
+                filter: 'fashion'
+            },
+            {
+                id: 3,
+                title: 'Cross-Cultural Brand Strategy for Tech Startup',
+                category: 'Cultural Consulting',
+                categoryColor: 'bg-green-500/20 text-green-400',
+                description: 'Comprehensive cultural consulting project helping a Silicon Valley startup successfully enter Asian markets with culturally sensitive branding.',
+                fullDescription: 'Led a comprehensive cultural transformation project for a major tech startup expanding into Asian markets. The project involved deep cultural research, brand adaptation strategies, and the development of culturally appropriate marketing campaigns that respected local traditions while maintaining brand integrity.',
+                year: '2023',
+                role: 'Senior Cultural Consultant',
+                client: 'TechFlow Innovations',
+                technologies: ['Cultural Research', 'Brand Strategy', 'Market Analysis', 'Localization'],
+                features: [
+                    'Comprehensive cultural market analysis',
+                    'Brand adaptation strategies',
+                    'Culturally sensitive marketing campaigns',
+                    'Local partnership facilitation',
+                    'Ongoing cultural training programs'
+                ],
+                icon: 'fas fa-globe-asia',
+                link: '#',
+                filter: 'consulting'
+            },
+            {
+                id: 4,
+                title: 'Multilingual Voice Acting for Educational Platform',
+                category: 'Voice Acting',
+                categoryColor: 'bg-yellow-500/20 text-yellow-400',
+                description: 'Professional voice acting services for an international educational platform, providing narration in multiple languages and dialects.',
+                fullDescription: 'Provided comprehensive voice acting services for a leading educational technology platform, creating engaging multilingual content that helps students learn about different cultures. The project required mastering various vocal techniques and cultural speech patterns.',
+                year: '2024',
+                role: 'Voice Artist & Cultural Advisor',
+                client: 'EduGlobal Learning',
+                technologies: ['Professional Recording', 'Audio Engineering', 'Multiple Languages', 'Cultural Pronunciation'],
+                features: [
+                    'Multi-language narration (Thai, English)',
+                    'Cultural pronunciation accuracy',
+                    'Emotional range adaptation',
+                    'Educational content optimization',
+                    'Interactive learning integration'
+                ],
+                icon: 'fas fa-microphone',
+                link: '#',
+                filter: 'voice'
+            },
+            {
+                id: 5,
+                title: 'Smart Fashion Recommendation AI',
+                category: 'AI Development',
+                categoryColor: 'bg-blue-500/20 text-blue-400',
+                description: 'Machine learning system that provides personalized fashion recommendations based on cultural preferences, body type, and style history.',
+                fullDescription: 'Developed an intelligent fashion recommendation system that combines computer vision, machine learning, and cultural understanding to provide personalized styling advice. The system learns from user preferences and cultural context to suggest outfits that are both stylish and culturally appropriate.',
+                year: '2023',
+                role: 'AI Developer & Fashion Consultant',
+                client: 'StyleSense Technologies',
+                technologies: ['Machine Learning', 'Computer Vision', 'Python', 'Fashion Analytics', 'Cultural AI'],
+                features: [
+                    'Personalized style recommendations',
+                    'Cultural appropriateness checking',
+                    'Body type optimization',
+                    'Trend analysis integration',
+                    'Virtual try-on capabilities'
+                ],
+                icon: 'fas fa-brain',
+                link: 'https://github.com/thanatsitt/fashion-ai',
+                filter: 'ai'
+            },
+            {
+                id: 6,
+                title: 'Traditional Craft Revival Initiative',
+                category: 'Cultural Consulting',
+                categoryColor: 'bg-green-500/20 text-green-400',
+                description: 'Cultural preservation project documenting and revitalizing traditional Thai craftsmanship techniques for modern artisans.',
+                fullDescription: 'Led a comprehensive cultural preservation initiative focused on documenting, teaching, and revitalizing traditional Thai craftsmanship techniques. The project created educational resources, workshops, and mentorship programs to ensure these valuable skills are passed to future generations.',
+                year: '2024',
+                role: 'Cultural Preservation Specialist',
+                client: 'Thai Cultural Heritage Foundation',
+                technologies: ['Cultural Documentation', 'Educational Design', 'Workshop Development', 'Mentorship Programs'],
+                features: [
+                    'Traditional technique documentation',
+                    'Modern adaptation strategies',
+                    'Artisan mentorship programs',
+                    'Educational resource creation',
+                    'Cultural workshop facilitation'
+                ],
+                icon: 'fas fa-hands',
+                link: '#',
+                filter: 'consulting'
+            }
+        ],
+
+        /**
+         * Client testimonials data
+         */
+        testimonials: [
+            {
+                id: 1,
+                name: 'Sarah Chen',
+                role: 'CEO, TechFlow Innovations',
+                rating: 5,
+                content: 'Thanatsitt\'s cultural insights were invaluable in our Asian market expansion. Their ability to bridge cultural gaps while maintaining our brand identity was exceptional. The results exceeded our expectations.',
+                project: 'Cross-Cultural Brand Strategy',
+                avatar: '/images/testimonials/sarah-chen.jpg'
+            },
+            {
+                id: 2,
+                name: 'Dr. James Morrison',
+                role: 'Director, International Cultural Exchange Foundation',
+                rating: 5,
+                content: 'The AI translation platform Thanatsitt developed has revolutionized how we handle cross-cultural communications. The cultural nuance preservation is remarkable and has significantly improved our international programs.',
+                project: 'AI Cultural Translation Platform',
+                avatar: '/images/testimonials/james-morrison.jpg'
+            },
+            {
+                id: 3,
+                name: 'Maria Rodriguez',
+                role: 'Fashion Director, London Fashion Week',
+                rating: 5,
+                content: 'Thanatsitt\'s sustainable Thai silk collection was one of the highlights of our show. The perfect blend of traditional craftsmanship and modern design sensibility created something truly special.',
+                project: 'Sustainable Fashion Collection',
+                avatar: '/images/testimonials/maria-rodriguez.jpg'
+            },
+            {
+                id: 4,
+                name: 'Alex Thompson',
+                role: 'Product Manager, EduGlobal Learning',
+                rating: 5,
+                content: 'Working with Thanatsitt on our multilingual educational content was a game-changer. Their voice acting skills and cultural knowledge brought our lessons to life in ways we never imagined.',
+                project: 'Educational Voice Acting',
+                avatar: '/images/testimonials/alex-thompson.jpg'
+            },
+            {
+                id: 5,
+                name: 'Dr. Priya Patel',
+                role: 'CTO, StyleSense Technologies',
+                rating: 5,
+                content: 'Thanatsitt\'s fashion AI recommendation system has transformed our platform. The cultural sensitivity and personalization accuracy have significantly improved user engagement and satisfaction.',
+                project: 'Fashion Recommendation AI',
+                avatar: '/images/testimonials/priya-patel.jpg'
+            },
+            {
+                id: 6,
+                name: 'Somchai Jaidee',
+                role: 'Director, Thai Cultural Heritage Foundation',
+                rating: 5,
+                content: 'Thanatsitt\'s work in preserving our traditional crafts has been extraordinary. Their modern approach to cultural preservation ensures our heritage will thrive for generations to come.',
+                project: 'Cultural Preservation Initiative',
+                avatar: '/images/testimonials/somchai-jaidee.jpg'
+            }
+        ],
+
+        // =============================================================================
+        // COMPUTED PROPERTIES
+        // =============================================================================
+        
+        /**
+         * Filtered projects based on current filter
+         */
+        get filteredProjects() {
+            if (this.portfolioFilter === 'all') {
+                return this.projects;
+            }
+            return this.projects.filter(project => project.filter === this.portfolioFilter);
+        },
+
+        /**
+         * Contact form validation
+         */
+        get isContactFormValid() {
+            return this.contactForm.name.trim() !== '' &&
+                   Utils.isValidEmail(this.contactForm.email) &&
+                   this.contactForm.subject.trim() !== '' &&
+                   this.contactForm.message.trim() !== '';
+        },
+
+        // =============================================================================
+        // LIFECYCLE METHODS
+        // =============================================================================
+        
+        /**
+         * Initialize the application
+         */
+        init() {
+            console.log('🚀 Portfolio App Initialized');
+            
+            // Initialize components
+            this.initializeScrollHandling();
+            this.initializeTypingAnimation();
+            this.initializeIntersectionObserver();
+            this.initializeEmailJS();
+            this.initializeToastSystem();
+            this.initializeKeyboardNavigation();
+            this.initializePerformanceOptimizations();
+            
+            // Track page load
+            Analytics.trackPageView('Portfolio Home');
+            
+            // Set initial section
+            this.updateCurrentSection();
+            
+            console.log('✅ All systems initialized');
+        },
+
+        /**
+         * Initialize scroll handling
+         */
+        initializeScrollHandling() {
+            this.scrollThrottled = Utils.throttle(() => {
+                this.scrolled = window.scrollY > 50;
+                this.updateCurrentSection();
+            }, APP_CONFIG.performance.throttleDelay);
+
+            window.addEventListener('scroll', this.scrollThrottled);
+        },
+
+        /**
+         * Initialize typing animation
+         */
+        initializeTypingAnimation() {
+            this.startTypingAnimation();
+        },
+
+        /**
+         * Initialize intersection observer for animations
+         */
+        initializeIntersectionObserver() {
+            this.intersectionObserver = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.classList.add('animate-in');
+                        Analytics.track('section_view', { section: entry.target.id });
+                    }
+                });
+            }, {
+                threshold: APP_CONFIG.animations.intersectionThreshold,
+                rootMargin: '0px 0px -50px 0px'
+            });
+
+            // Observe all sections
+            document.querySelectorAll('section[id]').forEach(section => {
+                section.classList.add('animate-on-scroll');
+                this.intersectionObserver.observe(section);
+            });
+        },
+
+        /**
+         * Initialize EmailJS
+         */
+        initializeEmailJS() {
+            if (typeof emailjs !== 'undefined' && APP_CONFIG.contact.emailjsPublicKey) {
+                emailjs.init(APP_CONFIG.contact.emailjsPublicKey);
+                console.log('✅ EmailJS initialized');
+            } else {
+                console.warn('⚠️ EmailJS not available or not configured');
+            }
+        },
+
+        /**
+         * Initialize toast notification system
+         */
+        initializeToastSystem() {
+            Toast.init();
+        },
+
+        /**
+         * Initialize keyboard navigation
+         */
+        initializeKeyboardNavigation() {
+            document.addEventListener('keydown', (e) => {
+                // ESC key closes modals
+                if (e.key === 'Escape') {
+                    if (this.projectModal.show) {
+                        this.closeProjectModal();
+                    }
+                    if (this.mobileMenuOpen) {
+                        this.mobileMenuOpen = false;
+                    }
+                }
+                
+                // Arrow keys for navigation
+                if (e.ctrlKey || e.metaKey) {
+                    switch(e.key) {
+                        case 'ArrowUp':
+                            e.preventDefault();
+                            this.scrollToSection('home');
+                            break;
+                        case 'ArrowDown':
+                            e.preventDefault();
+                            this.scrollToSection('contact');
+                            break;
+                    }
+                }
+            });
+        },
+
+        /**
+         * Initialize performance optimizations
+         */
+        initializePerformanceOptimizations() {
+            // Preload critical images
+            this.preloadCriticalImages();
+            
+            // Initialize lazy loading
+            this.initializeLazyLoading();
+            
+            // Optimize animations for reduced motion
+            if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+                document.documentElement.style.setProperty('--animation-duration', '0.01ms');
+            }
+        },
+
+        // =============================================================================
+        // ANIMATION METHODS
+        // =============================================================================
+        
+        /**
+         * Start typing animation
+         */
+        startTypingAnimation() {
+            const typeText = () => {
+                const currentText = this.typingTexts[this.currentTextIndex];
+                
+                if (this.isTyping) {
+                    if (this.typingIndex < currentText.length) {
+                        this.typedText += currentText.charAt(this.typingIndex);
+                        this.typingIndex++;
+                        setTimeout(typeText, APP_CONFIG.animations.typingSpeed);
+                    } else {
+                        this.isTyping = false;
+                        setTimeout(typeText, APP_CONFIG.animations.typingDelay);
+                    }
+                } else {
+                    if (this.typingIndex > 0) {
+                        this.typedText = this.typedText.slice(0, -1);
+                        this.typingIndex--;
+                        setTimeout(typeText, APP_CONFIG.animations.typingSpeed / 2);
+                    } else {
+                        this.isTyping = true;
+                        this.currentTextIndex = (this.currentTextIndex + 1) % this.typingTexts.length;
+                        setTimeout(typeText, APP_CONFIG.animations.typingSpeed);
+                    }
+                }
+            };
+            
+            typeText();
+        },
+
+        /**
+         * Animate skill bars
+         */
+        animateSkillBars() {
+            const skillBars = document.querySelectorAll('.skill-bar');
+            skillBars.forEach((bar, index) => {
+                setTimeout(() => {
+                    const width = bar.getAttribute('data-width') || '0%';
+                    bar.style.width = width;
+                }, index * 200);
+            });
+        },
+
+        // =============================================================================
+        // NAVIGATION METHODS
+        // =============================================================================
+        
+        /**
+         * Scroll to section
+         */
+        scrollToSection(sectionId) {
+            Utils.scrollToElement(sectionId, 80);
+            this.mobileMenuOpen = false;
+            Analytics.track('navigation', { section: sectionId });
+        },
+
+        /**
+         * Update current section based on scroll position
+         */
+        updateCurrentSection() {
+            const sections = ['home', 'about', 'skills', 'portfolio', 'gallery', 'testimonials', 'contact'];
+            const scrollPosition = window.scrollY + 100;
+
+            for (const sectionId of sections) {
+                const element = document.getElementById(sectionId);
+                if (element) {
+                    const { offsetTop, offsetHeight } = element;
+                    if (scrollPosition >= offsetTop && scrollPosition < offsetTop + offsetHeight) {
+                        if (this.currentSection !== sectionId) {
+                            this.currentSection = sectionId;
+                            Analytics.trackPageView(`Portfolio ${sectionId.charAt(0).toUpperCase() + sectionId.slice(1)}`);
+                        }
+                        break;
+                    }
+                }
+            }
+        },
+
+        // =============================================================================
+        // PORTFOLIO METHODS
+        // =============================================================================
+        
+        /**
+         * Open project modal
+         */
+        openProjectModal(project) {
+            this.projectModal.project = project;
+            this.projectModal.show = true;
+            document.body.style.overflow = 'hidden';
+            Analytics.trackProjectView(project.id);
+        },
+
+        /**
+         * Close project modal
+         */
+        closeProjectModal() {
+            this.projectModal.show = false;
+            this.projectModal.project = null;
+            document.body.style.overflow = 'auto';
+        },
+
+        /**
+         * Filter portfolio projects
+         */
+        filterProjects(filter) {
+            this.portfolioFilter = filter;
+            Analytics.track('portfolio_filter', { filter });
+        },
+
+        // =============================================================================
+        // CONTACT FORM METHODS
+        // =============================================================================
+        
+        /**
+         * Submit contact form
+         */
+        async submitContactForm() {
+            if (!this.isContactFormValid) {
+                this.showContactStatus('error', 'Please fill in all required fields correctly.');
+                return;
+            }
+
+            this.contactForm.loading = true;
+
+            try {
+                // EmailJS integration
+                if (typeof emailjs !== 'undefined' && APP_CONFIG.contact.emailjsServiceId) {
+                    await emailjs.send(
+                        APP_CONFIG.contact.emailjsServiceId,
+                        APP_CONFIG.contact.emailjsTemplateId,
+                        {
+                            from_name: this.contactForm.name,
+                            from_email: this.contactForm.email,
+                            subject: this.contactForm.subject,
+                            message: this.contactForm.message,
+                            to_email: APP_CONFIG.social.email
+                        }
+                    );
+
+                    this.showContactStatus('success', 'Thank you! Your message has been sent successfully. I\'ll get back to you soon.');
+                    this.resetContactForm();
+                    Analytics.trackContact('email');
+                    Toast.success('Message sent successfully!');
+                } else {
+                    // Fallback: mailto link
+                    const mailtoLink = `mailto:${APP_CONFIG.social.email}?subject=${encodeURIComponent(this.contactForm.subject)}&body=${encodeURIComponent(`Name: ${this.contactForm.name}\nEmail: ${this.contactForm.email}\n\nMessage:\n${this.contactForm.message}`)}`;
+                    window.location.href = mailtoLink;
+                    
+                    this.showContactStatus('success', 'Opening your email client...');
+                    Analytics.trackContact('mailto');
+                }
+            } catch (error) {
+                console.error('Contact form error:', error);
+                this.showContactStatus('error', 'Sorry, there was an error sending your message. Please try again or contact me directly.');
+                Toast.error('Failed to send message. Please try again.');
+            } finally {
+                this.contactForm.loading = false;
+            }
+        },
+
+        /**
+         * Show contact form status
+         */
+        showContactStatus(type, message) {
+            this.contactStatus.type = type;
+            this.contactStatus.message = message;
+            this.contactStatus.show = true;
+
+            // Auto hide after 5 seconds
+            setTimeout(() => {
+                this.contactStatus.show = false;
+            }, 5000);
+        },
+
+        /**
+         * Reset contact form
+         */
+        resetContactForm() {
+            this.contactForm.name = '';
+            this.contactForm.email = '';
+            this.contactForm.subject = '';
+            this.contactForm.message = '';
+        },
+
+        // =============================================================================
+        // PERFORMANCE OPTIMIZATION METHODS
+        // =============================================================================
+        
+        /**
+         * Preload critical images
+         */
+        preloadCriticalImages() {
+            const criticalImages = [
+                '/images/profile.jpg',
+                '/images/hero-bg.jpg'
+            ];
+
+            criticalImages.forEach(src => {
+                const img = new Image();
+                img.src = src;
+            });
+        },
+
+        /**
+         * Initialize lazy loading
+         */
+        initializeLazyLoading() {
+            if ('IntersectionObserver' in window) {
+                const lazyImageObserver = new IntersectionObserver((entries) => {
+                    entries.forEach(entry => {
+                        if (entry.isIntersecting) {
+                            const img = entry.target;
+                            img.src = img.dataset.src;
+                            img.classList.remove('lazy');
+                            lazyImageObserver.unobserve(img);
+                        }
+                    });
+                });
+
+                document.querySelectorAll('img[data-src]').forEach(img => {
+                    lazyImageObserver.observe(img);
+                });
+            }
+        },
+
+        // =============================================================================
+        // UTILITY METHODS
+        // =============================================================================
+        
+        /**
+         * Handle skill interaction
+         */
+        handleSkillInteraction(skill) {
+            Analytics.trackSkillInteraction(skill);
+            Toast.info(`${skill} - Click to learn more!`);
+        },
+
+        /**
+         * Copy email to clipboard
+         */
+        async copyEmailToClipboard() {
+            try {
+                await navigator.clipboard.writeText(APP_CONFIG.social.email);
+                Toast.success('Email copied to clipboard!');
+                Analytics.track('email_copied');
+            } catch (error) {
+                console.error('Failed to copy email:', error);
+                Toast.error('Failed to copy email');
+            }
+        },
+
+        /**
+         * Share portfolio
+         */
+        async sharePortfolio() {
+            if (navigator.share) {
+                try {
+                    await navigator.share({
+                        title: 'Thanatsitt Santisamranwilai - Portfolio',
+                        text: 'Check out this amazing portfolio of a Thai-British cultural bridge builder and digital innovator!',
+                        url: window.location.href
+                    });
+                    Analytics.track('portfolio_shared', { method: 'native' });
+                } catch (error) {
+                    console.error('Error sharing:', error);
+                }
+            } else {
+                // Fallback: copy URL to clipboard
+                try {
+                    await navigator.clipboard.writeText(window.location.href);
+                    Toast.success('Portfolio URL copied to clipboard!');
+                    Analytics.track('portfolio_shared', { method: 'clipboard' });
+                } catch (error) {
+                    Toast.error('Failed to copy URL');
+                }
+            }
+        },
+
+        /**
+         * Download resume/CV
+         */
+        downloadResume() {
+            const link = document.createElement('a');
+            link.href = '/documents/Thanatsitt_Santisamranwilai_Resume.pdf';
+            link.download = 'Thanatsitt_Santisamranwilai_Resume.pdf';
+            link.click();
+            Analytics.track('resume_downloaded');
+            Toast.success('Resume download started!');
+        },
+
+        // =============================================================================
+        // CLEANUP METHODS
+        // =============================================================================
+        
+        /**
+         * Cleanup when component is destroyed
+         */
+        destroy() {
+            // Remove event listeners
+            if (this.scrollThrottled) {
+                window.removeEventListener('scroll', this.scrollThrottled);
+            }
+
+            // Disconnect observers
+            if (this.intersectionObserver) {
+                this.intersectionObserver.disconnect();
+            }
+
+            // Reset body overflow
+            document.body.style.overflow = 'auto';
+
+            console.log('🧹 Portfolio App Cleaned Up');
+        }
+    };
+}
+
+// =============================================================================
+// GLOBAL EVENT LISTENERS & INITIALIZATION
+// =============================================================================
+
+/**
+ * Initialize application when DOM is loaded
+ */
+document.addEventListener('DOMContentLoaded', () => {
+    console.log('🎯 DOM Content Loaded');
+    
+    // Initialize toast system
+    Toast.init();
+    
+    // Add global error handling
+    window.addEventListener('error', (event) => {
+        console.error('Global error:', event.error);
+        Toast.error('An unexpected error occurred. Please refresh the page.');
+    });
+
+    // Add unhandled promise rejection handling
+    window.addEventListener('unhandledrejection', (event) => {
+        console.error('Unhandled promise rejection:', event.reason);
+        Toast.error('A network error occurred. Please check your connection.');
+    });
+
+    // Performance monitoring
+    if ('performance' in window) {
+        window.addEventListener('load', () => {
+            const loadTime = performance.timing.loadEventEnd - performance.timing.navigationStart;
+            console.log(`⚡ Page loaded in ${loadTime}ms`);
+            Analytics.track('performance', { load_time: loadTime });
+        });
+    }
+
+    console.log('✅ Global initialization complete');
+});
+
+/**
+ * Handle page visibility changes
+ */
+document.addEventListener('visibilitychange', () => {
+    if (document.hidden) {
+        Analytics.track('page_hidden');
+    } else {
+        Analytics.track('page_visible');
+    }
+});
+
+/**
+ * Handle online/offline status
+ */
+window.addEventListener('online', () => {
+    Toast.success('Connection restored!');
+    Analytics.track('connection_restored');
+});
+
+window.addEventListener('offline', () => {
+    Toast.warning('You are currently offline. Some features may not work.');
+    Analytics.track('connection_lost');
+});
+
+// =============================================================================
+// EXPORT FOR MODULE SYSTEMS
+// =============================================================================
+
+// For ES6 modules
+if (typeof module !== 'undefined' && module.exports) {
+    module.exports = { portfolioApp, Utils, Toast, Analytics, APP_CONFIG };
+}
+
+// For AMD
+if (typeof define === 'function' && define.amd) {
+    define(() => ({ portfolioApp, Utils, Toast, Analytics, APP_CONFIG }));
+}
+
+// Global assignment
+window.portfolioApp = portfolioApp;
+window.PortfolioUtils = Utils;
+window.Toast = Toast;
+window.Analytics = Analytics;
+
+console.log('🚀 Portfolio Application Script Loaded Successfully');
+
+
+/**
+ * =============================================================================
  * THANATSITT PORTFOLIO - GSAP ENHANCED APPLICATION
  * Advanced Alpine.js + GSAP application with cinematic animations
  * =============================================================================
